@@ -96,7 +96,7 @@ export default function VenturesPage() {
         </div>
         <div className={styles.aboutText}>
           {
-            " With our US$50 million ecosystem fund, we are dedicated to expanding aelf's ecosystem and capturing research-driven investments."
+            "With our US$50 million ecosystem fund, we are dedicated to expanding aelf's ecosystem and capturing research-driven investments."
           }
         </div>
       </CommonSection>
