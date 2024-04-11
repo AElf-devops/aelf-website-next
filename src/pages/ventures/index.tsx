@@ -87,8 +87,8 @@ export default function VenturesPage() {
       <CommonSection
         sectionClassName={styles.aboutPart}
         contentClassName={styles.partContent}
-        title="About"
       >
+      <div className={styles.title}>About</div>
         <div className={clsx([styles.aboutText, styles.aboutTextTop])}>
           {
             "AELF Ventures is the global investment arm of aelf, a high-performance L1 blockchain designed to bridge Web2 to Web3."
