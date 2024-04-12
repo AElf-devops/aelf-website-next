@@ -133,8 +133,10 @@ export default function VenturesPage() {
         </div>
       </CommonSection>
       <CommonSection contentClassName={styles.contactPart}>
+        <div className={styles.contactContent}>
           <a href="https://wkf.ms/3Mbxauz" target="_blank" className={styles.title}>Contact Us</a>
           <div className={styles.email}>ventures@aelf.io</div>
+        </div>
       </CommonSection>
     </div>
   );

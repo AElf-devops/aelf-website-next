@@ -295,22 +295,25 @@
 
 .desktop {
   .contactPart {
-    text-align: center;
-    .title {
+    .contactContent {
+      text-align: center;
       width: 100%;
-      padding: 23px 50px;
-      color: black;
+      padding-top: 25px;
+      padding-bottom: 15px;
+      width: 1016px;
+      border-radius: 8px;
       background-color: #fff;
+      margin: 0 auto;
+    }
+    .title {
+      color: black;
       font-size: 20px;
       line-height: 30px;
-      border-radius: 8px;
       display: inline-block;
       font-weight: 600;
-      margin-bottom: 22px;
-      width: 1016px;
     }
     .email {
-      color: #fff;
+      color: black;
       line-height: 30px;
       font-size: 20px;
     }
