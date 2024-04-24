@@ -1,0 +1,191 @@
+// @import "../../assets/theme/constants.scss";
+@font-face {
+  font-family: "MONTSERRATREGULAR_1";
+  src: url("../../assets/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MONTSERRATEXTRABOLD";
+  src: url("../../assets/fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "MSYHL";
+  src: url("../../assets/fonts/MSYHL.TTC");
+}
+
+@font-face {
+  font-family: "MONTSERRATLIGHT";
+  src: url("../../assets/fonts/Poppins-Regular.ttf");
+}
+
+.header {
+  position: fixed;
+  transition: all 0.3s ease;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 90px;
+  background-color: #121114;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  .headerWrapper {
+    margin: 0 auto;
+    min-width: 600px;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+      max-width: 1200px;
+    }
+    @media screen and (min-width: 1201px) and (max-width: 1500px) {
+      width: 1200px;
+    }
+    @media screen and (min-width: 1501px) {
+      width: 1350px;
+    }
+    color: rgba(255, 255, 255, 0.5);
+
+    .headerLogo {
+      margin-right: 20px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      .title{
+        display: none;
+      }
+    }
+
+    .headerMenu {
+      width: 504px;
+      color: rgba(255, 255, 255, 0.5);
+      border-bottom: 0;
+      line-height: 46px;
+      li::after {
+        border-bottom: 0 !important;
+      }
+      background: none;
+      margin: 0 auto;
+    }
+    .herderRight {
+      display: flex;
+      align-items: center;
+      .languageBox {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        padding: 0 16px;
+        border-radius: 40px;
+        margin-right: 20px;
+        position: relative;
+        &.languageChange {
+          .languageTitle {
+            min-width: 60px;
+            text-align: center;
+          }
+          &:hover {
+            background: none;
+          }
+        }
+        &.communityBox {
+          padding: 0 8px;
+        }
+        .communityIco {
+          margin-right: 10px;
+          font-size: 28px;
+          color: #fff;
+        }
+        .languageTitle {
+          font-size: 14px;
+          color: #fff;
+        }
+
+        .iconArrows {
+          margin-left: 10px;
+          font-size: 12px;
+          line-height: 1;
+          color: rgba(255, 255, 255, 0.4);
+          transform: rotate(90deg);
+        }
+
+        .headIconListBox {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          padding-top: 10px;
+          opacity: 0;
+          visibility: hidden;
+          margin-top: 10px;
+          .headIconList {
+            background-image: linear-gradient(135deg, #2b2a2c, #1c1b1d);
+            padding: 24px 40px 40px;
+            border-radius: 14px;
+            width: 280px;
+            a {
+              float: left;
+              width: 20px;
+              font-size: 20px;
+              margin-top: 16px;
+              margin-right: 16px;
+              line-height: 20px;
+              opacity: 0.5;
+              text-align: center;
+              color: #fff;
+              transition: all 0.3s ease;
+              &:nth-child(6n) {
+                margin-right: 0;
+              }
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        .languageInner {
+          position: absolute;
+          padding-top: 6px;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          opacity: 0;
+          visibility: hidden;
+          cursor: pointer;
+          .languageTitle {
+            line-height: 30px;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+          .languageInner {
+            opacity: 1;
+            visibility: visible;
+          }
+          .headIconListBox {
+            opacity: 1;
+            margin-top: 0;
+            visibility: visible;
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

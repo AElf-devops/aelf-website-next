@@ -1,13 +1,25 @@
 import ConfigProvider from "@/contexts/useConfig";
 import "@/styles/globals.scss";
+import "@/styles/iconfont.css";
 import NextApp from "next/app";
 import { userAgent } from "next/server";
-import React from "react";
 import 'antd/dist/antd.css';
+import React, { useEffect } from "react";
+import Layout from "@/components/Layout";
+import { ConfigProvider as AntdConfigProvider } from "antd";
+import { ANTD_THEME_CONFIG } from "@/constants/theme/themTokenConfig";
+import microApp, { getActiveApps } from "@micro-zoe/micro-app";
+
 export default function App({ Component, pageProps, isMobile }: any) {
+  useEffect(() => {
+    microApp.start();
+  }, []);
+
   return (
     <ConfigProvider init={{ isMobile: isMobile }}>
-      <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
     </ConfigProvider>
   );
 }

@@ -9,9 +9,14 @@
 
 html,
 body {
+  height: 100%;
 }
 
 body {
+  background-color: black;
+}
+.main {
+  height: 100%;
 }
 
 a {
@@ -21,5 +26,29 @@ a {
 micro-app-body{
   background-color: transparent !important;
   font-family: "MONTSERRATLIGHT" !important;
+}
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.ant-menu-sub {
+  background-image: linear-gradient(135deg, #2b2a2c, #1c1b1d) !important;
+}
+
+
+
+.ant-menu::before {
+  display: table;
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  margin-left: -5px;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background: #2b2a2c;
 }
 

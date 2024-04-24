@@ -26,6 +26,7 @@
     "@editorjs/table": "^2.3.0",
     "antd": "4",
     "axios": "^1.6.8",
+    "@micro-zoe/micro-app": "^1.0.0-rc.4",
     "clsx": "^2.1.0",
     "lodash": "^4.17.21",
     "next": "14.1.3",

@@ -1,0 +1,84 @@
+@font-face {
+    font-family: "iconfont"; /* Project id  */
+    src: url("../assets/fonts/iconfont.ttf?t=1665370877985") format("truetype");
+  }
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-linkedin:before {
+    content: "\e92a";
+  }
+  
+  .icon-medium:before {
+    content: "\e783";
+  }
+  
+  .icon-facebook:before {
+    content: "\e6e5";
+  }
+  
+  .icon-twitter:before {
+    content: "\e69b";
+  }
+  
+  .icon-send:before {
+    content: "\e6f4";
+  }
+  
+  .icon-github:before {
+    content: "\e651";
+  }
+  
+  .icon-Youtubelogo:before {
+    content: "\e6b7";
+  }
+  
+  .icon-reddit:before {
+    content: "\e60e";
+  }
+  
+  .icon-youxiang:before {
+    content: "\e630";
+  }
+  
+  .icon-PDF:before {
+    content: "\e64d";
+  }
+  
+  .icon-liulanqi:before {
+    content: "\e68a";
+  }
+  
+  .icon-jiantou:before {
+    content: "\e626";
+  }
+  
+  .icon-liaotian:before {
+    content: "\e612";
+  }
+  
+  .icon-qq:before {
+    content: "\e6b2";
+  }
+  
+  .icon-weixin:before {
+    content: "\e61a";
+  }
+  
+  .icon-guanbi:before {
+    content: "\e646";
+  }
+  
+  .icon-tubiao:before {
+    content: "\e628";
+  }
+  
+  .icon-discord:before {
+    content: "\e63d";
+  }
+  
