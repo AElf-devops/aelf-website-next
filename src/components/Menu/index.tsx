@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
 import { Menu, MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { headIconList } from "./constants";
+import logo from '@/assets/images/logo.png';
+import Image from "next/image";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import { PcMenu } from "../Menu";
 
 function recursiveMenu(data: any) {
   return data.map((item: any) => {
@@ -34,10 +37,11 @@ function recursiveMenu(data: any) {
   });
 }
 
-export default function Header() {
+export  function PcMenu() {
   const router = useRouter();
   const pathname = usePathname();
   const { isMobile } = useConfig();
+
 
   const [menuList, setMenuList] = useState<any>([]);
 
@@ -84,5 +88,60 @@ export default function Header() {
     getMenuList();
   }, [getMenuList]);
 
-  return <PcMenu></PcMenu>;
+  return (
+    <header className={clsx("common-page", styles.header)}>
+      <div className={styles.headerWrapper}>
+        <a className={styles.headerLogo} href="./index">
+          <Image src={logo} alt="" ></Image>
+          {/* <img src="./img/home/logo.png" alt="" /> */}
+          <h1 className={clsx(styles.title)}>aelf</h1>
+        </a>
+        <Menu
+          onClick={onClick}
+          className={styles.headerMenu}
+          selectedKeys={current}
+          mode="horizontal"
+          items={menuList}
+          // forceSubMenuRender={true}
+        />
+        <div className={styles.herderRight}>
+          <div className={clsx(styles.languageBox, styles.communityBox)}>
+            <div
+              className={clsx(
+                styles.communityIco,
+                styles.iconLiaotian,
+                "iconfont",
+                "icon-liaotian"
+              )}
+            ></div>
+            <div className={styles.languageTitle}>Community</div>
+            <div
+              className={clsx(styles.iconArrows, "iconfont", "icon-jiantou")}
+            ></div>
+            <div className={styles.headIconListBox}>
+              <div className={clsx(styles.headIconList, "clearfix")}>
+                {headIconList.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.href}
+                    target="_blank"
+                    className={clsx(item.class, "iconfont")}
+                  ></a>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={clsx(styles.languageBox, styles.languageChange)}>
+            <a
+              href="https://wkf.ms/3Mbxauz"
+              target="_blank"
+              className={styles.languageTitle}
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
