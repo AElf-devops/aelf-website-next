@@ -1,0 +1,21 @@
+.desktop.PagiNation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8D8D8D;
+  gap: 10px;
+  .commonBorder{
+    border: 1px solid #8D8D8D;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+//   .select{
+
+//   }
+}
+
+

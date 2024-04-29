@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
-
+import { ConfigProvider as AntdConfigProvider } from "antd";
+import { ANTD_THEME_CONFIG } from "@/constants/theme/antdThemeConfig";
 const INITIAL_STATE = {};
 const ConfigContext = createContext<any>(INITIAL_STATE);
 
@@ -31,7 +32,7 @@ export default function ConfigProvider({
 
   return (
     <ConfigContext.Provider value={useMemo(() => state, [state])}>
-      {children}
+      <AntdConfigProvider theme={ANTD_THEME_CONFIG}>{children}</AntdConfigProvider>
     </ConfigContext.Provider>
   );
 }
