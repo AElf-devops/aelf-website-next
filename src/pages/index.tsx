@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const { isMobile } = useConfig();
   const url = isMobile
-    ? "http://localhost:9001/"
-    : "http://192.168.10.244:9000/";
+    ? "http://localhost:9001"
+    : "http://192.168.10.155:9000/";
 
   const [show, changeShow] = useState(false);
   useEffect(() => {
