@@ -35,7 +35,7 @@ interface IBlogListSearchParams {
   tag?: string;
   isPopularArticle?: boolean | null;
   search?: string;
-  tagId?: number | null;
+  tagId?: number | null | undefined;
   sort?: string | null;
   sortValue?: string;
 }

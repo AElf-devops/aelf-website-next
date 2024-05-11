@@ -1,5 +1,5 @@
 import { Select, Input } from "antd";
-import React, { useCallback, useRef, useState } from "react";
+import React, { SetStateAction, useCallback, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { clsx } from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -26,21 +26,16 @@ export default function Filter({
 }: {
   tagList: ITag[];
   searchParams: IBlogListSearchParams;
-  onChangeSearchParams: (params: IBlogListSearchParams) => void;
+  onChangeSearchParams: (value: SetStateAction<IBlogListSearchParams>) => void;
 }) {
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
 
-  const selectRef = useRef<any>();
   const [inputValue, setInputValue] = useState<string>("");
 
   const handleTagChange = useCallback(
     (value: number) => {
       router.push("/blog?tagId=" + value);
-      // onChangeSearchParams({
-      //   ...searchParams,
-      //   tagId: value,
-      // });
     },
     [router]
   );
@@ -48,24 +43,24 @@ export default function Filter({
   const handleSortChange = useCallback(
     (value: string) => {
       if (value === "trend") {
-        onChangeSearchParams({
-          ...searchParams,
+        onChangeSearchParams((state: IBlogListSearchParams) => ({
+          ...state,
           isPopularArticle: true,
           page: 1,
           sort: null,
           sortValue: value,
-        });
+        }));
       } else {
-        onChangeSearchParams({
-          ...searchParams,
+        onChangeSearchParams((state: IBlogListSearchParams) => ({
+          ...state,
           isPopularArticle: null,
           sort: "date_updated",
           sortValue: value,
           page: 1,
-        });
+        }));
       }
     },
-    [onChangeSearchParams, searchParams]
+    [onChangeSearchParams]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,26 +86,27 @@ export default function Filter({
   return (
     <div className={clsx([styles.filter, deviceClassName])}>
       <div className={styles.filterLeft} id="selectArea">
-        <Select
-          className={styles.filterSelect}
-          dropdownStyle={{
-            background: "#000",
-            color: "#FFF",
-          }}
-          ref={selectRef}
-          getPopupContainer={() => {
-            return document.getElementById("selectArea") as HTMLElement;
-          }}
-          onChange={handleTagChange}
-          value={searchParams.tagId}
-        >
-          <Select.Option value={null}>ALL</Select.Option>
-          {tagList.map((item) => (
-            <Select.Option key={item.id} value={item.id}>
-              {item.tag}
-            </Select.Option>
-          ))}
-        </Select>
+        {tagList.length && (
+          <Select
+            className={styles.filterSelect}
+            dropdownStyle={{
+              background: "#000",
+              color: "#FFF",
+            }}
+            getPopupContainer={() => {
+              return document.getElementById("selectArea") as HTMLElement;
+            }}
+            onChange={handleTagChange}
+            value={searchParams.tagId}
+          >
+            <Select.Option value={0}>ALL</Select.Option>
+            {tagList?.map((item) => (
+              <Select.Option key={item.id} value={item.id}>
+                {item.tag}
+              </Select.Option>
+            ))}
+          </Select>
+        )}
 
         <Select
           className={styles.sortSelect}
@@ -118,7 +114,6 @@ export default function Filter({
             background: "#000",
             color: "#FFF",
           }}
-          ref={selectRef}
           getPopupContainer={() => {
             return document.getElementById("selectArea") as HTMLElement;
           }}
@@ -136,7 +131,7 @@ export default function Filter({
         width={406}
         placeholder="Search"
         maxLength={100}
-        suffix={<CommonImage src={SearchIcon} width={35} height={35} alt="" />}
+        // suffix={<CommonImage src={SearchIcon} width={35} height={35} alt="" />}
       />
     </div>
   );

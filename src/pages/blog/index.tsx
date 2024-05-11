@@ -24,7 +24,7 @@ export default function Community() {
     page: 1,
     pageSize: 9,
     isPopularArticle: null,
-    tagId: Number(tagId) || null,
+    tagId: Number(tagId) || 0,
     search: "",
     sort: "date_updated",
     sortValue: "mostRecent",
@@ -37,6 +37,7 @@ export default function Community() {
     setIsLoading(true);
     getBlogList({
       ...searchParams,
+      tagId: searchParams.tagId == 0 ? null : searchParams.tagId,
       limit: searchParams.pageSize,
     })
       .then((res) => {
@@ -83,7 +84,7 @@ export default function Community() {
   useEffect(() => {
     setSearchParams((state: IBlogListSearchParams) => ({
       ...state,
-      tagId: Number(tagId) || null,
+      tagId: Number(tagId) || 0,
     }));
   }, [tagId]);
 
@@ -123,7 +124,7 @@ export default function Community() {
           </div>
         )}
 
-        <div className={styles.pageNation}>
+        {/* <div className={styles.pageNation}>
           <Pagination
             showSizeChanger
             defaultCurrent={1}
@@ -132,7 +133,7 @@ export default function Community() {
             onChange={handlePageChange}
             pageSizeOptions={pageSizeOptions}
           />
-        </div>
+        </div> */}
       </CommonSection>
     </div>
   );

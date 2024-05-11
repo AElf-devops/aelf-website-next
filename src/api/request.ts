@@ -38,9 +38,7 @@ export const getBlogList = async (
       },
     });
 
-    console.log("res", res);
-
-    if (res) {
+    if (res.data) {
       newData = res.data.map((item: IResponseBlog) => {
         return {
           ...item,
@@ -52,7 +50,7 @@ export const getBlogList = async (
     console.log(error);
   }
   try {
-    const countRes: any = await await apiServer.get("/items/blogList", {
+    const countRes: any = await apiServer.get("/items/blogList", {
       params: {
         filter: {
           tags: {
@@ -75,6 +73,7 @@ export const getBlogList = async (
         "Content-Type": "application/json;charset=utf-8",
       },
     });
+
     if (
       countRes?.data &&
       countRes?.data[0] &&
@@ -155,14 +154,17 @@ export const getBlogDetail = async (
   };
 };
 
-export const getBlogListCount = async (): Promise<{
-  data: any;
-}> => {
-  return apiServer.get("/items/blogList?aggregate[count]=*");
-};
-
 export const getTagList = async (): Promise<{
   data: ITag[];
 }> => {
-  return apiServer.get("/items/tagList");
+  try {
+    const res: {
+      data: ITag[];
+    } = await apiServer.get("/items/tagList");
+    return res;
+  } catch (error) {
+    return {
+      data: [],
+    };
+  }
 };
