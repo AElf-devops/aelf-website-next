@@ -34,7 +34,7 @@ export const getBlogList = async (
         sort: params.sort,
       },
     });
-    console.log(res)
+
     newData = res.data.map((item: IResponseBlog) => {
       return {
         ...item,
@@ -70,7 +70,6 @@ export const getBlogList = async (
       countRes?.data[0] &&
       countRes?.data[0]?.countDistinct
     ) {
-      console.log("countRes", countRes);
       count = countRes?.data[0]?.countDistinct?.id;
     }
   } catch (error) {
