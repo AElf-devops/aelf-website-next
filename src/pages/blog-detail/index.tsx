@@ -100,6 +100,7 @@ export default function BlogDetail() {
           />
           <span className={styles.article}>Article</span>
         </div>
+        <div></div>
         <div className={styles.title}>{blog?.title}</div>
         <div className={styles.description}>
           <div className={styles.descriptionLeft}>

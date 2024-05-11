@@ -37,6 +37,24 @@
     gap: 101px;
     margin-top: 84px;
   }
+  .noData {
+    height: 254px;
+    background-color: #282828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 72px;
+    border-radius: 8px;
+  }
+
+  .loading{
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 72px;
+  }
+
 
   .blogItem {
     cursor: pointer;
@@ -169,6 +187,23 @@
     font-size: 24px;
     margin-bottom: 18px;
     text-align: center;
+  }
+
+  .noData {
+    height: 180px;
+    background-color: #282828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 38px;
+    border-radius: 8px;
+  }
+  .loading{
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 38px;
   }
 
   .blogList {

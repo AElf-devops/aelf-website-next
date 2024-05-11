@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
+import { Spin } from "antd";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { CommonSection } from "@/components/CommonSection";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -8,6 +9,7 @@ import { Pagination } from "antd";
 import styles from "./styles.module.scss";
 import Filter from "./components/Filter";
 import BlogItem from "./components/BlogItem";
+import CustomNoData from "@/components/CustomNoData";
 
 const pageSizeOptions = [9, 18, 27, 36];
 
@@ -15,6 +17,7 @@ export default function Community() {
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
   const routerSearchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   const tagId = routerSearchParams.get("tagId");
   const [searchParams, setSearchParams] = useState<IBlogListSearchParams>({
@@ -31,6 +34,7 @@ export default function Community() {
   const [tagList, setTagList] = useState<ITag[]>([]);
 
   const handleSearch = useCallback(() => {
+    setIsLoading(true);
     getBlogList({
       ...searchParams,
       limit: searchParams.pageSize,
@@ -41,6 +45,9 @@ export default function Community() {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [searchParams]);
 
@@ -93,16 +100,29 @@ export default function Community() {
           searchParams={searchParams}
           onChangeSearchParams={setSearchParams}
         />
-        <div className={styles.blogList}>
-          {blogList?.map((item) => (
-            <BlogItem
-              key={item.id}
-              blog={item}
-              tagList={tagList}
-              onViewDetail={viewDetail}
-            />
-          ))}
-        </div>
+        {isLoading && (
+          <div className={styles.loading}>
+            <Spin />
+          </div>
+        )}
+        {!isLoading && blogList?.length ? (
+          <div className={styles.blogList}>
+            {blogList?.map((item) => (
+              <BlogItem
+                key={item.id}
+                blog={item}
+                tagList={tagList}
+                onViewDetail={viewDetail}
+              />
+            ))}
+          </div>
+        ) : null}
+        {!isLoading && !blogList?.length && (
+          <div className={styles.noData}>
+            <CustomNoData />
+          </div>
+        )}
+
         <div className={styles.pageNation}>
           <Pagination
             showSizeChanger
