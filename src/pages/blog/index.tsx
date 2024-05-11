@@ -34,16 +34,24 @@ export default function Community() {
     getBlogList({
       ...searchParams,
       limit: searchParams.pageSize,
-    }).then((res) => {
-      setBlogList(res.data);
-      setTotal(res.count);
-    });
+    })
+      .then((res) => {
+        setBlogList(res.data);
+        setTotal(res.count);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [searchParams]);
 
-  const handleGetTagList = useCallback(() => {
-    getTagList().then((res) => {
-      setTagList(res.data);
-    });
+  const handleGetTagList = useCallback(async () => {
+    getTagList()
+      .then((res) => {
+        setTagList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const handlePageChange = (page: number, pageSize: number) => {
@@ -52,7 +60,7 @@ export default function Community() {
 
   const viewDetail = useCallback(
     (id: number) => {
-      router.push(`/blogdetail?id=${id}`);
+      router.push(`/blog-detail?id=${id}`);
     },
     [router]
   );

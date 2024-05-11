@@ -19,8 +19,8 @@ let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
 });
 const urlConfig = getUrlConfig();
 
-export default function BlogDetail({ data }: { data: IBlog }) {
-  // export default function BlogDetail() {
+// export default function BlogDetail({ data }: { data: IBlog }) {
+  export default function BlogDetail() {
   const { isMobile } = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function BlogDetail({ data }: { data: IBlog }) {
 
   const [editorInstance, setEditorInstance] = useState({});
   const [tagList, setTagList] = useState<ITag[]>([]);
-  const [blog, setBlog] = useState<IBlog>(data);
+  const [blog, setBlog] = useState<IBlog>();
 
   const handleInstance = (instance: any) => {
     setEditorInstance(instance);
@@ -76,8 +76,8 @@ export default function BlogDetail({ data }: { data: IBlog }) {
 
   useEffect(() => {
     handleGetTagList();
-    // handleGetBlogDetail();
-  }, [handleGetTagList]);
+    handleGetBlogDetail();
+  }, [handleGetBlogDetail, handleGetTagList]);
 
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>
@@ -134,26 +134,27 @@ export default function BlogDetail({ data }: { data: IBlog }) {
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { query } = context;
-  let data = {};
-  if (query.id) {
-    const result = await getBlogDetail(Number(query.id));
-    result.data.content.blocks.forEach((block: any) => {
-      if (block.type === "image") {
-        block.data.file.url = urlConfig.cms + block.data.file.url;
-      }
-    });
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const { query } = context;
+//   let data = {};
+//   if (query.id) {
+    
+//     const result = await getBlogDetail(Number(query.id));
+//     result.data.content.blocks.forEach((block: any) => {
+//       if (block.type === "image") {
+//         block.data.file.url = urlConfig.cms + block.data.file.url;
+//       }
+//     });
 
-    data = {
-      ...result.data,
-      date_created: formattedDateToDMY(result.data.date_created),
-      date_updated: formattedDateToDMY(result.data.date_updated),
-    };
-  }
-  return {
-    props: {
-      data,
-    },
-  };
-}
+//     data = {
+//       ...result.data,
+//       date_created: formattedDateToDMY(result.data.date_created),
+//       date_updated: formattedDateToDMY(result.data.date_updated),
+//     };
+//   }
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }

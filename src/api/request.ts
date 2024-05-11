@@ -6,61 +6,74 @@ export const getBlogList = async (
   data: IBlog[];
   count: number;
 }> => {
-  const res: {
-    data: IResponseBlog[];
-  } = await apiServer.get("/blogList", {
-    params: {
-      page: params.page,
-      limit: params.limit,
-      filter: {
-        tags: {
-          tagList_id: {
-            id: {
-              _eq: params.tagId,
+  let newData: any = [];
+  let count = 0;
+
+  try {
+    const res: {
+      data: IResponseBlog[];
+    } = await apiServer.get("/items/blogList", {
+      params: {
+        page: params.page,
+        limit: params.limit,
+        filter: {
+          tags: {
+            tagList_id: {
+              id: {
+                _eq: params.tagId,
+              },
             },
           },
+          // is_popular_article: {
+          //   _eq: params.isPopularArticle,
+          // },
         },
-        // is_popular_article: {
-        //   _eq: params.isPopularArticle,
-        // },
+        fields: "*",
+        "fields[]": "tags.tagList_id.id",
+        search: params.search,
+        sort: params.sort,
       },
-      fields: "*",
-      "fields[]": "tags.tagList_id.id",
-      search: params.search,
-      sort: params.sort,
-    },
-  });
-
-  const countRes: any = await await apiServer.get("/blogList", {
-    params: {
-      filter: {
-        tags: {
-          tagList_id: {
-            id: {
-              _eq: params.tagId,
+    });
+    newData = res.data.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => item?.tagList_id?.id),
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    const countRes: any = await await apiServer.get("/items/blogList", {
+      params: {
+        filter: {
+          tags: {
+            tagList_id: {
+              id: {
+                _eq: params.tagId,
+              },
             },
           },
+          is_popular_article: {
+            _eq: params.isPopularArticle,
+          },
         },
-        is_popular_article: {
-          _eq: params.isPopularArticle,
+        search: params.search,
+        aggregate: {
+          countDistinct: "id",
         },
       },
-      search: params.search,
-      aggregate: {
-        countDistinct: "id",
-      },
-    },
-  });
-
-  const count = countRes.data[0]?.countDistinct?.id;
-
-  const newData = res.data.map((item: IResponseBlog) => {
-    return {
-      ...item,
-      tags: item.tags.map((item: any) => item?.tagList_id?.id),
-    };
-  });
-
+    });
+    if (
+      countRes?.data &&
+      countRes?.data[0] &&
+      countRes?.data[0]?.countDistinct
+    ) {
+      count = countRes?.data[0]?.countDistinct?.id;
+    }
+  } catch (error) {
+    console.log(error);
+  }
   return {
     data: newData,
     count,
@@ -72,17 +85,24 @@ export const getPopularBlogList = async (
 ): Promise<{
   data: IBlog[];
 }> => {
-  return apiServer.get("/blogList", {
-    params: {
-      page: params.page,
-      limit: params.limit,
-      filter: {
-        is_popular_article: {
-          _eq: params.isPopularArticle,
+  try {
+    const res: {
+      data: IBlog[];
+    } = await apiServer.get("/items/blogList", {
+      params: {
+        page: params.page,
+        limit: params.limit,
+        filter: {
+          is_popular_article: {
+            _eq: params.isPopularArticle,
+          },
         },
       },
-    },
-  });
+    });
+    return res;
+  } catch (error) {
+    throw new Error();
+  }
 };
 
 export const searchBlogList = async (
@@ -90,7 +110,7 @@ export const searchBlogList = async (
 ): Promise<{
   data: IBlog[];
 }> => {
-  return apiServer.get("/blogList", {
+  return apiServer.get("/items/blogList", {
     params: {
       page: params.page,
       limit: params.limit,
@@ -106,7 +126,7 @@ export const getBlogDetail = async (
 }> => {
   const res: {
     data: IResponseBlog;
-  } = await apiServer.get(`/blogList/${id}`, {
+  } = await apiServer.get(`/items/blogList/${id}`, {
     params: {
       fields: "*",
       "fields[]": "tags.tagList_id.id",
@@ -124,11 +144,11 @@ export const getBlogDetail = async (
 export const getBlogListCount = async (): Promise<{
   data: any;
 }> => {
-  return apiServer.get("/blogList?aggregate[count]=*");
+  return apiServer.get("/items/blogList?aggregate[count]=*");
 };
 
 export const getTagList = async (): Promise<{
   data: ITag[];
 }> => {
-  return apiServer.get("/tagList");
+  return apiServer.get("/items/tagList");
 };

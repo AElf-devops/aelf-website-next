@@ -13,10 +13,10 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      // {
-      //   source: "/api/items/:path*",
-      //   destination: "http://192.168.11.170:8066/items/:path*",
-      // },
+      {
+        source: "/items/:path*",
+        destination: "http://192.168.11.5:8066/items/:path*",
+      },
     ];
   },
   async headers() {

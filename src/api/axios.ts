@@ -55,7 +55,7 @@ class Request {
             break;
 
           case 401:
-            message.error("The signature has expired. Please log in again.");
+            // message.error("The signature has expired. Please log in again.");
             setTimeout(() => {
               location.pathname = "/";
             }, 3000);
@@ -78,7 +78,7 @@ class Request {
             break;
         }
 
-        message.error(errMessage);
+        // message.error(errMessage);
         return Promise.reject(errMessage);
       }
     );
@@ -114,7 +114,7 @@ class Request {
 }
 
 const apiServer = new Request({
-  baseURL: urlConfig.cms + "/items",
+  baseURL:  "/",
 });
 
 const defaultRequest = new Request({});

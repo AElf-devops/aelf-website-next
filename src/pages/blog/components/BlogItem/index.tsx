@@ -11,7 +11,7 @@ import CommonImage from "@/components/CommonImage";
 
 export default function BlogItem({
   blog,
-  tagList,
+  tagList = [],
   onViewDetail,
 }: {
   blog: IBlog;
@@ -23,7 +23,7 @@ export default function BlogItem({
 
   const tagMap = useMemo(() => {
     const obj: any = {};
-    tagList.forEach((item) => {
+    tagList?.forEach((item) => {
       obj[item.id] = item.tag;
     });
     return obj;
