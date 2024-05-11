@@ -35,12 +35,16 @@ export const getBlogList = async (
       },
     });
 
-    newData = res.data.map((item: IResponseBlog) => {
-      return {
-        ...item,
-        tags: item.tags.map((item: any) => item?.tagList_id?.id),
-      };
-    });
+    console.log("res", res);
+
+    if (res) {
+      newData = res.data.map((item: IResponseBlog) => {
+        return {
+          ...item,
+          tags: item.tags.map((item: any) => item?.tagList_id?.id),
+        };
+      });
+    }
   } catch (error) {
     console.log(error);
   }

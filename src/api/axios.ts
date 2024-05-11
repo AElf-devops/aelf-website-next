@@ -25,16 +25,6 @@ class Request {
       (response) => {
         const res = response.data;
         const { code, data, message: errorMessage } = response.data;
-        if (response.config.url?.includes("api.etherscan.io")) {
-          return res;
-        }
-        if (config.baseURL?.includes("cms")) {
-          return data;
-        }
-        if (config.baseURL?.includes("connect")) {
-          return res;
-        }
-
         switch (code) {
           case "20000":
             return res;
