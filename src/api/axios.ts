@@ -6,7 +6,7 @@ import getUrlConfig from "@/constants/network/cms";
 const urlConfig = getUrlConfig();
 class Request {
   instance: AxiosInstance;
-  baseConfig: AxiosRequestConfig = { baseURL: "/api", timeout: 60000 };
+  baseConfig: AxiosRequestConfig = { baseURL: "/api", timeout: 10000 };
 
   constructor(config: AxiosRequestConfig) {
     this.instance = axios.create(Object.assign({}, this.baseConfig, config));
@@ -114,7 +114,7 @@ class Request {
 }
 
 const apiServer = new Request({
-  baseURL:  "/",
+  baseURL: process.env.NODE_ENV === "development" ? "/" : urlConfig.cms + "/",
 });
 
 const defaultRequest = new Request({});

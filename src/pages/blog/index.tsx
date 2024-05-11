@@ -67,8 +67,11 @@ export default function Community() {
 
   useEffect(() => {
     handleSearch();
+  }, [handleSearch]);
+
+  useEffect(() => {
     handleGetTagList();
-  }, [handleGetTagList, handleSearch]);
+  }, [handleGetTagList]);
 
   useEffect(() => {
     setSearchParams((state: IBlogListSearchParams) => ({

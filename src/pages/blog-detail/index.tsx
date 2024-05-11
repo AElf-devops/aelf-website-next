@@ -16,11 +16,12 @@ import { GetServerSidePropsContext } from "next";
 
 let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
   ssr: false,
+  loading: () => <p>loading</p>,
 });
 const urlConfig = getUrlConfig();
 
 // export default function BlogDetail({ data }: { data: IBlog }) {
-  export default function BlogDetail() {
+export default function BlogDetail() {
   const { isMobile } = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
@@ -138,7 +139,7 @@ const urlConfig = getUrlConfig();
 //   const { query } = context;
 //   let data = {};
 //   if (query.id) {
-    
+
 //     const result = await getBlogDetail(Number(query.id));
 //     result.data.content.blocks.forEach((block: any) => {
 //       if (block.type === "image") {

@@ -104,7 +104,7 @@ export default function Filter({
           onChange={handleTagChange}
           value={searchParams.tagId}
         >
-          <Select.Option value="">ALL</Select.Option>
+          <Select.Option value={null}>ALL</Select.Option>
           {tagList.map((item) => (
             <Select.Option key={item.id} value={item.id}>
               {item.tag}
