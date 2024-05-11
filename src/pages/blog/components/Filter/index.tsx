@@ -108,7 +108,7 @@ export default function Filter({
           </Select>
         )}
 
-        <Select
+        {/* <Select
           className={styles.sortSelect}
           dropdownStyle={{
             background: "#000",
@@ -120,7 +120,7 @@ export default function Filter({
           onChange={handleSortChange}
           value={searchParams.sortValue}
           options={sortList}
-        ></Select>
+        ></Select> */}
       </div>
 
       <Input
