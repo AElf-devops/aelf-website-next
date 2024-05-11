@@ -33,6 +33,9 @@ export const getBlogList = async (
         search: params.search,
         sort: params.sort,
       },
+      headers: {
+        "Content-Type": "application/json;",
+      },
     });
 
     console.log("res", res);
@@ -68,6 +71,9 @@ export const getBlogList = async (
           countDistinct: "id",
         },
       },
+      headers: {
+        "Content-Type": "application/json;",
+      },
     });
     if (
       countRes?.data &&
@@ -102,6 +108,9 @@ export const getPopularBlogList = async (
             _eq: params.isPopularArticle,
           },
         },
+      },
+      headers: {
+        "Content-Type": "application/json;",
       },
     });
     return res;
