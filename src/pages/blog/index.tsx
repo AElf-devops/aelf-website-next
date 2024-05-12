@@ -62,9 +62,9 @@ export default function Community() {
       });
   }, []);
 
-  const handlePageChange = (page: number, pageSize: number) => {
+  const handlePageChange = useCallback((page: number, pageSize: number) => {
     setSearchParams((state) => ({ ...state, page, pageSize }));
-  };
+  }, []);
 
   const viewDetail = useCallback(
     (id: number) => {
@@ -124,16 +124,16 @@ export default function Community() {
           </div>
         )}
 
-        {/* <div className={styles.pageNation}>
+        <div className={styles.pageNation}>
           <Pagination
             showSizeChanger
-            defaultCurrent={1}
+            current={searchParams.page}
             total={total}
             pageSize={searchParams.pageSize}
             onChange={handlePageChange}
             pageSizeOptions={pageSizeOptions}
           />
-        </div> */}
+        </div>
       </CommonSection>
     </div>
   );

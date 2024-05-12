@@ -47,14 +47,13 @@
     border-radius: 8px;
   }
 
-  .loading{
+  .loading {
     height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 72px;
   }
-
 
   .blogItem {
     cursor: pointer;
@@ -134,7 +133,10 @@
       color: #8d8d8d;
     }
     .ant-pagination-item-link {
+      border-radius: 4px;
+      border: 1px solid #8d8d8d;
       color: #8d8d8d !important;
+      background-color: transparent;
       a {
         color: #8d8d8d;
       }
@@ -142,12 +144,19 @@
     a {
       color: #8d8d8d;
     }
+    .ant-pagination-item {
+      color: #8d8d8d ;
+      background-color: transparent;
+      border-radius: 4px;
+      border: 1px solid #8d8d8d;
+    }
+
     .ant-select-selection-item {
       color: #8d8d8d;
     }
     .ant-select-selector {
       border: 1px solid #8d8d8d;
-      background: transparent;
+      background: transparent !important;
       color: #fff;
       border-color: #8d8d8d !important;
     }
@@ -198,7 +207,7 @@
     margin-top: 38px;
     border-radius: 8px;
   }
-  .loading{
+  .loading {
     height: 180px;
     display: flex;
     align-items: center;

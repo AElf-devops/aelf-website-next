@@ -86,7 +86,7 @@ export default function Filter({
   return (
     <div className={clsx([styles.filter, deviceClassName])}>
       <div className={styles.filterLeft} id="selectArea">
-        {tagList.length && (
+        {tagList.length ? (
           <Select
             className={styles.filterSelect}
             dropdownStyle={{
@@ -98,6 +98,7 @@ export default function Filter({
             }}
             onChange={handleTagChange}
             value={searchParams.tagId}
+            listHeight={358}
           >
             <Select.Option value={0}>ALL</Select.Option>
             {tagList?.map((item) => (
@@ -106,9 +107,8 @@ export default function Filter({
               </Select.Option>
             ))}
           </Select>
-        )}
-
-        {/* <Select
+        ) : null}
+        <Select
           className={styles.sortSelect}
           dropdownStyle={{
             background: "#000",
@@ -119,8 +119,9 @@ export default function Filter({
           }}
           onChange={handleSortChange}
           value={searchParams.sortValue}
-          options={sortList}
-        ></Select> */}
+        >
+          <Select.Option value="mostRecent">Most Recent</Select.Option>
+        </Select>
       </div>
 
       <Input
@@ -131,7 +132,7 @@ export default function Filter({
         width={406}
         placeholder="Search"
         maxLength={100}
-        // suffix={<CommonImage src={SearchIcon} width={35} height={35} alt="" />}
+        suffix={<CommonImage src={SearchIcon} width={35} height={35} alt="" />}
       />
     </div>
   );

@@ -8,48 +8,43 @@ export const getBlogList = async (
 }> => {
   let newData: any = [];
   let count = 0;
-
   try {
-    const res: {
-      data: IResponseBlog[];
-    } = await apiServer.get("/items/blogList", {
-      params: {
-        page: params.page,
-        limit: params.limit,
-        filter: {
-          tags: {
-            tagList_id: {
-              id: {
-                _eq: params.tagId,
+    const { data: blogData } = await apiServer.get<{ data: IResponseBlog[] }>(
+      "/items/blogList",
+      {
+        params: {
+          page: params.page,
+          limit: params.limit,
+          filter: {
+            tags: {
+              tagList_id: {
+                id: {
+                  _eq: params.tagId,
+                },
               },
             },
+            // is_popular_article: {
+            //   _eq: params.isPopularArticle,
+            // },
           },
-          // is_popular_article: {
-          //   _eq: params.isPopularArticle,
-          // },
+          fields: "*",
+          "fields[]": "tags.tagList_id.id",
+          search: params.search,
+          sort: params.sort,
         },
-        fields: "*",
-        "fields[]": "tags.tagList_id.id",
-        search: params.search,
-        sort: params.sort,
-      },
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      }
+    );
+
+    newData = blogData.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => item?.tagList_id?.id),
+      };
     });
 
-    if (res.data) {
-      newData = res.data.map((item: IResponseBlog) => {
-        return {
-          ...item,
-          tags: item.tags.map((item: any) => item?.tagList_id?.id),
-        };
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  try {
     const countRes: any = await apiServer.get("/items/blogList", {
       params: {
         filter: {
@@ -74,21 +69,21 @@ export const getBlogList = async (
       },
     });
 
-    if (
-      countRes?.data &&
-      countRes?.data[0] &&
-      countRes?.data[0]?.countDistinct
-    ) {
-      count = countRes?.data[0]?.countDistinct?.id;
-    }
+    count = countRes?.data?.[0]?.countDistinct?.id || 0;
+
+    return {
+      data: newData,
+      count,
+    };
   } catch (error) {
     console.log(error);
+    return {
+      data: newData,
+      count,
+    };
   }
-  return {
-    data: newData,
-    count,
-  };
 };
+
 
 export const getPopularBlogList = async (
   params: IBlogListSearchParams
