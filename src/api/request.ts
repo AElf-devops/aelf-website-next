@@ -9,45 +9,15 @@ export const getBlogList = async (
   let newData: any = [];
   let count = 0;
   try {
-    const { data: blogData } = await apiServer.get<{ data: IResponseBlog[] }>(
-      "/items/blogList",
-      {
-        params: {
-          page: params.page,
-          limit: params.limit,
-          filter: {
-            tags: {
-              tagList_id: {
-                id: {
-                  _eq: params.tagId,
-                },
-              },
-            },
-            // is_popular_article: {
-            //   _eq: params.isPopularArticle,
-            // },
-          },
-          fields: "*",
-          "fields[]": "tags.tagList_id.id",
-          search: params.search,
-          sort: params.sort,
-          // meta: "total_count",
-        },
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-      }
-    );
-
-    newData = blogData.map((item: IResponseBlog) => {
-      return {
-        ...item,
-        tags: item.tags.map((item: any) => item?.tagList_id?.id),
+    const { data: blogData, meta } = await apiServer.get<{
+      data: IResponseBlog[];
+      meta: {
+        filter_count: number;
       };
-    });
-
-    const countRes: any = await apiServer.get("/items/blogList", {
+    }>("/items/blogList?meta=filter_count", {
       params: {
+        page: params.page,
+        limit: params.limit,
         filter: {
           tags: {
             tagList_id: {
@@ -56,25 +26,30 @@ export const getBlogList = async (
               },
             },
           },
-          is_popular_article: {
-            _eq: params.isPopularArticle,
-          },
+          // is_popular_article: {
+          //   _eq: params.isPopularArticle,
+          // },
         },
+        fields: "*",
+        "fields[]": "tags.tagList_id.id",
         search: params.search,
-        aggregate: {
-          countDistinct: "id",
-        },
+        sort: params.sort,
       },
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
     });
 
-    count = countRes?.data?.[0]?.countDistinct?.id || 0;
+    newData = blogData.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => item?.tagList_id?.id),
+      };
+    });
 
     return {
       data: newData,
-      count,
+      count: meta.filter_count,
     };
   } catch (error) {
     console.log(error);

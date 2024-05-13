@@ -86,28 +86,26 @@ export default function Filter({
   return (
     <div className={clsx([styles.filter, deviceClassName])}>
       <div className={styles.filterLeft} id="selectArea">
-        {tagList.length ? (
-          <Select
-            className={styles.filterSelect}
-            dropdownStyle={{
-              background: "#000",
-              color: "#FFF",
-            }}
-            getPopupContainer={() => {
-              return document.getElementById("selectArea") as HTMLElement;
-            }}
-            onChange={handleTagChange}
-            value={searchParams.tagId}
-            listHeight={358}
-          >
-            <Select.Option value={0}>ALL</Select.Option>
-            {tagList?.map((item) => (
-              <Select.Option key={item.id} value={item.id}>
-                {item.tag}
-              </Select.Option>
-            ))}
-          </Select>
-        ) : null}
+        <Select
+          className={styles.filterSelect}
+          dropdownStyle={{
+            background: "#000",
+            color: "#FFF",
+          }}
+          getPopupContainer={() => {
+            return document.getElementById("selectArea") as HTMLElement;
+          }}
+          onChange={handleTagChange}
+          value={searchParams.tagId}
+          listHeight={358}
+        >
+          <Select.Option value={0}>ALL</Select.Option>
+          {tagList?.map((item) => (
+            <Select.Option key={item.id} value={item.id}>
+              {item.tag}
+            </Select.Option>
+          ))}
+        </Select>
         <Select
           className={styles.sortSelect}
           dropdownStyle={{
