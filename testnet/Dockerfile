@@ -7,7 +7,7 @@ WORKDIR ${web}
 COPY .. ${web}
 
 RUN yarn \
-    && yarn build
+    && yarn build:test
 
 ENTRYPOINT yarn start
 
