@@ -32,6 +32,9 @@
     .image-tool{
         padding: 0;
     }
+    .ce-header{
+      color: #fff;
+    }
   }
 }
 
@@ -62,6 +65,9 @@
       &:first-child {
         display: none;
       }
+    }
+    .ce-header{
+      color: #fff;
     }
   }
 }
