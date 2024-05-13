@@ -1,16 +1,13 @@
 .desktop.customEditor {
-  //   color: red;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 30px;
   :global {
     .ce-block__content {
       max-width: 100%;
     }
-    .ce-paragraph {
-      line-height: normal;
-      font-family: Poppins;
-    }
+   
     .cdx-block {
-      padding: 30px 0;
+      padding: 25px 0;
     }
     .codex-editor__redactor {
       padding-bottom: 116px !important;
@@ -44,7 +41,6 @@
   :global {
     .ce-paragraph {
       line-height: normal;
-      font-family: Poppins;
     }
     .cdx-block {
       padding: 15px 0;

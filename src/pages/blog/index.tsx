@@ -91,7 +91,7 @@ export default function Community() {
     <div className={clsx([styles.pageWrap, deviceClassName])}>
       <div className={styles.backgroundWrap}></div>
       <CommonSection
-        sectionClassName={styles.bannerPart}
+        sectionClassName={styles.blogPart}
         contentClassName={styles.partContent}
       >
         <div className={styles.title}>Latest Articles</div>
