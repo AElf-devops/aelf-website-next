@@ -7,7 +7,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { CommonSection } from "@/components/CommonSection";
 import styles from "./styles.module.scss";
 import ArrowRight from "@/assets/blog/arrow-right.svg";
-import { formattedDateToDMY } from "@/utils/index";
+import { formattedDate } from "@/utils/index";
 import dynamic from "next/dynamic";
 import getUrlConfig from "@/constants/network/cms";
 import CommonImage from "@/components/CommonImage";
@@ -20,7 +20,7 @@ let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
 const urlConfig = getUrlConfig();
 
 export default function BlogDetail({ data }: { data: IBlog }) {
-// export default function BlogDetail() {
+  // export default function BlogDetail() {
   const { isMobile } = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
@@ -51,8 +51,8 @@ export default function BlogDetail({ data }: { data: IBlog }) {
         });
         setBlog({
           ...res.data,
-          date_created: formattedDateToDMY(res.data.date_created),
-          date_updated: formattedDateToDMY(res.data.date_updated),
+          date_created: formattedDate(res.data.date_created, "DMY"),
+          date_updated: formattedDate(res.data.date_updated, "DMY"),
         });
       });
     }
@@ -139,7 +139,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
   let data = {};
   if (query.id) {
-
     const result = await getBlogDetail(Number(query.id));
     result.data.content.blocks.forEach((block: any) => {
       if (block.type === "image") {
@@ -149,8 +148,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     data = {
       ...result.data,
-      date_created: formattedDateToDMY(result.data.date_created),
-      date_updated: formattedDateToDMY(result.data.date_updated),
+      date_created: formattedDate(result.data.date_created, "DMY"),
+      date_updated: formattedDate(result.data.date_updated, "DMY"),
     };
   }
   return {

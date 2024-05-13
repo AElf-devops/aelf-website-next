@@ -10,19 +10,6 @@ const nextConfig = {
       path.join(dirname(fileURLToPath(import.meta.url)), "styles"),
     ],
   },
-  // async rewrites() {
-  //   if (process.env.NODE_ENV === "development") {
-  //     return [
-  //       {
-  //         source: "/items/:path*",
-  //         destination: "https://test-cms-v2.aelf.com/items/:path*",
-  //         // destination: "http://192.168.11.5:8066/items/:path*",
-  //       },
-  //     ];
-  //   } else {
-  //     return [];
-  //   }
-  // },
   async headers() {
     return [
       {

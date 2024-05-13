@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useCallback, useMemo } from "react";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import { formattedDateToMDY, formattedDateToDMY } from "@/utils/index";
+import { formattedDate } from "@/utils/index";
 import getUrlConfig from "@/constants/network/cms";
 import DefaultImg from "@/assets/blog/default.png";
 import CommonImage from "@/components/CommonImage";
@@ -32,9 +32,9 @@ export default function BlogItem({
   const time = useMemo(() => {
     const time = blog.date_updated || blog.date_created;
     if (isMobile) {
-      return formattedDateToDMY(time);
+      return formattedDate(time, "DMY");
     } else {
-      return formattedDateToMDY(time);
+      return formattedDate(time, "MDY");
     }
   }, [blog, isMobile]);
 
@@ -55,7 +55,10 @@ export default function BlogItem({
   }, [blog, onViewDetail]);
 
   return (
-    <div className={clsx([styles.blogItem, deviceClassName])} onClick={handleViewDetail}>
+    <div
+      className={clsx([styles.blogItem, deviceClassName])}
+      onClick={handleViewDetail}
+    >
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}
       {imgUrl ? (

@@ -104,9 +104,7 @@ class Request {
 }
 
 const apiServer = new Request({
-  // baseURL: process.env.NODE_ENV === "development" ? "/" : urlConfig.cms + "/",
   baseURL: urlConfig.cms + "/",
-  // baseURL: "/",
 });
 
 const defaultRequest = new Request({});
