@@ -4,7 +4,6 @@ import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getTagList, getBlogDetail } from "@/api/request";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import { Button } from "antd";
 import { CommonSection } from "@/components/CommonSection";
 import styles from "./styles.module.scss";
 import ArrowRight from "@/assets/blog/arrow-right.svg";
@@ -12,7 +11,6 @@ import { formattedDateToDMY } from "@/utils/index";
 import dynamic from "next/dynamic";
 import getUrlConfig from "@/constants/network/cms";
 import CommonImage from "@/components/CommonImage";
-import { GetServerSidePropsContext } from "next";
 
 let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
   ssr: false,
@@ -127,9 +125,9 @@ export default function BlogDetail() {
           </div>
         )}
         <div className={styles.btnContent}>
-          <Button className={styles.btn} onClick={goBack}>
+          <button className={styles.btn} onClick={goBack}>
             Back to Blog
-          </Button>
+          </button>
         </div>
       </CommonSection>
     </div>

@@ -31,6 +31,7 @@ export const getBlogList = async (
           "fields[]": "tags.tagList_id.id",
           search: params.search,
           sort: params.sort,
+          // meta: "total_count",
         },
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -83,7 +84,6 @@ export const getBlogList = async (
     };
   }
 };
-
 
 export const getPopularBlogList = async (
   params: IBlogListSearchParams

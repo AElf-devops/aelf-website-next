@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
-import { Spin } from "antd";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { CommonSection } from "@/components/CommonSection";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getTagList, getBlogList } from "@/api/request";
-import { Pagination } from "antd";
 import styles from "./styles.module.scss";
-import Filter from "./components/Filter";
-import BlogItem from "./components/BlogItem";
+import Filter from "../../pageComponents/blog/Filter";
+import BlogItem from "../../pageComponents/blog/BlogItem";
 import CustomNoData from "@/components/CustomNoData";
+import { Pagination } from "antd";
 
 const pageSizeOptions = [9, 18, 27, 36];
 
@@ -103,7 +102,7 @@ export default function Community() {
         />
         {isLoading && (
           <div className={styles.loading}>
-            <Spin />
+            {/* <Spin /> */}
           </div>
         )}
         {!isLoading && blogList?.length ? (

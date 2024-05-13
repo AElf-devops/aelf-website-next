@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import styles from "../../styles.module.scss";
+import styles from "./styles.module.scss";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useCallback, useMemo } from "react";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -55,7 +55,7 @@ export default function BlogItem({
   }, [blog, onViewDetail]);
 
   return (
-    <div className={clsx([styles.blogItem])} onClick={handleViewDetail}>
+    <div className={clsx([styles.blogItem, deviceClassName])} onClick={handleViewDetail}>
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}
       {imgUrl ? (
