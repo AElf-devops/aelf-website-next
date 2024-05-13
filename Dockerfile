@@ -4,7 +4,7 @@ ARG web=/opt/workspace/aelf-website
 
 WORKDIR ${web}
 
-COPY .. ${web}
+COPY . ${web}
 
 RUN yarn \
     && yarn build
