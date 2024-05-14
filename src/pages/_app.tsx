@@ -3,7 +3,7 @@ import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { userAgent } from "next/server";
 import React from "react";
-
+import 'antd/dist/antd.css';
 export default function App({ Component, pageProps, isMobile }: any) {
   return (
     <ConfigProvider init={{ isMobile: isMobile }}>
