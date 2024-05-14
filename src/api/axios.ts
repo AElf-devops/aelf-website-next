@@ -102,6 +102,17 @@ class Request {
     return this.instance.delete(url, config);
   }
 }
+// public patch<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+//   return this.instance.patch(url, config);
+// }
+// }
+
+// const apiServer = new Request({
+// baseURL: urlConfig.cms + "/",
+// headers:{
+//   Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_"
+// }
+// });
 
 const apiServer = new Request({
   baseURL: urlConfig.cms + "/",

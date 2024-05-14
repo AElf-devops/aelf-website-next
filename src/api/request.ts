@@ -59,6 +59,25 @@ export const getBlogList = async (
   }
 };
 
+export const updateViewCount = async (params: {
+  id: number;
+  viewCount: number;
+}): Promise<void> => {
+  const result = await fetch(`http://192.168.11.74:8066/items/blogList/${params.id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      viewCount: params.viewCount,
+    }),
+    headers: {
+      Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
+      "Content-Type": "Content-Type",
+    },
+  });
+  const text = await result.text();
+  const res = JSON.parse(text);
+  return res
+};
+
 export const getPopularBlogList = async (
   params: IBlogListSearchParams
 ): Promise<{

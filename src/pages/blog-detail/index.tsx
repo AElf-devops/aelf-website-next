@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getTagList, getBlogDetail } from "@/api/request";
+import { getTagList, getBlogDetail, updateViewCount } from "@/api/request";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { CommonSection } from "@/components/CommonSection";
 import styles from "./styles.module.scss";
@@ -151,6 +151,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       date_created: formattedDate(result.data.date_created, "DMY"),
       date_updated: formattedDate(result.data.date_updated, "DMY"),
     };
+    console.log(data);
+    await updateViewCount({
+      id: Number(query.id),
+      viewCount:  1,
+    });
+    console.log();
   }
   return {
     props: {

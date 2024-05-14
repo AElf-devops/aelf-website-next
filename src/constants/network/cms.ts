@@ -1,5 +1,5 @@
 const devUrlConfig = {
-  cms: "https://test-cms-v2.aelf.com",
+  cms: "http://localhost:8066",
 };
 const testUrlConfig = {
   cms: "https://test-cms-v2.aelf.com",

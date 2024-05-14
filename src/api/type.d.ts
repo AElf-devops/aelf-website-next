@@ -12,6 +12,7 @@ interface IBlog {
   content: OutputData;
   date_updated: string;
   date_created: string;
+  viewCount: number;
 }
 
 interface IResponseBlog {
@@ -26,6 +27,7 @@ interface IResponseBlog {
   content: OutputData;
   date_updated: string;
   date_created: string;
+  viewCount: number;
 }
 
 interface IBlogListSearchParams {
