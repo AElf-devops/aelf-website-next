@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getTagList, getBlogDetail, updateViewCount } from "@/api/request";
+import { getBlogDetail, updateViewCount } from "@/api/request";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { CommonSection } from "@/components/CommonSection";
 import styles from "./styles.module.scss";
@@ -19,8 +19,7 @@ let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
 });
 const urlConfig = getUrlConfig();
 
-export default function BlogDetail({ data }: { data: IBlog }) {
-  // export default function BlogDetail() {
+export default function BlogDetail({ data }: { data: IDetailBlog }) {
   const { isMobile } = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
@@ -28,43 +27,11 @@ export default function BlogDetail({ data }: { data: IBlog }) {
   const id = searchParams.get("id");
 
   const [editorInstance, setEditorInstance] = useState({});
-  const [tagList, setTagList] = useState<ITag[]>([]);
-  const [blog, setBlog] = useState<IBlog>(data);
+  const [blog, setBlog] = useState<IDetailBlog>(data);
 
   const handleInstance = (instance: any) => {
     setEditorInstance(instance);
   };
-
-  const handleGetTagList = useCallback(() => {
-    getTagList().then((res) => {
-      setTagList(res.data);
-    });
-  }, []);
-
-  const handleGetBlogDetail = useCallback(() => {
-    if (id) {
-      getBlogDetail(id).then((res) => {
-        res.data.content.blocks.forEach((block: any) => {
-          if (block.type === "image") {
-            block.data.file.url = urlConfig.cms + block.data.file.url;
-          }
-        });
-        setBlog({
-          ...res.data,
-          date_created: formattedDate(res.data.date_created, "DMY"),
-          date_updated: formattedDate(res.data.date_updated, "DMY"),
-        });
-      });
-    }
-  }, [id]);
-
-  const tagMap = useMemo(() => {
-    const obj: any = {};
-    tagList.forEach((item) => {
-      obj[item.id] = item.tag;
-    });
-    return obj;
-  }, [tagList]);
 
   const goBack = () => {
     router.push("/blog");
@@ -74,10 +41,16 @@ export default function BlogDetail({ data }: { data: IBlog }) {
     router.push("/blog?tagId=" + tagId);
   };
 
+  const handleUpdateViewCount = useCallback(async () => {
+    await updateViewCount({
+      id: Number(id),
+      viewCount: data.viewCount + 1,
+    });
+  }, [data.viewCount, id]);
+
   useEffect(() => {
-    handleGetTagList();
-    // handleGetBlogDetail();
-  }, [handleGetTagList]);
+    handleUpdateViewCount();
+  }, [handleUpdateViewCount]);
 
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>
@@ -105,13 +78,13 @@ export default function BlogDetail({ data }: { data: IBlog }) {
           <div className={styles.descriptionLeft}>
             {blog?.tags.map((item) => (
               <div
-                key={item}
+                key={item.id}
                 className={styles.tag}
                 onClick={() => {
-                  handleTagClick(item);
+                  handleTagClick(item.id);
                 }}
               >
-                {tagMap[item]}
+                {item.tag}
               </div>
             ))}
           </div>
@@ -151,12 +124,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       date_created: formattedDate(result.data.date_created, "DMY"),
       date_updated: formattedDate(result.data.date_updated, "DMY"),
     };
-    console.log(data);
-    await updateViewCount({
-      id: Number(query.id),
-      viewCount:  1,
-    });
-    console.log();
+    // await updateViewCount({
+    //   id: Number(query.id),
+    //   viewCount:  1,
+    // });
   }
   return {
     props: {

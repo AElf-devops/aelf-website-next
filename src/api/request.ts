@@ -63,19 +63,22 @@ export const updateViewCount = async (params: {
   id: number;
   viewCount: number;
 }): Promise<void> => {
-  const result = await fetch(`http://192.168.11.74:8066/items/blogList/${params.id}`, {
-    method: "PATCH",
-    body: JSON.stringify({
-      viewCount: params.viewCount,
-    }),
-    headers: {
-      Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
-      "Content-Type": "Content-Type",
-    },
-  });
+  const result = await fetch(
+    `http://192.168.11.74:8066/items/blogList/${params.id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        viewCount: params.viewCount,
+      }),
+      headers: {
+        Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
+        "Content-Type": "Content-Type",
+      },
+    }
+  );
   const text = await result.text();
   const res = JSON.parse(text);
-  return res
+  return res;
 };
 
 export const getPopularBlogList = async (
@@ -123,21 +126,26 @@ export const searchBlogList = async (
 export const getBlogDetail = async (
   id: string | number
 ): Promise<{
-  data: IBlog;
+  data: IDetailBlog;
 }> => {
   const res: {
     data: IResponseBlog;
   } = await apiServer.get(`/items/blogList/${id}`, {
     params: {
       fields: "*",
-      "fields[]": "tags.tagList_id.id",
+      "fields[]": "tags.tagList_id.*",
     },
   });
 
   return {
     data: {
       ...res.data,
-      tags: res.data.tags.map((item: any) => item.tagList_id.id) as number[],
+      tags: res.data.tags.map((item: any) => {
+        return {
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        };
+      }),
     },
   };
 };

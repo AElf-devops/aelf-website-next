@@ -15,12 +15,26 @@ interface IBlog {
   viewCount: number;
 }
 
+interface IDetailBlog {
+  id: number;
+  title: string;
+  tags: ITag[];
+  isPopularArticle: boolean;
+  content: OutputData;
+  date_updated: string;
+  date_created: string;
+  viewCount: number;
+}
+
+
+
 interface IResponseBlog {
   id: number;
   title: string;
   tags: {
     tagList_id: {
       id: number;
+      tag: string;
     };
   }[];
   isPopularArticle: boolean;
