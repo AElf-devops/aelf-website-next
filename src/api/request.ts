@@ -6,18 +6,17 @@ export const getBlogList = async (
   data: IBlog[];
   count: number;
 }> => {
-  let newData: any = [];
-  let count = 0;
   try {
     const { data: blogData, meta } = await apiServer.get<{
       data: IResponseBlog[];
       meta: {
         filter_count: number;
       };
-    }>("/items/blogList?meta=filter_count", {
+    }>("/items/blogList", {
       params: {
         page: params.page,
         limit: params.limit,
+        meta: "filter_count",
         filter: {
           tags: {
             tagList_id: {
@@ -40,7 +39,7 @@ export const getBlogList = async (
       },
     });
 
-    newData = blogData.map((item: IResponseBlog) => {
+    const newData = blogData.map((item: IResponseBlog) => {
       return {
         ...item,
         tags: item.tags.map((item: any) => item?.tagList_id?.id),
@@ -54,8 +53,8 @@ export const getBlogList = async (
   } catch (error) {
     console.log(error);
     return {
-      data: newData,
-      count,
+      data: [],
+      count: 0,
     };
   }
 };

@@ -32,33 +32,27 @@ export default function Community() {
   const [blogList, setBlogList] = useState<IBlog[]>();
   const [tagList, setTagList] = useState<ITag[]>([]);
 
-  const handleSearch = useCallback(() => {
+  const handleSearch = useCallback(async () => {
     setIsLoading(true);
-    getBlogList({
-      ...searchParams,
-      tagId: searchParams.tagId == 0 ? null : searchParams.tagId,
-      limit: searchParams.pageSize,
-    })
-      .then((res) => {
-        setBlogList(res.data);
-        setTotal(res.count);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      const res = await getBlogList({
+        ...searchParams,
+        tagId: searchParams.tagId == 0 ? null : searchParams.tagId,
+        limit: searchParams.pageSize,
       });
+      setBlogList(res.data);
+      setTotal(res.count);
+      setIsLoading(false);
+    } catch (error) {}
   }, [searchParams]);
 
   const handleGetTagList = useCallback(async () => {
-    getTagList()
-      .then((res) => {
-        setTagList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const res = await getTagList();
+      setTagList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const handlePageChange = useCallback((page: number, pageSize: number) => {
@@ -100,11 +94,7 @@ export default function Community() {
           searchParams={searchParams}
           onChangeSearchParams={setSearchParams}
         />
-        {isLoading && (
-          <div className={styles.loading}>
-            {/* <Spin /> */}
-          </div>
-        )}
+        {isLoading && <div className={styles.loading}>{/* <Spin /> */}</div>}
         {!isLoading && blogList?.length ? (
           <div className={styles.blogList}>
             {blogList?.map((item) => (
