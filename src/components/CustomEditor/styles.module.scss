@@ -1,0 +1,69 @@
+.desktop.customEditor {
+  font-size: 20px;
+  line-height: 30px;
+  :global {
+    .ce-block__content {
+      max-width: 100%;
+    }
+   
+    .cdx-block {
+      padding: 25px 0;
+    }
+    .codex-editor__redactor {
+      padding-bottom: 116px !important;
+    }
+    .image-tool--loading .image-tool__image {
+      min-height: 562px;
+    }
+    .image-tool__caption {
+      padding: 0;
+      border: none;
+      font-size: 12px;
+      text-align: center;
+    }
+    .ce-block {
+      &:first-child {
+        display: none;
+      }
+    }
+    .image-tool{
+        padding: 0;
+    }
+    .ce-header{
+      color: #fff;
+    }
+  }
+}
+
+.mobile.customEditor {
+  //   color: red;
+  font-size: 16px;
+  :global {
+    .ce-paragraph {
+      line-height: normal;
+    }
+    .cdx-block {
+      padding: 15px 0;
+    }
+    .codex-editor__redactor {
+      padding-bottom: 65px !important;
+    }
+    .image-tool--loading .image-tool__image {
+      min-height: 562px;
+    }
+    .image-tool__caption {
+      display: none;
+    }
+    .image-tool{
+        padding: 0;
+    }
+    .ce-block {
+      &:first-child {
+        display: none;
+      }
+    }
+    .ce-header{
+      color: #fff;
+    }
+  }
+}
