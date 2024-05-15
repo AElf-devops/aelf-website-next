@@ -13,6 +13,7 @@ interface IBlog {
   date_updated: string;
   date_created: string;
   viewCount: number;
+  subHeader: string
 }
 
 interface IDetailBlog {
@@ -25,8 +26,8 @@ interface IDetailBlog {
   date_created: string;
   viewCount: number;
   imgUrl?: string;
+  subHeader: string
 }
-
 
 
 interface IResponseBlog {
@@ -43,6 +44,7 @@ interface IResponseBlog {
   date_updated: string;
   date_created: string;
   viewCount: number;
+  subHeader: string
 }
 
 interface IBlogListSearchParams {

@@ -94,7 +94,7 @@ export default function Community() {
           Stay up to date on aelf’s latest news on tech upgrades, ecosystem
           growth, community events and industry insights.
         </div>
-        <TrendBlog/>
+        <TrendBlog />
         <div className={styles.title}>Latest Articles</div>
         <Filter
           tagList={tagList}

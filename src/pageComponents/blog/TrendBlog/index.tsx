@@ -8,7 +8,6 @@ import { getTrendBlogList, getMostViewCountBlogList } from "@/api/request";
 import getUrlConfig from "@/constants/network/cms";
 import { formattedDate } from "@/utils/index";
 import Image from "next/image";
-import CommonImage from "@/components/CommonImage";
 import { useRouter } from "next/navigation";
 import arrowLinkRightImg from "@/assets/ventures/arrow-link-right.svg";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -28,10 +27,9 @@ export default function TrendBlog() {
   const { isMobile } = useConfig();
 
   const contentStyle: React.CSSProperties = {
-    height: "385px",
+    height: isMobile ? "204px" : "385px",
     borderRadius: 8,
-    cursor: "pointer"
-
+    cursor: "pointer",
   };
 
   const handleGetTrendBlog = useCallback(async () => {
@@ -75,8 +73,8 @@ export default function TrendBlog() {
   };
 
   const handleViewDetail = useCallback(() => {
-    if(currentSlickBlog?.id){
-        router.push(`/blog-detail?id=${currentSlickBlog.id}`);
+    if (currentSlickBlog?.id) {
+      router.push(`/blog-detail?id=${currentSlickBlog.id}`);
     }
   }, [currentSlickBlog, router]);
 
@@ -89,10 +87,14 @@ export default function TrendBlog() {
       <div className={styles.title}>Trending Articles</div>
       <div className={styles.trendBlogContent}>
         <div className={styles.carouselContent}>
-          <Carousel autoplay afterChange={onChange} className={styles.carousel}>
+          <Carousel afterChange={onChange} className={styles.carousel}>
             {list?.map((item) => {
               return (
-                <div key={item.id} style={{ borderRadius: 8 }} onClick={handleViewDetail}>
+                <div
+                  key={item.id}
+                  style={{ borderRadius: 8 }}
+                  onClick={handleViewDetail}
+                >
                   <img src={item.imgUrl} style={contentStyle} alt=""></img>
                 </div>
               );
@@ -102,7 +104,10 @@ export default function TrendBlog() {
 
         <div className={styles.detail}>
           <div className={styles.time}>{currentSlickBlog?.time}</div>
-          <div className={styles.title} onClick={handleViewDetail}>{currentSlickBlog?.title}</div>
+          <div className={styles.title} onClick={handleViewDetail}>
+            {currentSlickBlog?.title}
+          </div>
+          <div className={styles.subHeader}>{currentSlickBlog?.subHeader}</div>
           <div className={styles.tagContent}>
             {currentSlickBlog?.tags.map((item) => (
               <div key={item.id} className={styles.tag}>
@@ -110,19 +115,18 @@ export default function TrendBlog() {
               </div>
             ))}
           </div>
-          <div
-            className={styles.btn}
-            onClick={handleViewDetail}
-          >
-            Read Full Post
-            <Image
-              src={arrowLinkRightImg}
-              className={styles.arrowLinkRightImg}
-              alt=""
-              width={28}
-              height={28}
-            />
-          </div>
+          {!isMobile && (
+            <div className={styles.btn} onClick={handleViewDetail}>
+              Read Full Post
+              <Image
+                src={arrowLinkRightImg}
+                className={styles.arrowLinkRightImg}
+                alt=""
+                width={28}
+                height={28}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
