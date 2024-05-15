@@ -1,0 +1,129 @@
+.desktop.trendBlog {
+  background-color: #282828;
+  padding: 34px 40px 38px 40px;
+  border-radius: 8px;
+  .title {
+    font-size: 34px;
+    margin-bottom: 28px;
+  }
+  .trendBlogContent {
+    display: flex;
+    .carouselContent {
+      height: 385px;
+      width: 678px;
+    }
+    .detail {
+      flex: 1;
+      margin-left: 68px;
+      display: flex;
+      flex-direction: column;
+      .time{
+        color: #8D8D8D;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .title{
+        margin-top: 38px;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 30px;
+        cursor: pointer;
+        flex: 1;
+      }
+      .tagContent {
+        display: flex;
+        gap: 10px;
+        .tag {
+          display: inline-block;
+          background-color: #fff;
+          border-radius: 6px;
+          color: #000;
+          font-size: 12px;
+          text-align: center;
+          height: 25px;
+          line-height: 25px;
+          padding: 0 10px;
+        }
+      }
+      .btn{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 56px;
+        cursor: pointer;
+        .arrowLinkRightImg{
+            width: 28px;
+            height: 28px;
+            margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+.mobile.trendBlog {
+    background-color: #282828;
+    padding: 34px 40px 38px 40px;
+    border-radius: 8px;
+    .title {
+      font-size: 34px;
+      margin-bottom: 28px;
+    }
+    .trendBlogContent {
+      display: flex;
+      flex-direction: column;
+      .carouselContent {
+        height: 385px;
+        width: 678px;
+      }
+      .detail {
+        flex: 1;
+        margin-left: 68px;
+        display: flex;
+        flex-direction: column;
+        .time{
+          color: #8D8D8D;
+          font-size: 20px;
+          font-weight: 600;
+        }
+        .title{
+          margin-top: 38px;
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 30px;
+          cursor: pointer;
+          flex: 1;
+        }
+        .tagContent {
+          display: flex;
+          gap: 10px;
+          .tag {
+            display: inline-block;
+            background-color: #fff;
+            border-radius: 6px;
+            color: #000;
+            font-size: 12px;
+            text-align: center;
+            height: 25px;
+            line-height: 25px;
+            padding: 0 10px;
+          }
+        }
+        .btn{
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          font-weight: 600;
+          margin-top: 56px;
+          cursor: pointer;
+          .arrowLinkRightImg{
+              width: 28px;
+              height: 28px;
+              margin-left: 15px;
+          }
+        }
+      }
+    }
+  }
+  

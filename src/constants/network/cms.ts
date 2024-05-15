@@ -14,7 +14,7 @@ export default function getUrlConfig() {
     return testUrlConfig;
   } else if (process.env.NEXT_PUBLIC_APP_ENV === "production") {
     return proUrlConfig;
-  } else {
-    return devUrlConfig;
-  }
+  } 
+  
+  return devUrlConfig
 }

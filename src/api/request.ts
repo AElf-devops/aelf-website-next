@@ -25,17 +25,11 @@ export const getBlogList = async (
               },
             },
           },
-          // is_popular_article: {
-          //   _eq: params.isPopularArticle,
-          // },
         },
         fields: "*",
         "fields[]": "tags.tagList_id.id",
         search: params.search,
         sort: params.sort,
-      },
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
       },
     });
 
@@ -72,7 +66,7 @@ export const updateViewCount = async (params: {
       }),
       headers: {
         Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
-        "Content-Type": "Content-Type",
+        "Content-Type": "application/json",
       },
     }
   );
@@ -81,46 +75,70 @@ export const updateViewCount = async (params: {
   return res;
 };
 
-export const getPopularBlogList = async (
-  params: IBlogListSearchParams
-): Promise<{
-  data: IBlog[];
-}> => {
+export const getMostViewCountBlogList = async (): Promise<IDetailBlog[]> => {
   try {
     const res: {
-      data: IBlog[];
+      data: IResponseBlog[];
     } = await apiServer.get("/items/blogList", {
       params: {
-        page: params.page,
-        limit: params.limit,
-        filter: {
-          is_popular_article: {
-            _eq: params.isPopularArticle,
-          },
-        },
-      },
-      headers: {
-        "Content-Type": "application/json;",
+        page: 1,
+        limit: 10,
+        fields: "*",
+        "fields[]": "tags.tagList_id.*",
+        sort: "-viewCount",
+        filter:{
+          viewCount:{
+            "_nnull": true
+          }
+        }
       },
     });
-    return res;
+
+    return res.data.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => ({
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        })),
+      };
+    });
   } catch (error) {
-    throw new Error();
+    return [];
   }
 };
 
-export const searchBlogList = async (
-  params: IBlogListSearchParams
-): Promise<{
-  data: IBlog[];
-}> => {
-  return apiServer.get("/items/blogList", {
-    params: {
-      page: params.page,
-      limit: params.limit,
-      search: params.search,
-    },
-  });
+export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
+  try {
+    const res: {
+      data: IResponseBlog[];
+    } = await apiServer.get("/items/blogList", {
+      params: {
+        page: 1,
+        limit: 10,
+        fields: "*",
+        "fields[]": "tags.tagList_id.*",
+        sort: "-tendSort",
+        filter:{
+          tendSort:{
+            "_nnull": true
+          }
+        }
+      },
+    });
+    const newData = res.data.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => ({
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        })),
+      };
+    });
+    return newData;
+  } catch (error) {
+    return []
+  }
 };
 
 export const getBlogDetail = async (

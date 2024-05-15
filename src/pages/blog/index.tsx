@@ -9,6 +9,7 @@ import Filter from "../../pageComponents/blog/Filter";
 import BlogItem from "../../pageComponents/blog/BlogItem";
 import CustomNoData from "@/components/CustomNoData";
 import { Pagination } from "antd";
+import TrendBlog from "@/pageComponents/blog/TrendBlog";
 
 const pageSizeOptions = [9, 18, 27, 36];
 
@@ -88,6 +89,12 @@ export default function Community() {
         sectionClassName={styles.blogPart}
         contentClassName={styles.partContent}
       >
+        <div className={styles.title}>Discover aelf</div>
+        <div className={styles.disc}>
+          Stay up to date on aelf’s latest news on tech upgrades, ecosystem
+          growth, community events and industry insights.
+        </div>
+        <TrendBlog/>
         <div className={styles.title}>Latest Articles</div>
         <Filter
           tagList={tagList}

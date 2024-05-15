@@ -24,6 +24,7 @@ interface IDetailBlog {
   date_updated: string;
   date_created: string;
   viewCount: number;
+  imgUrl?: string;
 }
 
 
