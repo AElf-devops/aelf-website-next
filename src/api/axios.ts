@@ -106,15 +106,6 @@ class Request {
   }
 }
 
-// }
-
-// const apiServer = new Request({
-// baseURL: urlConfig.cms + "/",
-// headers:{
-//   Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_"
-// }
-// });
-
 const apiServer = new Request({
   baseURL: urlConfig.cms + "/",
 });
