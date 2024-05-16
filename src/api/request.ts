@@ -1,4 +1,7 @@
 import { apiServer } from "./axios";
+import getUrlConfig from "@/constants/network/cms";
+
+const urlConfig = getUrlConfig();
 
 export const getBlogList = async (
   params: IBlogListSearchParams
@@ -57,19 +60,16 @@ export const updateViewCount = async (params: {
   id: number;
   viewCount: number;
 }): Promise<void> => {
-  const result = await fetch(
-    `http://192.168.11.74:8066/items/blogList/${params.id}`,
-    {
-      method: "PATCH",
-      body: JSON.stringify({
-        viewCount: params.viewCount,
-      }),
-      headers: {
-        Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const result = await fetch(`${urlConfig.cms}/items/blogList/${params.id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      viewCount: params.viewCount,
+    }),
+    headers: {
+      Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
+      "Content-Type": "application/json",
+    },
+  });
   const text = await result.text();
   const res = JSON.parse(text);
   return res;
@@ -86,11 +86,11 @@ export const getMostViewCountBlogList = async (): Promise<IDetailBlog[]> => {
         fields: "*",
         "fields[]": "tags.tagList_id.*",
         sort: "-viewCount",
-        filter:{
-          viewCount:{
-            "_nnull": true
-          }
-        }
+        filter: {
+          viewCount: {
+            _nnull: true,
+          },
+        },
       },
     });
 
@@ -119,11 +119,11 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
         fields: "*",
         "fields[]": "tags.tagList_id.*",
         sort: "-tendSort",
-        filter:{
-          tendSort:{
-            "_nnull": true
-          }
-        }
+        filter: {
+          tendSort: {
+            _nnull: true,
+          },
+        },
       },
     });
     const newData = res.data.map((item: IResponseBlog) => {
@@ -137,7 +137,7 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
     });
     return newData;
   } catch (error) {
-    return []
+    return [];
   }
 };
 
