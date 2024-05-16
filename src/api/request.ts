@@ -66,7 +66,7 @@ export const updateViewCount = async (params: {
       viewCount: params.viewCount,
     }),
     headers: {
-      Authorization: "Bearer tK3v6eqf8uCVyXQNCrpfxZlxT0tGli9_",
+      Authorization: process.env.NEXT_PUBLIC_TOKEN || "",
       "Content-Type": "application/json",
     },
   });
