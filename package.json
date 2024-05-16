@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@editorjs/checklist": "^1.6.0",
     "@editorjs/code": "^2.9.0",
     "@editorjs/delimiter": "^1.4.0",
@@ -29,6 +30,9 @@
     "@micro-zoe/micro-app": "^1.0.0-rc.4",
 <<<<<<< HEAD
 =======
+=======
+    "@micro-zoe/micro-app": "^1.0.0-rc.5",
+>>>>>>> e0a009b (fix: 🐛 edit domain)
     "antd": "5.13.1",
 >>>>>>> 8063128 (feat: 🎸 Migration complete)
     "clsx": "^2.1.0",
