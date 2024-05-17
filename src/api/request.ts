@@ -118,9 +118,9 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
         limit: 10,
         fields: "*",
         "fields[]": "tags.tagList_id.*",
-        sort: "-tendSort",
+        sort: "-trendSort",
         filter: {
-          tendSort: {
+          trendSort: {
             _nnull: true,
           },
         },
