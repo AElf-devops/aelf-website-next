@@ -1,5 +1,5 @@
 .desktop.customEditor {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 30px;
   color: rgba(255, 255, 255, 0.5);
   :global {
@@ -9,6 +9,7 @@
 
     .cdx-block {
       padding: 25px 0;
+      font-size: 15px;
       b {
         color: rgba(255, 255, 255, 0.8);
       }
@@ -42,6 +43,7 @@
 .mobile.customEditor {
   //   color: red;
   font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
   :global {
     .ce-paragraph {
       line-height: normal;
@@ -64,6 +66,9 @@
     .ce-block {
       &:first-child {
         display: none;
+      }
+      b {
+        color: rgba(255, 255, 255, 0.8);
       }
     }
     .ce-header {
