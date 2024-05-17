@@ -51,14 +51,10 @@ export default function BlogItem({
     }
   }, [blog]);
 
-  const handleViewDetail = useCallback(() => {
-    onViewDetail(blog.id);
-  }, [blog, onViewDetail]);
-
   return (
-    <div
+    <a
       className={clsx([styles.blogItem, deviceClassName])}
-      onClick={handleViewDetail}
+      href={`/blog-detail?id=${blog.id}`}
     >
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}
@@ -81,6 +77,6 @@ export default function BlogItem({
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 }

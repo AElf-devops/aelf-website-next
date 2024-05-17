@@ -90,13 +90,13 @@ export default function TrendBlog() {
           <Carousel afterChange={onChange} className={styles.carousel}>
             {list?.map((item) => {
               return (
-                <div
+                <a
+                  href={`/blog-detail?id=${currentSlickBlog?.id}`}
                   key={item.id}
-                  style={{ borderRadius: 8 }}
-                  onClick={handleViewDetail}
+                  style={{ borderRadius: 8, color: "#fff" }}
                 >
                   <img src={item.imgUrl} style={contentStyle} alt=""></img>
-                </div>
+                </a>
               );
             })}
           </Carousel>
@@ -104,9 +104,12 @@ export default function TrendBlog() {
 
         <div className={styles.detail}>
           <div className={styles.time}>{currentSlickBlog?.time}</div>
-          <div className={styles.title} onClick={handleViewDetail}>
+          <a
+            className={styles.title}
+            href={`/blog-detail?id=${currentSlickBlog?.id}`}
+          >
             {currentSlickBlog?.title}
-          </div>
+          </a>
           <div className={styles.subHeader}>{currentSlickBlog?.subHeader}</div>
           <div className={styles.tagContent}>
             {currentSlickBlog?.tags.map((item) => (
@@ -116,7 +119,10 @@ export default function TrendBlog() {
             ))}
           </div>
           {!isMobile && (
-            <div className={styles.btn} onClick={handleViewDetail}>
+            <a
+              className={styles.btn}
+              href={`/blog-detail?id=${currentSlickBlog?.id}`}
+            >
               Read Full Post
               <Image
                 src={arrowLinkRightImg}
@@ -125,7 +131,7 @@ export default function TrendBlog() {
                 width={28}
                 height={28}
               />
-            </div>
+            </a>
           )}
         </div>
       </div>
