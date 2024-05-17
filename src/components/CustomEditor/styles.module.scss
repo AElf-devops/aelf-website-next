@@ -1,14 +1,17 @@
 .desktop.customEditor {
-  font-size: 20px;
+  font-size: 15px;
   line-height: 30px;
   color: rgba(255, 255, 255, 0.5);
   :global {
     .ce-block__content {
       max-width: 100%;
     }
-   
+
     .cdx-block {
       padding: 25px 0;
+      b {
+        color: rgba(255, 255, 255, 0.8);
+      }
     }
     .codex-editor__redactor {
       padding-bottom: 116px !important;
@@ -27,10 +30,10 @@
         display: none;
       }
     }
-    .image-tool{
-        padding: 0;
+    .image-tool {
+      padding: 0;
     }
-    .ce-header{
+    .ce-header {
       color: #fff;
     }
   }
@@ -55,15 +58,15 @@
     .image-tool__caption {
       display: none;
     }
-    .image-tool{
-        padding: 0;
+    .image-tool {
+      padding: 0;
     }
     .ce-block {
       &:first-child {
         display: none;
       }
     }
-    .ce-header{
+    .ce-header {
       color: #fff;
     }
   }
