@@ -34,6 +34,12 @@
     font-weight: 600;
     margin-bottom: 40px;
   }
+  .disc{
+    font-size: 20px;
+    line-height: 30px;
+    width: 900px;
+    margin-bottom: 100px;
+  }
   .blogList {
     display: flex;
     flex-wrap: wrap;
@@ -142,6 +148,10 @@
     font-size: 24px;
     margin-bottom: 18px;
     text-align: center;
+  }
+  .disc{
+    text-align: center;
+    margin-bottom: 34px;
   }
 
   .noData {

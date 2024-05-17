@@ -12,7 +12,23 @@ interface IBlog {
   content: OutputData;
   date_updated: string;
   date_created: string;
+  viewCount: number;
+  subHeader: string
 }
+
+interface IDetailBlog {
+  id: number;
+  title: string;
+  tags: ITag[];
+  isPopularArticle: boolean;
+  content: OutputData;
+  date_updated: string;
+  date_created: string;
+  viewCount: number;
+  imgUrl?: string;
+  subHeader: string
+}
+
 
 interface IResponseBlog {
   id: number;
@@ -20,12 +36,15 @@ interface IResponseBlog {
   tags: {
     tagList_id: {
       id: number;
+      tag: string;
     };
   }[];
   isPopularArticle: boolean;
   content: OutputData;
   date_updated: string;
   date_created: string;
+  viewCount: number;
+  subHeader: string
 }
 
 interface IBlogListSearchParams {

@@ -101,6 +101,9 @@ class Request {
   public delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.delete(url, config);
   }
+  public patch<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    return this.instance.patch(url, config);
+  }
 }
 
 const apiServer = new Request({

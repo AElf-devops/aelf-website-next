@@ -1,5 +1,5 @@
 const devUrlConfig = {
-  cms: "https://test-cms-v2.aelf.com",
+  cms: "http://localhost:8066",
 };
 const testUrlConfig = {
   cms: "https://test-cms-v2.aelf.com",
@@ -14,7 +14,7 @@ export default function getUrlConfig() {
     return testUrlConfig;
   } else if (process.env.NEXT_PUBLIC_APP_ENV === "production") {
     return proUrlConfig;
-  } else {
-    return devUrlConfig;
-  }
+  } 
+  
+  return devUrlConfig
 }

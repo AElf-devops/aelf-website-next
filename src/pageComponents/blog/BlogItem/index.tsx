@@ -39,9 +39,10 @@ export default function BlogItem({
   }, [blog, isMobile]);
 
   const imgUrl = useMemo(() => {
-    const item = blog.content.blocks.find((item: any) => {
-      return item.type === "image";
-    });
+    const item =
+      blog.content?.blocks?.find((item: any) => {
+        return item.type === "image";
+      }) || [];
     const urlConfig = getUrlConfig();
     if (item?.data?.file?.url) {
       return urlConfig.cms + item.data.file.url;
