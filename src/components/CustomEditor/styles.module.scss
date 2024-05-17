@@ -1,7 +1,7 @@
 .desktop.customEditor {
   font-size: 20px;
   line-height: 30px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   :global {
     .ce-block__content {
       max-width: 100%;
@@ -11,7 +11,7 @@
       padding: 25px 0;
       font-size: 15px;
       b {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 1);
       }
     }
     .codex-editor__redactor {
@@ -43,7 +43,7 @@
 .mobile.customEditor {
   //   color: red;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   :global {
     .ce-paragraph {
       line-height: normal;
@@ -68,7 +68,7 @@
         display: none;
       }
       b {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 1);
       }
     }
     .ce-header {
