@@ -30,7 +30,7 @@ export default function BlogItem({
   }, [tagList]);
 
   const time = useMemo(() => {
-    const time = blog.date_updated || blog.date_created;
+    const time = blog.publishDate || blog.date_created;
     if (isMobile) {
       return formattedDate(time, "DMY");
     } else {

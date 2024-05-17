@@ -89,7 +89,7 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
             ))}
           </div>
           <div className={styles.time}>
-            {blog?.date_updated || blog?.date_created}
+            {blog?.publishDate || blog?.date_created}
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     data = {
       ...result.data,
       date_created: formattedDate(result.data.date_created, "DMY"),
-      date_updated: formattedDate(result.data.date_updated, "DMY"),
+      publishDate: formattedDate(result.data.publishDate, "DMY"),
     };
     // await updateViewCount({
     //   id: Number(query.id),

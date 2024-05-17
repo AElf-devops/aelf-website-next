@@ -61,7 +61,7 @@ export default function TrendBlog() {
       if (blockItem) {
         item.imgUrl = urlConfig.cms + blockItem.data.file.url;
       }
-      const date = item.date_updated || item.date_updated;
+      const date = item.publishDate || item.date_created;
       item.time = formattedDate(date, "MDY");
     });
     setCurrentSlickBlog(list[0]);
