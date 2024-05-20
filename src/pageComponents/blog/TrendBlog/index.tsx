@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import arrowLinkRightImg from "@/assets/ventures/arrow-link-right.svg";
 import { useConfig } from "@/contexts/useConfig/hooks";
+import DefaultImg from "@/assets/blog/default.png";
+import CommonImage from "@/components/CommonImage";
 
 const defaultNum = 4;
 
@@ -95,7 +97,15 @@ export default function TrendBlog() {
                   key={item.id}
                   style={{ borderRadius: 8, color: "#fff" }}
                 >
-                  <img src={item.imgUrl} style={contentStyle} alt=""></img>
+                  {item.imgUrl ? (
+                    <img src={item.imgUrl} style={contentStyle} alt=""></img>
+                  ) : (
+                    <CommonImage
+                      src={DefaultImg}
+                      alt=""
+                      className={styles.blogItemImg}
+                    />
+                  )}
                 </a>
               );
             })}
