@@ -110,7 +110,7 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
-  let data = {};
+  let data;
   if (query.id) {
     const result = await getBlogDetail(Number(query.id));
     result.data.content.blocks.forEach((block: any) => {
@@ -124,10 +124,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       date_created: formattedDate(result.data.date_created, "DMY"),
       publishDate: formattedDate(result.data.publishDate, "DMY"),
     };
-    // await updateViewCount({
-    //   id: Number(query.id),
-    //   viewCount:  1,
-    // });
+
+    await updateViewCount({
+      id: Number(query.id),
+      viewCount: data.viewCount + 1,
+    })
   }
   return {
     props: {
