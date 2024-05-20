@@ -114,10 +114,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       publishDate: formattedDate(result.data.publishDate, "DMY"),
     };
 
-    await updateViewCount({
+    updateViewCount({
       id: Number(query.id),
       viewCount: data.viewCount + 1,
-    })
+    });
   }
   return {
     props: {
