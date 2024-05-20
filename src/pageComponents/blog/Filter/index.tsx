@@ -54,7 +54,7 @@ export default function Filter({
         onChangeSearchParams((state: IBlogListSearchParams) => ({
           ...state,
           isPopularArticle: null,
-          sort: "date_updated",
+          sort: "-publishDate",
           sortValue: value,
           page: 1,
         }));
