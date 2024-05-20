@@ -182,3 +182,21 @@ export const getTagList = async (): Promise<{
     };
   }
 };
+
+
+
+export const getAllDynamicPaths = async (): Promise<{
+  data: IDetailBlog[];
+}> => {
+  try {
+    const res: {
+      data: IDetailBlog[];
+    } = await apiServer.get("/items/blogList");
+    return res;
+  } catch (error) {
+    return {
+      data: [],
+    };
+  }
+};
+
