@@ -1,4 +1,7 @@
 import { apiServer } from "./axios";
+import getUrlConfig from "@/constants/network/cms";
+
+const urlConfig = getUrlConfig();
 
 export const getBlogList = async (
   params: IBlogListSearchParams
@@ -25,17 +28,11 @@ export const getBlogList = async (
               },
             },
           },
-          // is_popular_article: {
-          //   _eq: params.isPopularArticle,
-          // },
         },
         fields: "*",
         "fields[]": "tags.tagList_id.id",
         search: params.search,
         sort: params.sort,
-      },
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
       },
     });
 
@@ -59,66 +56,114 @@ export const getBlogList = async (
   }
 };
 
-export const getPopularBlogList = async (
-  params: IBlogListSearchParams
-): Promise<{
-  data: IBlog[];
-}> => {
+export const updateViewCount = async (params: {
+  id: number;
+  viewCount: number;
+}): Promise<void> => {
+  const result = await fetch(`${urlConfig.cms}/items/blogList/${params.id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      viewCount: params.viewCount,
+    }),
+    headers: {
+      Authorization: process.env.NEXT_PUBLIC_TOKEN || "",
+      "Content-Type": "application/json",
+    },
+  });
+  const text = await result.text();
+  const res = JSON.parse(text);
+  return res;
+};
+
+export const getMostViewCountBlogList = async (): Promise<IDetailBlog[]> => {
   try {
     const res: {
-      data: IBlog[];
+      data: IResponseBlog[];
     } = await apiServer.get("/items/blogList", {
       params: {
-        page: params.page,
-        limit: params.limit,
+        page: 1,
+        limit: 10,
+        fields: "*",
+        "fields[]": "tags.tagList_id.*",
+        sort: "-viewCount",
         filter: {
-          is_popular_article: {
-            _eq: params.isPopularArticle,
+          viewCount: {
+            _nnull: true,
           },
         },
       },
-      headers: {
-        "Content-Type": "application/json;",
-      },
     });
-    return res;
+
+    return res.data.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => ({
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        })),
+      };
+    });
   } catch (error) {
-    throw new Error();
+    return [];
   }
 };
 
-export const searchBlogList = async (
-  params: IBlogListSearchParams
-): Promise<{
-  data: IBlog[];
-}> => {
-  return apiServer.get("/items/blogList", {
-    params: {
-      page: params.page,
-      limit: params.limit,
-      search: params.search,
-    },
-  });
+export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
+  try {
+    const res: {
+      data: IResponseBlog[];
+    } = await apiServer.get("/items/blogList", {
+      params: {
+        page: 1,
+        limit: 10,
+        fields: "*",
+        "fields[]": "tags.tagList_id.*",
+        sort: "-trendSort",
+        filter: {
+          trendSort: {
+            _nnull: true,
+          },
+        },
+      },
+    });
+    const newData = res.data.map((item: IResponseBlog) => {
+      return {
+        ...item,
+        tags: item.tags.map((item: any) => ({
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        })),
+      };
+    });
+    return newData;
+  } catch (error) {
+    return [];
+  }
 };
 
 export const getBlogDetail = async (
   id: string | number
 ): Promise<{
-  data: IBlog;
+  data: IDetailBlog;
 }> => {
   const res: {
     data: IResponseBlog;
   } = await apiServer.get(`/items/blogList/${id}`, {
     params: {
       fields: "*",
-      "fields[]": "tags.tagList_id.id",
+      "fields[]": "tags.tagList_id.*",
     },
   });
 
   return {
     data: {
       ...res.data,
-      tags: res.data.tags.map((item: any) => item.tagList_id.id) as number[],
+      tags: res.data.tags.map((item: any) => {
+        return {
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        };
+      }),
     },
   };
 };

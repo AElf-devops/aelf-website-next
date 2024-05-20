@@ -1,0 +1,143 @@
+.desktop.trendBlog {
+  background-color: #282828;
+  padding: 34px 40px 38px 40px;
+  border-radius: 8px;
+  margin-bottom: 138px;
+  .title {
+    font-size: 34px;
+    margin-bottom: 28px;
+  }
+  .trendBlogContent {
+    display: flex;
+    .carouselContent {
+      height: 385px;
+      width: 678px;
+    }
+    .detail {
+      flex: 1;
+      margin-left: 68px;
+      display: flex;
+      flex-direction: column;
+      .time {
+        color: #8d8d8d;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .title {
+        margin-top: 32px;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 30px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        overflow: hidden;
+        height: 106px;
+        line-height: 36px;
+        color: #fff;
+      }
+      .subHeader {
+        color: #8d8d8d;
+        font-size: 15px;
+        margin-bottom: 47px;
+        height: 57px;
+        overflow: hidden;
+        line-height: 32px;
+      }
+      .tagContent {
+        display: flex;
+        gap: 10px;
+        .tag {
+          display: inline-block;
+          background-color: #fff;
+          border-radius: 6px;
+          color: #000;
+          font-size: 12px;
+          text-align: center;
+          height: 25px;
+          line-height: 25px;
+          padding: 0 10px;
+        }
+      }
+      .btn {
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #fff;
+        .arrowLinkRightImg {
+          width: 28px;
+          height: 28px;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+.mobile.trendBlog {
+  border-radius: 8px;
+  margin-bottom: 48px;
+  .title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .trendBlogContent {
+    background-color: #282828;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    .carouselContent {
+      height: 204px;
+      width: 100%;
+    }
+    .detail {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 24px;
+      .time {
+        color: #8d8d8d;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 36px;
+      }
+      .title {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        cursor: pointer;
+        text-align: left;
+        flex: 1;
+        max-height: 90px;
+        overflow: hidden;
+        color: #fff;
+      }
+      .subHeader {
+        color: #8d8d8d;
+        font-size: 16px;
+        overflow: hidden;
+        margin-bottom: 44px;
+        height: 56px;
+      }
+      .tagContent {
+        display: flex;
+        gap: 10px;
+        .tag {
+          display: inline-block;
+          background-color: #fff;
+          border-radius: 6px;
+          color: #000;
+          font-size: 12px;
+          text-align: center;
+          height: 30px;
+          line-height: 30px;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}

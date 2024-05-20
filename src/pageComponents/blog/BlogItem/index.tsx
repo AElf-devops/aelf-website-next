@@ -30,7 +30,7 @@ export default function BlogItem({
   }, [tagList]);
 
   const time = useMemo(() => {
-    const time = blog.date_updated || blog.date_created;
+    const time = blog.publishDate || blog.date_created;
     if (isMobile) {
       return formattedDate(time, "DMY");
     } else {
@@ -39,9 +39,10 @@ export default function BlogItem({
   }, [blog, isMobile]);
 
   const imgUrl = useMemo(() => {
-    const item = blog.content.blocks.find((item: any) => {
-      return item.type === "image";
-    });
+    const item =
+      blog.content?.blocks?.find((item: any) => {
+        return item.type === "image";
+      }) || [];
     const urlConfig = getUrlConfig();
     if (item?.data?.file?.url) {
       return urlConfig.cms + item.data.file.url;
@@ -50,14 +51,10 @@ export default function BlogItem({
     }
   }, [blog]);
 
-  const handleViewDetail = useCallback(() => {
-    onViewDetail(blog.id);
-  }, [blog, onViewDetail]);
-
   return (
-    <div
+    <a
       className={clsx([styles.blogItem, deviceClassName])}
-      onClick={handleViewDetail}
+      href={`/blog-detail?id=${blog.id}`}
     >
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}
@@ -80,6 +77,6 @@ export default function BlogItem({
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 }
