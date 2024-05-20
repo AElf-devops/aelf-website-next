@@ -41,17 +41,6 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
     router.push("/blog?tagId=" + tagId);
   };
 
-  const handleUpdateViewCount = useCallback(async () => {
-    await updateViewCount({
-      id: Number(id),
-      viewCount: data.viewCount + 1,
-    });
-  }, [data.viewCount, id]);
-
-  useEffect(() => {
-    handleUpdateViewCount();
-  }, [handleUpdateViewCount]);
-
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>
       <div className={styles.backgroundWrap}></div>
