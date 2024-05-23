@@ -50,16 +50,20 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
     <div className={clsx([styles.pageWrap, deviceClassName])}>
       <Head>
         <title>{blog.title}</title>
-        <meta name="description" content={blog.metaDescription} />
+        {blog.metaDescription && (
+          <meta name="description" content={blog.metaDescription} />
+        )}
         <meta name="robots" content={robotsContent}></meta>
         <link
           rel="canonical"
           href={`${urlConfig.aelf}/blog-detail/${blog.id}`}
         ></link>
-        <meta
-          property="og:image"
-          content={urlConfig.cms + "/assets/" + blog.ogImage}
-        />
+        {blog.ogImage && (
+          <meta
+            property="og:image"
+            content={urlConfig.cms + "/assets/" + blog.ogImage}
+          />
+        )}
       </Head>
       <div className={styles.backgroundWrap}></div>
       <CommonSection
