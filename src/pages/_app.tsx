@@ -10,7 +10,6 @@ import GoogleTagManager from "@/components/GoogleTagManager";
 import { getMenuList } from "@/api/request";
 import Header from "@/components/Header";
 export default function App({ Component, pageProps, isMobile, menuList }: any) {
-  console.log("menuList", menuList);
   useEffect(() => {
     microApp.start();
   }, []);
