@@ -2,7 +2,6 @@
 import path from "path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-
 const nextConfig = {
   reactStrictMode: false,
   sassOptions: {

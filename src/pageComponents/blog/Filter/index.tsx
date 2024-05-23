@@ -65,7 +65,8 @@ export default function Filter({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const keywordDebounce = useCallback(
-    debounce((val: string) => {
+    debounce((val: string, searchParams: any) => {
+
       onChangeSearchParams({
         ...searchParams,
         search: val,
@@ -80,7 +81,7 @@ export default function Filter({
   ) => {
     const value = event.target.value;
     setInputValue(value);
-    keywordDebounce(value);
+    keywordDebounce(value, searchParams);
   };
 
   return (
