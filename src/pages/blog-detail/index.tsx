@@ -50,7 +50,9 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
     <div className={clsx([styles.pageWrap, deviceClassName])}>
       <Head>
         <title>{blog.title}</title>
-        <meta name="description" content={blog.metaDescription} />
+        {blog.metaDescription && (
+          <meta name="description" content={blog.metaDescription} />
+        )}
         <meta name="robots" content={robotsContent}></meta>
         <link
           rel="canonical"
