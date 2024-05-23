@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import arrowLinkRightImg from "@/assets/ventures/arrow-link-right.svg";
 import { useConfig } from "@/contexts/useConfig/hooks";
+import DefaultImg from "@/assets/blog/default.png";
+import CommonImage from "@/components/CommonImage";
 
 const defaultNum = 4;
 
@@ -61,7 +63,7 @@ export default function TrendBlog() {
       if (blockItem) {
         item.imgUrl = urlConfig.cms + blockItem.data.file.url;
       }
-      const date = item.date_updated || item.date_updated;
+      const date = item.publishDate || item.date_created;
       item.time = formattedDate(date, "MDY");
     });
     setCurrentSlickBlog(list[0]);
@@ -90,13 +92,21 @@ export default function TrendBlog() {
           <Carousel afterChange={onChange} className={styles.carousel}>
             {list?.map((item) => {
               return (
-                <div
+                <a
+                  href={`/blog-detail?id=${currentSlickBlog?.id}`}
                   key={item.id}
-                  style={{ borderRadius: 8 }}
-                  onClick={handleViewDetail}
+                  style={{ borderRadius: 8, color: "#fff" }}
                 >
-                  <img src={item.imgUrl} style={contentStyle} alt=""></img>
-                </div>
+                  {item.imgUrl ? (
+                    <img src={item.imgUrl} style={contentStyle} alt=""></img>
+                  ) : (
+                    <CommonImage
+                      src={DefaultImg}
+                      alt=""
+                      className={styles.blogItemImg}
+                    />
+                  )}
+                </a>
               );
             })}
           </Carousel>
@@ -104,9 +114,12 @@ export default function TrendBlog() {
 
         <div className={styles.detail}>
           <div className={styles.time}>{currentSlickBlog?.time}</div>
-          <div className={styles.title} onClick={handleViewDetail}>
+          <a
+            className={styles.title}
+            href={`/blog-detail?id=${currentSlickBlog?.id}`}
+          >
             {currentSlickBlog?.title}
-          </div>
+          </a>
           <div className={styles.subHeader}>{currentSlickBlog?.subHeader}</div>
           <div className={styles.tagContent}>
             {currentSlickBlog?.tags.map((item) => (
@@ -116,7 +129,10 @@ export default function TrendBlog() {
             ))}
           </div>
           {!isMobile && (
-            <div className={styles.btn} onClick={handleViewDetail}>
+            <a
+              className={styles.btn}
+              href={`/blog-detail?id=${currentSlickBlog?.id}`}
+            >
               Read Full Post
               <Image
                 src={arrowLinkRightImg}
@@ -125,7 +141,7 @@ export default function TrendBlog() {
                 width={28}
                 height={28}
               />
-            </div>
+            </a>
           )}
         </div>
       </div>

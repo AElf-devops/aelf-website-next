@@ -3,6 +3,7 @@ interface ITag {
   id: number;
   tag: string;
 }
+type Changefreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 
 interface IBlog {
   id: number;
@@ -13,38 +14,30 @@ interface IBlog {
   date_updated: string;
   date_created: string;
   viewCount: number;
-  subHeader: string
+  subHeader: string;
+  publishDate: string;
+  metaDescription: string;
+  canonicalUrl: string;
+  noFollow: boolean;
+  noIndex: boolean;
+  ogImage: string;
+  sitemapChangeFrequency: Changefreq;
+  sitemapPriority: number;
 }
 
-interface IDetailBlog {
-  id: number;
-  title: string;
+
+interface IDetailBlog extends IBlog {
   tags: ITag[];
-  isPopularArticle: boolean;
-  content: OutputData;
-  date_updated: string;
-  date_created: string;
-  viewCount: number;
   imgUrl?: string;
-  subHeader: string
 }
 
-
-interface IResponseBlog {
-  id: number;
-  title: string;
+interface IResponseBlog extends IBlog {
   tags: {
     tagList_id: {
       id: number;
       tag: string;
     };
   }[];
-  isPopularArticle: boolean;
-  content: OutputData;
-  date_updated: string;
-  date_created: string;
-  viewCount: number;
-  subHeader: string
 }
 
 interface IBlogListSearchParams {

@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import getUrlConfig from "@/constants/network/cms";
 import CommonImage from "@/components/CommonImage";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 
 let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
   ssr: false,
@@ -29,6 +30,10 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
   const [editorInstance, setEditorInstance] = useState({});
   const [blog, setBlog] = useState<IDetailBlog>(data);
 
+  const robotsContent = `${blog.noIndex ? "noindex" : "index"}, ${
+    blog.noFollow ? "nofollow" : "follow"
+  }`;
+
   const handleInstance = (instance: any) => {
     setEditorInstance(instance);
   };
@@ -41,19 +46,21 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
     router.push("/blog?tagId=" + tagId);
   };
 
-  const handleUpdateViewCount = useCallback(async () => {
-    await updateViewCount({
-      id: Number(id),
-      viewCount: data.viewCount + 1,
-    });
-  }, [data.viewCount, id]);
-
-  useEffect(() => {
-    handleUpdateViewCount();
-  }, [handleUpdateViewCount]);
-
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>
+      <Head>
+        <title>{blog.title}</title>
+        <meta name="description" content={blog.metaDescription} />
+        <meta name="robots" content={robotsContent}></meta>
+        <link
+          rel="canonical"
+          href={`${urlConfig.aelf}/blog-detail/${blog.id}`}
+        ></link>
+        <meta
+          property="og:image"
+          content={urlConfig.cms + "/assets/" + blog.ogImage}
+        />
+      </Head>
       <div className={styles.backgroundWrap}></div>
       <CommonSection
         sectionClassName={styles.blogPart}
@@ -89,7 +96,7 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
             ))}
           </div>
           <div className={styles.time}>
-            {blog?.date_updated || blog?.date_created}
+            {blog?.publishDate || blog?.date_created}
           </div>
         </div>
 
@@ -110,7 +117,7 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
-  let data = {};
+  let data;
   if (query.id) {
     const result = await getBlogDetail(Number(query.id));
     result.data.content.blocks.forEach((block: any) => {
@@ -122,12 +129,22 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     data = {
       ...result.data,
       date_created: formattedDate(result.data.date_created, "DMY"),
-      date_updated: formattedDate(result.data.date_updated, "DMY"),
+      publishDate: formattedDate(result.data.publishDate, "DMY"),
     };
-    // await updateViewCount({
-    //   id: Number(query.id),
-    //   viewCount:  1,
-    // });
+
+    data.content.blocks.forEach((item: any) => {
+      if (item.type === "paragraph") {
+        item.data.text = item.data.text.replace(
+          /(<a\s+[^>]*href="[^"]*")/g,
+          '$1 target="_blank"'
+        );
+      }
+    });
+
+    updateViewCount({
+      id: Number(query.id),
+      viewCount: data.viewCount + 1,
+    });
   }
   return {
     props: {

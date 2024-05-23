@@ -26,7 +26,7 @@ export default function Community() {
     isPopularArticle: null,
     tagId: Number(tagId) || 0,
     search: "",
-    sort: "date_updated",
+    sort: "-publishDate",
     sortValue: "mostRecent",
   });
   const [total, setTotal] = useState(0);

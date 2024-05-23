@@ -6,7 +6,7 @@ import Table from "@editorjs/table";
 //import List from '@editorjs/list'
 //import Warning from '@editorjs/warning'
 import Code from "@editorjs/code";
-//import LinkTool from '@editorjs/link'
+import LinkTool from '@editorjs/link'
 import ImageTool from "@editorjs/image";
 import NestedList from "@editorjs/nested-list";
 //import Raw from '@editorjs/raw'
@@ -32,7 +32,7 @@ const CustomEditor = ({ handleInstance, data, ...props }) => {
     //list: List,
     //warning: Warning,
     code: Code,
-    //linkTool: LinkTool,
+    linkTool: LinkTool,
     //Image,
     nestedlist: {
       class: NestedList,
