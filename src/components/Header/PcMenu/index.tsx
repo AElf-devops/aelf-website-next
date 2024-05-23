@@ -20,27 +20,27 @@ export default function PcMenu({
   const [isScroll, setIsScroll] = useState(false);
 
   const selectedIdObj = useMemo(() => {
-    const item = allMenuList.find((item: any) => item.path === pathname) || {};
+    const item = allMenuList?.find((item: any) => item.path === pathname) || {};
     return {
       subMenuId: item?.isParent ? "" : item?.id,
       menuId: item?.isParent ? item?.id : item?.parentId,
     };
   }, [pathname, allMenuList]);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollTop = document.documentElement.scrollTop;
-  //     if (scrollTop > 0) {
-  //       setIsScroll(true);
-  //     } else {
-  //       setIsScroll(false);
-  //     }
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header

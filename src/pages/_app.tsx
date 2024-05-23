@@ -3,29 +3,31 @@ import "@/styles/globals.scss";
 import "@/styles/iconfont.css";
 import NextApp from "next/app";
 import { userAgent } from "next/server";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import React, { useEffect } from "react";
-import Layout from "@/components/Layout";
-import { ConfigProvider as AntdConfigProvider } from "antd";
-import { ANTD_THEME_CONFIG } from "@/constants/theme/themTokenConfig";
 import microApp, { getActiveApps } from "@micro-zoe/micro-app";
-
-export default function App({ Component, pageProps, isMobile }: any) {
+import GoogleTagManager from "@/components/GoogleTagManager";
+import { getMenuList } from "@/api/request";
+import Header from "@/components/Header";
+export default function App({ Component, pageProps, isMobile, menuList }: any) {
+  console.log("menuList", menuList);
   useEffect(() => {
     microApp.start();
   }, []);
 
   return (
     <ConfigProvider init={{ isMobile: isMobile }}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+      <GoogleTagManager gtmId="GTM-W8D6DHQZ" />
+      <Header menuList={menuList} />
+      <Component {...pageProps} />
     </ConfigProvider>
   );
 }
 
 App.getInitialProps = async (props: any): Promise<any> => {
   const initialProps = await NextApp.getInitialProps(props);
+
+  const res = await getMenuList();
 
   const { ctx } = props;
   const _userAgent =
@@ -73,5 +75,5 @@ App.getInitialProps = async (props: any): Promise<any> => {
   });
   const isMobile = device.type === "mobile" ? true : false;
 
-  return { isMobile, ...initialProps };
+  return { isMobile, ...initialProps, menuList: res.data };
 };

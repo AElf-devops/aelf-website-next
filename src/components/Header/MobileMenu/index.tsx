@@ -13,15 +13,15 @@ export interface IMenuProps extends Omit<MenuProps, "mode"> {
   className?: string;
 }
 
-export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
+export default function MobileMenu({ menuList }: { menuList: IMenu[] }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const navRef = useRef<HTMLElement>();
   const [isScroll, setIsScroll] = useState(false);
   const [open, setOpen] = useState(false);
 
   const onClose = () => {
+    console.log("close");
     setOpen(false);
   };
 
@@ -36,7 +36,7 @@ export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
   };
 
   const newMenuList = useMemo(() => {
-    return menuList.map((element: any) => {
+    return menuList?.map((element: any) => {
       element.key = element.path;
       if (element.children.length > 0) {
         return {
@@ -68,19 +68,18 @@ export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
         setIsScroll(false);
       }
     };
-
-    const container = document.getElementById("container");
-    console.log("container", container);
-
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
-
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("message", (event: any) => {
+      if (event.data && event.data.type === "microAppMessage") {
+        setIsScroll(event.data.isScroll);
+      }
+    });
   }, []);
 
   return (
@@ -91,7 +90,7 @@ export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
         isScroll ? styles.headerBg : ""
       )}
     >
-      <nav className={styles.nav} ref={navRef}>
+      <nav className={styles.nav}>
         {!open && (
           <>
             <Link className={styles.logoLink} href="/">
@@ -106,31 +105,27 @@ export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
             </div>
           </>
         )}
-        <Drawer
-          width="100%"
-          title=""
-          placement="left"
-          onClose={onClose}
-          open={open}
-          getContainer={navRef.current}
-          style={{
-            backgroundColor: "black",
-          }}
-          bodyStyle={{
-            padding: 12,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          // forceRender={true}
-          extra={<Image alt="" src={CloseIcon} onClick={onClose}></Image>}
-        >
+
+        <div className={clsx(styles.popup, open ? styles.popupShow : "")}>
+          <div className={styles.closeIcon}>
+            <Image
+              alt=""
+              width={20}
+              height={20}
+              src={CloseIcon}
+              onClick={onClose}
+            ></Image>
+          </div>
           <Menu
             mode="inline"
             items={newMenuList}
             onClick={onClick}
+            theme="dark"
             style={{
-              backgroundColor: "black",
               flex: 1,
+              overflow: "auto",
+              backgroundColor: "#000",
+              borderRight: "none",
             }}
           />
           <div className={styles.navFooter}>
@@ -143,7 +138,7 @@ export default function MobileMenu({ menuList }: { menuList: IMenuProps[] }) {
             </a>
             <div className={clsx("iconfont", "icon-liaotian")}></div>
           </div>
-        </Drawer>
+        </div>
       </nav>
     </header>
   );

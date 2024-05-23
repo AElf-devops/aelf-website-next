@@ -51,3 +51,11 @@ interface IBlogListSearchParams {
   sort?: string | null;
   sortValue?: string;
 }
+
+interface IMenu {
+  label: string;
+  path: string;
+  children: IMenu[];
+  order: number;
+  type: "link" | "route";
+}

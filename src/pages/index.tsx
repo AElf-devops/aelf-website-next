@@ -5,7 +5,7 @@ export default function Home() {
   const { isMobile } = useConfig();
   const url = isMobile
     ? "http://localhost:9001"
-    : "http://192.168.10.155:9000/";
+    : "http://192.168.11.178:9000/";
 
   const [show, changeShow] = useState(false);
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       {show && (
-        <micro-app name="my-app" disable-memory-router url={url}></micro-app>
+          <micro-app name="my-app" ssr disable-memory-router url={url}></micro-app>
       )}
     </>
   );

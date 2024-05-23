@@ -183,8 +183,6 @@ export const getTagList = async (): Promise<{
   }
 };
 
-
-
 export const getAllDynamicPaths = async (): Promise<{
   data: IDetailBlog[];
 }> => {
@@ -199,4 +197,19 @@ export const getAllDynamicPaths = async (): Promise<{
     };
   }
 };
-
+export const getMenuList = async (): Promise<{
+  data: IMenu[];
+}> => {
+  try {
+    const res: {
+      data: IMenu[];
+    } = await apiServer.get(
+      "http://localhost:8060/items/menuList?fields=*&fields[]=children.*&sort[]=order"
+    );
+    return res;
+  } catch (error) {
+    return {
+      data: [],
+    };
+  }
+};

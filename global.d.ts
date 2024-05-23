@@ -7,3 +7,8 @@ declare module "@editorjs/link";
 declare module "@editorjs/inline-code";
 declare module "@editorjs/delimiter";
 declare module "lodash/debounce"
+// global.d.ts
+interface Window {
+    dataLayer: any[];
+  }
+  

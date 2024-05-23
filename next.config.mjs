@@ -25,8 +25,6 @@ const nextConfig = {
         source:"/analytics.js/:path*",
         destination: "https://www.google-analytics.com/:path*",
       },
-
-
     ];
   },
   transpilePackages: [

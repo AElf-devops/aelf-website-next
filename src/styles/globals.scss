@@ -15,7 +15,7 @@ body {
 }
 
 body {
-  background-color: black;
+  background-color: black !important;
 }
 .main {
   height: 100%;
@@ -28,6 +28,9 @@ a {
 micro-app-body{
   background-color: transparent !important;
   font-family: "MONTSERRATLIGHT" !important;
+  img{
+    width: 100%;
+  }
 }
 .clearfix:after {
   content: "";

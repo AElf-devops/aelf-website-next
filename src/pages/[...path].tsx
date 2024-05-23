@@ -10,7 +10,7 @@ export default function Home(props: any) {
 
   const url = isMobile
     ? "http://localhost:9001/"
-    : "http://192.168.10.26:9000/"
+    : "http://192.168.11.178:9000/"
 
   const pathname = useMemo(() => {
     const pathArr = path.split("/") || [];
@@ -30,6 +30,7 @@ export default function Home(props: any) {
           name="my-appc"
           disable-memory-router
           url={`${url}${pathname}.html`}
+          ssr
         ></micro-app>
       )}
     </>
