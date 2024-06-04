@@ -12,11 +12,9 @@ import CommonImage from "@/components/CommonImage";
 export default function BlogItem({
   blog,
   tagList = [],
-  onViewDetail,
 }: {
   blog: IBlog;
   tagList: ITag[];
-  onViewDetail: (id: number) => void;
 }) {
   const deviceClassName = useDeviceClass(styles);
   const { isMobile } = useConfig();
@@ -54,7 +52,7 @@ export default function BlogItem({
   return (
     <a
       className={clsx([styles.blogItem, deviceClassName])}
-      href={`/blog-detail?id=${blog.id}`}
+      href={`/blog-detail/${blog.urlPath}`}
     >
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}

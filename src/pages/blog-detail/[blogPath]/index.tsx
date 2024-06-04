@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getBlogDetail, updateViewCount } from "@/api/request";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { CommonSection } from "@/components/CommonSection";
@@ -24,14 +24,11 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
   const { isMobile } = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
 
-  const [editorInstance, setEditorInstance] = useState({});
-  const [blog, setBlog] = useState<IDetailBlog>(data);
+  const [_, setEditorInstance] = useState({});
 
-  const robotsContent = `${blog.noIndex ? "noindex" : "index"}, ${
-    blog.noFollow ? "nofollow" : "follow"
+  const robotsContent = `${data?.noIndex ? "noindex" : "index"}, ${
+    data?.noFollow ? "nofollow" : "follow"
   }`;
 
   const handleInstance = (instance: any) => {
@@ -49,19 +46,21 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>
       <Head>
-        <title>{blog.title}</title>
-        {blog.metaDescription && (
-          <meta name="description" content={blog.metaDescription} />
+        <title>{data?.title}</title>
+        {data?.metaDescription && (
+          <meta name="description" content={data.metaDescription} />
         )}
         <meta name="robots" content={robotsContent}></meta>
-        <link
-          rel="canonical"
-          href={`${urlConfig.aelf}/blog-detail/${blog.id}`}
-        ></link>
-        {blog.ogImage && (
+        {data?.urlPath && (
+          <link
+            rel="canonical"
+            href={`${urlConfig.aelf}/blog-detail/${data.urlPath}`}
+          />
+        )}
+        {data?.ogImage && (
           <meta
             property="og:image"
-            content={urlConfig.cms + "/assets/" + blog.ogImage}
+            content={urlConfig.cms + "/assets/" + data.ogImage}
           />
         )}
       </Head>
@@ -84,10 +83,10 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
           <span className={styles.article}>Article</span>
         </div>
         <div></div>
-        <div className={styles.title}>{blog?.title}</div>
+        <div className={styles.title}>{data?.title}</div>
         <div className={styles.description}>
           <div className={styles.descriptionLeft}>
-            {blog?.tags.map((item) => (
+            {data?.tags.map((item) => (
               <div
                 key={item.id}
                 className={styles.tag}
@@ -100,13 +99,13 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
             ))}
           </div>
           <div className={styles.time}>
-            {blog?.publishDate || blog?.date_created}
+            {data?.publishDate || data?.date_created}
           </div>
         </div>
 
-        {blog && (
+        {data && (
           <div className={styles.editorContent}>
-            <CustomEditor handleInstance={handleInstance} data={blog.content} />
+            <CustomEditor handleInstance={handleInstance} data={data.content} />
           </div>
         )}
         <div className={styles.btnContent}>
@@ -120,39 +119,42 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { query } = context;
-  let data;
-  if (query.id) {
-    const result = await getBlogDetail(Number(query.id));
-    result.data.content.blocks.forEach((block: any) => {
-      if (block.type === "image") {
-        block.data.file.url = urlConfig.cms + block.data.file.url;
-      }
-    });
+  const { params } = context;
+  const { blogPath } = params as { blogPath: string };
+  let data = null;
+  if (blogPath) {
+    const result = await getBlogDetail(blogPath);
+    if (result.data) {
+      result.data.content.blocks.forEach((block: any) => {
+        if (block.type === "image") {
+          block.data.file.url = urlConfig.cms + block.data.file.url;
+        }
+      });
 
-    data = {
-      ...result.data,
-      date_created: formattedDate(result.data.date_created, "DMY"),
-      publishDate: formattedDate(result.data.publishDate, "DMY"),
-    };
+      data = {
+        ...result.data,
+        date_created: formattedDate(result.data.date_created, "DMY"),
+        publishDate: formattedDate(result.data.publishDate, "DMY"),
+      };
 
-    data.content.blocks.forEach((item: any) => {
-      if (item.type === "paragraph") {
-        item.data.text = item.data.text.replace(
-          /(<a\s+[^>]*href="[^"]*")/g,
-          '$1 target="_blank"'
-        );
-      }
-    });
+      data.content.blocks.forEach((item: any) => {
+        if (item.type === "paragraph") {
+          item.data.text = item.data.text.replace(
+            /(<a\s+[^>]*href="[^"]*")/g,
+            '$1 target="_blank"'
+          );
+        }
+      });
 
-    updateViewCount({
-      id: Number(query.id),
-      viewCount: data.viewCount + 1,
-    });
+      updateViewCount({
+        id: Number(data.id),
+        viewCount: data.viewCount + 1,
+      });
+    }
   }
   return {
     props: {
-      data,
+      data: data || null,
     },
   };
 }

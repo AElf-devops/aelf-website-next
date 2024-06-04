@@ -142,30 +142,43 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
 };
 
 export const getBlogDetail = async (
-  id: string | number
+  blogPath: string
 ): Promise<{
-  data: IDetailBlog;
+  data: IDetailBlog | null;
 }> => {
   const res: {
-    data: IResponseBlog;
-  } = await apiServer.get(`/items/blogList/${id}`, {
+    data: IResponseBlog[];
+  } = await apiServer.get(`/items/blogList`, {
     params: {
+      filter: {
+        urlPath: blogPath
+      },
       fields: "*",
       "fields[]": "tags.tagList_id.*",
     },
   });
 
-  return {
-    data: {
-      ...res.data,
-      tags: res.data.tags.map((item: any) => {
-        return {
-          id: item.tagList_id.id,
-          tag: item.tagList_id.tag,
-        };
-      }),
-    },
-  };
+  const blogData = res.data[0];
+  
+  if (blogData) {
+    return {
+      data: {
+        ...blogData,
+        tags: blogData.tags.map((item: any) => {
+          return {
+            id: item.tagList_id.id,
+            tag: item.tagList_id.tag,
+          };
+        }),
+      },
+    };
+  } else {
+    return {
+      data: null
+    }
+  }
+
+  
 };
 
 export const getTagList = async (): Promise<{
@@ -183,8 +196,6 @@ export const getTagList = async (): Promise<{
   }
 };
 
-
-
 export const getAllDynamicPaths = async (): Promise<{
   data: IDetailBlog[];
 }> => {
@@ -199,4 +210,3 @@ export const getAllDynamicPaths = async (): Promise<{
     };
   }
 };
-

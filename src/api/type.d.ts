@@ -7,6 +7,7 @@ type Changefreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly
 
 interface IBlog {
   id: number;
+  urlPath: string;
   title: string;
   tags: number[];
   isPopularArticle: boolean;
