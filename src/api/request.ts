@@ -141,7 +141,34 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
   }
 };
 
-export const getBlogDetail = async (
+export const getBlogDetailById = async (
+  id: string | number
+): Promise<{
+  data: IDetailBlog;
+}> => {
+  const res: {
+    data: IResponseBlog;
+  } = await apiServer.get(`/items/blogList/${id}`, {
+    params: {
+      fields: "*",
+      "fields[]": "tags.tagList_id.*",
+    },
+  });
+
+  return {
+    data: {
+      ...res.data,
+      tags: res.data.tags.map((item: any) => {
+        return {
+          id: item.tagList_id.id,
+          tag: item.tagList_id.tag,
+        };
+      }),
+    },
+  };
+};
+
+export const getBlogDetailByPath = async (
   blogPath: string
 ): Promise<{
   data: IDetailBlog | null;

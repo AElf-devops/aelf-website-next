@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useRouter } from "next/navigation";
-import { getBlogDetail, updateViewCount } from "@/api/request";
+import { getBlogDetailByPath, updateViewCount } from "@/api/request";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { CommonSection } from "@/components/CommonSection";
 import styles from "./styles.module.scss";
@@ -123,7 +123,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { blogPath } = params as { blogPath: string };
   let data = null;
   if (blogPath) {
-    const result = await getBlogDetail(blogPath);
+    const result = await getBlogDetailByPath(blogPath);
     if (result.data) {
       result.data.content.blocks.forEach((block: any) => {
         if (block.type === "image") {
