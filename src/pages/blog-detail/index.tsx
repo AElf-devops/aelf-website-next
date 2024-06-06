@@ -11,7 +11,7 @@ export default function PreBlogDetail({
   const router = useRouter();
   useEffect(() => {
     if (blogPath) {
-      router.replace(`/blog-detail/${blogPath}`);
+      router.replace(`/blog/${blogPath}`);
     } else {
       router.replace("/blog");
     }

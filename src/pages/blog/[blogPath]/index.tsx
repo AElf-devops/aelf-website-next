@@ -54,7 +54,7 @@ export default function BlogDetail({ data }: { data: IDetailBlog }) {
         {data?.urlPath && (
           <link
             rel="canonical"
-            href={`${urlConfig.aelf}/blog-detail/${data.urlPath}`}
+            href={`${urlConfig.aelf}/blog/${data.urlPath}`}
           />
         )}
         {data?.ogImage && (

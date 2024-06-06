@@ -80,7 +80,7 @@ export default function TrendBlog() {
 
   const getHref = (urlPath?: string) => {
     if (urlPath) {
-      return `/blog-detail/${urlPath}`;
+      return `/blog/${urlPath}`;
     }
   }
 

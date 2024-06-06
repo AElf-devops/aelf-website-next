@@ -52,7 +52,7 @@ export default function BlogItem({
   return (
     <a
       className={clsx([styles.blogItem, deviceClassName])}
-      href={`/blog-detail/${blog.urlPath}`}
+      href={`/blog/${blog.urlPath}`}
     >
       {/* <div className={styles.blogItemImg}> */}
       {/* <Image src={imgUrl} alt="" width={500} height={200} /> */}
