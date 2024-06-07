@@ -74,15 +74,15 @@ export default function TrendBlog() {
     setCurrentSlickBlog(list?.[currentSlide]);
   };
 
-  const handleViewDetail = useCallback(() => {
-    if (currentSlickBlog?.id) {
-      router.push(`/blog-detail?id=${currentSlickBlog.id}`);
-    }
-  }, [currentSlickBlog, router]);
-
   useEffect(() => {
     handleGetTrendBlog();
   }, [handleGetTrendBlog]);
+
+  const getHref = (urlPath?: string) => {
+    if (urlPath) {
+      return `/blog/${urlPath}`;
+    }
+  }
 
   return (
     <div className={clsx([styles.trendBlog, deviceClassName])}>
@@ -93,7 +93,7 @@ export default function TrendBlog() {
             {list?.map((item) => {
               return (
                 <a
-                  href={`/blog-detail?id=${currentSlickBlog?.id}`}
+                  href={getHref(currentSlickBlog?.urlPath)}
                   key={item.id}
                   style={{ borderRadius: 8, color: "#fff" }}
                 >
@@ -116,7 +116,7 @@ export default function TrendBlog() {
           <div className={styles.time}>{currentSlickBlog?.time}</div>
           <a
             className={styles.title}
-            href={`/blog-detail?id=${currentSlickBlog?.id}`}
+            href={getHref(currentSlickBlog?.urlPath)}
           >
             {currentSlickBlog?.title}
           </a>
@@ -131,7 +131,7 @@ export default function TrendBlog() {
           {!isMobile && (
             <a
               className={styles.btn}
-              href={`/blog-detail?id=${currentSlickBlog?.id}`}
+              href={getHref(currentSlickBlog?.urlPath)}
             >
               Read Full Post
               <Image

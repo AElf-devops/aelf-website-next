@@ -60,13 +60,6 @@ export default function Community() {
     setSearchParams((state) => ({ ...state, page, pageSize }));
   }, []);
 
-  const viewDetail = useCallback(
-    (id: number) => {
-      router.push(`/blog-detail?id=${id}`);
-    },
-    [router]
-  );
-
   useEffect(() => {
     handleSearch();
   }, [handleSearch]);
@@ -109,7 +102,6 @@ export default function Community() {
                 key={item.id}
                 blog={item}
                 tagList={tagList}
-                onViewDetail={viewDetail}
               />
             ))}
           </div>
