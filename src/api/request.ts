@@ -141,7 +141,7 @@ export const getTrendBlogList = async (): Promise<IDetailBlog[]> => {
   }
 };
 
-export const getBlogDetail = async (
+export const getBlogDetailById = async (
   id: string | number
 ): Promise<{
   data: IDetailBlog;
@@ -168,6 +168,46 @@ export const getBlogDetail = async (
   };
 };
 
+export const getBlogDetailByPath = async (
+  blogPath: string
+): Promise<{
+  data: IDetailBlog | null;
+}> => {
+  const res: {
+    data: IResponseBlog[];
+  } = await apiServer.get(`/items/blogList`, {
+    params: {
+      filter: {
+        urlPath: blogPath
+      },
+      fields: "*",
+      "fields[]": "tags.tagList_id.*",
+    },
+  });
+
+  const blogData = res.data[0];
+  
+  if (blogData) {
+    return {
+      data: {
+        ...blogData,
+        tags: blogData.tags.map((item: any) => {
+          return {
+            id: item.tagList_id.id,
+            tag: item.tagList_id.tag,
+          };
+        }),
+      },
+    };
+  } else {
+    return {
+      data: null
+    }
+  }
+
+  
+};
+
 export const getTagList = async (): Promise<{
   data: ITag[];
 }> => {
@@ -183,8 +223,6 @@ export const getTagList = async (): Promise<{
   }
 };
 
-
-
 export const getAllDynamicPaths = async (): Promise<{
   data: IDetailBlog[];
 }> => {
@@ -199,4 +237,3 @@ export const getAllDynamicPaths = async (): Promise<{
     };
   }
 };
-
