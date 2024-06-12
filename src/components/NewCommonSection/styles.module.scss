@@ -1,0 +1,27 @@
+.commonSection {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.commonContent {
+  margin: 0 auto;
+  max-width: 1128px;
+}
+
+.title,
+.description {
+  max-width: 786px;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}

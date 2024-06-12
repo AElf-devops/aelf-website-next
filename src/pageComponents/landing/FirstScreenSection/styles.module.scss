@@ -1,0 +1,59 @@
+.firstScreenSection {
+  padding-top: 155px;
+  padding-bottom: 115px;
+  background-color: #fff;
+  .firstScreenContent {
+    position: relative;
+    .introductionPart {
+      width: 557px;
+      margin-bottom: 208px;
+      .title {
+        margin-bottom: 24px;
+        color: #011853;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+      }
+      .description {
+        margin-bottom: 32px;
+        color: #011853;
+        font-size: 16px;
+        line-height: normal;
+      }
+      .buttonWrap {
+        display: flex;
+        gap: 16px;
+      }
+    }
+    .landingImg {
+      position: absolute;
+      top: -151px;
+      right: -40px;
+      width: 604px;
+      height: 604px;
+    }
+    .partnerPart {
+      .partnerPartTitle {
+        margin-bottom: 32px;
+        color: #a2a2a2;
+        text-align: center;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+      .partnerPartContent {
+        margin: auto;
+        .partnerImgWrap {
+          width: 225px;
+          height: 98px;
+          .partnerImg {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

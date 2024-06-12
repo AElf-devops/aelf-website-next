@@ -10,12 +10,13 @@ export type TCommonImageProps = TPartialOption<ImageProps, "alt"> & {
 
 export default function CommonImage({
   className,
+  style,
   alt = "img",
   fill = true,
   ...props
 }: TCommonImageProps) {
   return (
-    <div className={clsx([styles.commonImageWrap, className])}>
+    <div className={clsx([styles.commonImageWrap, className])} style={style}>
       {/* <Image quality={100} {...props} alt={alt} priority /> */}
       <img src={props?.src?.src} alt={alt} />
     </div>

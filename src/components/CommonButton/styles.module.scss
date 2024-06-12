@@ -1,0 +1,25 @@
+.commonButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.defaultButton {
+  border: 1px solid #011853;
+  color: #011853;
+}
+
+.primaryButton {
+  background-color: #127fff;
+  color: #fff;
+}
+
+.round {
+  border-radius: 40px;
+}
