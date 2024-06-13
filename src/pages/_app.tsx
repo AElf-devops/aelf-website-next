@@ -1,13 +1,50 @@
 import ConfigProvider from "@/contexts/useConfig";
+import { useConfig } from "@/contexts/useConfig/hooks";
 import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { userAgent } from "next/server";
-import React from "react";
-import 'antd/dist/antd.css';
+import React, { useEffect } from "react";
+import "antd/dist/antd.css";
+import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
+
+function ComponentContainer({ Component, pageProps }: any) {
+  const [_, dispatch] = useConfig();
+
+  useEffect((): any => {
+    if (typeof window !== "undefined") {
+      const resize = () => {
+        if (window.innerWidth >= BREAKPOINTS.MD) {
+          dispatch({
+            type: "UPDATE_CONFIG",
+            payload: { deviceWidthType: DeviceWidthType.Desktop },
+          });
+        } else if (window.innerWidth >= BREAKPOINTS.SM) {
+          dispatch({
+            type: "UPDATE_CONFIG",
+            payload: { deviceWidthType: DeviceWidthType.Tablet },
+          });
+        } else {
+          dispatch({
+            type: "UPDATE_CONFIG",
+            payload: { deviceWidthType: DeviceWidthType.Mobile },
+          });
+        }
+      };
+      resize();
+      window.addEventListener("resize", resize);
+      return () => {
+        window.removeEventListener("resize", resize);
+      };
+    }
+  }, [dispatch]);
+
+  return <Component {...pageProps} />;
+}
+
 export default function App({ Component, pageProps, isMobile }: any) {
   return (
-    <ConfigProvider init={{ isMobile: isMobile }}>
-      <Component {...pageProps} />
+    <ConfigProvider init={{ isMobile }}>
+      <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );
 }

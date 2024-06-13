@@ -46,7 +46,7 @@ const supportList: TSupportItem[] = [
 
 export default function AevolvePage(props: any) {
   const deviceClassName = useDeviceClass(styles);
-  const { isMobile } = useConfig();
+  const [{ isMobile }] = useConfig();
 
   return (
     <div className={clsx([styles.pageWrap, deviceClassName])}>

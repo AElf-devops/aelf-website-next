@@ -4,7 +4,7 @@ import CommonImage from "../CommonImage";
 import { useConfig } from "@/contexts/useConfig/hooks";
 
 function CustomNoData(props) {
-  const { isMobile } = useConfig();
+  const [{ isMobile }] = useConfig();
   const { text = "No Data", img = noData } = props;
   return (
     <div style={styles.noData}>

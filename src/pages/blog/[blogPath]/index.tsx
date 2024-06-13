@@ -21,7 +21,7 @@ let CustomEditor = dynamic(() => import("@/components/CustomEditor"), {
 const urlConfig = getUrlConfig();
 
 export default function BlogDetail({ data }: { data: IDetailBlog }) {
-  const { isMobile } = useConfig();
+  const [{ isMobile }] = useConfig();
   const deviceClassName = useDeviceClass(styles);
   const router = useRouter();
 

@@ -26,7 +26,7 @@ export default function TrendBlog() {
   const urlConfig = getUrlConfig();
   const [currentSlickBlog, setCurrentSlickBlog] = useState<ITendBlog>();
   const router = useRouter();
-  const { isMobile } = useConfig();
+  const [{ isMobile }] = useConfig();
 
   const contentStyle: React.CSSProperties = {
     height: isMobile ? "204px" : "385px",

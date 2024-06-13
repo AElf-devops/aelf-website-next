@@ -17,7 +17,7 @@ export default function BlogItem({
   tagList: ITag[];
 }) {
   const deviceClassName = useDeviceClass(styles);
-  const { isMobile } = useConfig();
+  const [{ isMobile }] = useConfig();
 
   const tagMap = useMemo(() => {
     const obj: any = {};
