@@ -13,6 +13,7 @@ import {
   Youtube,
 } from "@/assets/socialMedia";
 import CommonImage from "../CommonImage";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 interface ILink {
@@ -89,6 +90,8 @@ const SOCIAL_MEDIA_LIST = [
 ];
 
 export default function CommonFooter() {
+  const deviceClassName = useDeviceClass(styles);
+
   const renderLinkList = (title: string, links: ILink[], index: number) => (
     <div key={index} className={styles.linkList}>
       <div className={styles.linkListTitle}>{title}</div>
@@ -101,12 +104,14 @@ export default function CommonFooter() {
   );
 
   return (
-    <footer className={clsx(styles.commonFooter)}>
+    <footer className={clsx(styles.commonFooter, deviceClassName)}>
       <div className={styles.linkWrap}>
         <div className={styles.logoWrap}>
           <CommonImage className={styles.logo} src={Logo} alt="logo" />
         </div>
-        {LINK_LIST.map((item, index) => renderLinkList(item.title, item.links, index))}
+        {LINK_LIST.map((item, index) =>
+          renderLinkList(item.title, item.links, index)
+        )}
       </div>
       <div className={styles.divider} />
       <div className={styles.infoWrap}>

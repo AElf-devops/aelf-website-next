@@ -1,8 +1,10 @@
 import { Fragment } from "react";
+import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonImage from "@/components/CommonImage";
 import * as Investor from "@/assets/investor";
 import * as Exchange from "@/assets/exchange";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 
@@ -56,6 +58,8 @@ const LISTED_LIST = [
 ];
 
 export default function ListSection() {
+  const deviceClassName = useDeviceClass(styles);
+
   const renderList = (list: any[], rowSize: number) => {
     const rows: any[][] = list.reduce((result, item, index) => {
       const rowIndex = Math.floor(index / rowSize);
@@ -65,7 +69,7 @@ export default function ListSection() {
       result[rowIndex].push(item);
       return result;
     }, []);
-    
+
     return (
       <div className={styles.list}>
         {rows.map((row, index) => (
@@ -85,7 +89,7 @@ export default function ListSection() {
 
   return (
     <CommonSection
-      sectionClassName={styles.listSection}
+      sectionClassName={clsx(styles.listSection, deviceClassName)}
       contentClassName={styles.listContent}
     >
       <div className={styles.listPart}>

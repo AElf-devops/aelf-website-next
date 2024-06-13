@@ -1,27 +1,37 @@
 .commonSection {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding: 120px 40px;
+  .commonContent {
+    margin: 0 auto;
+    max-width: 1128px;
+  }
+  .title,
+  .description {
+    max-width: 786px;
+  }
+  .title {
+    margin-bottom: 16px;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
 
-.commonContent {
-  margin: 0 auto;
-  max-width: 1128px;
-}
-
-.title,
-.description {
-  max-width: 786px;
-}
-
-.title {
-  margin-bottom: 16px;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.description {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
+.tablet.commonSection {
+  padding: 48px 40px;
+  .commonContent {
+    max-width: 664px;
+  }
+  .title,
+  .description {
+    max-width: 437px;
+  }
+  .title {
+    margin-bottom: 8px;
+    font-size: 24px;
+  }
 }

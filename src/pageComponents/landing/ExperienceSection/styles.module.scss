@@ -5,11 +5,20 @@
     display: flex;
     gap: 16px;
     margin-top: 64px;
-    .card {
-      flex: 1;
-    }
+  }
+  .card {
+    flex: 1;
   }
   .recentBlogList {
     margin-top: 66px;
+  }
+}
+
+.tablet.experienceSection {
+  .cardPart {
+    margin-top: 32px;
+  }
+  .recentBlogList {
+    margin-top: 50px;
   }
 }

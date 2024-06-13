@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import CommonImage from "@/components/CommonImage";
 import ArrowRight from "@/assets/ArrowRight.svg";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 interface IExperienceCardButtonProps {
@@ -23,8 +24,9 @@ export default function ExperienceCard({
   description,
   buttonProps,
 }: IExperienceCardProps) {
+  const deviceClassName = useDeviceClass(styles);
   return (
-    <div className={clsx(styles.experienceCard, className)}>
+    <div className={clsx(styles.experienceCard, deviceClassName, className)}>
       <CommonImage className={styles.icon} src={icon} />
       <div className={styles.experienceCardContent}>
         <div className={styles.title}>{title}</div>

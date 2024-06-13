@@ -1,9 +1,11 @@
+import clsx from "clsx";
 import { Col, Row } from "antd";
 import CommonSection from "@/components/NewCommonSection";
 import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 import CommonImage from "@/components/CommonImage";
 import LandingHeroImg from "@/assets/landing/LandingHero.png";
 import * as Partner from "@/assets/partner";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 const PARTNER_LIST = [
@@ -20,9 +22,10 @@ const PARTNER_LIST = [
 ];
 
 export default function FirstScreenSection() {
+  const deviceClassName = useDeviceClass(styles);
   return (
     <CommonSection
-      sectionClassName={styles.firstScreenSection}
+      sectionClassName={clsx(styles.firstScreenSection, deviceClassName)}
       contentClassName={styles.firstScreenContent}
     >
       <div className={styles.introductionPart}>
@@ -48,17 +51,13 @@ export default function FirstScreenSection() {
         <div className={styles.partnerPartTitle}>
           Ecosystem and technological partners
         </div>
-        <Row className={styles.partnerPartContent} gutter={[0, 16]}>
+        <div className={styles.partnerPartContent}>
           {PARTNER_LIST.map((img, index) => (
-            <Col key={index} className={styles.partnerImgWrap}>
-              <CommonImage
-                className={styles.partnerImg}
-                src={img}
-                alt="partner"
-              />
-            </Col>
+            <div key={index} className={styles.partnerImgWrap}>
+              <CommonImage src={img} alt="partner" />
+            </div>
           ))}
-        </Row>
+        </div>
       </div>
     </CommonSection>
   );

@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
@@ -5,21 +7,98 @@ import CommonImageTextPart, {
 import LandingBlockIllustrationDoc from "@/assets/landing/LandingBlockIllustrationDoc.svg";
 import LandingBlockIllustrationRocket from "@/assets/landing/LandingBlockIllustrationRocket.svg";
 import LandingBlockIllustrationEarth from "@/assets/landing/LandingBlockIllustrationEarth.svg";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 export default function BuildingSection() {
+  const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
+
+  const firstImageWidth = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return "auto";
+      case DeviceWidthType.Tablet:
+        return 258;
+      case DeviceWidthType.Desktop:
+      default:
+        return 516;
+    }
+  }, [deviceWidthType]);
+
+  const firstRowGap = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return 48;
+      case DeviceWidthType.Tablet:
+        return 54;
+      case DeviceWidthType.Desktop:
+      default:
+        return 172;
+    }
+  }, [deviceWidthType]);
+
+  const secondImageWidth = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return "auto";
+      case DeviceWidthType.Tablet:
+        return 229;
+      case DeviceWidthType.Desktop:
+      default:
+        return 457;
+    }
+  }, [deviceWidthType]);
+
+  const secondRowGap = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return 48;
+      case DeviceWidthType.Tablet:
+        return 64;
+      case DeviceWidthType.Desktop:
+      default:
+        return 181;
+    }
+  }, [deviceWidthType]);
+
+  const thirdImageWidth = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return "auto";
+      case DeviceWidthType.Tablet:
+        return 211;
+      case DeviceWidthType.Desktop:
+      default:
+        return 422;
+    }
+  }, [deviceWidthType]);
+
+  const thirdRowGap = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return 48;
+      case DeviceWidthType.Tablet:
+        return 99;
+      case DeviceWidthType.Desktop:
+      default:
+        return 185;
+    }
+  }, [deviceWidthType]);
+
   return (
     <CommonSection
-      sectionClassName={styles.buildingSection}
-      contentClassName={styles.buildingContent}
+      sectionClassName={clsx(styles.buildingSection, deviceClassName)}
       title="We simplify building on Web3"
       description="aelf offers developers and creators AI powered easy to use tools coupled with a high-performance infrastructure to build, deploy and manage your ideal dApp."
     >
       <CommonImageTextPart
         className={styles.imageTextFirstPart}
         imageClassName={styles.image}
-        imageWidth={516}
-        rowGap={172}
+        imageWidth={firstImageWidth}
+        rowGap={firstRowGap}
         imageSrc={LandingBlockIllustrationDoc}
         contentList={[
           {
@@ -36,8 +115,8 @@ export default function BuildingSection() {
       <CommonImageTextPart
         className={styles.imageTextSecondPart}
         imageClassName={styles.image}
-        imageWidth={457}
-        rowGap={181}
+        imageWidth={secondImageWidth}
+        rowGap={secondRowGap}
         imagePosition={CommonImageTextPartImagePosition.Right}
         imageSrc={LandingBlockIllustrationRocket}
         contentList={[
@@ -55,8 +134,8 @@ export default function BuildingSection() {
       <CommonImageTextPart
         className={styles.imageTextThirdPart}
         imageClassName={styles.image}
-        imageWidth={442}
-        rowGap={185}
+        imageWidth={thirdImageWidth}
+        rowGap={thirdRowGap}
         imageSrc={LandingBlockIllustrationEarth}
         contentList={[
           {

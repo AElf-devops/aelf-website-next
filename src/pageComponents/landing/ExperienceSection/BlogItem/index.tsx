@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import CommonImage from "@/components/CommonImage";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 export interface IBlogItemProps {
@@ -15,8 +16,9 @@ export default function BlogItem({
   date,
   title,
 }: IBlogItemProps) {
+  const deviceClassName = useDeviceClass(styles);
   return (
-    <div className={clsx(styles.blogItem, className)}>
+    <div className={clsx(styles.blogItem, deviceClassName, className)}>
       <CommonImage className={styles.image} src={imageSrc} />
       <div className={styles.info}>
         <div className={styles.date}>{date}</div>

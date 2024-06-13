@@ -7,32 +7,52 @@
     display: flex;
     flex-direction: column;
     gap: 80px;
-    .listPart {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-      .title {
-        text-align: center;
-        font-size: 24px;
-        font-weight: 500;
-        line-height: normal;
-      }
-      .list {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-      .divider {
-        height: 1px;
-        background: rgba(232, 232, 232, 0.2);
-      }
-      .listRow {
-        display: flex;
-        justify-content: space-between;
-      }
-      .listImage {
-        width: 149px;
-      }
-    }
+  }
+  .listPart {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .divider {
+    height: 1px;
+    background: rgba(232, 232, 232, 0.2);
+  }
+  .listRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  .listImage {
+    width: 149px;
+  }
+}
+
+.tablet.listSection {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  .listContent {
+    gap: 48px;
+  }
+  .listPart {
+    gap: 24px;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .list {
+    gap: 14px;
+  }
+  .listImage {
+    width: 88px;
   }
 }

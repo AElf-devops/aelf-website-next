@@ -6,9 +6,15 @@ export enum CommonButtonType {
   Default = "default",
 }
 
-interface ICommonButtonProps {
+export enum CommonButtonSize {
+  MD = 'md',
+  SM = 'sm',
+}
+
+export interface ICommonButtonProps {
   className?: string;
   type?: CommonButtonType;
+  size?: CommonButtonSize;
   isRound?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -18,12 +24,13 @@ export default function CommonButton({
   className,
   isRound = false,
   type = CommonButtonType.Default,
+  size = CommonButtonSize.MD,
   children,
   onClick,
 }: ICommonButtonProps) {
   return (
     <div
-      className={clsx(className, styles.commonButton, styles[`${type}Button`], {
+      className={clsx(className, styles.commonButton, styles[`${type}Button`], styles[`${size}Button`], {
         [styles.round]: isRound,
       })}
       onClick={onClick}

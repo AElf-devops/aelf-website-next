@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, Col } from "antd";
 import CommonImage from "@/components/CommonImage";
@@ -5,7 +6,10 @@ import BlogItem, { IBlogItemProps } from "../BlogItem";
 import NewsIcon from "@/assets/News.svg";
 import MockBlogImg1 from "@/assets/mock/MockBlogImg1.png";
 import MockBlogImg2 from "@/assets/mock/MockBlogImg2.png";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 
 const MOCK_BLOG_LIST: IBlogItemProps[] = [
   {
@@ -51,15 +55,30 @@ interface IRecentBlogListProps {
 }
 
 export default function RecentBlogList({ className }: IRecentBlogListProps) {
+  const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
+
+  const colSpan = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.Mobile:
+        return 24;
+      case DeviceWidthType.Tablet:
+        return 12;
+      case DeviceWidthType.Desktop:
+      default:
+        return 8;
+    }
+  }, [deviceWidthType]);
+
   return (
-    <div className={clsx(styles.recentBlogList, className)}>
+    <div className={clsx(styles.recentBlogList, deviceClassName, className)}>
       <div className={styles.header}>
         <CommonImage className={styles.headerIcon} src={NewsIcon} />
         <span>Recent Updates</span>
       </div>
       <Row className={styles.blogList} gutter={[24, 32]}>
         {MOCK_BLOG_LIST.map((blogItemProps, index) => (
-          <Col key={index} span={8}>
+          <Col key={index} span={colSpan}>
             <BlogItem {...blogItemProps} />
           </Col>
         ))}

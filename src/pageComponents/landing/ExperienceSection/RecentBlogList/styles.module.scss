@@ -7,9 +7,15 @@
     font-size: 20px;
     font-weight: 500;
     line-height: normal;
-    .headerIcon {
-      width: 32px;
-      height: 32px;
-    }
+  }
+  .headerIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.tablet.recentBlogList {
+  .header {
+    gap: 16px;
   }
 }

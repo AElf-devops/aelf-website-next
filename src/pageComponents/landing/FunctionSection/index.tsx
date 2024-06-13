@@ -1,6 +1,8 @@
+import { useMemo } from "react";
+import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart from "@/components/CommonImageTextPart";
-import CommonButton from "@/components/CommonButton";
+import CommonButton, { CommonButtonSize } from "@/components/CommonButton";
 import CommonDappCard, {
   ICommonDappCardProps,
 } from "@/components/CommonDappCard";
@@ -8,6 +10,9 @@ import LandingBlockIllustrationLock from "@/assets/landing/LandingBlockIllustrat
 import DappPortkey from "@/assets/dapp/DappPortkey.svg";
 import DappEbridge from "@/assets/dapp/DappEbridge.svg";
 import DappForest from "@/assets/dapp/DappForest.svg";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 const DAPP_LIST: ICommonDappCardProps[] = [
@@ -38,10 +43,20 @@ const DAPP_LIST: ICommonDappCardProps[] = [
 ];
 
 export default function FunctionSection() {
+  const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
+
+  const buttonSize = useMemo(
+    () =>
+      deviceWidthType === DeviceWidthType.Tablet
+        ? CommonButtonSize.SM
+        : CommonButtonSize.MD,
+    [deviceWidthType]
+  );
+
   return (
     <CommonSection
-      sectionClassName={styles.functionSection}
-      contentClassName={styles.functionContent}
+      sectionClassName={clsx(styles.functionSection, deviceClassName)}
       title="Elevate Your Blockchain Experience with aelf’s AI-enhanced Platform"
       description="We create a simple, scalable and secure environment for developers and users alike."
     >
@@ -79,7 +94,7 @@ export default function FunctionSection() {
               Explore and be part of aelf’s growing ecosystem of dApps.
             </div>
           </div>
-          <CommonButton className={styles.button} isRound>
+          <CommonButton className={styles.button} size={buttonSize} isRound>
             Explore dApps
           </CommonButton>
         </div>

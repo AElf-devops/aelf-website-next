@@ -1,14 +1,17 @@
+import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import ExperienceCard from "./ExperienceCard";
 import RecentBlogList from "./RecentBlogList";
 import BlogIcon from "@/assets/Blog.svg";
 import BuildIcon from "@/assets/Build.svg";
+import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
 export default function ExperienceSection() {
+  const deviceClassName = useDeviceClass(styles);
   return (
     <CommonSection
-      sectionClassName={styles.experienceSection}
+      sectionClassName={clsx(styles.experienceSection, deviceClassName)}
       title="Experience aelf"
       description="Dive into our resources and blog for everything you need to know."
     >
