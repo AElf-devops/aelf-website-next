@@ -14,6 +14,8 @@ import {
 } from "@/assets/socialMedia";
 import CommonImage from "../CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 interface ILink {
@@ -91,6 +93,17 @@ const SOCIAL_MEDIA_LIST = [
 
 export default function CommonFooter() {
   const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
+
+  const renderLogo = () => (
+    <div className={styles.logoWrap}>
+      <CommonImage className={styles.logo} src={Logo} alt="logo" />
+    </div>
+  );
+
+  const renderCopyright = () => (
+    <div className={styles.copyright}>Copyright © 2024 aelf</div>
+  );
 
   const renderLinkList = (title: string, links: ILink[], index: number) => (
     <div key={index} className={styles.linkList}>
@@ -103,30 +116,45 @@ export default function CommonFooter() {
     </div>
   );
 
+  const renderSocialMediaList = () => (
+    <div className={styles.socialMediumList}>
+      {SOCIAL_MEDIA_LIST.map((item, index) => (
+        <CommonImage
+          key={index}
+          className={styles.socialMediaIcon}
+          src={item.icon}
+          alt="media"
+        />
+      ))}
+    </div>
+  );
+
   return (
     <footer className={clsx(styles.commonFooter, deviceClassName)}>
-      <div className={styles.linkWrap}>
-        <div className={styles.logoWrap}>
-          <CommonImage className={styles.logo} src={Logo} alt="logo" />
-        </div>
-        {LINK_LIST.map((item, index) =>
-          renderLinkList(item.title, item.links, index)
-        )}
-      </div>
-      <div className={styles.divider} />
-      <div className={styles.infoWrap}>
-        <div className={styles.copyright}>Copyright © 2024 aelf</div>
-        <div className={styles.socialMediumList}>
-          {SOCIAL_MEDIA_LIST.map((item, index) => (
-            <CommonImage
-              key={index}
-              className={styles.socialMediaIcon}
-              src={item.icon}
-              alt="media"
-            />
-          ))}
-        </div>
-      </div>
+      {deviceWidthType === DeviceWidthType.Mobile ? (
+        <>
+          {renderSocialMediaList()}
+          <div className={styles.divider} />
+          <div className={styles.mobileCopyrightWrap}>
+            {renderLogo()}
+            {renderCopyright()}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.linkWrap}>
+            {renderLogo()}
+            {LINK_LIST.map((item, index) =>
+              renderLinkList(item.title, item.links, index)
+            )}
+          </div>
+          <div className={styles.divider} />
+          <div className={styles.infoWrap}>
+            {renderCopyright()}
+            {renderSocialMediaList()}
+          </div>
+        </>
+      )}
     </footer>
   );
 }

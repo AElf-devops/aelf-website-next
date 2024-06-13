@@ -9,6 +9,9 @@
   color: #fff;
   .icon {
     height: 44px;
+    img {
+      height: 100%;
+    }
   }
   .experienceCardContent {
     flex: 1;
@@ -45,9 +48,22 @@
   }
 }
 
-.tablet {
+.tablet.experienceCard {
   .experienceCardContent {
-    max-width: auto;
+    max-width: none;
+  }
+  .title {
+    font-size: 16px;
+  }
+}
+
+.mobile.experienceCard {
+  padding: 24px;
+  .icon {
+    height: 32px;
+  }
+  .experienceCardContent {
+    max-width: none;
   }
   .title {
     font-size: 16px;

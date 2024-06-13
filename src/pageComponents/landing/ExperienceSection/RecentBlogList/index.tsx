@@ -7,9 +7,9 @@ import NewsIcon from "@/assets/News.svg";
 import MockBlogImg1 from "@/assets/mock/MockBlogImg1.png";
 import MockBlogImg2 from "@/assets/mock/MockBlogImg2.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import styles from "./styles.module.scss";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import styles from "./styles.module.scss";
 
 const MOCK_BLOG_LIST: IBlogItemProps[] = [
   {

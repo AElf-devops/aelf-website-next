@@ -28,6 +28,11 @@ export default function FirstScreenSection() {
       sectionClassName={clsx(styles.firstScreenSection, deviceClassName)}
       contentClassName={styles.firstScreenContent}
     >
+      <CommonImage
+        className={styles.landingImg}
+        src={LandingHeroImg}
+        alt="landing"
+      />
       <div className={styles.introductionPart}>
         <div className={styles.title}>
           Experience AI + Blockchain of Tomorrow
@@ -36,17 +41,18 @@ export default function FirstScreenSection() {
           We converge AI and Blockchain to power the future of Web3
         </div>
         <div className={styles.buttonWrap}>
-          <CommonButton isRound>Read Docs</CommonButton>
-          <CommonButton type={CommonButtonType.Primary} isRound>
+          <CommonButton className={styles.button} isRound>
+            Read Docs
+          </CommonButton>
+          <CommonButton
+            className={styles.button}
+            type={CommonButtonType.Primary}
+            isRound
+          >
             Start Building
           </CommonButton>
         </div>
       </div>
-      <CommonImage
-        className={styles.landingImg}
-        src={LandingHeroImg}
-        alt="landing"
-      />
       <div className={styles.partnerPart}>
         <div className={styles.partnerPartTitle}>
           Ecosystem and technological partners

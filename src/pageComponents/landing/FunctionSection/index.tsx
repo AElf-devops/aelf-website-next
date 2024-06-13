@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart from "@/components/CommonImageTextPart";
@@ -54,6 +54,15 @@ export default function FunctionSection() {
     [deviceWidthType]
   );
 
+  const renderExploreButton = useCallback(
+    () => (
+      <CommonButton className={styles.button} size={buttonSize} isRound>
+        Explore dApps
+      </CommonButton>
+    ),
+    [buttonSize]
+  );
+
   return (
     <CommonSection
       sectionClassName={clsx(styles.functionSection, deviceClassName)}
@@ -93,16 +102,16 @@ export default function FunctionSection() {
             <div className={styles.dappsPartDescription}>
               Explore and be part of aelf’s growing ecosystem of dApps.
             </div>
+            {deviceWidthType !== DeviceWidthType.Mobile &&
+              renderExploreButton()}
           </div>
-          <CommonButton className={styles.button} size={buttonSize} isRound>
-            Explore dApps
-          </CommonButton>
         </div>
         <div className={styles.dappsPartList}>
           {DAPP_LIST.map((item, index) => (
             <CommonDappCard key={index} {...item} />
           ))}
         </div>
+        {deviceWidthType === DeviceWidthType.Mobile && renderExploreButton()}
       </div>
     </CommonSection>
   );

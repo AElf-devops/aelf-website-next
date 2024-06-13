@@ -3,6 +3,7 @@
   .commonContent {
     margin: 0 auto;
     max-width: 1128px;
+    min-width: 393px;
   }
   .title,
   .description {
@@ -33,5 +34,15 @@
   .title {
     margin-bottom: 8px;
     font-size: 24px;
+  }
+}
+
+.mobile.commonSection {
+  padding: 48px 24px;
+  .title {
+    font-size: 24px;
+  }
+  .description {
+    font-size: 14px;
   }
 }

@@ -79,3 +79,36 @@
     margin-bottom: 24px;
   }
 }
+
+.mobile.firstScreenSection {
+  padding-top: 34px;
+  padding-bottom: 48px;
+  .introductionPart {
+    width: auto;
+    margin-bottom: 48px;
+  }
+  .title {
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .buttonWrap .button {
+    flex: 1;
+  }
+  .landingImg {
+    position: static;
+    width: 302px;
+    height: 302px;
+    margin: 0 auto 32px;
+  }
+  .partnerPartTitle {
+    margin-bottom: 16px;
+  }
+  .partnerImgWrap {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+}

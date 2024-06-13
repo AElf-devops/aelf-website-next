@@ -32,6 +32,9 @@
     display: flex;
     justify-content: space-between;
   }
+  .listRowCentered {
+    justify-content: center;
+  }
   .listImage {
     width: 149px;
   }
@@ -54,5 +57,23 @@
   }
   .listImage {
     width: 88px;
+  }
+}
+
+.mobile.listSection {
+  .listContent {
+    gap: 48px;
+  }
+  .listPart {
+    gap: 16px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .list {
+    gap: 18px;
+  }
+  .listImage {
+    width: 112px;
   }
 }

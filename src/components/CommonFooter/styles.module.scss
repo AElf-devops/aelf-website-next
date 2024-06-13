@@ -2,11 +2,10 @@
   max-width: 1208px;
   margin: 0 auto;
   padding: 48px 40px 150px;
-}
-
-.linkWrap {
-  display: flex;
-  gap: 24px;
+  .linkWrap {
+    display: flex;
+    gap: 24px;
+  }
   .logoWrap,
   .linkList {
     flex: 1;
@@ -22,26 +21,26 @@
     gap: 16px;
     font-size: 12px;
     line-height: normal;
-    .linkListTitle {
-      color: #090a14;
-      font-weight: 500;
-    }
-    .linkListItem {
-      color: #6b6c6d;
-      cursor: pointer;
-    }
   }
-}
+  .linkListTitle {
+    color: #090a14;
+    font-weight: 500;
+  }
+  .linkListItem {
+    color: #6b6c6d;
+    cursor: pointer;
+  }
 
-.divider {
-  margin: 24px 0;
-  border-bottom: 1px solid #e8e8e8;
-}
+  .divider {
+    margin: 24px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
 
-.infoWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .infoWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .copyright {
     color: #989da0;
     font-size: 12px;
@@ -50,15 +49,35 @@
   .socialMediumList {
     display: flex;
     gap: 8px;
-    .socialMediaIcon {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-    }
+  }
+  .socialMediaIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
   }
 }
 
 .tablet.commonFooter {
   max-width: 744px;
   padding: 48px 40px 54px;
+}
+
+.mobile.commonFooter {
+  max-width: none;
+  padding: 24px 16px 110px;
+  .divider {
+    margin: 16px 0;
+  }
+  .mobileCopyrightWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logoWrap {
+    flex: none;
+  }
+  .logo {
+    width: 53px;
+    height: 16px;
+  }
 }

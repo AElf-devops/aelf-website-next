@@ -22,3 +22,13 @@
     margin-top: 50px;
   }
 }
+
+.mobile.experienceSection {
+  .cardPart {
+    flex-direction: column;
+    margin-top: 32px;
+  }
+  .recentBlogList {
+    margin-top: 32px;
+  }
+}

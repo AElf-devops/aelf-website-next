@@ -6,7 +6,8 @@ import * as Investor from "@/assets/investor";
 import * as Exchange from "@/assets/exchange";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
-
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 
 const BACKED_LIST = [
   Investor.Investor1,
@@ -59,6 +60,7 @@ const LISTED_LIST = [
 
 export default function ListSection() {
   const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
 
   const renderList = (list: any[], rowSize: number) => {
     const rows: any[][] = list.reduce((result, item, index) => {
@@ -75,7 +77,11 @@ export default function ListSection() {
         {rows.map((row, index) => (
           <Fragment key={index}>
             {index === 0 && <div className={styles.divider} />}
-            <div className={styles.listRow}>
+            <div
+              className={clsx(styles.listRow, {
+                [styles.listRowCentered]: row.length < rowSize,
+              })}
+            >
               {row.map((img, idx) => (
                 <CommonImage key={idx} className={styles.listImage} src={img} />
               ))}
@@ -94,11 +100,17 @@ export default function ListSection() {
     >
       <div className={styles.listPart}>
         <div className={styles.title}>We are backed by</div>
-        {renderList(BACKED_LIST, 5)}
+        {renderList(
+          BACKED_LIST,
+          deviceWidthType === DeviceWidthType.Mobile ? 3 : 5
+        )}
       </div>
       <div className={styles.listPart}>
         <div className={styles.title}>We are listed on</div>
-        {renderList(LISTED_LIST, 6)}
+        {renderList(
+          LISTED_LIST,
+          deviceWidthType === DeviceWidthType.Mobile ? 3 : 6
+        )}
       </div>
     </CommonSection>
   );
