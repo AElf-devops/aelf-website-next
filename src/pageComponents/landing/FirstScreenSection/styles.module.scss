@@ -27,13 +27,6 @@
     display: flex;
     gap: 16px;
   }
-  .landingImg {
-    position: absolute;
-    top: -151px;
-    right: -40px;
-    width: 604px;
-    height: 604px;
-  }
   .partnerPartTitle {
     margin-bottom: 32px;
     color: #a2a2a2;
@@ -71,12 +64,6 @@
   .description {
     margin-bottom: 16px;
   }
-  .landingImg {
-    top: -27px;
-    right: 0;
-    width: 302px;
-    height: 302px;
-  }
   .partnerPartTitle {
     margin-bottom: 24px;
   }
@@ -99,12 +86,6 @@
   }
   .buttonWrap .button {
     flex: 1;
-  }
-  .landingImg {
-    position: static;
-    width: 302px;
-    height: 302px;
-    margin: 0 auto 32px;
   }
   .partnerPartTitle {
     margin-bottom: 16px;

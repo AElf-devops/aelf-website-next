@@ -2,7 +2,7 @@ import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 import CommonImage from "@/components/CommonImage";
-import LandingHeroImg from "@/assets/landing/LandingHero.png";
+import LandingHeroAnimationImage from "./LandingHeroAnimationImage";
 import * as Partner from "@/assets/partner";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
@@ -27,11 +27,7 @@ export default function FirstScreenSection() {
       sectionClassName={clsx(styles.firstScreenSection, deviceClassName)}
       contentClassName={styles.firstScreenContent}
     >
-      <CommonImage
-        className={styles.landingImg}
-        src={LandingHeroImg}
-        alt="landing"
-      />
+      <LandingHeroAnimationImage />
       <div className={styles.introductionPart}>
         <div className={styles.title}>
           Experience AI + Blockchain of Tomorrow
