@@ -102,9 +102,8 @@ export default function FunctionSection() {
             <div className={styles.dappsPartDescription}>
               Explore and be part of aelf’s growing ecosystem of dApps.
             </div>
-            {deviceWidthType !== DeviceWidthType.Mobile &&
-              renderExploreButton()}
           </div>
+          {deviceWidthType !== DeviceWidthType.Mobile && renderExploreButton()}
         </div>
         <div className={styles.dappsPartList}>
           {DAPP_LIST.map((item, index) => (
