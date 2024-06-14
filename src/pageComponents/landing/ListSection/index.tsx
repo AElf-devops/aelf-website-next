@@ -5,9 +5,9 @@ import CommonImage from "@/components/CommonImage";
 import * as Investor from "@/assets/investor";
 import * as Exchange from "@/assets/exchange";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import styles from "./styles.module.scss";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import styles from "./styles.module.scss";
 
 const BACKED_LIST = [
   Investor.Investor1,

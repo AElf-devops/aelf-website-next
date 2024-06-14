@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("../fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("../fonts/Poppins-Bold.ttf");
+}
+
 :root {
 }
 
@@ -18,8 +33,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
-micro-app-body{
+micro-app-body {
   background-color: transparent !important;
-  font-family: "MONTSERRATLIGHT" !important;
+  font-family: "Poppins-Regular" !important;
 }
-

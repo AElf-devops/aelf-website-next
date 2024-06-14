@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { Col, Row } from "antd";
 import CommonSection from "@/components/NewCommonSection";
 import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 import CommonImage from "@/components/CommonImage";
