@@ -90,7 +90,7 @@ export default function CommonHeader() {
           <div className={styles.navWrap}>
             {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
               (item, index) => (
-                <div key={index}>{item.text}</div>
+                <div className={styles.navItem} key={index}>{item.text}</div>
               )
             )}
           </div>

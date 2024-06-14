@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 export enum CommonButtonType {
   Primary = "primary",
   Default = "default",
+  Ghost = "ghost",
 }
 
 export enum CommonButtonSize {

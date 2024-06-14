@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import CommonImage from "../CommonImage";
-import CommonButton, { CommonButtonSize, ICommonButtonProps } from "../CommonButton";
+import CommonButton, { CommonButtonSize, CommonButtonType, ICommonButtonProps } from "../CommonButton";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -13,7 +13,7 @@ export enum CommonImageTextPartImagePosition {
 }
 
 interface IContentItemButtonProps
-  extends Pick<ICommonButtonProps, "className" | "onClick"> {
+  extends Pick<ICommonButtonProps, "className" | "type" | "onClick"> {
   text: string;
 }
 
@@ -92,6 +92,7 @@ export default function CommonImageTextPart({
             className={clsx(styles.contentItemButton, buttonProps.className)}
             isRound
             size={buttonSize}
+            type={buttonProps.type}
             onClick={buttonProps.onClick}
           >
             {buttonProps.text}

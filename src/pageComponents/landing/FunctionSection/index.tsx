@@ -2,7 +2,10 @@ import { useCallback, useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart from "@/components/CommonImageTextPart";
-import CommonButton, { CommonButtonSize } from "@/components/CommonButton";
+import CommonButton, {
+  CommonButtonSize,
+  CommonButtonType,
+} from "@/components/CommonButton";
 import CommonDappCard, {
   ICommonDappCardProps,
 } from "@/components/CommonDappCard";
@@ -56,7 +59,7 @@ export default function FunctionSection() {
 
   const renderExploreButton = useCallback(
     () => (
-      <CommonButton className={styles.button} size={buttonSize} isRound>
+      <CommonButton type={CommonButtonType.Ghost} size={buttonSize} isRound>
         Explore dApps
       </CommonButton>
     ),
@@ -78,7 +81,7 @@ export default function FunctionSection() {
             description:
               "aelf’s unique multi-sidechain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
             buttonProps: {
-              className: styles.button,
+              type: CommonButtonType.Ghost,
               text: "Learn More",
             },
           },
@@ -87,7 +90,7 @@ export default function FunctionSection() {
             description:
               "Featuring a modular and cloud-native architecture, aelf guarantees high security and efficiency. This makes it an ideal platform for developers and users seeking a secure and scalable blockchain solution for their AI or non AI dApps. ",
             buttonProps: {
-              className: styles.button,
+              type: CommonButtonType.Ghost,
               text: "Read Docs",
             },
           },

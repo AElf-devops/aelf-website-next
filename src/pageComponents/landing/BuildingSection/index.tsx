@@ -4,6 +4,7 @@ import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
+import { CommonButtonType } from "@/components/CommonButton";
 import LandingBlockIllustrationDoc from "@/assets/landing/LandingBlockIllustrationDoc.svg";
 import LandingBlockIllustrationRocket from "@/assets/landing/LandingBlockIllustrationRocket.svg";
 import LandingBlockIllustrationEarth from "@/assets/landing/LandingBlockIllustrationEarth.svg";
@@ -106,7 +107,7 @@ export default function BuildingSection() {
             description:
               "aelf offers a suite of templates and SDKs for rapid and seamless development and deployment, whether you are more familiar with C#, Java, JS, Python, or Go.",
             buttonProps: {
-              className: styles.button,
+              type: CommonButtonType.Ghost,
               text: "Start Building",
             },
           },
@@ -125,7 +126,7 @@ export default function BuildingSection() {
             description:
               "aelf’s comprehensive documentation and suite of automated tools enable you to effortlessly create robust and scalable dApps exactly the way you envision.",
             buttonProps: {
-              className: styles.button,
+              type: CommonButtonType.Ghost,
               text: "Read Docs",
             },
           },
@@ -143,7 +144,7 @@ export default function BuildingSection() {
             description:
               "Whether you are new to Web3 or an OG, we welcome you to join our growing community of developers, creators and users to exchange ideas and collaborate together.",
             buttonProps: {
-              className: styles.button,
+              type: CommonButtonType.Ghost,
               text: "Join Community",
             },
           },
