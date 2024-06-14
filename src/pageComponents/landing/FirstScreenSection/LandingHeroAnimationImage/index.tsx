@@ -14,16 +14,16 @@ export default function LandingHeroAnimationImage() {
         alt="landing"
       />
       <CommonImage
-        className={styles.logo}
-        src={LandingHeroImage.HeroLogo}
-      />
-      <CommonImage
         className={styles.shadowLarge}
         src={LandingHeroImage.HeroShadowLarge}
       />
       <CommonImage
         className={styles.shadowSmall}
         src={LandingHeroImage.HeroShadowSmall}
+      />
+       <CommonImage
+        className={styles.logo}
+        src={LandingHeroImage.HeroLogo}
       />
     </div>
   );
