@@ -3,40 +3,47 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { userAgent } from "next/server";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 
 function ComponentContainer({ Component, pageProps }: any) {
+  const [initialized, setInitialized] = useState(false);
   const [_, dispatch] = useConfig();
 
   useEffect((): any => {
+    const resize = () => {
+      if (window.innerWidth >= BREAKPOINTS.MD) {
+        dispatch({
+          type: "UPDATE_CONFIG",
+          payload: { deviceWidthType: DeviceWidthType.Desktop },
+        });
+      } else if (window.innerWidth >= BREAKPOINTS.SM) {
+        dispatch({
+          type: "UPDATE_CONFIG",
+          payload: { deviceWidthType: DeviceWidthType.Tablet },
+        });
+      } else {
+        dispatch({
+          type: "UPDATE_CONFIG",
+          payload: { deviceWidthType: DeviceWidthType.Mobile },
+        });
+      }
+    };
+
     if (typeof window !== "undefined") {
-      const resize = () => {
-        if (window.innerWidth >= BREAKPOINTS.MD) {
-          dispatch({
-            type: "UPDATE_CONFIG",
-            payload: { deviceWidthType: DeviceWidthType.Desktop },
-          });
-        } else if (window.innerWidth >= BREAKPOINTS.SM) {
-          dispatch({
-            type: "UPDATE_CONFIG",
-            payload: { deviceWidthType: DeviceWidthType.Tablet },
-          });
-        } else {
-          dispatch({
-            type: "UPDATE_CONFIG",
-            payload: { deviceWidthType: DeviceWidthType.Mobile },
-          });
-        }
-      };
       resize();
       window.addEventListener("resize", resize);
+      setInitialized(true);
       return () => {
         window.removeEventListener("resize", resize);
       };
     }
   }, [dispatch]);
+
+  if (!initialized) {
+    return null;
+  }
 
   return <Component {...pageProps} />;
 }
