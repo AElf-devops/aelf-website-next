@@ -1,0 +1,43 @@
+.startCardItem {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+  .text {
+    color: #011853;
+    font-family: "Poppins-Medium";
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.desktop.startCardItem {
+  gap: 32px;
+  padding: 32px;
+  .text {
+    font-size: 20px;
+  }
+}
+
+.tablet.startCardItem {
+  gap: 32px;
+  padding: 32px;
+  .text {
+    font-size: 16px;
+  }
+}
+
+.mobile.startCardItem {
+  gap: 24px;
+  padding: 24px;
+  .text {
+    font-size: 16px;
+  }
+}

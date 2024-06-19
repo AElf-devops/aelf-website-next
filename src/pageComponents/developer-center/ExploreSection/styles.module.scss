@@ -1,0 +1,29 @@
+.exploreSection {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #fff;
+  .exploreContent {
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .sectionTitle {
+    margin-bottom: 32px;
+  }
+}
+
+.desktop.exploreSection {
+  .exploreContent {
+    padding-bottom: 64px;
+  }
+}
+
+.tablet.exploreSection {
+  .exploreContent {
+    padding-bottom: 64px;
+  }
+}
+
+.mobile.exploreSection {
+  .exploreContent {
+    padding-bottom: 32px;
+  }
+}
