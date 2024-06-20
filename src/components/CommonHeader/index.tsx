@@ -41,7 +41,7 @@ export default function CommonHeader() {
 
   return (
     <header className={clsx(styles.commonHeader, deviceClassName)}>
-      {deviceWidthType === DeviceWidthType.Mobile ? (
+      {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
           {renderLogo()}
           <CommonImage

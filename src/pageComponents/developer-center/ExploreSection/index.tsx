@@ -77,11 +77,11 @@ export default function ExploreSection() {
 
   const rowGutter: RowProps["gutter"] = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return [16, 32];
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return [16, 32];
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return [32, 32];
     }
@@ -89,11 +89,11 @@ export default function ExploreSection() {
 
   const colSpan = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return 24;
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 12;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 8;
     }

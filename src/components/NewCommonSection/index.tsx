@@ -9,12 +9,19 @@ export enum MobilePaddingLeftAndRightSize {
   SM = "sm",
 }
 
+export enum SectionHeaderPosition {
+  LEFT = "left",
+  CENTER = "center",
+}
+
 export interface ICommonSectionProps {
   sectionClassName?: string;
   contentClassName?: string;
+  headerClassName?: string;
   titleClassName?: string;
   descriptionClassName?: string;
   mobilePaddingLeftAndRightSize?: MobilePaddingLeftAndRightSize;
+  headerPosition?: SectionHeaderPosition;
   title?: string;
   description?: string;
   children?: React.ReactNode;
@@ -22,9 +29,11 @@ export interface ICommonSectionProps {
 export default function CommonSection({
   sectionClassName,
   contentClassName,
+  headerClassName,
   titleClassName,
   descriptionClassName,
   mobilePaddingLeftAndRightSize = MobilePaddingLeftAndRightSize.MD,
+  headerPosition = SectionHeaderPosition.LEFT,
   title,
   description,
   children,
@@ -39,17 +48,23 @@ export default function CommonSection({
         sectionClassName,
         {
           [styles[`${mobilePaddingLeftAndRightSize}MobilePaddingLeftAndRight`]]:
-            deviceWidthType === DeviceWidthType.Mobile,
+            deviceWidthType === DeviceWidthType.MOBILE,
         },
       ])}
     >
       <div className={clsx([styles.commonContent, contentClassName])}>
-        {title && (
-          <div className={clsx(styles.title, titleClassName)}>{title}</div>
-        )}
-        {description && (
-          <div className={clsx(styles.description, descriptionClassName)}>
-            {description}
+        {(title || description) && (
+          <div
+            className={clsx(styles.header, styles[`${headerPosition}Header`], headerClassName)}
+          >
+            {title && (
+              <div className={clsx(styles.title, titleClassName)}>{title}</div>
+            )}
+            {description && (
+              <div className={clsx(styles.description, descriptionClassName)}>
+                {description}
+              </div>
+            )}
           </div>
         )}
         {children}

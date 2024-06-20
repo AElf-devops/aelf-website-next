@@ -19,73 +19,37 @@ export default function BuildingSection() {
 
   const firstImageWidth = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return "auto";
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 258;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 516;
     }
   }, [deviceWidthType]);
 
-  const firstRowGap = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
-        return 48;
-      case DeviceWidthType.Tablet:
-        return 54;
-      case DeviceWidthType.Desktop:
-      default:
-        return 172;
-    }
-  }, [deviceWidthType]);
-
   const secondImageWidth = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return "auto";
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 229;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 457;
     }
   }, [deviceWidthType]);
 
-  const secondRowGap = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
-        return 48;
-      case DeviceWidthType.Tablet:
-        return 64;
-      case DeviceWidthType.Desktop:
-      default:
-        return 181;
-    }
-  }, [deviceWidthType]);
-
   const thirdImageWidth = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return "auto";
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 211;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 422;
-    }
-  }, [deviceWidthType]);
-
-  const thirdRowGap = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
-        return 48;
-      case DeviceWidthType.Tablet:
-        return 99;
-      case DeviceWidthType.Desktop:
-      default:
-        return 185;
     }
   }, [deviceWidthType]);
 
@@ -99,7 +63,6 @@ export default function BuildingSection() {
         className={styles.imageTextFirstPart}
         imageClassName={styles.image}
         imageWidth={firstImageWidth}
-        rowGap={firstRowGap}
         imageSrc={LandingBlockIllustrationDoc}
         contentList={[
           {
@@ -107,7 +70,7 @@ export default function BuildingSection() {
             description:
               "aelf offers a suite of templates and SDKs for rapid and seamless development and deployment, whether you are more familiar with C#, Java, JS, Python, or Go.",
             buttonProps: {
-              type: CommonButtonType.Ghost,
+              type: CommonButtonType.GHOST_BLACK,
               text: "Start Building",
             },
           },
@@ -117,8 +80,7 @@ export default function BuildingSection() {
         className={styles.imageTextSecondPart}
         imageClassName={styles.image}
         imageWidth={secondImageWidth}
-        rowGap={secondRowGap}
-        imagePosition={CommonImageTextPartImagePosition.Right}
+        desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
         imageSrc={LandingBlockIllustrationRocket}
         contentList={[
           {
@@ -126,7 +88,7 @@ export default function BuildingSection() {
             description:
               "aelf’s comprehensive documentation and suite of automated tools enable you to effortlessly create robust and scalable dApps exactly the way you envision.",
             buttonProps: {
-              type: CommonButtonType.Ghost,
+              type: CommonButtonType.GHOST_BLACK,
               text: "Read Docs",
             },
           },
@@ -136,7 +98,6 @@ export default function BuildingSection() {
         className={styles.imageTextThirdPart}
         imageClassName={styles.image}
         imageWidth={thirdImageWidth}
-        rowGap={thirdRowGap}
         imageSrc={LandingBlockIllustrationEarth}
         contentList={[
           {
@@ -144,7 +105,7 @@ export default function BuildingSection() {
             description:
               "Whether you are new to Web3 or an OG, we welcome you to join our growing community of developers, creators and users to exchange ideas and collaborate together.",
             buttonProps: {
-              type: CommonButtonType.Ghost,
+              type: CommonButtonType.GHOST_BLACK,
               text: "Join Community",
             },
           },

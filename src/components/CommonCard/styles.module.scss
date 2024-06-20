@@ -1,0 +1,82 @@
+.commonCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 39px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.whiteTheme {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.blackTheme {
+  color: #011853;
+  border: 1px solid rgba(151, 154, 161, 0.3);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  line-height: normal;
+}
+
+.description {
+  flex: 1;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.arrowWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  img {
+    vertical-align: unset;
+  }
+}

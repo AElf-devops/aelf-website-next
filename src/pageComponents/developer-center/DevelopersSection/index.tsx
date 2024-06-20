@@ -73,11 +73,11 @@ export default function DevelopersSection() {
 
   const colSpan = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return 24;
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 12;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 12;
     }
@@ -98,7 +98,7 @@ export default function DevelopersSection() {
             <LinkList
               className={styles.linkList}
               listWrapGap={
-                deviceWidthType === DeviceWidthType.Mobile ? 32 : undefined
+                deviceWidthType === DeviceWidthType.MOBILE ? 32 : undefined
               }
               {...config}
             />

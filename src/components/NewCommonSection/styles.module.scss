@@ -1,25 +1,45 @@
 .commonSection {
-  padding: 120px 40px;
   overflow: hidden;
   .commonContent {
     margin: 0 auto;
-    max-width: 1128px;
   }
-  .title,
-  .description {
-    max-width: 786px;
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+  .leftHeader {
+    align-items: flex-start;
+  }
+  .centerHeader {
+    align-items: center;
   }
   .title {
-    margin-bottom: 16px;
-    font-size: 36px;
     font-weight: 500;
     line-height: normal;
     font-family: "Poppins-Medium";
   }
   .description {
-    font-size: 16px;
-    font-weight: 400;
     line-height: normal;
+  }
+}
+
+.desktop {
+  padding: 120px 40px;
+  .commonContent {
+    max-width: 1128px;
+  }
+  .header {
+    gap: 16px;
+    max-width: 786px;
+  }
+  .centerHeader {
+    max-width: none;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .description {
+    font-size: 16px;
   }
 }
 
@@ -28,13 +48,18 @@
   .commonContent {
     max-width: 664px;
   }
-  .title,
-  .description {
+  .header {
+    gap: 8px;
     max-width: 437px;
   }
+  .centerHeader {
+    max-width: none;
+  }
   .title {
-    margin-bottom: 8px;
     font-size: 24px;
+  }
+  .description {
+    font-size: 16px;
   }
 }
 
@@ -48,6 +73,9 @@
   &.smMobilePaddingLeftAndRight {
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .header {
+    gap: 16px;
   }
   .title {
     font-size: 24px;

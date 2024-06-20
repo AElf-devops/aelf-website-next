@@ -16,17 +16,17 @@ function ComponentContainer({ Component, pageProps }: any) {
       if (window.innerWidth >= BREAKPOINTS.MD) {
         dispatch({
           type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.Desktop },
+          payload: { deviceWidthType: DeviceWidthType.DESKTOP },
         });
       } else if (window.innerWidth >= BREAKPOINTS.SM) {
         dispatch({
           type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.Tablet },
+          payload: { deviceWidthType: DeviceWidthType.TABLET },
         });
       } else {
         dispatch({
           type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.Mobile },
+          payload: { deviceWidthType: DeviceWidthType.MOBILE },
         });
       }
     };

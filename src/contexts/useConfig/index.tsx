@@ -3,7 +3,7 @@ import { DeviceWidthType } from "@/constants/breakpoints";
 
 const INITIAL_STATE = {
   isMobile: false,
-  deviceWidthType: DeviceWidthType.Desktop,
+  deviceWidthType: DeviceWidthType.DESKTOP,
 };
 const ConfigContext = createContext<any>(INITIAL_STATE);
 

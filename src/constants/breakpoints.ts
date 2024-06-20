@@ -4,7 +4,7 @@ export const BREAKPOINTS = {
 } as const;
 
 export enum DeviceWidthType {
-  Desktop = "desktop",
-  Tablet = "tablet",
-  Mobile = "mobile",
+  DESKTOP = "desktop",
+  TABLET = "tablet",
+  MOBILE = "mobile",
 }

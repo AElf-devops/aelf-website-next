@@ -31,13 +31,35 @@
       background-color: #006ae5;
     }
   }
-  &.ghostButton {
+  &.ghostBlackButton,
+  &.ghostBlueButton {
     border: 1px solid #fff;
     color: #fff;
     &:hover,
     &:active {
       background-color: #fff;
+    }
+  }
+  &.ghostBlackButton {
+    &:hover,
+    &:active {
       color: #1a1a1a;
+    }
+  }
+  &.ghostBlueButton {
+    &:hover,
+    &:active {
+      color: #127fff;
+    }
+  }
+  &.whiteButton {
+    background-color: #fff;
+    color: #127fff;
+    &:hover {
+      background-color: #e7f2ff;
+    }
+    &:active {
+      background-color: #fff;
     }
   }
 
@@ -49,7 +71,7 @@
     height: 42px;
     font-size: 12px;
   }
-  
+
   &.round {
     border-radius: 40px;
   }

@@ -102,14 +102,14 @@ export default function ListSection() {
         <div className={styles.title}>We are backed by</div>
         {renderList(
           BACKED_LIST,
-          deviceWidthType === DeviceWidthType.Mobile ? 3 : 5
+          deviceWidthType === DeviceWidthType.MOBILE ? 3 : 5
         )}
       </div>
       <div className={styles.listPart}>
         <div className={styles.title}>We are listed on</div>
         {renderList(
           LISTED_LIST,
-          deviceWidthType === DeviceWidthType.Mobile ? 3 : 6
+          deviceWidthType === DeviceWidthType.MOBILE ? 3 : 6
         )}
       </div>
     </CommonSection>

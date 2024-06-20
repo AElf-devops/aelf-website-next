@@ -27,11 +27,11 @@ export default function StartCardSection() {
 
   const colSpan = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return 24;
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 12;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 8;
     }

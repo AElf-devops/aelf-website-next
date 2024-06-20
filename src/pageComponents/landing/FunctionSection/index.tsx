@@ -6,21 +6,21 @@ import CommonButton, {
   CommonButtonSize,
   CommonButtonType,
 } from "@/components/CommonButton";
-import CommonDappCard, {
-  ICommonDappCardProps,
-} from "@/components/CommonDappCard";
+import CommonCard, {
+  CommonCardTheme,
+  ICommonCardProps,
+} from "@/components/CommonCard";
 import LandingBlockIllustrationLock from "@/assets/landing/LandingBlockIllustrationLock.svg";
-import DappPortkey from "@/assets/dapp/DappPortkey.svg";
-import DappEbridge from "@/assets/dapp/DappEbridge.svg";
-import DappForest from "@/assets/dapp/DappForest.svg";
+import { DappPortkey, DappEbridge, DappForest } from "@/assets/dapp";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
-const DAPP_LIST: ICommonDappCardProps[] = [
+const DAPP_LIST: ICommonCardProps[] = [
   {
     className: styles.dappCard,
+    theme: CommonCardTheme.WHITE,
     icon: DappPortkey,
     name: "Portkey",
     tagList: ["Wallet"],
@@ -29,6 +29,7 @@ const DAPP_LIST: ICommonDappCardProps[] = [
   },
   {
     className: styles.dappCard,
+    theme: CommonCardTheme.WHITE,
     icon: DappEbridge,
     name: "eBridge",
     tagList: ["Bridge"],
@@ -37,6 +38,7 @@ const DAPP_LIST: ICommonDappCardProps[] = [
   },
   {
     className: styles.dappCard,
+    theme: CommonCardTheme.WHITE,
     icon: DappForest,
     name: "Forest",
     tagList: ["NFT"],
@@ -51,7 +53,7 @@ export default function FunctionSection() {
 
   const buttonSize = useMemo(
     () =>
-      deviceWidthType === DeviceWidthType.Tablet
+      deviceWidthType === DeviceWidthType.TABLET
         ? CommonButtonSize.SM
         : CommonButtonSize.MD,
     [deviceWidthType]
@@ -59,7 +61,7 @@ export default function FunctionSection() {
 
   const renderExploreButton = useCallback(
     () => (
-      <CommonButton type={CommonButtonType.Ghost} size={buttonSize} isRound>
+      <CommonButton type={CommonButtonType.GHOST_BLACK} size={buttonSize} isRound>
         Explore dApps
       </CommonButton>
     ),
@@ -74,6 +76,7 @@ export default function FunctionSection() {
     >
       <CommonImageTextPart
         className={styles.imageTextPart}
+        imageClassName={styles.imageTextPartImage}
         imageSrc={LandingBlockIllustrationLock}
         contentList={[
           {
@@ -81,7 +84,7 @@ export default function FunctionSection() {
             description:
               "aelf’s unique multi-sidechain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
             buttonProps: {
-              type: CommonButtonType.Ghost,
+              type: CommonButtonType.GHOST_BLACK,
               text: "Learn More",
             },
           },
@@ -90,7 +93,7 @@ export default function FunctionSection() {
             description:
               "Featuring a modular and cloud-native architecture, aelf guarantees high security and efficiency. This makes it an ideal platform for developers and users seeking a secure and scalable blockchain solution for their AI or non AI dApps. ",
             buttonProps: {
-              type: CommonButtonType.Ghost,
+              type: CommonButtonType.GHOST_BLACK,
               text: "Read Docs",
             },
           },
@@ -106,14 +109,14 @@ export default function FunctionSection() {
               Explore and be part of aelf’s growing ecosystem of dApps.
             </div>
           </div>
-          {deviceWidthType !== DeviceWidthType.Mobile && renderExploreButton()}
+          {deviceWidthType !== DeviceWidthType.MOBILE && renderExploreButton()}
         </div>
         <div className={styles.dappsPartList}>
           {DAPP_LIST.map((item, index) => (
-            <CommonDappCard key={index} {...item} />
+            <CommonCard key={index} {...item} />
           ))}
         </div>
-        {deviceWidthType === DeviceWidthType.Mobile && renderExploreButton()}
+        {deviceWidthType === DeviceWidthType.MOBILE && renderExploreButton()}
       </div>
     </CommonSection>
   );

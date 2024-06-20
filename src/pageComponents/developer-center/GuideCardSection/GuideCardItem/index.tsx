@@ -31,7 +31,7 @@ export default function GuideCardItem({
       </div>
       <CommonButton
         className={styles.button}
-        type={CommonButtonType.Primary}
+        type={CommonButtonType.PRIMARY}
         onClick={onButtonClick}
       >
         {buttonText}

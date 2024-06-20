@@ -131,7 +131,7 @@ export default function CommonFooter() {
 
   return (
     <footer className={clsx(styles.commonFooter, deviceClassName)}>
-      {deviceWidthType === DeviceWidthType.Mobile ? (
+      {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
           {renderSocialMediaList()}
           <div className={styles.divider} />

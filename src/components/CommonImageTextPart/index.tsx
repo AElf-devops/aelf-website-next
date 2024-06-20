@@ -1,18 +1,22 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import CommonImage from "../CommonImage";
-import CommonButton, { CommonButtonSize, CommonButtonType, ICommonButtonProps } from "../CommonButton";
+import CommonButton, {
+  CommonButtonSize,
+  ICommonButtonProps,
+} from "../CommonButton";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import styles from "./styles.module.scss";
 
 export enum CommonImageTextPartImagePosition {
-  Left = "left",
-  Right = "right",
+  LEFT = "left",
+  RIGHT = "right",
+  TOP = "top",
 }
 
-interface IContentItemButtonProps
+interface IButtonProps
   extends Pick<ICommonButtonProps, "className" | "type" | "onClick"> {
   text: string;
 }
@@ -20,60 +24,60 @@ interface IContentItemButtonProps
 export interface ICommonImageTextPartContentItem {
   title: string;
   description: string;
-  buttonProps?: IContentItemButtonProps;
+  buttonProps?: IButtonProps;
 }
 
 interface ICommonImageTextPartProps {
   className?: string;
   imageClassName?: string;
-  imagePosition?: CommonImageTextPartImagePosition;
+  contentWrapClassName?: string;
+  contentListWrapClassName?: string;
+  desktopAndTabletImagePosition?: CommonImageTextPartImagePosition;
   imageSrc: any;
   imageWidth?: number | string;
-  rowGap?: number;
   contentList: ICommonImageTextPartContentItem[];
+  contentBottomButtonProps?: IButtonProps;
 }
 
 export default function CommonImageTextPart({
   className,
   imageClassName,
-  imagePosition = CommonImageTextPartImagePosition.Left,
+  contentWrapClassName,
+  contentListWrapClassName,
+  desktopAndTabletImagePosition = CommonImageTextPartImagePosition.LEFT,
   imageSrc,
   imageWidth,
-  rowGap,
   contentList,
+  contentBottomButtonProps,
 }: ICommonImageTextPartProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
   const defaultImageWidth = useMemo(() => {
     switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
+      case DeviceWidthType.MOBILE:
         return "auto";
-      case DeviceWidthType.Tablet:
+      case DeviceWidthType.TABLET:
         return 303;
-      case DeviceWidthType.Desktop:
+      case DeviceWidthType.DESKTOP:
       default:
         return 506;
     }
   }, [deviceWidthType]);
 
-  const defaultRowGap = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.Mobile:
-        return 48;
-      case DeviceWidthType.Tablet:
-        return 38;
-      case DeviceWidthType.Desktop:
-      default:
-        return 157;
-    }
-  }, [deviceWidthType]);
-
-  const buttonSize = useMemo(
+  const contentItemButtonSize = useMemo(
     () =>
-      deviceWidthType === DeviceWidthType.Tablet
+      deviceWidthType === DeviceWidthType.TABLET
         ? CommonButtonSize.SM
         : CommonButtonSize.MD,
+    [deviceWidthType]
+  );
+
+  const contentBottomButtonSize = useMemo(
+    () =>
+      deviceWidthType === DeviceWidthType.DESKTOP
+        ? CommonButtonSize.MD
+        : CommonButtonSize.SM,
     [deviceWidthType]
   );
 
@@ -91,7 +95,7 @@ export default function CommonImageTextPart({
           <CommonButton
             className={clsx(styles.contentItemButton, buttonProps.className)}
             isRound
-            size={buttonSize}
+            size={contentItemButtonSize}
             type={buttonProps.type}
             onClick={buttonProps.onClick}
           >
@@ -105,22 +109,33 @@ export default function CommonImageTextPart({
   return (
     <div
       className={clsx(styles.commonImageTextPart, deviceClassName, className, {
-        [styles.directionReverse]:
-          imagePosition === CommonImageTextPartImagePosition.Right,
+        [styles[`${desktopAndTabletImagePosition}Image`]]:
+          deviceWidthType !== DeviceWidthType.MOBILE,
       })}
-      style={{ gap: rowGap || defaultRowGap }}
     >
       <CommonImage
         className={clsx(styles.image, imageClassName)}
         style={{ width: imageWidth || defaultImageWidth }}
         src={imageSrc}
       />
-      <div className={styles.contentWrap}>
-        {contentList.map((item, index) =>
-          renderContentItem({
-            index,
-            ...item,
-          })
+      <div className={clsx(styles.contentWrap, contentWrapClassName)}>
+        <div className={clsx(styles.contentListWrap, contentListWrapClassName)}>
+          {contentList.map((item, index) =>
+            renderContentItem({
+              index,
+              ...item,
+            })
+          )}
+        </div>
+        {contentBottomButtonProps && (
+          <CommonButton
+            isRound
+            size={contentBottomButtonSize}
+            type={contentBottomButtonProps.type}
+            onClick={contentBottomButtonProps.onClick}
+          >
+            {contentBottomButtonProps.text}
+          </CommonButton>
         )}
       </div>
     </div>

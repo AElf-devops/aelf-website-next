@@ -41,7 +41,7 @@ export default function FirstScreenSection() {
           </CommonButton>
           <CommonButton
             className={styles.button}
-            type={CommonButtonType.Primary}
+            type={CommonButtonType.PRIMARY}
             isRound
           >
             Start Building

@@ -1,0 +1,87 @@
+.venturesSection {
+  background-color: #f5f5f5;
+  .cardPart {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .cardPartTitle {
+    color: #011853;
+    text-align: center;
+    font-family: "Poppins-Medium";
+    font-weight: 500;
+    line-height: normal;
+  }
+  .card {
+    height: 100%;
+    padding: 24px;
+  }
+  .cardIcon {
+    width: auto;
+    height: 80px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.desktop.venturesSection {
+  .imageTextPart,
+  .cardPart {
+    margin-top: 120px;
+  }
+  .imageTextPartContentWrap,
+  .imageTextPartContentListWrap {
+    gap: 48px;
+  }
+  .cardPartTitle {
+    font-size: 32px;
+  }
+}
+
+.tablet.venturesSection {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .venturesHeader {
+    max-width: none;
+  }
+  .imageTextPart {
+    gap: 32px;
+    margin-top: 90px;
+  }
+  .imageTextPartContentWrap,
+  .imageTextPartContentListWrap {
+    max-width: none;
+  }
+  .imageTextPartContentWrap {
+    align-items: center;
+  }
+  .imageTextPartContentListWrap {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .cardPart {
+    margin-top: 48px;
+  }
+  .cardPartTitle {
+    font-size: 20px;
+  }
+}
+
+.mobile.venturesSection {
+  .imageTextPart,
+  .cardPart {
+    margin-top: 48px;
+  }
+  .imageTextPart,
+  .imageTextPartContentWrap {
+    gap: 32px;
+  }
+  .imageTextPartContentListWrap {
+    gap: 16px;
+  }
+  .cardPartTitle {
+    font-size: 20px;
+  }
+}

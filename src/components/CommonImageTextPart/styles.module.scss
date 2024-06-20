@@ -1,39 +1,54 @@
 .commonImageTextPart {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  &.directionReverse {
+  &.leftImage {
+    flex-direction: row;
+  }
+  &.rightImage {
     flex-direction: row-reverse;
   }
-  .contentWrap {
-    display: flex;
+  &.topImage {
     flex-direction: column;
-    gap: 64px;
-    max-width: 442px;
   }
+  .contentWrap,
+  .contentListWrap,
   .contentItem {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   .contentItemTitle {
-    font-size: 20px;
     font-weight: 500;
     line-height: normal;
     font-family: "Poppins-Medium";
   }
   .contentItemDescription {
     margin-top: 8px;
-    font-size: 14px;
     line-height: normal;
+  }
+}
+
+.desktop {
+  .contentWrap,
+  .contentListWrap {
+    gap: 64px;
+    max-width: 442px;
+  }
+  .contentItemTitle {
+    font-size: 20px;
+  }
+  .contentItemDescription {
+    font-size: 14px;
   }
   .contentItemButton {
     margin-top: 24px;
   }
 }
 
-.tablet.commonImageTextPart {
-  .contentWrap {
+.tablet {
+  .contentWrap,
+  .contentListWrap {
     gap: 32px;
     max-width: 324px;
   }
@@ -48,16 +63,27 @@
   }
 }
 
-.mobile.commonImageTextPart {
+.mobile {
   flex-direction: column;
+  gap: 48px;
   &.directionReverse {
     flex-direction: column;
   }
-  .contentWrap {
+  .contentWrap,
+  .contentListWrap {
     gap: 48px;
-    max-width: none;
   }
+  .contentWrap,
   .contentItem {
     align-items: stretch;
+  }
+  .contentItemTitle {
+    font-size: 20px;
+  }
+  .contentItemDescription {
+    font-size: 14px;
+  }
+  .contentItemButton {
+    margin-top: 24px;
   }
 }
