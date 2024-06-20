@@ -4,9 +4,9 @@ import CommonSection from "@/components/NewCommonSection";
 import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
-import EcosystemOverview1 from "@/assets/ecosystem/EcosystemOverview1.svg";
-import EcosystemOverview2 from "@/assets/ecosystem/EcosystemOverview2.svg";
-import EcosystemOverview3 from "@/assets/ecosystem/EcosystemOverview3.svg";
+import EcosystemOverview1 from "@/assets/ecosystem/EcosystemOverview1.png";
+import EcosystemOverview2 from "@/assets/ecosystem/EcosystemOverview2.png";
+import EcosystemOverview3 from "@/assets/ecosystem/EcosystemOverview3.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -36,7 +36,7 @@ export default function OverviewSection() {
         return 280;
       case DeviceWidthType.DESKTOP:
       default:
-        return 480;
+        return 460;
     }
   }, [deviceWidthType]);
 
@@ -48,7 +48,7 @@ export default function OverviewSection() {
         return 280;
       case DeviceWidthType.DESKTOP:
       default:
-        return 478;
+        return 422;
     }
   }, [deviceWidthType]);
 
@@ -58,7 +58,7 @@ export default function OverviewSection() {
       contentClassName={styles.overviewContent}
       headerClassName={styles.overviewHeader}
       title="aelf Ecosystem Overview"
-      description="The aelf ecosystem is designed to provide a seamless and integrated experience for developers and users. It encompasses the Portkey Wallet for secure asset management, a variety of decentralized applications (dApps) for different use cases, and the aelevate gaming platform for cutting-edge blockchain gaming."
+      description="The aelf ecosystem is designed to provide a seamless and integrated experience for developers and users. It encompasses the Portkey Wallet for secure cross-chain asset management, and a diverse array of decentralized applications (dApps) tailored to various use cases."
     >
       <CommonImageTextPart
         className={styles.imageTextPart}
@@ -82,9 +82,9 @@ export default function OverviewSection() {
         imageSrc={EcosystemOverview2}
         contentList={[
           {
-            title: "TMRWDAO",
+            title: "Project Schrödinger",
             description:
-              "TMRWDAO by aelf is a decentralized autonomous organization that empowers community-driven decision-making and collaboration within the blockchain ecosystem. It promotes decentralization, transparency, and incentivizes contributions, fostering innovation and growth through a democratic governance model where participants share in the ecosystem’s success.",
+              "Project Schrödinger is an Al-powered ACS-404 inscription allowing you to adopt cats and enjoy the fun of dynamic gameplay and unpredictable transformation.",
             buttonProps: {
               text: "Learn more",
             },
@@ -98,9 +98,9 @@ export default function OverviewSection() {
         imageSrc={EcosystemOverview3}
         contentList={[
           {
-            title: "Forest",
+            title: "ETransfer",
             description:
-              "An NFT marketplace, Forest offers low minting fees, flexible transactions, and personalisation.",
+              "ETransfer is a secure and efficient digital asset transfer solution designed to facilitate seamless transactions across different blockchain networks, ensuring speed, reliability, and low transaction costs.",
             buttonProps: {
               text: "Learn more",
             },

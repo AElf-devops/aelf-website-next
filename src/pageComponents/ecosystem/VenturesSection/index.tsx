@@ -80,7 +80,7 @@ export default function VenturesSection() {
       sectionClassName={clsx(styles.venturesSection, deviceClassName)}
       headerClassName={styles.venturesHeader}
       title="aelf Ventures"
-      description="Accelerating the growth of blockchain innovations, aelf Ventures invests in promising projects and startups that are shaping the future of decentralized technologies. Our venture arm supports early-stage companies with funding, mentorship, and strategic partnerships to foster a thriving blockchain ecosystem."
+      description="aelf Ventures invests in cutting-edge blockchain technology and Web3 protocols. With a USD 50 million ecosystem fund, aelf Ventures is committed to expanding the aelf ecosystem and shaping the future of Web3."
     >
       <CommonImageTextPart
         className={styles.imageTextPart}
@@ -111,7 +111,7 @@ export default function VenturesSection() {
               "By fostering strategic partnerships, aelf Ventures helps startups connect with industry leaders, enabling collaborative growth and success.",
           },
         ]}
-        contentBottomButtonProps={{ text: "Learn more" }}
+        contentBottomButtonProps={{ text: "Speak with Us" }}
       />
       <div className={styles.cardPart}>
         <div className={styles.cardPartTitle}>Our Portfolio</div>

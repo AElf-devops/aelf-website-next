@@ -18,7 +18,7 @@ import {
   DappForest,
   DappBeanGoTown,
   DappAwaken,
-  DappEwell,
+  DappETransfer,
 } from "@/assets/dapp";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -41,7 +41,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     name: "Project Schrödinger",
     tagList: ["AI", "Mainnet"],
     description:
-      "Project Schrödinger is an Al-powered ACS-404 inscription allowing you to adopt cats and enjoy the fun of dynamic gameplay and unpredictable transformation.",
+      "Al-powered ACS-404 inscription allowing you to adopt cats and enjoy the fun of dynamic gameplay and unpredictable transformation.",
     arrowText: "Learn more",
   },
   {
@@ -57,7 +57,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     theme: CommonCardTheme.WHITE,
     icon: DappBeanGoTown,
     name: "BeanGo Town",
-    tagList: ["Wallet"],
+    tagList: ["Game", "Wallet"],
     description:
       "A fully on-chain Web3 game, powered by Portkey’s SDK and aelf blockchain.",
     arrowText: "Learn more",
@@ -66,17 +66,17 @@ const DAPP_LIST: ICommonCardProps[] = [
     theme: CommonCardTheme.WHITE,
     icon: DappAwaken,
     name: "AwakenSwap",
-    tagList: ["DeFi", "Testnet"],
+    tagList: ["DeFi", "Mainnet"],
     description: "Swap, lend and borrow crypto assets on one DeFi platform.",
     arrowText: "Learn more",
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappEwell,
-    name: "eWell",
-    tagList: ["DeFi", "Testnet"],
+    icon: DappETransfer,
+    name: "ETransfer",
+    tagList: ["DeFi", "Mainnet"],
     description:
-      "eWell is a decentralised IDO platform. It expedites start-ups' growth on aelf blockchain by helping them raise funds and gain exposure.",
+      "A secure and efficient digital asset transfer solution to facilitate seamless transactions across different blockchain networks.",
     arrowText: "Learn more",
   },
 ];

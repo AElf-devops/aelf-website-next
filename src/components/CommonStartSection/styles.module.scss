@@ -10,6 +10,10 @@
   .header {
     gap: 8px;
   }
+  .title,
+  .description {
+    text-align: center;
+  }
   .title {
     font-weight: 500;
     line-height: normal;
@@ -32,7 +36,7 @@
   .title {
     font-size: 36px;
   }
-  .description  {
+  .description {
     font-size: 20px;
   }
 }
@@ -46,7 +50,7 @@
   .title {
     font-size: 24px;
   }
-  .description  {
+  .description {
     font-size: 14px;
   }
 }
@@ -58,7 +62,7 @@
   .title {
     font-size: 16px;
   }
-  .description  {
+  .description {
     font-size: 12px;
   }
   .button {

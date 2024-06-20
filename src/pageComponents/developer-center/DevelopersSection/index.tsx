@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, Col } from "antd";
-import CommonSection, { MobilePaddingLeftAndRightSize } from "@/components/NewCommonSection";
+import CommonSection, {
+  MobilePaddingLeftAndRightSize,
+} from "@/components/NewCommonSection";
 import SectionTitle from "../SectionTitle";
 import LinkList, { ILinkListProps } from "../LinkList";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -18,6 +20,10 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         description: "Interact with the aelf blockchain through the web.",
       },
       {
+        linkText: "Smart Contract API",
+        description: "Access smart contract functionalities using API.",
+      },
+      {
         linkText: "Chain SDK",
         description: "Develop blockchain-specific applications using ChainSDK.",
       },
@@ -26,16 +32,20 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         description: "Build and deploy smart contracts with Contract SDK.",
       },
       {
-        linkText: "Smart Contract API",
-        description: "Access smart contract functionalities using API.",
+        linkText: "Web Login",
+        description: "An SDK for dApp web login.",
       },
       {
-        linkText: "Acs Introduction",
-        description: "Introduction to aelf Contract Standards.",
-      },
-      {
-        linkText: "Command-line Interface",
+        linkText: "aelf CLI",
         description: "Execute blockchain operations via CLI.",
+      },
+      {
+        linkText: "Smart Contract Templates",
+        description: "Templates to quickly build your smart contracts.",
+      },
+      {
+        linkText: "Deploy Tools",
+        description: "Tools to test and deploy your DApp.",
       },
     ],
   },
@@ -44,7 +54,11 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
     list: [
       {
         linkText: "Wallet and Block Explorer",
-        description: "Manage your assets and explore blockchain data.",
+        description: "Manage your assets and explore aelf's blockchain data.",
+      },
+      {
+        linkText: "AetherLink",
+        description: "Transfer tamper-proof data from off-chain to on-chain.",
       },
       {
         linkText: "Browser Extension",
@@ -52,16 +66,15 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
       },
       {
         linkText: "DevOps",
-        description: "Build and Deployment tools.",
+        description: "Tools to build and deploy efficiently.",
       },
       {
-        linkText: "AElf White Paper",
-        description: "Explore and read aelf's whitepaper.",
+        linkText: "aelf White Paper",
+        description: "Read aelf's whitepaper.",
       },
       {
-        linkText: "aelf’s Tokenomics",
-        description:
-          "Understand aelf's token economics and incentive mechanisms.",
+        linkText: "Protobuf Extension",
+        description: "An open-source gRPC.",
       },
     ],
   },

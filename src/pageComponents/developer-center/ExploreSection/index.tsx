@@ -14,20 +14,28 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
     title: "QuickStart",
     list: [
       {
-        linkText: "Overview",
-        description: "Introduction to aelf blockchain.",
+        linkText: "Operating Nodes",
+        description: "Start and run a node on aelf.",
       },
       {
-        linkText: "Development environment",
-        description: "Setting up your development environment.",
+        linkText: "Joining TestNet",
+        description: "Explore aelf's TestNet.",
       },
       {
-        linkText: "Smart contracts",
-        description: "Writing and deploying smart contracts on aelf.",
+        linkText: "Joining MainNet",
+        description: "Explore aelf's MainNet.",
       },
       {
-        linkText: "Build a web3 dApp",
-        description: "Creating your first web3 dApp.",
+        linkText: "Running a side chain",
+        description: "Explore running aelf's side chain.",
+      },
+      {
+        linkText: "Learn how to run on the cloud",
+        description: "Explore running aelf on the cloud.",
+      },
+      {
+        linkText: "DApp example",
+        description: "Examples of how DApps work on aelf.",
       },
     ],
   },
@@ -50,22 +58,38 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         linkText: "Transactions",
         description: "Handling transaction processes.",
       },
+      {
+        linkText: "Core",
+        description: "aelf's core architecture.",
+      },
+      {
+        linkText: "Cross-chain",
+        description: "aelf's cross-chain architecture.",
+      },
+      {
+        linkText: "Smart contract",
+        description: "aelf's smart contract architecture.",
+      },
     ],
   },
   {
     title: "Documentation",
     list: [
       {
-        linkText: "Core",
-        description: "Fundamental blockchain architecture components.",
+        linkText: "ACS Introduction",
+        description: "An introduction to aelf contract system.",
       },
       {
-        linkText: "Cross-chain",
-        description: "Understand aelf's mainchain and sidechain.",
+        linkText: "Integration Guides",
+        description: "Learn how to integrate with other tools and DApps. ",
       },
       {
-        linkText: "Smart contract",
-        description: "Understand the execution of decentralised code.",
+        linkText: "Design",
+        description: "Explore aelf design library.",
+      },
+      {
+        linkText: "Faucet",
+        description: "Test your dApp with aelf test tokens.",
       },
     ],
   },

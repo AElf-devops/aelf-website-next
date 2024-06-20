@@ -20,8 +20,8 @@ export default function FirstScreenSection() {
         />
         <div className={styles.title}>Discover the aelf Ecosystem</div>
         <div className={styles.description}>
-          Explore the comprehensive ecosystem built on aelf’s advanced
-          blockchain technology.
+          Explore the vibrant ecosystem powered by aelf’s cutting-edge
+          blockchain + AI technology.
         </div>
       </div>
     </CommonSection>

@@ -35,12 +35,14 @@ const LINK_LIST = [
     ],
   },
   {
-    title: "Developer Resources",
+    title: "Developer",
     links: [
+      { text: "Quick start" },
+      { text: "Learn" },
       { text: "Docs" },
       { text: "Tools" },
-      { text: "Examples & Tutorials" },
-      { text: "Github" },
+      { text: "Resources" },
+      
     ],
   },
   {

@@ -19,20 +19,20 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard2,
-    title: "Tutorials",
-    description: "Learn step-by-step dApp development on aelf.",
+    title: "aelf’s architecture",
+    description: "Deep dive into aelf blockchain's architecture",
     buttonText: "View Tutorials",
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard3,
     title: "Setup local environment",
     description: "Configure aelf's mainnet and testnet locally.",
-    buttonText: "Choose Your Stack",
+    buttonText: "Set it Up",
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard4,
-    title: "aelf’s architecture",
-    description: "Deep dive into aelf blockchain's architecture",
+    title: "Tutorials",
+    description: "Learn step-by-step dApp development on aelf.",
     buttonText: "Learn More",
   },
 ];
