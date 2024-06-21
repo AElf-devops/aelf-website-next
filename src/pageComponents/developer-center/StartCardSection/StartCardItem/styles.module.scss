@@ -13,6 +13,7 @@
   .text {
     color: #011853;
     font-family: "Poppins-Medium";
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
   }
@@ -21,23 +22,14 @@
 .desktop.startCardItem {
   gap: 32px;
   padding: 32px;
-  .text {
-    font-size: 20px;
-  }
 }
 
 .tablet.startCardItem {
   gap: 32px;
   padding: 32px;
-  .text {
-    font-size: 16px;
-  }
 }
 
 .mobile.startCardItem {
   gap: 24px;
   padding: 24px;
-  .text {
-    font-size: 16px;
-  }
 }
