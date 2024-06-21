@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import clsx from "clsx";
 import { Drawer } from "antd";
 import Logo from "@/assets/Logo.svg";
@@ -16,9 +17,11 @@ const MENU_LIST = [
   },
   {
     text: "Developer",
+    path: "/developer-center",
   },
   {
     text: "Ecosystem",
+    path: "/ecosystem",
   },
   {
     text: "Blog",
@@ -36,7 +39,9 @@ export default function CommonHeader() {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState(false);
 
   const renderLogo = () => (
-    <CommonImage className={styles.logo} src={Logo} alt="logo" />
+    <Link href="/landing">
+      <CommonImage className={styles.logo} src={Logo} alt="logo" />
+    </Link>
   );
 
   return (
@@ -73,13 +78,11 @@ export default function CommonHeader() {
             </div>
             <div className={styles.menuDrawerContent}>
               {MENU_LIST.map((item, index) => (
-                <div
-                  key={index}
-                  className={styles.menuDrawerContentItem}
-                  onClick={() => setIsMenuDrawerOpen(false)}
-                >
-                  {item.text}
-                </div>
+                <Link key={index} href={item.path || ""}>
+                  <div className={styles.menuDrawerContentItem}>
+                    {item.text}
+                  </div>
+                </Link>
               ))}
             </div>
           </Drawer>
@@ -90,7 +93,9 @@ export default function CommonHeader() {
           <div className={styles.navWrap}>
             {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
               (item, index) => (
-                <div className={styles.navItem} key={index}>{item.text}</div>
+                <Link key={index} href={item.path || ""}>
+                  <div className={styles.navItem}>{item.text}</div>
+                </Link>
               )
             )}
           </div>
