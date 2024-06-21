@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Link from "next/link";
 import clsx from "clsx";
 import { Drawer } from "antd";
 import Logo from "@/assets/Logo.svg";
 import List from "@/assets/List.svg";
 import Close from "@/assets/Close.svg";
 import CommonImage from "../CommonImage";
+import CommonLink from "../CommonLink";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -39,9 +39,9 @@ export default function CommonHeader() {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState(false);
 
   const renderLogo = () => (
-    <Link href="/landing">
+    <CommonLink href="/landing">
       <CommonImage className={styles.logo} src={Logo} alt="logo" />
-    </Link>
+    </CommonLink>
   );
 
   return (
@@ -78,11 +78,11 @@ export default function CommonHeader() {
             </div>
             <div className={styles.menuDrawerContent}>
               {MENU_LIST.map((item, index) => (
-                <Link key={index} href={item.path || ""}>
+                <CommonLink key={index} href={item.path}>
                   <div className={styles.menuDrawerContentItem}>
                     {item.text}
                   </div>
-                </Link>
+                </CommonLink>
               ))}
             </div>
           </Drawer>
@@ -93,9 +93,9 @@ export default function CommonHeader() {
           <div className={styles.navWrap}>
             {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
               (item, index) => (
-                <Link key={index} href={item.path || ""}>
+                <CommonLink key={index} href={item.path}>
                   <div className={styles.navItem}>{item.text}</div>
-                </Link>
+                </CommonLink>
               )
             )}
           </div>
