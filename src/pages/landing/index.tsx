@@ -1,3 +1,4 @@
+import Head from "next/head";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/landing/FirstScreenSection";
@@ -8,7 +9,10 @@ import ExperienceSection from "@/pageComponents/landing/ExperienceSection";
 
 export default function Landing() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>aelf - Experience AI + Blockchain of Tomorrow</title>
+      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <FunctionSection />
@@ -16,6 +20,6 @@ export default function Landing() {
       <ListSection />
       <ExperienceSection />
       <CommonFooter />
-    </div>
+    </>
   );
 }

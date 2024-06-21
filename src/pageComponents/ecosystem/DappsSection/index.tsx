@@ -57,7 +57,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     theme: CommonCardTheme.WHITE,
     icon: DappBeanGoTown,
     name: "BeanGo Town",
-    tagList: ["Game", "Wallet"],
+    tagList: ["Game", "Mainnet"],
     description:
       "A fully on-chain Web3 game, powered by Portkey’s SDK and aelf blockchain.",
     arrowText: "Learn more",

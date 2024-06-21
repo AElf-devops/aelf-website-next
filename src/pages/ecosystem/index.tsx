@@ -1,3 +1,4 @@
+import Head from "next/head";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/ecosystem/FirstScreenSection";
@@ -8,7 +9,10 @@ import StartSection from "@/pageComponents/ecosystem/StartSection";
 
 export default function Ecosystem() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>aelf | Ecosystem</title>
+      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <OverviewSection />
@@ -16,6 +20,6 @@ export default function Ecosystem() {
       <VenturesSection />
       <StartSection />
       <CommonFooter />
-    </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/developer-center/FirstScreenSection";
@@ -8,7 +9,10 @@ import StartCardSection from "@/pageComponents/developer-center/StartCardSection
 
 export default function DeveloperCenter() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>aelf | Developer Resources</title>
+      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <GuideCardSection />
@@ -16,6 +20,6 @@ export default function DeveloperCenter() {
       <DevelopersSection />
       <StartCardSection />
       <CommonFooter />
-    </div>
+    </>
   );
 }
