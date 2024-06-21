@@ -13,12 +13,22 @@
     font-weight: 500;
     line-height: normal;
   }
+  .cardWrap {
+    &:nth-child(1) .cardIcon {
+      width: 120px;
+    }
+    &:nth-child(2) .cardIcon {
+      width: 111px;
+    }
+    &:nth-child(3) .cardIcon {
+      width: 80px;
+    }
+  }
   .card {
     height: 100%;
     padding: 24px;
   }
   .cardIcon {
-    width: auto;
     height: 80px;
     img {
       width: 100%;

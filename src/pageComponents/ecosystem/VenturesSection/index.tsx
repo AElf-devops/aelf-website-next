@@ -117,8 +117,12 @@ export default function VenturesSection() {
         <div className={styles.cardPartTitle}>Our Portfolio</div>
         <Row gutter={cardRowGutter}>
           {CARD_LIST.map((item, index) => (
-            <Col key={index} span={cardRowSpan}>
-              <CommonCard className={styles.card} iconClassName={styles.cardIcon} {...item} />
+            <Col key={index} className={styles.cardWrap} span={cardRowSpan}>
+              <CommonCard
+                className={styles.card}
+                iconClassName={styles.cardIcon}
+                {...item}
+              />
             </Col>
           ))}
         </Row>
