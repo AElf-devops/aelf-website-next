@@ -21,7 +21,7 @@ const MENU_LIST = [
   },
   {
     text: "Ecosystem",
-    path: "/ecosystem",
+    path: "/aelf-ecosystem",
   },
   {
     text: "Blog",
