@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import clsx from "clsx";
 import CommonImage from "../CommonImage";
 import CommonButton, {
@@ -16,6 +16,11 @@ export enum CommonImageTextPartImagePosition {
   TOP = "top",
 }
 
+interface IDescriptionListItem {
+  label: string;
+  content: string;
+}
+
 interface IButtonProps
   extends Pick<ICommonButtonProps, "className" | "type" | "onClick"> {
   text: string;
@@ -23,7 +28,8 @@ interface IButtonProps
 
 export interface ICommonImageTextPartContentItem {
   title: string;
-  description: string;
+  description?: string;
+  descriptionList?: IDescriptionListItem[];
   buttonProps?: IButtonProps;
 }
 
@@ -32,6 +38,7 @@ interface ICommonImageTextPartProps {
   imageClassName?: string;
   contentWrapClassName?: string;
   contentListWrapClassName?: string;
+  contentItemClassName?: string;
   desktopAndTabletImagePosition?: CommonImageTextPartImagePosition;
   imageSrc: any;
   imageWidth?: number | string;
@@ -44,6 +51,7 @@ export default function CommonImageTextPart({
   imageClassName,
   contentWrapClassName,
   contentListWrapClassName,
+  contentItemClassName,
   desktopAndTabletImagePosition = CommonImageTextPartImagePosition.LEFT,
   imageSrc,
   imageWidth,
@@ -85,12 +93,30 @@ export default function CommonImageTextPart({
     index,
     title,
     description,
+    descriptionList,
     buttonProps,
   }: { index: number } & ICommonImageTextPartContentItem) => {
     return (
-      <div key={index} className={styles.contentItem}>
+      <div key={index} className={clsx(styles.contentItem, contentItemClassName)}>
         <div className={styles.contentItemTitle}>{title}</div>
-        <div className={styles.contentItemDescription}>{description}</div>
+        {description && (
+          <div className={styles.contentItemDescription}>{description}</div>
+        )}
+        {!!descriptionList?.length && (
+          <ul className={styles.contentItemDescriptionList}>
+            {descriptionList.map((item, idx) => (
+              <Fragment key={idx}>
+                {idx !== 0 && <br />}
+                <li>
+                  <span className={styles.descriptionListLabel}>
+                    {item.label}:&nbsp;
+                  </span>
+                  <span>{item.content}</span>
+                </li>
+              </Fragment>
+            ))}
+          </ul>
+        )}
         {buttonProps && (
           <CommonButton
             className={clsx(styles.contentItemButton, buttonProps.className)}

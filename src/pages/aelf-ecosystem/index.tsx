@@ -5,7 +5,7 @@ import FirstScreenSection from "@/pageComponents/ecosystem/FirstScreenSection";
 import OverviewSection from "@/pageComponents/ecosystem/OverviewSection";
 import DappsSection from "@/pageComponents/ecosystem/DappsSection";
 import VenturesSection from "@/pageComponents/ecosystem/VenturesSection";
-import StartSection from "@/pageComponents/ecosystem/StartSection";
+import CommonStartSection from "@/components/CommonStartSection";
 
 export default function Ecosystem() {
   return (
@@ -18,7 +18,7 @@ export default function Ecosystem() {
       <OverviewSection />
       <DappsSection />
       <VenturesSection />
-      <StartSection />
+      <CommonStartSection />
       <CommonFooter />
     </>
   );

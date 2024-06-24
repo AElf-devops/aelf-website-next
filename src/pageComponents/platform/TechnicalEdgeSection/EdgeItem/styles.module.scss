@@ -1,0 +1,42 @@
+.edgeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .icon {
+    width: 48px;
+    height: 48px;
+  }
+  .title {
+    font-family: "Poppins-Medium";
+    font-weight: 500;
+    line-height: normal;
+  }
+  .description {
+    flex: 1;
+    line-height: normal;
+  }
+}
+
+.desktop {
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 14px;
+  }
+}
+
+.tablet {
+  .title {
+    font-size: 14px;
+  }
+  .description {
+    font-size: 12px;
+  }
+}
+
+.mobile {
+  .title {
+    font-size: 14px;
+  }
+}

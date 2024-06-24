@@ -14,6 +14,7 @@ import styles from "./styles.module.scss";
 const MENU_LIST = [
   {
     text: "Platform",
+    path: "/platform",
   },
   {
     text: "Developer",

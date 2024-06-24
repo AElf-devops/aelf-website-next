@@ -10,6 +10,13 @@
   }
   &.topImage {
     flex-direction: column;
+    .contentWrap,
+    .contentListWrap {
+      max-width: none;
+    }
+    .contentWrap {
+      align-items: center;
+    }
   }
   .contentWrap,
   .contentListWrap,
@@ -26,6 +33,15 @@
   .contentItemDescription {
     margin-top: 8px;
     line-height: normal;
+  }
+  .contentItemDescriptionList {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: normal;
+    list-style-type: disc;
+  }
+  .descriptionListLabel {
+    font-family: "Poppins-Bold";
   }
 }
 

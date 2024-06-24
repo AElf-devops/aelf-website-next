@@ -1,0 +1,34 @@
+.platformSection {
+  color: #fff;
+  background-color: #1a1a1a;
+  .platformContent {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.desktop.platformSection {
+  .platformContent {
+    gap: 120px;
+  }
+}
+
+.tablet.platformSection {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .platformContent {
+    gap: 48px;
+  }
+  .platformHeader {
+    max-width: none;
+  }
+}
+
+.mobile.platformSection {
+  .platformContent {
+    gap: 48px;
+  }
+  .imageTextPart {
+    gap: 24px;
+  }
+}
