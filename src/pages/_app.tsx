@@ -46,10 +46,8 @@ function ComponentContainer({ Component, pageProps }: any) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    console.log('window: ', window);
 
     const handleRouteChangeComplete = () => {
-      console.log('handleRouteChangeComplete');
       window.scrollTo(0, 0);
     };
     router.events.on("routeChangeComplete", handleRouteChangeComplete);
