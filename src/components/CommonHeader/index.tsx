@@ -79,7 +79,11 @@ export default function CommonHeader() {
             </div>
             <div className={styles.menuDrawerContent}>
               {MENU_LIST.map((item, index) => (
-                <CommonLink key={index} href={item.path}>
+                <CommonLink
+                  key={index}
+                  href={item.path}
+                  onClick={() => setIsMenuDrawerOpen(false)}
+                >
                   <div className={styles.menuDrawerContentItem}>
                     {item.text}
                   </div>

@@ -1,17 +1,6 @@
 import clsx from "clsx";
 import Logo from "@/assets/Logo.svg";
-import {
-  Discord,
-  Email,
-  Facebook,
-  Github,
-  Medium,
-  Reddit,
-  Telegram,
-  WeChat,
-  X,
-  Youtube,
-} from "@/assets/socialMedia";
+import { Discord, Github, Telegram, X } from "@/assets/socialMedia";
 import CommonImage from "../CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -42,7 +31,6 @@ const LINK_LIST = [
       { text: "Docs" },
       { text: "Tools" },
       { text: "Resources" },
-      
     ],
   },
   {
@@ -62,34 +50,16 @@ const LINK_LIST = [
 
 const SOCIAL_MEDIA_LIST = [
   {
-    icon: Email,
-  },
-  {
     icon: X,
-  },
-  {
-    icon: Github,
-  },
-  {
-    icon: Discord,
-  },
-  {
-    icon: Reddit,
-  },
-  {
-    icon: Medium,
   },
   {
     icon: Telegram,
   },
   {
-    icon: WeChat,
+    icon: Discord,
   },
   {
-    icon: Youtube,
-  },
-  {
-    icon: Facebook,
+    icon: Github,
   },
 ];
 

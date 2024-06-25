@@ -1,7 +1,8 @@
 .commonFooter {
   max-width: 1208px;
   margin: 0 auto;
-  padding: 48px 40px 150px;
+  padding: 48px 40px calc(24px + env(safe-area-inset-bottom));
+  padding: 48px 40px calc(24px + constant(safe-area-inset-bottom));
   .linkWrap {
     display: flex;
     gap: 24px;
@@ -60,12 +61,13 @@
 
 .tablet.commonFooter {
   max-width: 744px;
-  padding: 48px 40px 54px;
 }
 
 .mobile.commonFooter {
   max-width: none;
-  padding: 24px 16px 110px;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-left: 16px;
   .divider {
     margin: 16px 0;
   }
