@@ -2,6 +2,7 @@ import ConfigProvider from "@/contexts/useConfig";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import "@/styles/globals.scss";
 import NextApp from "next/app";
+import { useRouter } from "next/router";
 import { userAgent } from "next/server";
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
@@ -11,7 +12,11 @@ function ComponentContainer({ Component, pageProps }: any) {
   const [initialized, setInitialized] = useState(false);
   const [_, dispatch] = useConfig();
 
+  const router = useRouter();
+
   useEffect((): any => {
+    if (typeof window === "undefined") return;
+
     const resize = () => {
       if (window.innerWidth >= BREAKPOINTS.MD) {
         dispatch({
@@ -31,15 +36,25 @@ function ComponentContainer({ Component, pageProps }: any) {
       }
     };
 
-    if (typeof window !== "undefined") {
-      resize();
-      window.addEventListener("resize", resize);
-      setInitialized(true);
-      return () => {
-        window.removeEventListener("resize", resize);
-      };
-    }
+    resize();
+    window.addEventListener("resize", resize);
+    setInitialized(true);
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
   }, [dispatch]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleRouteChangeComplete = () => {
+      window.scrollTo(0, 0);
+    };
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [router.events]);
 
   if (!initialized) {
     return null;
