@@ -69,7 +69,9 @@ export default function CommonHeader() {
             }}
           >
             <div className={styles.menuDrawerHeader}>
-              {renderLogo()}
+              <div onClick={() => setIsMenuDrawerOpen(false)}>
+                {renderLogo()}
+              </div>
               <CommonImage
                 className={styles.menuDrawerCloseIcon}
                 src={Close}
