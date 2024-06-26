@@ -4,9 +4,12 @@ import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { useRouter } from "next/router";
 import { userAgent } from "next/server";
-import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
+import React, { useEffect, useState } from "react";
+import microApp from "@micro-zoe/micro-app";
+import GoogleTagManager from "@/components/GoogleTagManager";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
+import { GTM_ID } from "@/constants";
 
 function ComponentContainer({ Component, pageProps }: any) {
   const [initialized, setInitialized] = useState(false);
@@ -64,8 +67,12 @@ function ComponentContainer({ Component, pageProps }: any) {
 }
 
 export default function App({ Component, pageProps, isMobile }: any) {
+  useEffect(() => {
+    microApp.start();
+  }, []);
   return (
     <ConfigProvider init={{ isMobile }}>
+      <GoogleTagManager gtmId={GTM_ID} />
       <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );
