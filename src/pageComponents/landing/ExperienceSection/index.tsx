@@ -21,18 +21,17 @@ export default function ExperienceSection() {
           icon={BuildIcon}
           title="Build on aelf"
           description="Explore aelf’s documentation and learn how to create, build and deploy your dApps."
-          buttonProps={{
-            text: "Visit developer docs",
-          }}
+          arrowText="Visit developer docs"
+          href="https://docs.aelf.com"
         />
         <ExperienceCard
           className={styles.card}
           icon={BlogIcon}
           title="Blog"
           description="Stay informed on aelf news and featured updates."
-          buttonProps={{
-            text: "Read our blog",
-          }}
+          arrowText="Read our blog"
+          href="https://blog.aelf.com/"
+          isExternalLinkTargetSelf
         />
       </div>
       <RecentBlogList className={styles.recentBlogList} />

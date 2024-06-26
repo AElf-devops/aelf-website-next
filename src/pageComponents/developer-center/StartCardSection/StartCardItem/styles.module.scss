@@ -1,11 +1,11 @@
 .startCardItem {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 32px;
   padding: 32px;
   border-radius: 8px;
   border: 1px solid #e8e8e8;
-  cursor: pointer;
   .logo {
     width: 32px;
     height: 32px;

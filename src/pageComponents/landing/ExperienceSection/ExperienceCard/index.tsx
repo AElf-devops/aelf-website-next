@@ -1,20 +1,17 @@
 import clsx from "clsx";
+import CommonLink, { ICommonLinkProps } from "@/components/CommonLink";
 import CommonImage from "@/components/CommonImage";
 import ArrowRightWhite from "@/assets/ArrowRightWhite.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
-interface IExperienceCardButtonProps {
-  text: string;
-  onClick?: () => void;
-}
-
-interface IExperienceCardProps {
+interface IExperienceCardProps
+  extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
   className?: string;
   icon: any;
   title: string;
   description: string;
-  buttonProps: IExperienceCardButtonProps;
+  arrowText: string;
 }
 
 export default function ExperienceCard({
@@ -22,7 +19,9 @@ export default function ExperienceCard({
   icon,
   title,
   description,
-  buttonProps,
+  arrowText,
+  href,
+  isExternalLinkTargetSelf,
 }: IExperienceCardProps) {
   const deviceClassName = useDeviceClass(styles);
   return (
@@ -31,10 +30,14 @@ export default function ExperienceCard({
       <div className={styles.experienceCardContent}>
         <div className={styles.title}>{title}</div>
         <div className={styles.description}>{description}</div>
-        <div className={styles.linkButton} onClick={buttonProps.onClick}>
-          <span>{buttonProps.text}</span>
+        <CommonLink
+          className={styles.linkButton}
+          href={href}
+          isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+        >
+          <span>{arrowText}</span>
           <CommonImage className={styles.arrowRight} src={ArrowRightWhite} />
-        </div>
+        </CommonLink>
       </div>
     </div>
   );

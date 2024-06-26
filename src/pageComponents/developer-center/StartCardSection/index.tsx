@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, Col } from "antd";
-import CommonSection, { MobilePaddingLeftAndRightSize } from "@/components/NewCommonSection";
+import CommonSection, {
+  MobilePaddingLeftAndRightSize,
+} from "@/components/NewCommonSection";
 import SectionTitle from "../SectionTitle";
 import StartCardItem, { IStartCardItemProps } from "./StartCardItem";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -12,12 +14,15 @@ import styles from "./styles.module.scss";
 const START_CARD_LIST_CONFIG: IStartCardItemProps[] = [
   {
     text: "Setup your development environment",
+    href: "https://docs.aelf.com/",
   },
   {
     text: "Create your first web3 dApp",
+    href: "https://docs.aelf.com/",
   },
   {
     text: "Run aelf side chain",
+    href: "https://docs.aelf.com/",
   },
 ];
 

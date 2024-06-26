@@ -1,16 +1,26 @@
 import clsx from "clsx";
 import CommonImage from "@/components/CommonImage";
-import CommonButton, { CommonButtonType } from "@/components/CommonButton";
+import CommonButton, {
+  CommonButtonType,
+  ICommonButtonProps,
+} from "@/components/CommonButton";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
+
+interface IButtonProps
+  extends Pick<
+    ICommonButtonProps,
+    "href" | "isExternalLinkTargetSelf" | "onClick"
+  > {
+  text: string;
+}
 
 export interface IGuideCardItemProps {
   className?: string;
   imageSrc: any;
   title: string;
   description: string;
-  buttonText: string;
-  onButtonClick?: () => void;
+  buttonProps: IButtonProps;
 }
 
 export default function GuideCardItem({
@@ -18,8 +28,7 @@ export default function GuideCardItem({
   imageSrc,
   title,
   description,
-  buttonText,
-  onButtonClick,
+  buttonProps,
 }: IGuideCardItemProps) {
   const deviceClassName = useDeviceClass(styles);
   return (
@@ -30,11 +39,11 @@ export default function GuideCardItem({
         <div className={styles.description}>{description}</div>
       </div>
       <CommonButton
+        {...buttonProps}
         className={styles.button}
         type={CommonButtonType.PRIMARY}
-        onClick={onButtonClick}
       >
-        {buttonText}
+        {buttonProps.text}
       </CommonButton>
     </div>
   );

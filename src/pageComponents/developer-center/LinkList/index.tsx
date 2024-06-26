@@ -1,10 +1,11 @@
 import clsx from "clsx";
+import CommonLink, { ICommonLinkProps } from "@/components/CommonLink";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
 
-interface ILinkListItem {
+interface ILinkListItem
+  extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
   linkText: string;
-  link?: string;
   description: string;
 }
 
@@ -31,9 +32,13 @@ export default function LinkList({
       >
         {list.map((item, index) => (
           <div key={index} className={styles.listItem}>
-            <a href={item.link} target="_blank" className={styles.link}>
+            <CommonLink
+              className={styles.link}
+              href={item.href}
+              isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
+            >
               {item.linkText}
-            </a>
+            </CommonLink>
             <div className={styles.description}>{item.description}</div>
           </div>
         ))}

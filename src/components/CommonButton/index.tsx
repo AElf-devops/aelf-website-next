@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import styles from "./styles.module.scss";
 
 export enum CommonButtonType {
@@ -14,7 +15,8 @@ export enum CommonButtonSize {
   SM = "sm",
 }
 
-export interface ICommonButtonProps {
+export interface ICommonButtonProps
+  extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
   className?: string;
   type?: CommonButtonType;
   size?: CommonButtonSize;
@@ -30,22 +32,34 @@ export default function CommonButton({
   type = CommonButtonType.DEFAULT,
   size = CommonButtonSize.MD,
   children,
+  href,
+  isExternalLinkTargetSelf,
   onClick,
 }: ICommonButtonProps) {
-  return (
-    <div
-      className={clsx(
-        className,
-        styles.commonButton,
-        styles[`${type}Button`],
-        styles[`${size}Button`],
-        {
-          [styles.round]: isRound,
-        }
-      )}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
+  const containerProps = {
+    className: clsx(
+      className,
+      styles.commonButton,
+      styles[`${type}Button`],
+      styles[`${size}Button`],
+      {
+        [styles.round]: isRound,
+      }
+    ),
+    onClick,
+  };
+
+  if (href) {
+    return (
+      <CommonLink
+        {...containerProps}
+        href={href}
+        isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+      >
+        {children}
+      </CommonLink>
+    );
+  } else {
+    return <div {...containerProps}>{children}</div>;
+  }
 }

@@ -26,6 +26,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     tagList: ["Wallet"],
     description:
       "An Account Abstraction Wallet for you to seamlessly transition from Web2 to Web3.",
+    href: "https://portkey.finance/",
   },
   {
     className: styles.dappCard,
@@ -35,6 +36,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     tagList: ["Bridge"],
     description:
       "A simple to use cross-chain bridge between aelf and the EVM compatible chains.",
+    href: "https://ebridge.exchange/",
   },
   {
     className: styles.dappCard,
@@ -44,6 +46,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     tagList: ["NFT"],
     description:
       "An NFT marketplace that offers an easy way to create and trade NFTs while enjoying low gas fees.",
+    href: "https://www.eforest.finance/",
   },
 ];
 
@@ -61,7 +64,12 @@ export default function FunctionSection() {
 
   const renderExploreButton = useCallback(
     () => (
-      <CommonButton type={CommonButtonType.GHOST_BLACK} size={buttonSize} isRound>
+      <CommonButton
+        type={CommonButtonType.GHOST_BLACK}
+        size={buttonSize}
+        isRound
+        href="/aelf-ecosystem"
+      >
         Explore dApps
       </CommonButton>
     ),
@@ -86,6 +94,7 @@ export default function FunctionSection() {
             buttonProps: {
               type: CommonButtonType.GHOST_BLACK,
               text: "Learn More",
+              href: "/platform",
             },
           },
           {
@@ -95,6 +104,7 @@ export default function FunctionSection() {
             buttonProps: {
               type: CommonButtonType.GHOST_BLACK,
               text: "Read Docs",
+              href: "https://docs.aelf.com",
             },
           },
         ]}

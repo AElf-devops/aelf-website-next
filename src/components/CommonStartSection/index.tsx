@@ -10,11 +10,16 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
-interface IButtonProps extends Pick<ICommonButtonProps, "onClick"> {
+interface IButtonProps
+  extends Pick<
+    ICommonButtonProps,
+    "href" | "isExternalLinkTargetSelf" | "onClick"
+  > {
   text: string;
 }
 
 interface ICommonStartSectionProps {
+  id?: string;
   className?: string;
   title?: string;
   description?: string;
@@ -22,7 +27,7 @@ interface ICommonStartSectionProps {
 }
 
 const DEFAULT_START_SECTION_CONFIG: Required<
-  Omit<ICommonStartSectionProps, "className">
+  Omit<ICommonStartSectionProps, "id" | "className">
 > = {
   title: "Be part of tomorrow with aelf",
   description:
@@ -30,14 +35,17 @@ const DEFAULT_START_SECTION_CONFIG: Required<
   buttonList: [
     {
       text: "Start Building",
+      href: "/developer-center",
     },
     {
       text: "Read Docs",
+      href: "https://docs.aelf.com",
     },
   ],
 };
 
 export default function CommonStartSection({
+  id,
   className,
   title,
   description,
@@ -48,6 +56,7 @@ export default function CommonStartSection({
 
   return (
     <CommonSection
+      id={id}
       sectionClassName={clsx(
         styles.commonStartSection,
         deviceClassName,
@@ -65,8 +74,9 @@ export default function CommonStartSection({
       </div>
       <div className={styles.buttonList}>
         {(buttonList || DEFAULT_START_SECTION_CONFIG.buttonList).map(
-          (item, index) => (
+          (config, index) => (
             <CommonButton
+              {...config}
               key={index}
               className={styles.button}
               isRound
@@ -80,9 +90,8 @@ export default function CommonStartSection({
                   ? CommonButtonSize.MD
                   : CommonButtonSize.SM
               }
-              onClick={item.onClick}
             >
-              {item.text}
+              {config.text}
             </CommonButton>
           )
         )}

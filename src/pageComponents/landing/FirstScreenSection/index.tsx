@@ -36,13 +36,18 @@ export default function FirstScreenSection() {
           We converge AI and Blockchain to power the future of Web3
         </div>
         <div className={styles.buttonWrap}>
-          <CommonButton className={styles.button} isRound>
+          <CommonButton
+            className={styles.button}
+            isRound
+            href="https://docs.aelf.com"
+          >
             Read Docs
           </CommonButton>
           <CommonButton
             className={styles.button}
             type={CommonButtonType.PRIMARY}
             isRound
+            href="/developer-center"
           >
             Start Building
           </CommonButton>

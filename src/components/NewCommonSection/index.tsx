@@ -15,6 +15,7 @@ export enum SectionHeaderPosition {
 }
 
 export interface ICommonSectionProps {
+  id?: string;
   sectionClassName?: string;
   contentClassName?: string;
   headerClassName?: string;
@@ -27,6 +28,7 @@ export interface ICommonSectionProps {
   children?: React.ReactNode;
 }
 export default function CommonSection({
+  id,
   sectionClassName,
   contentClassName,
   headerClassName,
@@ -42,6 +44,7 @@ export default function CommonSection({
   const [{ deviceWidthType }] = useConfig();
   return (
     <section
+      id={id}
       className={clsx([
         styles.commonSection,
         deviceClassName,
@@ -55,7 +58,11 @@ export default function CommonSection({
       <div className={clsx([styles.commonContent, contentClassName])}>
         {(title || description) && (
           <div
-            className={clsx(styles.header, styles[`${headerPosition}Header`], headerClassName)}
+            className={clsx(
+              styles.header,
+              styles[`${headerPosition}Header`],
+              headerClassName
+            )}
           >
             {title && (
               <div className={clsx(styles.title, titleClassName)}>{title}</div>

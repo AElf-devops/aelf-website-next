@@ -6,6 +6,7 @@ import OverviewSection from "@/pageComponents/ecosystem/OverviewSection";
 import DappsSection from "@/pageComponents/ecosystem/DappsSection";
 import VenturesSection from "@/pageComponents/ecosystem/VenturesSection";
 import CommonStartSection from "@/components/CommonStartSection";
+import { SECTION_ID } from "@/constants/sectionId";
 
 export default function Ecosystem() {
   return (
@@ -18,7 +19,7 @@ export default function Ecosystem() {
       <OverviewSection />
       <DappsSection />
       <VenturesSection />
-      <CommonStartSection />
+      <CommonStartSection id={SECTION_ID.ECOSYSTEM.START} />
       <CommonFooter />
     </>
   );

@@ -72,6 +72,7 @@ export default function BuildingSection() {
             buttonProps: {
               type: CommonButtonType.GHOST_BLACK,
               text: "Start Building",
+              href: "/developer-center",
             },
           },
         ]}
@@ -90,6 +91,7 @@ export default function BuildingSection() {
             buttonProps: {
               type: CommonButtonType.GHOST_BLACK,
               text: "Read Docs",
+              href: "https://docs.aelf.com",
             },
           },
         ]}
@@ -107,6 +109,7 @@ export default function BuildingSection() {
             buttonProps: {
               type: CommonButtonType.GHOST_BLACK,
               text: "Join Community",
+              href: "https://github.com/AElfProject/AElf",
             },
           },
         ]}

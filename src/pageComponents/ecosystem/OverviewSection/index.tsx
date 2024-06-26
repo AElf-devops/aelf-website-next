@@ -10,6 +10,7 @@ import EcosystemOverview3 from "@/assets/ecosystem/EcosystemOverview3.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import { SECTION_ID } from "@/constants/sectionId";
 import styles from "./styles.module.scss";
 
 export default function OverviewSection() {
@@ -54,6 +55,7 @@ export default function OverviewSection() {
 
   return (
     <CommonSection
+      id={SECTION_ID.ECOSYSTEM.OVERVIEW}
       sectionClassName={clsx(styles.overviewSection, deviceClassName)}
       contentClassName={styles.overviewContent}
       headerClassName={styles.overviewHeader}
@@ -72,6 +74,7 @@ export default function OverviewSection() {
               "Portkey Wallet is a user-friendly and secure account abstraction wallet that facilitates seamless asset management and a smooth Web3 experience. With robust security features and an intuitive interface, Portkey Wallet is the gateway to managing digital assets and interacting with decentralized applications on the aelf blockchain.",
             buttonProps: {
               text: "Learn more",
+              href: "https://portkey.finance/",
             },
           },
         ]}
@@ -87,6 +90,7 @@ export default function OverviewSection() {
               "Project Schrödinger is an Al-powered ACS-404 inscription allowing you to adopt cats and enjoy the fun of dynamic gameplay and unpredictable transformation.",
             buttonProps: {
               text: "Learn more",
+              href: "https://schrodingernft.ai/",
             },
           },
         ]}
@@ -103,6 +107,7 @@ export default function OverviewSection() {
               "ETransfer is a secure and efficient digital asset transfer solution designed to facilitate seamless transactions across different blockchain networks, ensuring speed, reliability, and low transaction costs.",
             buttonProps: {
               text: "Learn more",
+              href: "https://etransfer.exchange/",
             },
           },
         ]}

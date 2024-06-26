@@ -13,6 +13,7 @@ import PlutoImg from "@/assets/ecosystem/Pluto.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import { SECTION_ID } from "@/constants/sectionId";
 import styles from "./styles.module.scss";
 
 const CARD_LIST: ICommonCardProps[] = [
@@ -21,18 +22,21 @@ const CARD_LIST: ICommonCardProps[] = [
     description:
       "Crystal Fun, a decentralized Web3 game ecosystem, ushering ground breaking experiences with high-quality Web3 games.",
     arrowText: "Learn more",
+    href: "https://crystalfun.io/",
   },
   {
     icon: MythicProtocolImg,
     description:
       "Confiction (ex-name: Mythic Protocol) is developing an exhilarating gameplay-first roguelike ARPG with blockchain technology.",
     arrowText: "Learn more",
+    href: "https://www.confiction.com/",
   },
   {
     icon: PlutoImg,
     description:
       "Pluto is a gaming studio, with a vision of bridging casual to midcore Web2 into Web3 games across Ton and multichain ecosystems.",
     arrowText: "Learn more",
+    href: "https://www.pluto.vision/",
   },
 ];
 
@@ -77,6 +81,7 @@ export default function VenturesSection() {
 
   return (
     <CommonSection
+      id={SECTION_ID.ECOSYSTEM.VENTURES}
       sectionClassName={clsx(styles.venturesSection, deviceClassName)}
       headerClassName={styles.venturesHeader}
       title="aelf Ventures"
@@ -111,7 +116,10 @@ export default function VenturesSection() {
               "By fostering strategic partnerships, aelf Ventures helps startups connect with industry leaders, enabling collaborative growth and success.",
           },
         ]}
-        contentBottomButtonProps={{ text: "Speak with Us" }}
+        contentBottomButtonProps={{
+          text: "Speak with Us",
+          href: "mailto: ventures@aelf.io",
+        }}
       />
       <div className={styles.cardPart}>
         <div className={styles.cardPartTitle}>Our Portfolio</div>

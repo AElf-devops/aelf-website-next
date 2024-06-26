@@ -50,12 +50,30 @@ function ComponentContainer({ Component, pageProps }: any) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handleRouteChangeComplete = () => {
-      window.scrollTo(0, 0);
+    const handleScrollTo = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            history.replaceState(
+              null,
+              "",
+              window.location.pathname + window.location.search
+            );
+          }, 200);
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
     };
-    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    setTimeout(handleScrollTo, 500);
+    router.events.on("routeChangeComplete", handleScrollTo);
+    router.events.on("hashChangeComplete", handleScrollTo);
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+      router.events.off("routeChangeComplete", handleScrollTo);
+      router.events.off("hashChangeComplete", handleScrollTo);
     };
   }, [router.events]);
 

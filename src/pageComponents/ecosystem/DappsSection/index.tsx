@@ -23,6 +23,7 @@ import {
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import { SECTION_ID } from "@/constants/sectionId";
 import styles from "./styles.module.scss";
 
 const DAPP_LIST: ICommonCardProps[] = [
@@ -34,6 +35,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     description:
       "An Account Abstraction Wallet for you to seamlessly transition from Web2 to Web3.",
     arrowText: "Learn more",
+    href: "https://portkey.finance/",
   },
   {
     theme: CommonCardTheme.WHITE,
@@ -43,6 +45,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     description:
       "Al-powered ACS-404 inscription allowing you to adopt cats and enjoy the fun of dynamic gameplay and unpredictable transformation.",
     arrowText: "Learn more",
+    href: "https://schrodingernft.ai/",
   },
   {
     theme: CommonCardTheme.WHITE,
@@ -52,6 +55,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     description:
       "An NFT marketplace that offers an easy way to create and trade NFTs while enjoying low gas fees.",
     arrowText: "Learn more",
+    href: "https://www.eforest.finance/",
   },
   {
     theme: CommonCardTheme.WHITE,
@@ -61,6 +65,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     description:
       "A fully on-chain Web3 game, powered by Portkey’s SDK and aelf blockchain.",
     arrowText: "Learn more",
+    href: "https://beangotown.com/",
   },
   {
     theme: CommonCardTheme.WHITE,
@@ -69,6 +74,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     tagList: ["DeFi", "Mainnet"],
     description: "Swap, lend and borrow crypto assets on one DeFi platform.",
     arrowText: "Learn more",
+    href: "https://awaken.finance/",
   },
   {
     theme: CommonCardTheme.WHITE,
@@ -78,6 +84,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     description:
       "A secure and efficient digital asset transfer solution to facilitate seamless transactions across different blockchain networks.",
     arrowText: "Learn more",
+    href: "https://etransfer.exchange/",
   },
 ];
 
@@ -111,6 +118,7 @@ export default function DappsSection() {
 
   return (
     <CommonSection
+      id={SECTION_ID.ECOSYSTEM.DAPPS}
       sectionClassName={clsx(styles.dappsSection, deviceClassName)}
       contentClassName={styles.dappsContent}
       headerPosition={SectionHeaderPosition.CENTER}
@@ -132,6 +140,7 @@ export default function DappsSection() {
             : CommonButtonSize.SM
         }
         isRound
+        href="https://form.aelf.com/submit-project"
       >
         Submit a Project
       </CommonButton>

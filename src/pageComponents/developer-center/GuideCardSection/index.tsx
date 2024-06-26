@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, Col } from "antd";
-import CommonSection, { MobilePaddingLeftAndRightSize } from "@/components/NewCommonSection";
+import CommonSection, {
+  MobilePaddingLeftAndRightSize,
+} from "@/components/NewCommonSection";
 import SectionTitle from "../SectionTitle";
 import GuideCardItem, { IGuideCardItemProps } from "./GuideCardItem";
 import * as DeveloperGuideCard from "@/assets/developer-center/developerGuideCard";
@@ -15,25 +17,37 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     imageSrc: DeveloperGuideCard.DeveloperGuideCard1,
     title: "Build on aelf",
     description: "Build next gen dApps on aelf.",
-    buttonText: "Start Building",
+    buttonProps: {
+      text: "Start Building",
+      href: "https://docs.aelf.com/",
+    },
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard2,
     title: "aelf’s architecture",
     description: "Deep dive into aelf blockchain's architecture",
-    buttonText: "View Tutorials",
+    buttonProps: {
+      text: "View Tutorials",
+      href: "https://docs.aelf.com/",
+    },
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard3,
     title: "Setup local environment",
     description: "Configure aelf's mainnet and testnet locally.",
-    buttonText: "Set it Up",
+    buttonProps: {
+      text: "Set it Up",
+      href: "https://docs.aelf.com/",
+    },
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard4,
     title: "Tutorials",
     description: "Learn step-by-step dApp development on aelf.",
-    buttonText: "Learn More",
+    buttonProps: {
+      text: "Learn More",
+      href: "https://docs.aelf.com/",
+    },
   },
 ];
 

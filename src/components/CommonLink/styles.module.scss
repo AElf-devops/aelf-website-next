@@ -1,5 +1,9 @@
-.commonLink,
-.commonLink:hover,
-.commonLink:active {
-  color: #011853;
+.commonLink {
+  cursor: pointer;
+  transition: none;
+  &,
+  &:hover,
+  &:active {
+    color: inherit;
+  }
 }

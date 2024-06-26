@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonImage from "../CommonImage";
 import ArrowRightWhite from "@/assets/ArrowRightWhite.svg";
 import ArrowRightBlack from "@/assets/ArrowRightBlack.svg";
@@ -9,7 +10,8 @@ export enum CommonCardTheme {
   BLACK = "black",
 }
 
-export interface ICommonCardProps {
+export interface ICommonCardProps
+  extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
   className?: string;
   iconClassName?: string;
   theme?: CommonCardTheme;
@@ -29,11 +31,11 @@ export default function CommonCard({
   tagList,
   description,
   arrowText,
+  href,
+  isExternalLinkTargetSelf,
 }: ICommonCardProps) {
-  return (
-    <div
-      className={clsx(styles.commonCard, className, styles[`${theme}Theme`])}
-    >
+  const cardContent = (
+    <>
       <div className={styles.header}>
         <CommonImage className={clsx(styles.icon, iconClassName)} src={icon} />
         {(name || !!tagList?.length) && (
@@ -53,7 +55,11 @@ export default function CommonCard({
       </div>
       <div className={styles.description}>{description}</div>
       {arrowText && (
-        <div className={styles.arrowWrap}>
+        <CommonLink
+          className={styles.arrowWrap}
+          href={href}
+          isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+        >
           <span>{arrowText}</span>
           <CommonImage
             className={styles.arrow}
@@ -63,8 +69,27 @@ export default function CommonCard({
                 : ArrowRightBlack
             }
           />
-        </div>
+        </CommonLink>
       )}
-    </div>
+    </>
+  );
+
+  const containerClassName = clsx(
+    styles.commonCard,
+    className,
+    styles[`${theme}Theme`]
+  );
+
+  if (arrowText) {
+    return <div className={containerClassName}>{cardContent}</div>;
+  }
+  return (
+    <CommonLink
+      className={containerClassName}
+      href={href}
+      isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+    >
+      {cardContent}
+    </CommonLink>
   );
 }

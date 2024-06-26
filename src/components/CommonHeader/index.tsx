@@ -14,21 +14,24 @@ import styles from "./styles.module.scss";
 const MENU_LIST = [
   {
     text: "Platform",
-    path: "/platform",
+    href: "/platform",
   },
   {
     text: "Developer",
-    path: "/developer-center",
+    href: "/developer-center",
   },
   {
     text: "Ecosystem",
-    path: "/aelf-ecosystem",
+    href: "/aelf-ecosystem",
   },
   {
     text: "Blog",
+    href: "https://blog.aelf.com/",
+    isExternalLinkTargetSelf: true,
   },
   {
     text: "Contact Us",
+    href: "https://form.aelf.com/contact",
     onlyMobileShow: true,
   },
 ];
@@ -40,7 +43,7 @@ export default function CommonHeader() {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState(false);
 
   const renderLogo = () => (
-    <CommonLink href="/landing">
+    <CommonLink href="/">
       <CommonImage className={styles.logo} src={Logo} alt="logo" />
     </CommonLink>
   );
@@ -83,7 +86,8 @@ export default function CommonHeader() {
               {MENU_LIST.map((item, index) => (
                 <CommonLink
                   key={index}
-                  href={item.path}
+                  href={item.href}
+                  isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
                   onClick={() => setIsMenuDrawerOpen(false)}
                 >
                   <div className={styles.menuDrawerContentItem}>
@@ -100,7 +104,11 @@ export default function CommonHeader() {
           <div className={styles.navWrap}>
             {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
               (item, index) => (
-                <CommonLink key={index} href={item.path}>
+                <CommonLink
+                  key={index}
+                  href={item.href}
+                  isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
+                >
                   <div className={styles.navItem}>{item.text}</div>
                 </CommonLink>
               )

@@ -3,12 +3,14 @@ import CommonSection from "@/components/NewCommonSection";
 import CommonImage from "@/components/CommonImage";
 import EcosystemHero from "@/assets/ecosystem/EcosystemHero.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { SECTION_ID } from "@/constants/sectionId";
 import styles from "./styles.module.scss";
 
 export default function FirstScreenSection() {
   const deviceClassName = useDeviceClass(styles);
   return (
     <CommonSection
+      id={SECTION_ID.ECOSYSTEM.FIRST_SCREEN}
       sectionClassName={clsx(styles.firstScreenSection, deviceClassName)}
       contentClassName={styles.firstScreenContent}
     >

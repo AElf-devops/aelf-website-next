@@ -22,7 +22,10 @@ interface IDescriptionListItem {
 }
 
 interface IButtonProps
-  extends Pick<ICommonButtonProps, "className" | "type" | "onClick"> {
+  extends Pick<
+    ICommonButtonProps,
+    "className" | "type" | "href" | "isExternalLinkTargetSelf" | "onClick"
+  > {
   text: string;
 }
 
@@ -97,7 +100,10 @@ export default function CommonImageTextPart({
     buttonProps,
   }: { index: number } & ICommonImageTextPartContentItem) => {
     return (
-      <div key={index} className={clsx(styles.contentItem, contentItemClassName)}>
+      <div
+        key={index}
+        className={clsx(styles.contentItem, contentItemClassName)}
+      >
         <div className={styles.contentItemTitle}>{title}</div>
         {description && (
           <div className={styles.contentItemDescription}>{description}</div>
@@ -119,11 +125,10 @@ export default function CommonImageTextPart({
         )}
         {buttonProps && (
           <CommonButton
+            {...buttonProps}
             className={clsx(styles.contentItemButton, buttonProps.className)}
             isRound
             size={contentItemButtonSize}
-            type={buttonProps.type}
-            onClick={buttonProps.onClick}
           >
             {buttonProps.text}
           </CommonButton>
@@ -155,10 +160,9 @@ export default function CommonImageTextPart({
         </div>
         {contentBottomButtonProps && (
           <CommonButton
+            {...contentBottomButtonProps}
             isRound
             size={contentBottomButtonSize}
-            type={contentBottomButtonProps.type}
-            onClick={contentBottomButtonProps.onClick}
           >
             {contentBottomButtonProps.text}
           </CommonButton>
