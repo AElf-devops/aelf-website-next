@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
 import ExperienceCard from "./ExperienceCard";
-import RecentBlogList from "./RecentBlogList";
+// import RecentBlogList from "./RecentBlogList";
 import BlogIcon from "@/assets/Blog.svg";
 import BuildIcon from "@/assets/Build.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -34,7 +34,8 @@ export default function ExperienceSection() {
           isExternalLinkTargetSelf
         />
       </div>
-      <RecentBlogList className={styles.recentBlogList} />
+      {/* TODO: Use apis to get data */}
+      {/* <RecentBlogList className={styles.recentBlogList} /> */}
     </CommonSection>
   );
 }
