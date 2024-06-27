@@ -50,11 +50,11 @@ const LINK_LIST: ILinkListItem[] = [
   {
     title: "Ecosystem",
     links: [
-      { text: "Overview", href: "/aelf-ecosystem" },
-      { text: "dApps", href: `/aelf-ecosystem#${SECTION_ID.ECOSYSTEM.DAPPS}` },
+      { text: "Overview", href: "/ecosystem" },
+      { text: "dApps", href: `/ecosystem#${SECTION_ID.ECOSYSTEM.DAPPS}` },
       {
         text: "aelf Ventures",
-        href: `/aelf-ecosystem#${SECTION_ID.ECOSYSTEM.VENTURES}`,
+        href: `/ecosystem#${SECTION_ID.ECOSYSTEM.VENTURES}`,
       },
       {
         text: "Blog",

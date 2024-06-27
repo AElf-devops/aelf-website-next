@@ -68,7 +68,7 @@ export default function FunctionSection() {
         type={CommonButtonType.GHOST_BLACK}
         size={buttonSize}
         isRound
-        href="/aelf-ecosystem"
+        href="/ecosystem"
       >
         Explore dApps
       </CommonButton>

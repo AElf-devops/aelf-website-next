@@ -22,7 +22,7 @@ const MENU_LIST = [
   },
   {
     text: "Ecosystem",
-    href: "/aelf-ecosystem",
+    href: "/ecosystem",
   },
   {
     text: "Blog",
