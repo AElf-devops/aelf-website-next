@@ -21,7 +21,7 @@ export default function FirstScreenSection() {
         <div className={styles.title}>
           A Performant
           <br />
-          Cloud-Native Layer 1 powered by AI
+          Cloud-Native Layer 1 Powered by AI
         </div>
         <div className={styles.description}>
           Explore the innovative platform behind aelf’s blockchain technology.

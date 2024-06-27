@@ -22,9 +22,10 @@
 html,
 body {
   height: 100%;
-  font-family: "Poppins-Regular";
-  font-size: 14px;
-  line-height: normal;
+  font-family: "Poppins-Regular" !important;
+  font-size: 14px !important;
+  line-height: normal !important;
+  color: #011853 !important;
 }
 
 a {

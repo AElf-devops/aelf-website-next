@@ -24,28 +24,28 @@ const EDGE_LIST_CONFIG: IEdgeItemProps[] = [
   {
     icon: PlatformCode,
     title: "Build on C#",
-    description: "Top 5 most popular coding language",
+    description: "Top 5 most popular coding language.",
   },
   {
     icon: PlatformNumber,
     title: "aelf’s Commitment",
-    description: "to growing & supporting developers",
+    description: "to growing & supporting developers.",
   },
   {
     icon: PlatformOptimization,
     title: "Continuous Optimization",
-    description: "& upgrades to aelf technology stack",
+    description: "& upgrades to aelf technology stack.",
   },
   {
     icon: PlatformTrafficLight,
     title: "Anti-Congestion",
     description:
-      "Experience smooth operations with our anti-congestion measures powered by AI agents",
+      "Experience smooth operations with our anti-congestion measures powered by AI agents.",
   },
   {
     icon: PlatformUser,
     title: "Wallet Gateway to Web3",
-    description: "No need for seed phrases, simply access via social logins",
+    description: "No need for seed phrases, simply access via social logins.",
   },
 ];
 
