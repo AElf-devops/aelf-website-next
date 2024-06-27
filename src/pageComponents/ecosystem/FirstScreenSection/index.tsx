@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonImage from "@/components/CommonImage";
 import EcosystemHero from "@/assets/ecosystem/EcosystemHero.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";

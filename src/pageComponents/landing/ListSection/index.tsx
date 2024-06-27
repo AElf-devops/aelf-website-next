@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonImage from "@/components/CommonImage";
 import * as Investor from "@/assets/investor";
 import * as Exchange from "@/assets/exchange";

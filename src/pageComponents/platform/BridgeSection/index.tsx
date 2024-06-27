@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonImageTextPart, { CommonImageTextPartImagePosition } from "@/components/CommonImageTextPart";
 import PlatformBridge from "@/assets/platform/PlatformBridge.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";

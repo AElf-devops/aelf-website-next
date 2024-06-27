@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonImageTextPart from "@/components/CommonImageTextPart";
 import CommonButton, {
   CommonButtonSize,

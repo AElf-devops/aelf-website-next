@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Row, RowProps, Col } from "antd";
 import CommonSection, {
   SectionHeaderPosition,
-} from "@/components/NewCommonSection";
+} from "@/components/CommonSection";
 import CommonCard, {
   CommonCardTheme,
   ICommonCardProps,

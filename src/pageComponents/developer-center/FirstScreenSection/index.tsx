@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import CommonSection, {
   MobilePaddingLeftAndRightSize,
-} from "@/components/NewCommonSection";
+} from "@/components/CommonSection";
 import CommonImage from "@/components/CommonImage";
 import DeveloperHero from "@/assets/developer-center/DeveloperHero.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 import CommonImage from "@/components/CommonImage";
 import LandingHeroAnimationImage from "./LandingHeroAnimationImage";

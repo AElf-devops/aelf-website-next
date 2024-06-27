@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Row, RowProps, Col } from "antd";
 import CommonSection, {
   MobilePaddingLeftAndRightSize,
-} from "@/components/NewCommonSection";
+} from "@/components/CommonSection";
 import SectionTitle from "../SectionTitle";
 import LinkList, { ILinkListProps } from "../LinkList";
 import { useDeviceClass } from "@/hooks/useDeviceClass";

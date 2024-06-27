@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Row, Col } from "antd";
 import CommonSection, {
   MobilePaddingLeftAndRightSize,
-} from "@/components/NewCommonSection";
+} from "@/components/CommonSection";
 import SectionTitle from "../SectionTitle";
 import GuideCardItem, { IGuideCardItemProps } from "./GuideCardItem";
 import * as DeveloperGuideCard from "@/assets/developer-center/developerGuideCard";

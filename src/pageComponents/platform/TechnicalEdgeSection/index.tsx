@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, RowProps, Col } from "antd";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import EdgeItem, { IEdgeItemProps } from "./EdgeItem";
 import PlatformCode from "@/assets/platform/PlatformCode.svg";
 import PlatformNumber from "@/assets/platform/PlatformNumber.svg";

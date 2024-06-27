@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import CommonButton, {
   CommonButtonSize,
   CommonButtonType,

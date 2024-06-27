@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CommonSection from "@/components/NewCommonSection";
+import CommonSection from "@/components/CommonSection";
 import ExperienceCard from "./ExperienceCard";
 import RecentBlogList from "./RecentBlogList";
 import BlogIcon from "@/assets/Blog.svg";
