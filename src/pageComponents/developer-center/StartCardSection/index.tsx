@@ -14,15 +14,15 @@ import styles from "./styles.module.scss";
 const START_CARD_LIST_CONFIG: IStartCardItemProps[] = [
   {
     text: "Setup your development environment",
-    href: "https://docs.aelf.com/",
+    href: "https://docs.aelf.com/tools/chain-sdk/",
   },
   {
     text: "Create your first web3 dApp",
-    href: "https://docs.aelf.com/",
+    href: "https://docs.aelf.com/quick-start/develop-your-first-aelf-smart-contract/",
   },
   {
     text: "Run aelf side chain",
-    href: "https://docs.aelf.com/",
+    href: "https://docs.aelf.com/quick-start/run-a-side-chain/",
   },
 ];
 

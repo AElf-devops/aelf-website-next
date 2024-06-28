@@ -19,7 +19,7 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     description: "Build next gen dApps on aelf.",
     buttonProps: {
       text: "Start Building",
-      href: "https://docs.aelf.com/",
+      href: "https://docs.aelf.com/quick-start/",
     },
   },
   {
@@ -28,7 +28,7 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     description: "Deep dive into aelf blockchain's architecture",
     buttonProps: {
       text: "View Tutorials",
-      href: "https://docs.aelf.com/",
+      href: "https://docs.aelf.com/learn/",
     },
   },
   {
@@ -37,7 +37,7 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     description: "Configure aelf's mainnet and testnet locally.",
     buttonProps: {
       text: "Set it Up",
-      href: "https://docs.aelf.com/",
+      href: "https://docs.aelf.com/tools/",
     },
   },
   {
@@ -46,7 +46,7 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     description: "Learn step-by-step dApp development on aelf.",
     buttonProps: {
       text: "Learn More",
-      href: "https://docs.aelf.com/",
+      href: "https://docs.aelf.com/tutorials/",
     },
   },
 ];
