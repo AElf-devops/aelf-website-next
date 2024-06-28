@@ -62,7 +62,7 @@ function ComponentContainer({ Component, pageProps }: any) {
               "",
               window.location.pathname + window.location.search
             );
-          }, 500);
+          }, 200);
         }
       } else {
         window.scrollTo(0, 0);
