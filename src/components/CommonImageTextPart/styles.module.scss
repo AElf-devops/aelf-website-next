@@ -1,0 +1,105 @@
+.commonImageTextPart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &.leftImage {
+    flex-direction: row;
+  }
+  &.rightImage {
+    flex-direction: row-reverse;
+  }
+  &.topImage {
+    flex-direction: column;
+    .contentWrap,
+    .contentListWrap {
+      max-width: none;
+    }
+    .contentWrap {
+      align-items: center;
+    }
+  }
+  .contentWrap,
+  .contentListWrap,
+  .contentItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contentItemTitle {
+    font-weight: 500;
+    line-height: normal;
+    font-family: "Poppins-Medium";
+  }
+  .contentItemDescription {
+    margin-top: 8px;
+    line-height: normal;
+  }
+  .contentItemDescriptionList {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: normal;
+    list-style-type: disc;
+  }
+  .descriptionListLabel {
+    font-family: "Poppins-Bold";
+  }
+}
+
+.desktop {
+  .contentWrap,
+  .contentListWrap {
+    gap: 64px;
+    max-width: 442px;
+  }
+  .contentItemTitle {
+    font-size: 20px;
+  }
+  .contentItemDescription {
+    font-size: 14px;
+  }
+  .contentItemButton {
+    margin-top: 24px;
+  }
+}
+
+.tablet {
+  .contentWrap,
+  .contentListWrap {
+    gap: 32px;
+    max-width: 324px;
+  }
+  .contentItemTitle {
+    font-size: 16px;
+  }
+  .contentItemDescription {
+    font-size: 12px;
+  }
+  .contentItemButton {
+    margin-top: 16px;
+  }
+}
+
+.mobile {
+  flex-direction: column;
+  gap: 48px;
+  &.directionReverse {
+    flex-direction: column;
+  }
+  .contentWrap,
+  .contentListWrap {
+    gap: 48px;
+  }
+  .contentWrap,
+  .contentItem {
+    align-items: stretch;
+  }
+  .contentItemTitle {
+    font-size: 20px;
+  }
+  .contentItemDescription {
+    font-size: 14px;
+  }
+  .contentItemButton {
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,81 @@
+.firstScreenSection {
+  background-color: #fff;
+  .firstScreenContent {
+    position: relative;
+  }
+  .title {
+    margin-bottom: 16px;
+    color: #011853;
+    font-weight: 700;
+    font-family: "Poppins-Bold";
+  }
+  .description {
+    color: #011853;
+    line-height: normal;
+  }
+}
+
+.desktop.firstScreenSection {
+  padding-top: 222px;
+  padding-bottom: 237px;
+  .introductionPart {
+    width: 327px;
+  }
+  .heroImage {
+    position: absolute;
+    top: -166px;
+    right: -115px;
+    width: 672px;
+    height: 506px;
+  }
+  .title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .description {
+    font-size: 16px;
+  }
+}
+
+.tablet.firstScreenSection {
+  padding-top: 113px;
+  padding-bottom: 169px;
+  .introductionPart {
+    width: 324px;
+  }
+  .heroImage {
+    position: absolute;
+    top: -33px;
+    right: 0;
+    width: 323px;
+    height: 243px;
+  }
+  .title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .description {
+    font-size: 14px;
+  }
+}
+
+.mobile.firstScreenSection {
+  padding-top: 20px;
+  padding-bottom: 48px;
+  .introductionPart {
+    width: auto;
+  }
+  .heroImage {
+    position: static;
+    width: 323px;
+    height: 243px;
+    margin: 0 auto 32px;
+  }
+  .title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  .description {
+    font-size: 14px;
+  }
+}

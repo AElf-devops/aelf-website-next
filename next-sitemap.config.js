@@ -1,7 +1,7 @@
 // next-sitemap.js
 
 const devUrlConfig = {
-  aelf: "http://192.168.11.44:9000",
+  aelf: "http://localhost:3000",
 };
 const testUrlConfig = {
   aelf: "https://test.aelf.com",
@@ -25,10 +25,4 @@ module.exports = {
   siteUrl: urlConfig.aelf,
   generateRobotsTxt: true,
   sitemapSize: 5000,
-  exclude: ["/blog.xml"],
-  robotsTxtOptions: {
-    additionalSitemaps: [
-      urlConfig.aelf + "/blog.xml",
-    ],
-  },
 };
