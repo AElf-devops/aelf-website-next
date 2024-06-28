@@ -1,6 +1,6 @@
 {
   "name": "aelf-website-next",
-  "version": "2.11.0",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -24,6 +24,7 @@
     "@editorjs/raw": "^2.5.0",
     "@editorjs/simple-image": "^1.6.0",
     "@editorjs/table": "^2.3.0",
+    "@micro-zoe/micro-app": "^1.0.0-rc.5",
     "antd": "4",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",

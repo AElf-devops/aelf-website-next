@@ -1,0 +1,33 @@
+.dappsSection {
+  color: #fff;
+  background-color: #1a1a1a;
+  .dappsContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dappCard {
+    height: 100%;
+    padding: 24px;
+  }
+}
+
+.desktop.dappsSection {
+  .dappsContent {
+    gap: 32px;
+  }
+}
+
+.tablet.dappsSection {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .dappsContent {
+    gap: 24px;
+  }
+}
+
+.mobile.dappsSection {
+  .dappsContent {
+    gap: 24px;
+  }
+}

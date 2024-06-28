@@ -1,0 +1,51 @@
+.developersSection {
+  padding-bottom: 0;
+  background-color: #fff;
+  .developersContent {
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .linkList {
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+  }
+}
+
+.desktop.developersSection {
+  padding-top: 64px;
+  .developersContent {
+    padding-bottom: 64px;
+  }
+  .sectionTitle {
+    margin-bottom: 32px;
+  }
+  .linkList {
+    padding: 32px 64px 32px 32px;
+  }
+}
+
+.tablet.developersSection {
+  padding-top: 64px;
+  .developersContent {
+    padding-bottom: 64px;
+  }
+  .sectionTitle {
+    margin-bottom: 24px;
+  }
+  .linkList {
+    padding: 32px 64px 32px 32px;
+  }
+}
+
+.mobile.developersSection {
+  padding-top: 48px;
+  .developersContent {
+    padding-bottom: 48px;
+  }
+  .sectionTitle {
+    margin-bottom: 24px;
+  }
+  .linkList {
+    padding: 24px 56px 24px 24px;
+  }
+}

@@ -1,0 +1,30 @@
+.technicalEdgeSection {
+  color: #fff;
+  background-color: #1a1a1a;
+  .edgeItem {
+    height: 100%;
+  }
+}
+
+.desktop.technicalEdgeSection {
+  .edgeList {
+    margin-top: 120px;
+  }
+}
+
+.tablet.technicalEdgeSection {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .technicalEdgeHeader {
+    max-width: none;
+  }
+  .edgeList {
+    margin-top: 48px;
+  }
+}
+
+.mobile.technicalEdgeSection {
+  .edgeList {
+    margin-top: 48px;
+  }
+}

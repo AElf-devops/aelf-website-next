@@ -1,0 +1,22 @@
+.recentBlogList {
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    font-family: "Poppins-Medium";
+  }
+  .headerIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.tablet.recentBlogList {
+  .header {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,9 @@
+.commonLink {
+  cursor: pointer;
+  transition: none;
+  &,
+  &:hover,
+  &:active {
+    color: inherit;
+  }
+}

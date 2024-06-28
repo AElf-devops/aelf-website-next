@@ -1,0 +1,78 @@
+.commonButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  line-height: normal;
+  font-family: "Poppins-Medium";
+  cursor: pointer;
+
+  &.defaultButton {
+    border: 1px solid #011853;
+    color: #011853;
+    &:hover {
+      background-color: #011853;
+      color: #fff;
+    }
+    &:active {
+      background-color: #01206f;
+      color: #fff;
+    }
+  }
+  &.primaryButton {
+    background-color: #127fff;
+    color: #fff;
+    &:hover {
+      background-color: #3391ff;
+    }
+    &:active {
+      background-color: #006ae5;
+    }
+  }
+  &.ghostBlackButton,
+  &.ghostBlueButton {
+    border: 1px solid #fff;
+    color: #fff;
+    &:hover,
+    &:active {
+      background-color: #fff;
+    }
+  }
+  &.ghostBlackButton {
+    &:hover,
+    &:active {
+      color: #1a1a1a;
+    }
+  }
+  &.ghostBlueButton {
+    &:hover,
+    &:active {
+      color: #127fff;
+    }
+  }
+  &.whiteButton {
+    background-color: #fff;
+    color: #127fff;
+    &:hover {
+      background-color: #e7f2ff;
+    }
+    &:active {
+      background-color: #fff;
+    }
+  }
+
+  &.mdButton {
+    height: 48px;
+    font-size: 16px;
+  }
+  &.smButton {
+    height: 42px;
+    font-size: 12px;
+  }
+
+  &.round {
+    border-radius: 40px;
+  }
+}

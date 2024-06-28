@@ -1,0 +1,92 @@
+.commonFooter {
+  max-width: 1208px;
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-bottom: calc(24px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  .linkWrap {
+    display: flex;
+    gap: 24px;
+  }
+  .logoWrap,
+  .linkList {
+    flex: 1;
+  }
+  .logo {
+    width: 80px;
+    height: 24px;
+    img {
+      vertical-align: unset;
+    }
+  }
+  .linkList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .linkListTitle {
+    color: #090a14;
+    font-weight: 500;
+    font-family: "Poppins-Medium";
+  }
+  .linkListItem {
+    color: #6b6c6d;
+    cursor: pointer;
+  }
+
+  .divider {
+    margin: 24px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .infoWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .copyright {
+    color: #989da0;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .socialMediumList {
+    display: flex;
+    gap: 8px;
+  }
+  .socialMediaIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}
+
+.tablet.commonFooter {
+  max-width: 744px;
+}
+
+.mobile.commonFooter {
+  max-width: none;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-left: 16px;
+  .divider {
+    margin: 16px 0;
+  }
+  .mobileCopyrightWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logoWrap {
+    flex: none;
+  }
+  .logo {
+    width: 53px;
+    height: 16px;
+  }
+}

@@ -1,0 +1,10 @@
+export { default as Discord } from "./Discord.svg";
+export { default as Email } from "./Email.svg";
+export { default as Facebook } from "./Facebook.svg";
+export { default as Github } from "./Github.svg";
+export { default as Medium } from "./Medium.svg";
+export { default as Reddit } from "./Reddit.svg";
+export { default as Telegram } from "./Telegram.svg";
+export { default as WeChat } from "./WeChat.svg";
+export { default as X } from "./X.svg";
+export { default as Youtube } from "./Youtube.svg";

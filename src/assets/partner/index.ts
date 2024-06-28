@@ -1,0 +1,10 @@
+export { default as PartnerAwaken } from "./PartnerAwaken.png";
+export { default as PartnerAzure } from "./PartnerAzure.png";
+export { default as PartnerBeanGoTown } from "./PartnerBeanGoTown.png";
+export { default as PartnerBridge } from "./PartnerBridge.png";
+export { default as PartnerEwell } from "./PartnerEwell.png";
+export { default as PartnerForest } from "./PartnerForest.png";
+export { default as PartnerGoogle } from "./PartnerGoogle.png";
+export { default as PartnerNet } from "./PartnerNet.png";
+export { default as PartnerPortkey } from "./PartnerPortkey.png";
+export { default as PartnerSchrodinger } from "./PartnerSchrodinger.png";
