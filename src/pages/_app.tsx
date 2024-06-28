@@ -53,17 +53,19 @@ function ComponentContainer({ Component, pageProps }: any) {
     const handleScrollTo = () => {
       const hash = window.location.hash;
       if (hash) {
-        const targetElement = document.querySelector(hash);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" });
-          setTimeout(() => {
-            history.replaceState(
-              null,
-              "",
-              window.location.pathname + window.location.search
-            );
-          }, 200);
-        }
+        setTimeout(() => {
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+              );
+            }, 200);
+          }
+        }, 300);
       } else {
         window.scrollTo(0, 0);
       }
