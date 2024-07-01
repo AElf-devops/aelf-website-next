@@ -3,8 +3,6 @@
   flex-direction: column;
   gap: 12px;
   .image {
-    width: 360px;
-    height: 227px;
     border-radius: 8px;
     img {
       width: 100%;
@@ -31,9 +29,17 @@
   }
 }
 
+.desktop.blogItem {
+  .image {
+    width: 361px;
+    height: 203px;
+  }
+}
+
 .tablet.blogItem {
   .image {
     width: 320px;
+    height: 180px;
   }
 }
 
