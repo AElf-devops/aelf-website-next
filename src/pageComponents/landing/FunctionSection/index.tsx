@@ -67,7 +67,6 @@ export default function FunctionSection() {
       <CommonButton
         type={CommonButtonType.GHOST_BLACK}
         size={buttonSize}
-        isRound
         href="/ecosystem"
       >
         Explore dApps

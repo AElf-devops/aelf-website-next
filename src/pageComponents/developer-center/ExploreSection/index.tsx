@@ -21,7 +21,7 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/quick-start/intro-to-aelf-development/",
       },
       {
-        linkText: "Develop your first aelf Smart Contract",
+        linkText: "Develop Your First aelf Smart Contract",
         description: "Smart contract developing demos.",
         href: "https://docs.aelf.com/quick-start/develop-your-first-aelf-smart-contract/",
       },
@@ -31,12 +31,12 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/quick-start/become-a-node-operator/",
       },
       {
-        linkText: "Learn how to run on the cloud",
+        linkText: "Learn How to Run on the Cloud",
         description: "Explore running aelf on the cloud.",
         href: "https://docs.aelf.com/quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/",
       },
       {
-        linkText: "Running a side chain",
+        linkText: "Running a Side Chain",
         description: "Explore running aelf's side chain.",
         href: "https://docs.aelf.com/quick-start/run-a-side-chain/",
       },
@@ -82,7 +82,7 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
       },
 
       {
-        linkText: "Smart contract",
+        linkText: "Smart Contract",
         description: "aelf's smart contract architecture.",
         href: "https://docs.aelf.com/learn/smart-contract/",
       },

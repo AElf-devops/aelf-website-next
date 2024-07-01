@@ -127,7 +127,6 @@ export default function CommonImageTextPart({
           <CommonButton
             {...buttonProps}
             className={clsx(styles.contentItemButton, buttonProps.className)}
-            isRound
             size={contentItemButtonSize}
           >
             {buttonProps.text}
@@ -161,7 +160,6 @@ export default function CommonImageTextPart({
         {contentBottomButtonProps && (
           <CommonButton
             {...contentBottomButtonProps}
-            isRound
             size={contentBottomButtonSize}
           >
             {contentBottomButtonProps.text}
