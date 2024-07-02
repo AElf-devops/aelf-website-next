@@ -33,11 +33,15 @@
     display: flex;
     justify-content: space-between;
   }
-  .listRowCentered {
-    justify-content: center;
-  }
   .listImage {
     width: 149px;
+  }
+}
+
+.desktop.listSection {
+  .listRowNotFull {
+    justify-content: flex-start;
+    gap: 47px;
   }
 }
 
@@ -56,6 +60,10 @@
   .list {
     gap: 14px;
   }
+  .listRowNotFull {
+    justify-content: flex-start;
+    gap: 28px;
+  }
   .listImage {
     width: 88px;
   }
@@ -73,6 +81,10 @@
   }
   .list {
     gap: 18px;
+  }
+  .listRow {
+    justify-content: center;
+    gap: 16px;
   }
   .listImage {
     width: 112px;

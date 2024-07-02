@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import CommonLink from "@/components/CommonLink";
 import CommonImage from "@/components/CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
@@ -8,6 +9,7 @@ export interface IBlogItemProps {
   imageSrc: any;
   date: string;
   title: string;
+  slug: string;
 }
 
 export default function BlogItem({
@@ -15,15 +17,20 @@ export default function BlogItem({
   imageSrc,
   date,
   title,
+  slug,
 }: IBlogItemProps) {
   const deviceClassName = useDeviceClass(styles);
   return (
-    <div className={clsx(styles.blogItem, deviceClassName, className)}>
+    <CommonLink
+      className={clsx(styles.blogItem, deviceClassName, className)}
+      href={`https://blog.aelf.com/posts/${slug}`}
+      isExternalLinkTargetSelf
+    >
       <CommonImage className={styles.image} src={imageSrc} />
       <div className={styles.info}>
         <div className={styles.date}>{date}</div>
         <div className={styles.title}>{title}</div>
       </div>
-    </div>
+    </CommonLink>
   );
 }
