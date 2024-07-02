@@ -28,7 +28,7 @@ export default function TokenomicsSection() {
       sectionClassName={clsx(styles.tokenomicsSection, deviceClassName)}
       headerClassName={styles.tokenomicsHeader}
       title="aelf Tokenomics"
-      description="aelf’s adoption of allocation rules ensures economic fairness for all participants and contributors, fostering sustainable development within the ecosystem."
+      description="The aelf economic model plays an important role in strengthening the underlying ecosystem, ensuring the overall stability and functioning of the network while encouraging healthy collaboration within the community."
     >
       <div className={styles.tokenomicsList}>
         {TOKENOMICS_ITEM_LIST.map((item, index) => (
