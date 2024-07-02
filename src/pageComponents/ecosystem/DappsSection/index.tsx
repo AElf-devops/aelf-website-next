@@ -12,14 +12,7 @@ import CommonButton, {
   CommonButtonSize,
   CommonButtonType,
 } from "@/components/CommonButton";
-import {
-  DappPortkey,
-  DappSchrödinger,
-  DappForest,
-  DappBeanGoTown,
-  DappAwaken,
-  DappETransfer,
-} from "@/assets/dapp";
+import * as DappIcon from "@/assets/dapp";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -29,7 +22,7 @@ import styles from "./styles.module.scss";
 const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappPortkey,
+    icon: DappIcon.DappPortkey,
     name: "Portkey",
     tagList: ["Wallet", "SDK", "Mainnet"],
     description:
@@ -39,7 +32,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappSchrödinger,
+    icon: DappIcon.DappSchrödinger,
     name: "Project Schrödinger",
     tagList: ["AI", "Mainnet"],
     description:
@@ -49,7 +42,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappForest,
+    icon: DappIcon.DappForest,
     name: "Forest",
     tagList: ["Web3", "NFT", "Mainnet"],
     description:
@@ -59,7 +52,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappBeanGoTown,
+    icon: DappIcon.DappBeanGoTown,
     name: "BeanGo Town",
     tagList: ["Game", "Mainnet"],
     description:
@@ -69,7 +62,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappAwaken,
+    icon: DappIcon.DappAwaken,
     name: "AwakenSwap",
     tagList: ["DeFi", "Mainnet"],
     description: "Swap, lend and borrow crypto assets on one DeFi platform.",
@@ -78,13 +71,43 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
-    icon: DappETransfer,
+    icon: DappIcon.DappETransfer,
     name: "ETransfer",
     tagList: ["DeFi", "Mainnet"],
     description:
       "A secure and efficient digital asset transfer solution to facilitate seamless transactions across different blockchain networks.",
     arrowText: "Learn more",
     href: "https://etransfer.exchange/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: DappIcon.DappEbridge,
+    name: "eBridge",
+    tagList: ["Bridge", "Mainnet"],
+    description:
+      "Facilitate seamless token transfer between the aelf blockchain and Ethereum Virtual Machine (EVM) compatible networks.",
+    arrowText: "Learn more",
+    href: "https://ebridge.exchange/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: DappIcon.DappEwell,
+    name: "ewell",
+    tagList: ["Launchpad", "Mainnet"],
+    description:
+      "An Initial DEX Offering (IDO) launchpad on the aelf network designed to facilitate decentralized fundraising and investment.",
+    arrowText: "Learn more",
+    href: "https://ewell.finance/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: DappIcon.DappSymbolMarket,
+    name: "Symbol Market",
+    tagList: ["NFT", "Mainnet"],
+    description:
+      "A user-friendly platform that allows individuals to create their own tokens and NFTs by acquiring unique SEEDs.",
+    arrowText: "Learn more",
+    href: "https://www.eforest.finance/symbolmarket",
   },
 ];
 
@@ -139,7 +162,6 @@ export default function DappsSection() {
             ? CommonButtonSize.MD
             : CommonButtonSize.SM
         }
-        isRound
         href="https://form.aelf.com/submit-project"
       >
         Submit a Project

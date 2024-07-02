@@ -25,7 +25,7 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard2,
     title: "aelf’s architecture",
-    description: "Deep dive into aelf blockchain's architecture",
+    description: "Deep dive into aelf blockchain's architecture.",
     buttonProps: {
       text: "View Tutorials",
       href: "https://docs.aelf.com/learn/",

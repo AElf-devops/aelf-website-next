@@ -88,7 +88,7 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
       {
         linkText: "aelf White Paper",
         description: "Read aelf's whitepaper.",
-        href: "https://docs.aelf.com/",
+        href: "https://docs.aelf.com/resources/whitepaper/",
       },
       {
         linkText: "Protobuf Extension",

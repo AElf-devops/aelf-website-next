@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import { TPartialOption } from "@/types";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
@@ -16,10 +16,14 @@ export default function CommonImage({
   onClick,
   ...props
 }: TCommonImageProps) {
+  const src = typeof props.src === "string" ? props.src : props.src?.src;
   return (
-    <div className={clsx([styles.commonImageWrap, className])} style={style} onClick={onClick}>
-      {/* <Image quality={100} {...props} alt={alt} priority /> */}
-      <img src={props?.src?.src} alt={alt} />
+    <div
+      className={clsx([styles.commonImageWrap, className])}
+      style={style}
+      onClick={onClick}
+    >
+      <img src={src} alt={alt} />
     </div>
   );
 }

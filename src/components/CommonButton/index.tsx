@@ -20,7 +20,6 @@ export interface ICommonButtonProps
   className?: string;
   type?: CommonButtonType;
   size?: CommonButtonSize;
-  isRound?: boolean;
   ghostHoverTextColor?: string;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -28,7 +27,6 @@ export interface ICommonButtonProps
 
 export default function CommonButton({
   className,
-  isRound = false,
   type = CommonButtonType.DEFAULT,
   size = CommonButtonSize.MD,
   children,
@@ -41,10 +39,7 @@ export default function CommonButton({
       className,
       styles.commonButton,
       styles[`${type}Button`],
-      styles[`${size}Button`],
-      {
-        [styles.round]: isRound,
-      }
+      styles[`${size}Button`]
     ),
     onClick,
   };

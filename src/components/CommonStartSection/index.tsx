@@ -79,7 +79,6 @@ export default function CommonStartSection({
               {...config}
               key={index}
               className={styles.button}
-              isRound
               type={
                 index === 0
                   ? CommonButtonType.WHITE

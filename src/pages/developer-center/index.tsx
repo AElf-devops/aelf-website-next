@@ -12,6 +12,10 @@ export default function DeveloperCenter() {
     <>
       <Head>
         <title>aelf | Developer Resources</title>
+        <meta
+          name="description"
+          content="Learn how to build on aelf with our detailed documentation. Discover AI blockchain tools and scalable infrastructure for high-performance Web3 DApps."
+        />
       </Head>
       <CommonHeader />
       <FirstScreenSection />
