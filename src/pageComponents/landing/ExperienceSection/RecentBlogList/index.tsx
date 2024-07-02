@@ -3,54 +3,13 @@ import axios from "axios";
 import clsx from "clsx";
 import { Row, Col } from "antd";
 import CommonImage from "@/components/CommonImage";
-import BlogItem, { IBlogItemProps } from "../BlogItem";
+import BlogItem from "../BlogItem";
 import NewsIcon from "@/assets/News.svg";
-import MockBlogImg1 from "@/assets/mock/MockBlogImg1.png";
-import MockBlogImg2 from "@/assets/mock/MockBlogImg2.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import { IRecentBlogItem } from "@/types/webflow";
 import styles from "./styles.module.scss";
-
-const MOCK_BLOG_LIST: IBlogItemProps[] = [
-  {
-    imageSrc: MockBlogImg1,
-    date: "Apr 15, 2024",
-    title:
-      "Blockchain and AI can be the next level of development for Web3: Here’s how",
-  },
-  {
-    imageSrc: MockBlogImg2,
-    date: "Apr 12, 2024",
-    title:
-      "Singapore-based blockchain startup aelf joins AI race with $50m fund",
-  },
-  {
-    imageSrc: MockBlogImg1,
-    date: "Apr 15, 2024",
-    title:
-      "Blockchain and AI can be the next level of development for Web3: Here’s how",
-  },
-  {
-    imageSrc: MockBlogImg1,
-    date: "Apr 15, 2024",
-    title:
-      "Blockchain and AI can be the next level of development for Web3: Here’s how",
-  },
-  {
-    imageSrc: MockBlogImg2,
-    date: "Apr 12, 2024",
-    title:
-      "Singapore-based blockchain startup aelf joins AI race with $50m fund",
-  },
-  {
-    imageSrc: MockBlogImg1,
-    date: "Apr 15, 2024",
-    title:
-      "Blockchain and AI can be the next level of development for Web3: Here’s how",
-  },
-];
 
 interface IRecentBlogListProps {
   className?: string;
@@ -102,6 +61,7 @@ export default function RecentBlogList({ className }: IRecentBlogListProps) {
               imageSrc={item.articleHeaderImage.url}
               date={item.postDate}
               title={item.title}
+              slug={item.slug}
             />
           </Col>
         ))}

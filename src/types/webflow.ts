@@ -8,6 +8,7 @@ export interface IRecentBlogItem {
   articleHeaderImage: IImage;
   postDate: string;
   title: string;
+  slug: string;
 }
 
 interface IPagination {
@@ -16,9 +17,10 @@ interface IPagination {
 }
 
 interface IFieldData {
-  title: string;
   ['article-header-image']: IImage;
   ['post-date']: string;
+  title: string;
+  slug: string;
 }
 
 interface IRecentBlogListResponseItem {
