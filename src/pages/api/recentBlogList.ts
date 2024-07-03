@@ -1,9 +1,46 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { webflowAPI } from "@/api/axios";
 import { formatDate } from "@/utils";
+import { concurrentRequests } from "@/utils/request";
 import { IRecentBlogListResponse } from "@/types/webflow";
 
 const COLLECTION_ID = process.env.NEXT_PUBLIC_WEBFLOW_COLLECTION_ID;
+const LIMIT = 50;
+const MAX_CONCURRENT_REQUESTS = 5;
+const URL = `/collections/${COLLECTION_ID}/items/live`;
+
+async function fetchAllItems(): Promise<IRecentBlogListResponse["items"]> {
+  const getTotalResponse = await webflowAPI.get<IRecentBlogListResponse>(URL, {
+    params: {
+      limit: 1,
+      offset: 0,
+    },
+  });
+
+  const itemsTotal = getTotalResponse.pagination.total;
+  const requestsTotal = Math.ceil(itemsTotal / LIMIT);
+
+  const requests = [];
+  for (let i = 0; i < requestsTotal; i++) {
+    requests.push(
+      webflowAPI.get<IRecentBlogListResponse>(URL, {
+        params: {
+          limit: LIMIT,
+          offset: i * LIMIT,
+        },
+      })
+    );
+  }
+
+  const responses = await concurrentRequests(requests, MAX_CONCURRENT_REQUESTS);
+
+  let allItems: IRecentBlogListResponse["items"] = [];
+  responses.forEach((response) => {
+    allItems = allItems.concat(response.items);
+  });
+
+  return allItems;
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,12 +51,9 @@ export default async function handler(
   }
 
   try {
-    const response = await webflowAPI.get<IRecentBlogListResponse>(
-      `/collections/${COLLECTION_ID}/items`
-    );
-
-    const filteredItems = response.items.filter(
-      (item) => !item.isDraft && item.fieldData["post-date"]
+    const allItems = await fetchAllItems();
+    const filteredItems = allItems.filter(
+      (item) => item.fieldData["post-date"]
     );
 
     const sortedItems = filteredItems.sort(
