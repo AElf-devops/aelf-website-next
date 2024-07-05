@@ -12,6 +12,7 @@ export default function LandingHeroAnimationImage() {
         className={styles.background}
         src={LandingHeroImage.HeroBackground}
         alt="landing"
+        priority
       />
       <CommonImage
         className={styles.shadowLarge}

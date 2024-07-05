@@ -20,6 +20,7 @@ export default function FirstScreenSection() {
           className={styles.heroImage}
           src={DeveloperHero}
           alt="developer-center"
+          priority
         />
         <div className={styles.title}>Developer Resources</div>
         <div className={styles.description}>

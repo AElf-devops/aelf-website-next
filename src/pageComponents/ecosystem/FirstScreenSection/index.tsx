@@ -19,6 +19,7 @@ export default function FirstScreenSection() {
           className={styles.heroImage}
           src={EcosystemHero}
           alt="ecosystem"
+          priority
         />
         <div className={styles.title}>Discover the aelf Ecosystem</div>
         <div className={styles.description}>

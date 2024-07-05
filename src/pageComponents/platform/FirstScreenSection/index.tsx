@@ -17,6 +17,7 @@ export default function FirstScreenSection() {
           className={styles.heroImage}
           src={PlatformHero}
           alt="platform"
+          priority
         />
         <div className={styles.title}>
           A Performant
