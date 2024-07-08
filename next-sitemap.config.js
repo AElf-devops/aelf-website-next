@@ -1,13 +1,16 @@
-// next-sitemap.js
+/** @type {import('next-sitemap').IConfig} */
 
 const devUrlConfig = {
   aelf: "http://localhost:3000",
+  robotsTxtPolicies: [{ userAgent: "*", disallow: "/" }],
 };
 const testUrlConfig = {
   aelf: "https://test.aelf.com",
+  robotsTxtPolicies: [{ userAgent: "*", disallow: "/" }],
 };
 const proUrlConfig = {
   aelf: "https://aelf.com",
+  robotsTxtPolicies: [{ userAgent: "*", disallow: "/blog" }],
 };
 
 function getUrlConfig() {
@@ -24,5 +27,7 @@ const urlConfig = getUrlConfig();
 module.exports = {
   siteUrl: urlConfig.aelf,
   generateRobotsTxt: true,
-  sitemapSize: 5000,
+  robotsTxtOptions: {
+    policies: urlConfig.robotsTxtPolicies,
+  },
 };
