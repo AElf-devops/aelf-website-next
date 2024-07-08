@@ -9,11 +9,17 @@ interface ILinkListItem
   description: string;
 }
 
+interface IGroupItem {
+  subtitle?: string;
+  list: ILinkListItem[];
+}
+
 export interface ILinkListProps {
   className?: string;
   listWrapGap?: number;
   title: string;
-  list: ILinkListItem[];
+  list?: ILinkListItem[];
+  groups?: IGroupItem[];
 }
 
 export default function LinkList({
@@ -21,28 +27,47 @@ export default function LinkList({
   listWrapGap,
   title,
   list,
+  groups,
 }: ILinkListProps) {
   const deviceClassName = useDeviceClass(styles);
+
+  const renderList = (data: ILinkListItem[]) => (
+    <div
+      className={styles.listWrap}
+      style={listWrapGap ? { gap: listWrapGap } : undefined}
+    >
+      {data.map((item, index) => (
+        <div key={index} className={styles.listItem}>
+          <CommonLink
+            className={styles.link}
+            href={item.href}
+            isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
+          >
+            {item.linkText}
+          </CommonLink>
+          <div className={styles.description}>{item.description}</div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className={clsx(styles.linkList, deviceClassName, className)}>
       <div className={styles.title}>{title}</div>
-      <div
-        className={styles.listWrap}
-        style={listWrapGap ? { gap: listWrapGap } : undefined}
-      >
-        {list.map((item, index) => (
-          <div key={index} className={styles.listItem}>
-            <CommonLink
-              className={styles.link}
-              href={item.href}
-              isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
-            >
-              {item.linkText}
-            </CommonLink>
-            <div className={styles.description}>{item.description}</div>
-          </div>
-        ))}
-      </div>
+      {groups?.length ? (
+        <div className={styles.groupWrap}>
+          {groups.map((group, index) => (
+            <div key={index} className={styles.group}>
+              {group.subtitle && (
+                <div className={styles.subtitle}>{group.subtitle}</div>
+              )}
+              {renderList(group.list)}
+            </div>
+          ))}
+        </div>
+      ) : (
+        renderList(list || [])
+      )}
     </div>
   );
 }

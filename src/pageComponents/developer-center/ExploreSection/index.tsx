@@ -14,36 +14,51 @@ import styles from "./styles.module.scss";
 const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
   {
     title: "QuickStart",
-    list: [
+    groups: [
       {
-        linkText: "Intro to aelf Development",
-        description: "Developer documentation overview.",
-        href: "https://docs.aelf.com/quick-start/intro-to-aelf-development/",
+        subtitle: "For Developers:",
+        list: [
+          {
+            linkText: "Hello World Contract",
+            description: "Simplest contract to get you started.",
+            href: "https://docs.aelf.com/quick-start/developers/hello-world-contract/",
+          },
+          {
+            linkText: "Lottery Game Contract",
+            description: "Moderately complex smart contract.",
+            href: "https://docs.aelf.com/quick-start/developers/lottery-game-smart-contract/",
+          },
+          {
+            linkText: "Vote Contract",
+            description: "Slightly more complex contract.",
+            href: "https://docs.aelf.com/quick-start/developers/vote-contract/",
+          },
+        ],
       },
       {
-        linkText: "Develop Your First aelf Smart Contract",
-        description: "Smart contract developing demos.",
-        href: "https://docs.aelf.com/quick-start/develop-your-first-aelf-smart-contract/",
-      },
-      {
-        linkText: "Become a Node Operator",
-        description: "Guide on how to become a BP.",
-        href: "https://docs.aelf.com/quick-start/become-a-node-operator/",
-      },
-      {
-        linkText: "Learn How to Run on the Cloud",
-        description: "Explore running aelf on the cloud.",
-        href: "https://docs.aelf.com/quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/",
-      },
-      {
-        linkText: "Running a Side Chain",
-        description: "Explore running aelf's side chain.",
-        href: "https://docs.aelf.com/quick-start/run-a-side-chain/",
-      },
-      {
-        linkText: "Requesting Side Chain Creation",
-        description: "Explore requesting the creation of a side chain.",
-        href: "https://docs.aelf.com/quick-start/explore-running-aelf-side-chain/",
+        subtitle: "For Node Operators:",
+        list: [
+          {
+            linkText: "Operations",
+            description: "Steps to become a BP.",
+            href: "https://docs.aelf.com/quick-start/node-operators/operations/",
+          },
+          {
+            linkText: "Run a Mainnet Node",
+            description: "Learn how to join the Mainnet. ",
+            href: "https://docs.aelf.com/quick-start/node-operators/run-a-mainnet-node/",
+          },
+          {
+            linkText: "Simulation in the Local Environment",
+            description: "Explore setting up a full node. ",
+            href: "https://docs.aelf.com/quick-start/node-operators/simulation-in-local-environment/",
+          },
+          {
+            linkText: "Creation of a Side Chain",
+            description: "Explore how to create a side chain.",
+            href: "https://docs.aelf.com/quick-start/node-operators/explore-running-aelf-side-chain/",
+          },
+        ],
       },
     ],
   },
@@ -97,29 +112,24 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
     title: "Tutorials",
     list: [
       {
-        linkText: "Smart Contract Development",
-        description: "Smart contract developing demos.",
-        href: "https://docs.aelf.com/quick-start/develop-your-first-aelf-smart-contract/",
-      },
-      {
-        linkText: "Run a Testnet Node",
+        linkText: "Testnet Node",
         description: "Learn how to join the testnet.",
         href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-testnet-node/",
       },
       {
-        linkText: "Run a Mainnet Node",
+        linkText: "Mainnet Node",
         description: "Learn how to join the mainnet.",
         href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-mainnet-node/",
       },
       {
-        linkText: "Run a Side Chain",
-        description: "Learn how to run a side chain.",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-side-chain/",
+        linkText: "Run aelf on Cloud",
+        description: "Getting started with Google Cloud Platform (GCP).",
+        href: "https://docs.aelf.com/tutorials/operate-a-node/run-aelf-on-cloud/",
       },
       {
-        linkText: "Run aelf on Cloud",
-        description: "Getting started with Google Cloud.",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-aelf-on-cloud/",
+        linkText: "Side Chain",
+        description: "Learn how to operate a side chain.",
+        href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-side-chain/",
       },
     ],
   },

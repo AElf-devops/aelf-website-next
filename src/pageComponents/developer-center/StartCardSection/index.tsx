@@ -18,11 +18,11 @@ const START_CARD_LIST_CONFIG: IStartCardItemProps[] = [
   },
   {
     text: "Create your first web3 dApp",
-    href: "https://docs.aelf.com/quick-start/develop-your-first-aelf-smart-contract/",
+    href: "https://docs.aelf.com/quick-start/developers/",
   },
   {
     text: "Run aelf side chain",
-    href: "https://docs.aelf.com/quick-start/run-a-side-chain/",
+    href: "https://docs.aelf.com/quick-start/node-operators/explore-running-aelf-side-chain/",
   },
 ];
 

@@ -10,6 +10,13 @@
     line-height: normal;
     text-transform: uppercase;
   }
+  .subtitle {
+    font-family: "Poppins-Medium";
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .groupWrap,
+  .group,
   .listWrap {
     display: flex;
     flex-direction: column;
@@ -35,6 +42,8 @@
 
 .desktop.linkList {
   gap: 32px;
+  .groupWrap,
+  .group,
   .listWrap {
     gap: 32px;
   }
@@ -42,6 +51,8 @@
 
 .tablet.linkList {
   gap: 32px;
+  .groupWrap,
+  .group,
   .listWrap {
     gap: 32px;
   }
@@ -49,6 +60,8 @@
 
 .mobile.linkList {
   gap: 24px;
+  .groupWrap,
+  .group,
   .listWrap {
     gap: 24px;
   }
