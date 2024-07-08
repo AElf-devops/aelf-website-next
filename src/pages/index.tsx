@@ -11,10 +11,10 @@ export default function Landing() {
   return (
     <>
       <Head>
-        <title>aelf - Experience AI + Blockchain of Tomorrow</title>
+        <title>aelf: Layer 1 AI Blockchain</title>
         <meta
           name="description"
-          content="aelf: High-performance AI blockchain for Web3 DApps with AI-powered tools & scalable infrastructure for developers to build, deploy & manage dApps efficiently."
+          content="aelf is a high-performance Layer 1 AI blockchain with built-in cross-chain functions, offering scalable infrastructure with AI for Web3 DApps development."
         />
       </Head>
       <CommonHeader />
