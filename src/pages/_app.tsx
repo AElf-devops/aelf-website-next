@@ -4,6 +4,7 @@ import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { useRouter } from "next/router";
 import { userAgent } from "next/server";
+import Head from "next/head";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
@@ -83,7 +84,16 @@ function ComponentContainer({ Component, pageProps }: any) {
     return null;
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        {process.env.NEXT_PUBLIC_APP_ENV !== "production" && (
+          <meta name="robots" content="noindex" />
+        )}
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default function App({ Component, pageProps, isMobile }: any) {
