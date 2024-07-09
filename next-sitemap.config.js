@@ -2,11 +2,17 @@
 
 const devUrlConfig = {
   aelf: "http://localhost:3000",
-  robotsTxtPolicies: [{ userAgent: "*", disallow: "/" }],
+  robotsTxtPolicies: [
+    { userAgent: "*", disallow: "/" },
+    { userAgent: "Googlebot", allow: "/_next/static/" },
+  ],
 };
 const testUrlConfig = {
   aelf: "https://test.aelf.com",
-  robotsTxtPolicies: [{ userAgent: "*", disallow: "/" }],
+  robotsTxtPolicies: [
+    { userAgent: "*", disallow: "/" },
+    { userAgent: "Googlebot", allow: "/_next/static/" },
+  ],
 };
 const proUrlConfig = {
   aelf: "https://aelf.com",
