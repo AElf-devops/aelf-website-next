@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import clsx from "clsx";
 import CommonSection, {
   MobilePaddingLeftAndRightSize,
@@ -5,10 +6,38 @@ import CommonSection, {
 import CommonImage from "@/components/CommonImage";
 import DeveloperHero from "@/assets/developer-center/DeveloperHero.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { useConfig } from "@/contexts/useConfig/hooks";
+import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 export default function FirstScreenSection() {
   const deviceClassName = useDeviceClass(styles);
+  const [{ deviceWidthType }] = useConfig();
+
+  const heroImageWidth = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.MOBILE:
+        return 271;
+      case DeviceWidthType.TABLET:
+        return 414;
+      case DeviceWidthType.DESKTOP:
+      default:
+        return 829;
+    }
+  }, [deviceWidthType]);
+
+  const heroImageHeight = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.MOBILE:
+        return 204;
+      case DeviceWidthType.TABLET:
+        return 312;
+      case DeviceWidthType.DESKTOP:
+      default:
+        return 625;
+    }
+  }, [deviceWidthType]);
+
   return (
     <CommonSection
       sectionClassName={clsx(styles.firstScreenSection, deviceClassName)}
@@ -19,7 +48,10 @@ export default function FirstScreenSection() {
         <CommonImage
           className={styles.heroImage}
           src={DeveloperHero}
+          width={heroImageWidth}
+          height={heroImageHeight}
           alt="developer-center"
+          priority
         />
         <div className={styles.title}>Developer Resources</div>
         <div className={styles.description}>

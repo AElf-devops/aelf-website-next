@@ -1,4 +1,4 @@
-// next-sitemap.js
+/** @type {import('next-sitemap').IConfig} */
 
 const devUrlConfig = {
   aelf: "http://localhost:3000",
@@ -24,5 +24,4 @@ const urlConfig = getUrlConfig();
 module.exports = {
   siteUrl: urlConfig.aelf,
   generateRobotsTxt: true,
-  sitemapSize: 5000,
 };

@@ -6,7 +6,7 @@ import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
 import CommonCard, { ICommonCardProps } from "@/components/CommonCard";
-import Ventures from "@/assets/ecosystem/Ventures.svg";
+import Ventures from "@/assets/ecosystem/Ventures.png";
 import CrystalFunImg from "@/assets/ecosystem/CrystalFun.png";
 import MythicProtocolImg from "@/assets/ecosystem/MythicProtocol.png";
 import PlutoImg from "@/assets/ecosystem/Pluto.png";

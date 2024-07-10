@@ -26,7 +26,7 @@ export default function BlogItem({
       href={`https://blog.aelf.com/posts/${slug}`}
       isExternalLinkTargetSelf
     >
-      <CommonImage className={styles.image} src={imageSrc} />
+      <CommonImage className={styles.image} src={imageSrc} fill />
       <div className={styles.info}>
         <div className={styles.date}>{date}</div>
         <div className={styles.title}>{title}</div>
