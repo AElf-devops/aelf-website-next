@@ -2,15 +2,12 @@
 
 const devUrlConfig = {
   aelf: "http://localhost:3000",
-  robotsTxtPolicies: [{ userAgent: "*", allow: "/" }],
 };
 const testUrlConfig = {
   aelf: "https://test.aelf.com",
-  robotsTxtPolicies: [{ userAgent: "*", allow: "/" }],
 };
 const proUrlConfig = {
   aelf: "https://aelf.com",
-  robotsTxtPolicies: [{ userAgent: "*", disallow: "/blog" }],
 };
 
 function getUrlConfig() {
@@ -27,7 +24,4 @@ const urlConfig = getUrlConfig();
 module.exports = {
   siteUrl: urlConfig.aelf,
   generateRobotsTxt: true,
-  robotsTxtOptions: {
-    policies: urlConfig.robotsTxtPolicies,
-  },
 };
