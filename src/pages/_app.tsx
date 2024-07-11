@@ -12,6 +12,8 @@ import GoogleTagManager from "@/components/GoogleTagManager";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID } from "@/constants";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
+
 function ComponentContainer({ Component, pageProps }: any) {
   const [initialized, setInitialized] = useState(false);
   const [_, dispatch] = useConfig();
@@ -87,7 +89,9 @@ function ComponentContainer({ Component, pageProps }: any) {
   return (
     <>
       <Head>
-        {process.env.NEXT_PUBLIC_APP_ENV !== "production" && (
+        {isProduction ? (
+          <link rel="canonical" href={`https://aelf.com${router.asPath}`} />
+        ) : (
           <meta name="robots" content="noindex" />
         )}
       </Head>
