@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import axios from "axios";
+import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, Col } from "antd";
 import CommonImage from "@/components/CommonImage";
@@ -13,26 +12,12 @@ import styles from "./styles.module.scss";
 
 interface IRecentBlogListProps {
   className?: string;
+  blogList: IRecentBlogItem[];
 }
 
-export default function RecentBlogList({ className }: IRecentBlogListProps) {
+export default function RecentBlogList({ className, blogList }: IRecentBlogListProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
-
-  const [blogList, setBlogList] = useState([]);
-
-  const getBlogList = useCallback(async () => {
-    try {
-      const { data } = await axios.get("api/recentBlogList");
-      setBlogList(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    getBlogList();
-  }, [getBlogList]);
 
   const colSpan = useMemo(() => {
     switch (deviceWidthType) {
@@ -55,7 +40,7 @@ export default function RecentBlogList({ className }: IRecentBlogListProps) {
         <span>Recent Updates</span>
       </div>
       <Row className={styles.blogList} gutter={[24, 32]}>
-        {blogList.map((item: IRecentBlogItem, index) => (
+        {blogList.map((item, index) => (
           <Col key={index} span={colSpan}>
             <BlogItem
               imageSrc={item.articleHeaderImage.url}

@@ -10,7 +10,10 @@ import React, { useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
-import { GTM_ID } from "@/constants";
+import { GTM_ID, PAGE_METADATA } from "@/constants";
+import getUrlConfig from "@/constants/network/cms";
+
+const urlConfig = getUrlConfig();
 
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
@@ -19,6 +22,10 @@ function ComponentContainer({ Component, pageProps }: any) {
   const [_, dispatch] = useConfig();
 
   const router = useRouter();
+
+  const pageMeta =
+    Object.values(PAGE_METADATA).find((meta) => meta.PATH === router.asPath) ||
+    PAGE_METADATA.LANDING;
 
   useEffect((): any => {
     if (typeof window === "undefined") return;
@@ -94,6 +101,12 @@ function ComponentContainer({ Component, pageProps }: any) {
         ) : (
           <meta name="robots" content="noindex" />
         )}
+        <title>{pageMeta.TITLE}</title>
+        <meta name="description" content={pageMeta.DESCRIPTION} />
+        <meta property="og:title" content={pageMeta.TITLE} />
+        <meta property="og:description" content={pageMeta.DESCRIPTION} />
+        <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
+        <meta property="og:type" content="website" />
       </Head>
       <Component {...pageProps} />
     </>
