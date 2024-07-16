@@ -1,4 +1,3 @@
-import Head from "next/head";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/platform/FirstScreenSection";
