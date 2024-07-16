@@ -10,13 +10,6 @@ import StartCardSection from "@/pageComponents/developer-center/StartCardSection
 export default function DeveloperCenter() {
   return (
     <>
-      <Head>
-        <title>aelf | Developer Resources</title>
-        <meta
-          name="description"
-          content="Learn how to build on aelf with our detailed documentation. Discover AI blockchain tools and scalable infrastructure for high-performance Web3 DApps."
-        />
-      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <GuideCardSection />

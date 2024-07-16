@@ -17,13 +17,6 @@ interface ILandingProps {
 export default function Landing({ blogList }: ILandingProps) {
   return (
     <>
-      <Head>
-        <title>aelf: Layer 1 AI Blockchain</title>
-        <meta
-          name="description"
-          content="aelf is a high-performance Layer 1 AI blockchain with built-in cross-chain functions, offering scalable infrastructure with AI for Web3 DApps development."
-        />
-      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <FunctionSection />

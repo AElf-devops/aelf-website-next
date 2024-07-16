@@ -11,13 +11,6 @@ import { SECTION_ID } from "@/constants/sectionId";
 export default function Ecosystem() {
   return (
     <>
-      <Head>
-        <title>aelf | Ecosystem</title>
-        <meta
-          name="description"
-          content="Explore the aelf ecosystem with cutting-edge AI blockchain technology. Discover the diverse dApps for various use cases in the Web3 crypto industry."
-        />
-      </Head>
       <CommonHeader />
       <FirstScreenSection />
       <OverviewSection />
