@@ -27,3 +27,9 @@ export default function DeveloperCenter() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

@@ -28,3 +28,9 @@ export default function Ecosystem() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

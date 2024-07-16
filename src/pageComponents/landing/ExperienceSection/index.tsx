@@ -5,9 +5,16 @@ import RecentBlogList from "./RecentBlogList";
 import BlogIcon from "@/assets/Blog.svg";
 import BuildIcon from "@/assets/Build.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
+import { IRecentBlogItem } from "@/types/webflow";
 import styles from "./styles.module.scss";
 
-export default function ExperienceSection() {
+interface IExperienceSectionProps {
+  blogList: IRecentBlogItem[];
+}
+
+export default function ExperienceSection({
+  blogList,
+}: IExperienceSectionProps) {
   const deviceClassName = useDeviceClass(styles);
   return (
     <CommonSection
@@ -34,7 +41,7 @@ export default function ExperienceSection() {
           isExternalLinkTargetSelf
         />
       </div>
-      <RecentBlogList className={styles.recentBlogList} />
+      <RecentBlogList className={styles.recentBlogList} blogList={blogList} />
     </CommonSection>
   );
 }

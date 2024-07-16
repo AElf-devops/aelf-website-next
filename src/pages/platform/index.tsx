@@ -29,3 +29,9 @@ export default function Platform() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
