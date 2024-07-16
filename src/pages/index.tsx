@@ -29,16 +29,18 @@ export default function Landing({ blogList }: ILandingProps) {
 
 const urlConfig = getUrlConfig();
 
-export async function getServerSideProps() {
+const REVALIDATE_PERIOD = 3600;
+
+export async function getStaticProps() {
+  let blogList = [];
   try {
     const { data } = await axios.get(`${urlConfig.aelf}/api/recentBlogList`);
-    return {
-      props: { blogList: data },
-    };
+    blogList = data;
   } catch (error) {
     console.error(error);
-    return {
-      props: { blogList: [] },
-    };
   }
+  return {
+    props: { blogList },
+    revalidate: REVALIDATE_PERIOD,
+  };
 }
