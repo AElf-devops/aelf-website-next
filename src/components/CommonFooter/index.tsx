@@ -33,8 +33,14 @@ const LINK_LIST: ILinkListItem[] = [
         href: "https://github.com/AElfProject/aelf-audit-reports",
       },
       { text: "Privacy", href: "https://docs.aelf.com/legal/privacy-policy/" },
-      { text: "Terms of Use", href: "https://docs.aelf.com/legal/terms-of-use/" },
-      { text: "Cookie Policy", href: "https://docs.aelf.com/legal/cookie-policy/" },
+      {
+        text: "Terms of Use",
+        href: "https://docs.aelf.com/legal/terms-of-use/",
+      },
+      {
+        text: "Cookie Policy",
+        href: "https://docs.aelf.com/legal/cookie-policy/",
+      },
     ],
   },
   {
@@ -94,7 +100,11 @@ export default function CommonFooter() {
 
   const renderLogo = () => (
     <div className={styles.logoWrap}>
-      <CommonImage className={styles.logo} src={Logo} alt="logo" />
+      <CommonImage
+        className={styles.logo}
+        src={Logo}
+        alt="aelf AI blockchain logo"
+      />
     </div>
   );
 
