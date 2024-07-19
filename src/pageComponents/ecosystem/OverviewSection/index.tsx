@@ -67,6 +67,7 @@ export default function OverviewSection() {
         imageWidth={firstImageWidth}
         desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
         imageSrc={EcosystemOverview1}
+        imageAlt="Portkey - Web3 account abstraction AA wallet. aelf's ecosystem."
         contentList={[
           {
             title: "Portkey Wallet",
@@ -83,6 +84,7 @@ export default function OverviewSection() {
         className={styles.imageTextPart}
         imageWidth={secondImageWidth}
         imageSrc={EcosystemOverview2}
+        imageAlt="Project Schrödinger - AI ACS-404 inscription NFT platform. aelf's ecosystem."
         contentList={[
           {
             title: "Project Schrödinger",
@@ -100,6 +102,7 @@ export default function OverviewSection() {
         imageWidth={thirdImageWidth}
         desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
         imageSrc={EcosystemOverview3}
+        imageAlt="ETransfer - Cross-chain bridge for Web3 assets transfer. aelf's ecosystem."
         contentList={[
           {
             title: "ETransfer",

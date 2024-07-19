@@ -40,7 +40,7 @@ export default function LandingHeroAnimationImage() {
         src={LandingHeroImage.HeroBackground}
         width={backgroundWidth}
         height={backgroundHeight}
-        alt="landing"
+        alt="AI blockchain - aelf. Future of web3."
         priority
       />
       <CommonImage

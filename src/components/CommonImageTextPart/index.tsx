@@ -44,6 +44,7 @@ interface ICommonImageTextPartProps {
   contentItemClassName?: string;
   desktopAndTabletImagePosition?: CommonImageTextPartImagePosition;
   imageSrc: any;
+  imageAlt?: string;
   imageWidth?: number | string;
   contentList: ICommonImageTextPartContentItem[];
   contentBottomButtonProps?: IButtonProps;
@@ -57,6 +58,7 @@ export default function CommonImageTextPart({
   contentItemClassName,
   desktopAndTabletImagePosition = CommonImageTextPartImagePosition.LEFT,
   imageSrc,
+  imageAlt,
   imageWidth,
   contentList,
   contentBottomButtonProps,
@@ -147,6 +149,7 @@ export default function CommonImageTextPart({
         className={clsx(styles.image, imageClassName)}
         style={{ width: imageWidth || defaultImageWidth }}
         src={imageSrc}
+        alt={imageAlt}
       />
       <div className={clsx(styles.contentWrap, contentWrapClassName)}>
         <div className={clsx(styles.contentListWrap, contentListWrapClassName)}>

@@ -9,6 +9,13 @@ import ExperienceSection from "@/pageComponents/landing/ExperienceSection";
 import { IRecentBlogItem } from "@/types/webflow";
 import getUrlConfig from "@/constants/network/cms";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
+
+// Use shorter revalidation period in non-production for easier testing.
+const REVALIDATE_PERIOD = isProduction ? 3600 : 1;
+
+const urlConfig = getUrlConfig();
+
 interface ILandingProps {
   blogList: IRecentBlogItem[];
 }
@@ -26,10 +33,6 @@ export default function Landing({ blogList }: ILandingProps) {
     </>
   );
 }
-
-const urlConfig = getUrlConfig();
-
-const REVALIDATE_PERIOD = 3600;
 
 export async function getStaticProps() {
   let blogList = [];

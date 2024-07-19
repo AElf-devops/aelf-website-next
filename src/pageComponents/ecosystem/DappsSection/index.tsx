@@ -23,6 +23,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappPortkey,
+    iconAlt: "Portkey - web3 AA wallet. aelf's ecosystem.",
     name: "Portkey",
     tagList: ["Wallet", "SDK", "Mainnet"],
     description:
@@ -33,6 +34,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappSchrödinger,
+    iconAlt: "Project Schrodinger - AI NFT platform. aelf's ecosystem.",
     name: "Project Schrödinger",
     tagList: ["AI", "Mainnet"],
     description:
@@ -43,6 +45,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappForest,
+    iconAlt: "Forest - NFT marketplace. aelf's ecosystem.",
     name: "Forest",
     tagList: ["Web3", "NFT", "Mainnet"],
     description:
@@ -53,6 +56,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappBeanGoTown,
+    iconAlt: "BeanGoTown - Web3 game. aelf's ecosystem.",
     name: "BeanGo Town",
     tagList: ["Game", "Mainnet"],
     description:
@@ -63,6 +67,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappAwaken,
+    iconAlt: "AwakenSwap - decentralised exchange DEX. aelf's ecosystem.",
     name: "AwakenSwap",
     tagList: ["DeFi", "Mainnet"],
     description: "Swap, lend and borrow crypto assets on one DeFi platform.",
@@ -72,6 +77,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappETransfer,
+    iconAlt: "ETransfer - Cross-chain bridge. aelf's ecosystem.",
     name: "ETransfer",
     tagList: ["DeFi", "Mainnet"],
     description:
@@ -82,6 +88,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappEbridge,
+    iconAlt: "eBridge - Token bridge. aelf's ecosystem.",
     name: "eBridge",
     tagList: ["Bridge", "Mainnet"],
     description:
@@ -92,6 +99,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappEwell,
+    iconAlt: "ewell - Initial DEX Offering IDO launchpad. aelf's ecosystem.",
     name: "ewell",
     tagList: ["Launchpad", "Mainnet"],
     description:
@@ -102,6 +110,8 @@ const DAPP_LIST: ICommonCardProps[] = [
   {
     theme: CommonCardTheme.WHITE,
     icon: DappIcon.DappSymbolMarket,
+    iconAlt:
+      "Symbol Market - Create your own token and NFT with SEEDs. aelf's ecosystem.",
     name: "Symbol Market",
     tagList: ["NFT", "Mainnet"],
     description:

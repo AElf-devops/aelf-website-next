@@ -63,7 +63,10 @@ export default async function handler(
     );
 
     const blogs = sortedItems.slice(0, 6).map((item) => ({
-      articleHeaderImage: item.fieldData["article-header-image"],
+      articleHeaderImage: {
+        ...item.fieldData["article-header-image"],
+        alt: item.fieldData["alt-text-for-header-image"],
+      },
       postDate: formatDate(item.fieldData["post-date"]),
       title: item.fieldData.title,
       slug: item.fieldData.slug,

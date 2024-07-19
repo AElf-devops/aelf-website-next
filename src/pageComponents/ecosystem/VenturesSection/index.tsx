@@ -19,6 +19,7 @@ import styles from "./styles.module.scss";
 const CARD_LIST: ICommonCardProps[] = [
   {
     icon: CrystalFunImg,
+    iconAlt: "Crystal Fun - decentralised Web3 game. aelf's portfolio.",
     description:
       "Crystal Fun, a decentralized Web3 game ecosystem, ushering ground breaking experiences with high-quality Web3 games.",
     arrowText: "Learn more",
@@ -26,6 +27,8 @@ const CARD_LIST: ICommonCardProps[] = [
   },
   {
     icon: MythicProtocolImg,
+    iconAlt:
+      "Confiction (previously Mythic Protocol) - gameplay-first ARPG with blockchain technology. aelf's portfolio.",
     description:
       "Confiction (ex-name: Mythic Protocol) is developing an exhilarating gameplay-first roguelike ARPG with blockchain technology.",
     arrowText: "Learn more",
@@ -33,6 +36,8 @@ const CARD_LIST: ICommonCardProps[] = [
   },
   {
     icon: PlutoImg,
+    iconAlt:
+      "Pluto - gaming studio bridging Web2 into Web3 games. aelf's portfolio.",
     description:
       "Pluto is a gaming studio, with a vision of bridging casual to midcore Web2 into Web3 games across Ton and multichain ecosystems.",
     arrowText: "Learn more",
@@ -99,6 +104,7 @@ export default function VenturesSection() {
             : CommonImageTextPartImagePosition.TOP
         }
         imageSrc={Ventures}
+        imageAlt="aelf Ventures - a fund for cutting-edge blockchain technology and Web3 protocols."
         contentList={[
           {
             title: "Funding for Innovation",
