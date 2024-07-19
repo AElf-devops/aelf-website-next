@@ -22,6 +22,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     className: styles.dappCard,
     theme: CommonCardTheme.WHITE,
     icon: DappPortkey,
+    iconAlt: "Portkey - web3 AA wallet. aelf's ecosystem.",
     name: "Portkey",
     tagList: ["Wallet"],
     description:
@@ -32,6 +33,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     className: styles.dappCard,
     theme: CommonCardTheme.WHITE,
     icon: DappEbridge,
+    iconAlt: "eBridge - Token bridge. aelf's ecosystem.",
     name: "eBridge",
     tagList: ["Bridge"],
     description:
@@ -42,6 +44,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     className: styles.dappCard,
     theme: CommonCardTheme.WHITE,
     icon: DappForest,
+    iconAlt: "Forest - NFT marketplace. aelf's ecosystem.",
     name: "Forest",
     tagList: ["NFT"],
     description:

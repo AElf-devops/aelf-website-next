@@ -44,7 +44,7 @@ export default function CommonHeader() {
 
   const renderLogo = () => (
     <CommonLink href="/">
-      <CommonImage className={styles.logo} src={Logo} alt="logo" />
+      <CommonImage className={styles.logo} src={Logo} alt="aelf AI blockchain logo" />
     </CommonLink>
   );
 

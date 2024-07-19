@@ -15,7 +15,10 @@ interface IRecentBlogListProps {
   blogList: IRecentBlogItem[];
 }
 
-export default function RecentBlogList({ className, blogList }: IRecentBlogListProps) {
+export default function RecentBlogList({
+  className,
+  blogList,
+}: IRecentBlogListProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
@@ -44,6 +47,7 @@ export default function RecentBlogList({ className, blogList }: IRecentBlogListP
           <Col key={index} span={colSpan}>
             <BlogItem
               imageSrc={item.articleHeaderImage.url}
+              imageAlt={item.articleHeaderImage.alt}
               date={item.postDate}
               title={item.title}
               slug={item.slug}

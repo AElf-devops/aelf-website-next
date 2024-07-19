@@ -16,6 +16,7 @@ export interface ICommonCardProps
   iconClassName?: string;
   theme?: CommonCardTheme;
   icon: any;
+  iconAlt: string;
   name?: string;
   tagList?: string[];
   description: string;
@@ -27,6 +28,7 @@ export default function CommonCard({
   iconClassName,
   theme = CommonCardTheme.BLACK,
   icon,
+  iconAlt,
   name,
   tagList,
   description,
@@ -37,7 +39,11 @@ export default function CommonCard({
   const cardContent = (
     <>
       <div className={styles.header}>
-        <CommonImage className={clsx(styles.icon, iconClassName)} src={icon} />
+        <CommonImage
+          className={clsx(styles.icon, iconClassName)}
+          src={icon}
+          alt={iconAlt}
+        />
         {(name || !!tagList?.length) && (
           <div className={styles.headerRight}>
             <div className={styles.name}>{name}</div>

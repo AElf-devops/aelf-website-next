@@ -9,12 +9,14 @@ import styles from "./styles.module.scss";
 const TOKENOMICS_ITEM_LIST: ITokenomicsItemProps[] = [
   {
     img: TokenomicsIncentiveModel,
+    alt: "aelf AI blockchain rewards pool - node and user incentive model",
     title: "Node and User Incentive Model",
     description:
       "aelf’s adoption of allocation rules ensures economic fairness for all participants and contributors, fostering sustainable development within the ecosystem.",
   },
   {
     img: TokenomicsResourceAllocationModel,
+    alt: "aelf AI blockchain resource allocation model",
     title: "Blockchain Resource Allocation Model",
     description:
       "The Resource Token payment model adopts a pay-as-you-go approach, collecting transaction fees from developers based on resource utilisation.",

@@ -18,6 +18,7 @@ interface IPagination {
 
 interface IFieldData {
   ['article-header-image']: IImage;
+  ['alt-text-for-header-image']?: string;
   ['post-date']: string;
   title: string;
   slug: string;
