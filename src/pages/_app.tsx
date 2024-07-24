@@ -9,6 +9,8 @@ import "@/styles/globals.scss";
 import React, { useCallback, useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
 import dynamic from "next/dynamic";
+import CommonFooter from "@/components/CommonFooter";
+import CommonHeader from "@/components/CommonHeader";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
@@ -114,7 +116,9 @@ function ComponentContainer({ Component, pageProps }: any) {
         <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
         <meta property="og:type" content="website" />
       </Head>
+      <CommonHeader />
       <Component {...pageProps} />
+      <CommonFooter />
     </>
   );
 }
