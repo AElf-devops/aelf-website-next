@@ -7,21 +7,21 @@ export default function Document() {
       <Head>
         <link
           rel="preload"
-          href="../fonts/Poppins-Regular.ttf"
+          href="/fonts/Poppins-Regular.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="../fonts/Poppins-Medium.ttf"
+          href="/fonts/Poppins-Medium.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="../fonts/Poppins-Bold.ttf"
+          href="/fonts/Poppins-Bold.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
