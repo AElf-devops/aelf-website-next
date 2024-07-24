@@ -8,6 +8,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 import { SECTION_ID } from "@/constants/sectionId";
+import ChainGPT from '@/components/ChainGPT';
 
 interface ILink
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
@@ -139,6 +140,9 @@ export default function CommonFooter() {
 
   return (
     <footer className={clsx(styles.commonFooter, deviceClassName)}>
+      <>
+        <ChainGPT />
+      </>
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
           {renderSocialMediaList()}

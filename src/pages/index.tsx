@@ -1,6 +1,4 @@
 import axios from "axios";
-import CommonHeader from "@/components/CommonHeader";
-import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/landing/FirstScreenSection";
 import FunctionSection from "@/pageComponents/landing/FunctionSection";
 import BuildingSection from "@/pageComponents/landing/BuildingSection";
@@ -23,13 +21,11 @@ interface ILandingProps {
 export default function Landing({ blogList }: ILandingProps) {
   return (
     <>
-      <CommonHeader />
       <FirstScreenSection />
       <FunctionSection />
       <BuildingSection />
       <ListSection />
       <ExperienceSection blogList={blogList} />
-      <CommonFooter />
     </>
   );
 }
