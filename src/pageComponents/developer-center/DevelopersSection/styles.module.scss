@@ -1,9 +1,6 @@
 .developersSection {
   padding-bottom: 0;
   background-color: #fff;
-  .developersContent {
-    border-bottom: 1px solid #e8e8e8;
-  }
   .linkList {
     height: 100%;
     border-radius: 8px;
@@ -14,7 +11,7 @@
 .desktop.developersSection {
   padding-top: 64px;
   .developersContent {
-    padding-bottom: 64px;
+    padding-bottom: 16px;
   }
   .sectionTitle {
     margin-bottom: 32px;
@@ -26,9 +23,6 @@
 
 .tablet.developersSection {
   padding-top: 64px;
-  .developersContent {
-    padding-bottom: 64px;
-  }
   .sectionTitle {
     margin-bottom: 24px;
   }
@@ -39,9 +33,6 @@
 
 .mobile.developersSection {
   padding-top: 48px;
-  .developersContent {
-    padding-bottom: 48px;
-  }
   .sectionTitle {
     margin-bottom: 24px;
   }

@@ -86,14 +86,14 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/resources/devops/",
       },
       {
-        linkText: "aelf White Paper",
-        description: "Read aelf's whitepaper.",
-        href: "https://docs.aelf.com/resources/whitepaper/",
-      },
-      {
         linkText: "Protobuf Extension",
         description: "An open-source gRPC.",
         href: "https://docs.aelf.com/resources/protobuf-extension/",
+      },
+      {
+        linkText: "aelf White Paper",
+        description: "Read aelf's whitepaper.",
+        href: "https://docs.aelf.com/resources/whitepaper-2/",
       },
     ],
   },
