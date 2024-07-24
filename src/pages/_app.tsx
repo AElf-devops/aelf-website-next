@@ -1,13 +1,132 @@
 import ConfigProvider from "@/contexts/useConfig";
+import { useConfig } from "@/contexts/useConfig/hooks";
 import "@/styles/globals.scss";
 import NextApp from "next/app";
+import { useRouter } from "next/router";
 import { userAgent } from "next/server";
-import React from "react";
-import 'antd/dist/antd.css';
-export default function App({ Component, pageProps, isMobile }: any) {
+import Head from "next/head";
+import "antd/dist/antd.css";
+import React, { useCallback, useEffect, useState } from "react";
+import microApp from "@micro-zoe/micro-app";
+import dynamic from "next/dynamic";
+import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
+import { GTM_ID, PAGE_METADATA } from "@/constants";
+import getUrlConfig from "@/constants/network/cms";
+
+const GoogleTagManager = dynamic(
+  () => import("@/components/GoogleTagManager"),
+  {
+    ssr: false,
+  }
+);
+
+const urlConfig = getUrlConfig();
+
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
+
+function ComponentContainer({ Component, pageProps }: any) {
+  const [initialized, setInitialized] = useState(false);
+  const [_, dispatch] = useConfig();
+
+  const router = useRouter();
+
+  const pageMeta =
+    Object.values(PAGE_METADATA).find((meta) => meta.PATH === router.asPath) ||
+    PAGE_METADATA.LANDING;
+
+  const resize = useCallback(() => {
+    if (window.innerWidth >= BREAKPOINTS.MD) {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.DESKTOP },
+      });
+    } else if (window.innerWidth >= BREAKPOINTS.SM) {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.TABLET },
+      });
+    } else {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.MOBILE },
+      });
+    }
+  }, [dispatch]);
+
+  useEffect((): any => {
+    if (typeof window === "undefined") return;
+    resize();
+    window.addEventListener("resize", resize);
+    setInitialized(true);
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, [resize]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScrollTo = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        setTimeout(() => {
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+              );
+            }, 200);
+          }
+        }, 300);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+    setTimeout(handleScrollTo, 500);
+    router.events.on("routeChangeComplete", handleScrollTo);
+    router.events.on("hashChangeComplete", handleScrollTo);
+    return () => {
+      router.events.off("routeChangeComplete", handleScrollTo);
+      router.events.off("hashChangeComplete", handleScrollTo);
+    };
+  }, [router.events]);
+
+  if (!initialized) {
+    return null;
+  }
+
   return (
-    <ConfigProvider init={{ isMobile: isMobile }}>
+    <>
+      <Head>
+        {isProduction ? (
+          <link rel="canonical" href={`https://aelf.com${router.asPath}`} />
+        ) : (
+          <meta name="robots" content="noindex" />
+        )}
+        <title>{pageMeta.TITLE}</title>
+        <meta name="description" content={pageMeta.DESCRIPTION} />
+        <meta property="og:title" content={pageMeta.TITLE} />
+        <meta property="og:description" content={pageMeta.DESCRIPTION} />
+        <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
+        <meta property="og:type" content="website" />
+      </Head>
       <Component {...pageProps} />
+    </>
+  );
+}
+
+export default function App({ Component, pageProps, isMobile }: any) {
+  useEffect(() => {
+    microApp.start();
+  }, []);
+  return (
+    <ConfigProvider init={{ isMobile }}>
+      <GoogleTagManager gtmId={GTM_ID} />
+      <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );
 }

@@ -1,22 +1,28 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
+import { DeviceWidthType } from "@/constants/breakpoints";
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  isMobile: false,
+  deviceWidthType: DeviceWidthType.DESKTOP,
+};
 const ConfigContext = createContext<any>(INITIAL_STATE);
 
 type TConfigState = {
   isMobile: boolean;
+  deviceWidthType: DeviceWidthType;
 };
 
-export function useConfigContext(): TConfigState {
+export function useConfigContext(): [TConfigState, React.Dispatch<any>] {
   return useContext(ConfigContext);
 }
 
 //reducer
 function reducer(state: any, { type, payload }: any) {
   switch (type) {
-    default: {
+    case "UPDATE_CONFIG":
       return Object.assign({}, state, payload);
-    }
+    default:
+      return state;
   }
 }
 
@@ -25,12 +31,12 @@ export default function ConfigProvider({
   init,
 }: {
   children: React.ReactNode;
-  init?: TConfigState;
+  init?: Partial<TConfigState>;
 }) {
-  const [state] = useReducer(reducer, { ...INITIAL_STATE, ...init });
+  const [state, dispatch] = useReducer(reducer, { ...INITIAL_STATE, ...init });
 
   return (
-    <ConfigContext.Provider value={useMemo(() => state, [state])}>
+    <ConfigContext.Provider value={useMemo(() => [state, dispatch], [state])}>
       {children}
     </ConfigContext.Provider>
   );

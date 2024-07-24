@@ -1,0 +1,53 @@
+.tokenomicsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #192737;
+  color: #fff;
+  .textWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  .title {
+    font-family: "Poppins-Medium";
+    font-weight: 500;
+  }
+  .description {
+    font-size: 12px;
+    opacity: 0.6;
+  }
+}
+
+.desktop.tokenomicsItem {
+  .image {
+    height: 370px;
+  }
+  .title {
+    font-size: 16px;
+  }
+}
+
+.tablet.tokenomicsItem {
+  .image {
+    height: 449px;
+    img {
+      height: 100%;
+    }
+  }
+  .title {
+    font-size: 16px;
+  }
+}
+
+.mobile.tokenomicsItem {
+  .image {
+    width: 100%;
+  }
+  .title {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,54 @@
+.buildingSection {
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+.desktop.buildingSection {
+  .imageTextFirstPart {
+    margin-top: 177px;
+  }
+  .imageTextSecondPart {
+    margin-top: 212px;
+    .image {
+      margin-right: 49px;
+    }
+  }
+  .imageTextThirdPart {
+    margin-top: 222px;
+    .image {
+      margin-left: 81px;
+    }
+  }
+}
+
+.tablet.buildingSection {
+  padding-bottom: 64px;
+  .imageTextFirstPart,
+  .imageTextSecondPart,
+  .imageTextThirdPart {
+    margin-top: 64px;
+  }
+  .imageTextFirstPart {
+    .image {
+      margin-left: 28px;
+    }
+  }
+  .imageTextSecondPart {
+    .image {
+      margin-right: 48px;
+    }
+  }
+  .imageTextThirdPart {
+    .image {
+      margin-left: 30px;
+    }
+  }
+}
+
+.mobile.buildingSection {
+  .imageTextFirstPart,
+  .imageTextSecondPart,
+  .imageTextThirdPart {
+    margin-top: 48px;
+  }
+}

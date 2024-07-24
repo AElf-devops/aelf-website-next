@@ -1,0 +1,79 @@
+.functionSection {
+  color: #fff;
+  background-color: #127fff;
+  .imageTextPart {
+    align-items: flex-end;
+    margin-top: 120px;
+  }
+  .dappsPart {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 108px;
+  }
+  .dappsPartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dappsPartHeaderLeftWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dappsPartTitle {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    font-family: "Poppins-Medium";
+  }
+  .dappsPartDescription {
+    font-size: 14px;
+    line-height: normal;
+  }
+  .dappsPartList {
+    display: flex;
+    gap: 24px;
+  }
+  .dappCard {
+    flex: 1;
+  }
+}
+
+.desktop.functionSection {
+  .imageTextPartImage {
+    margin-left: 34px;
+  }
+}
+
+.tablet.functionSection {
+  .imageTextPart {
+    align-items: center;
+    margin-top: 64px;
+  }
+  .dappsPart {
+    margin-top: 64px;
+  }
+  .dappsPartTitle {
+    font-size: 16px;
+  }
+  .dappsPartDescription {
+    font-size: 12px;
+  }
+  .dappsPartList {
+    gap: 16px;
+  }
+}
+
+.mobile.functionSection {
+  .imageTextPart {
+    align-items: center;
+    margin-top: 48px;
+  }
+  .dappsPart {
+    margin-top: 48px;
+  }
+  .dappsPartList {
+    flex-direction: column;
+  }
+}

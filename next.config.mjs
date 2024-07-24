@@ -2,12 +2,29 @@
 import path from "path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
+
 const nextConfig = {
   reactStrictMode: false,
   sassOptions: {
     includePaths: [
       path.join(dirname(fileURLToPath(import.meta.url)), "styles"),
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://test.aelf.com/:path*",
+      },
+      {
+        source: "/gtag/:path*",
+        destination: "https://www.googletagmanager.com/:path*",
+      },
+      {
+        source: "/analytics.js/:path*",
+        destination: "https://www.google-analytics.com/:path*",
+      },
+    ];
   },
   async headers() {
     return [
@@ -24,11 +41,21 @@ const nextConfig = {
           },
           {
             key: "Access-Control-Allow-Headers",
-            value: "Content-Type, Authorization",
+            value:
+              "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,x-requested-with,If-Modified-Since,Cache-Control,Content-Type,Authorization,token",
           },
         ],
       },
     ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "uploads-ssl.webflow.com",
+        port: "",
+      },
+    ],
   },
   transpilePackages: [
     // antd & deps

@@ -1,0 +1,17 @@
+export { default as Investor1kx } from "./Investor1kx.png";
+export { default as InvestorAlphabit } from "./InvestorAlphabit.png";
+export { default as InvestorBIXIN } from "./InvestorBIXIN.png";
+export { default as InvestorBitmain } from "./InvestorBitmain.png";
+export { default as InvestorBlocktower } from "./InvestorBlocktower.png";
+export { default as InvestorDHVC } from "./InvestorDHVC.png";
+export { default as InvestorDraperDragon } from "./InvestorDraperDragon.png";
+export { default as InvestorFBG } from "./InvestorFBG.png";
+export { default as InvestorGBIC } from "./InvestorGBIC.png";
+export { default as InvestorGalaxy } from "./InvestorGalaxy.png";
+export { default as InvestorHappyEast } from "./InvestorHappyEast.png";
+export { default as InvestorHashed } from "./InvestorHashed.png";
+export { default as InvestorHyperchain } from "./InvestorHyperchain.png";
+export { default as InvestorLD } from "./InvestorLD.png";
+export { default as InvestorLinkvc } from "./InvestorLinkvc.png";
+export { default as InvestorSignum } from "./InvestorSignum.png";
+export { default as InvestorVentures } from "./InvestorVentures.png";

@@ -1,0 +1,28 @@
+.guideCardSection {
+  padding-top: 0;
+  background-color: #fff;
+  .cardItem {
+    height: 100%;
+  }
+}
+
+.desktop.guideCardSection {
+  padding-bottom: 64px;
+  .sectionTitle {
+    margin-bottom: 32px;
+  }
+}
+
+.tablet.guideCardSection {
+  padding-bottom: 48px;
+  .sectionTitle {
+    margin-bottom: 24px;
+  }
+}
+
+.mobile.guideCardSection {
+  padding-bottom: 48px;
+  .sectionTitle {
+    margin-bottom: 32px;
+  }
+}

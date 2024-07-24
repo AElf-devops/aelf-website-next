@@ -1,0 +1,37 @@
+.tokenomicsSection {
+  background-color: #f5f5f5;
+  .tokenomicsList {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.desktop.tokenomicsSection {
+  .tokenomicsHeader {
+    margin-bottom: 120px;
+  }
+  .tokenomicsList {
+    flex: 1;
+  }
+}
+
+.tablet.tokenomicsSection {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .tokenomicsHeader {
+    max-width: none;
+    margin-bottom: 48px;
+  }
+  .tokenomicsList {
+    flex-direction: column;
+  }
+}
+
+.mobile.tokenomicsSection {
+  .tokenomicsHeader {
+    margin-bottom: 48px;
+  }
+  .tokenomicsList {
+    flex-direction: column;
+  }
+}
