@@ -44,13 +44,18 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
             href: "https://docs.aelf.com/quick-start/node-operators/operations/",
           },
           {
+            linkText: "Run a Testnet Node",
+            description: "Set up and run a node on Testnet.",
+            href: "https://docs.aelf.com/quick-start/node-operators/run-a-testnet-node",
+          },
+          {
             linkText: "Run a Mainnet Node",
-            description: "Learn how to join the Mainnet. ",
+            description: "Learn how to join the Mainnet.",
             href: "https://docs.aelf.com/quick-start/node-operators/run-a-mainnet-node/",
           },
           {
             linkText: "Simulation in the Local Environment",
-            description: "Explore setting up a full node. ",
+            description: "Explore setting up a full node.",
             href: "https://docs.aelf.com/quick-start/node-operators/simulation-in-local-environment/",
           },
           {
@@ -76,6 +81,11 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/learn/cross-chain/",
       },
       {
+        linkText: "Smart Contract",
+        description: "aelf's smart contract architecture.",
+        href: "https://docs.aelf.com/learn/smart-contract/",
+      },
+      {
         linkText: "Consensus",
         description: "Understanding aelf's consensus mechanisms.",
         href: "https://docs.aelf.com/learn/consensus/",
@@ -95,41 +105,10 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         description: "Handling transaction processes.",
         href: "https://docs.aelf.com/learn/transactions/",
       },
-
-      {
-        linkText: "Smart Contract",
-        description: "aelf's smart contract architecture.",
-        href: "https://docs.aelf.com/learn/smart-contract/",
-      },
       {
         linkText: "ACS Introduction",
         description: "An introduction to aelf contract system.",
         href: "https://docs.aelf.com/learn/acs-introduction/",
-      },
-    ],
-  },
-  {
-    title: "Tutorials",
-    list: [
-      {
-        linkText: "Testnet Node",
-        description: "Learn how to join the testnet.",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-testnet-node/",
-      },
-      {
-        linkText: "Mainnet Node",
-        description: "Learn how to join the mainnet.",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-mainnet-node/",
-      },
-      {
-        linkText: "Run aelf on Cloud",
-        description: "Getting started with Google Cloud Platform (GCP).",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-aelf-on-cloud/",
-      },
-      {
-        linkText: "Side Chain",
-        description: "Learn how to operate a side chain.",
-        href: "https://docs.aelf.com/tutorials/operate-a-node/run-a-side-chain/",
       },
     ],
   },
@@ -159,7 +138,7 @@ export default function ExploreSection() {
         return 12;
       case DeviceWidthType.DESKTOP:
       default:
-        return 8;
+        return 12;
     }
   }, [deviceWidthType]);
 
