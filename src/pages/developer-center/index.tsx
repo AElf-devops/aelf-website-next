@@ -2,7 +2,6 @@ import FirstScreenSection from "@/pageComponents/developer-center/FirstScreenSec
 import GuideCardSection from "@/pageComponents/developer-center/GuideCardSection";
 import ExploreSection from "@/pageComponents/developer-center/ExploreSection";
 import DevelopersSection from "@/pageComponents/developer-center/DevelopersSection";
-import StartCardSection from "@/pageComponents/developer-center/StartCardSection";
 
 export default function DeveloperCenter() {
   return (
@@ -11,7 +10,6 @@ export default function DeveloperCenter() {
       <GuideCardSection />
       <ExploreSection />
       <DevelopersSection />
-      <StartCardSection />
     </>
   );
 }

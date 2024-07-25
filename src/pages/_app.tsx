@@ -6,14 +6,21 @@ import { useRouter } from "next/router";
 import { userAgent } from "next/server";
 import Head from "next/head";
 import "antd/dist/antd.css";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
-import GoogleTagManager from "@/components/GoogleTagManager";
 import CommonFooter from "@/components/CommonFooter";
 import CommonHeader from "@/components/CommonHeader";
+import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
+
+const GoogleTagManager = dynamic(
+  () => import("@/components/GoogleTagManager"),
+  {
+    ssr: false,
+  }
+);
 
 const urlConfig = getUrlConfig();
 
@@ -29,35 +36,34 @@ function ComponentContainer({ Component, pageProps }: any) {
     Object.values(PAGE_METADATA).find((meta) => meta.PATH === router.asPath) ||
     PAGE_METADATA.LANDING;
 
+  const resize = useCallback(() => {
+    if (window.innerWidth >= BREAKPOINTS.MD) {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.DESKTOP },
+      });
+    } else if (window.innerWidth >= BREAKPOINTS.SM) {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.TABLET },
+      });
+    } else {
+      dispatch({
+        type: "UPDATE_CONFIG",
+        payload: { deviceWidthType: DeviceWidthType.MOBILE },
+      });
+    }
+  }, [dispatch]);
+
   useEffect((): any => {
     if (typeof window === "undefined") return;
-
-    const resize = () => {
-      if (window.innerWidth >= BREAKPOINTS.MD) {
-        dispatch({
-          type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.DESKTOP },
-        });
-      } else if (window.innerWidth >= BREAKPOINTS.SM) {
-        dispatch({
-          type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.TABLET },
-        });
-      } else {
-        dispatch({
-          type: "UPDATE_CONFIG",
-          payload: { deviceWidthType: DeviceWidthType.MOBILE },
-        });
-      }
-    };
-
     resize();
     window.addEventListener("resize", resize);
     setInitialized(true);
     return () => {
       window.removeEventListener("resize", resize);
     };
-  }, [dispatch]);
+  }, [resize]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

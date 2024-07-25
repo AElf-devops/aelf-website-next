@@ -49,8 +49,11 @@ const LINK_LIST: ILinkListItem[] = [
     links: [
       { text: "Quick Start", href: "https://docs.aelf.com/quick-start/" },
       { text: "Learn", href: "https://docs.aelf.com/learn/" },
-      { text: "Docs", href: "https://docs.aelf.com/docs/" },
       { text: "Tools", href: "https://docs.aelf.com/tools/" },
+      {
+        text: "Playground",
+        href: "https://docs.aelf.com/tools/aelf-playground/",
+      },
       { text: "Resources", href: "https://docs.aelf.com/resources/" },
     ],
   },

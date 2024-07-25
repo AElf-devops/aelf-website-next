@@ -18,12 +18,12 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
       {
         linkText: "Web API",
         description: "Interact with the aelf blockchain through the web.",
-        href: "https://docs.aelf.com/docs/web-api/",
+        href: "https://docs.aelf.com/tools/web-api/",
       },
       {
         linkText: "Smart Contract API",
         description: "Access smart contract functionalities using API.",
-        href: "https://docs.aelf.com/docs/smart-contract-api/",
+        href: "https://docs.aelf.com/tools/smart-contract-api/",
       },
       {
         linkText: "Chain SDK",
@@ -86,14 +86,14 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/resources/devops/",
       },
       {
-        linkText: "aelf White Paper",
-        description: "Read aelf's whitepaper.",
-        href: "https://docs.aelf.com/resources/whitepaper/",
-      },
-      {
         linkText: "Protobuf Extension",
         description: "An open-source gRPC.",
         href: "https://docs.aelf.com/resources/protobuf-extension/",
+      },
+      {
+        linkText: "aelf White Paper",
+        description: "Read aelf's whitepaper.",
+        href: "https://docs.aelf.com/resources/whitepaper-2/",
       },
     ],
   },
