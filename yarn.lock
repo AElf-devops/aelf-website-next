@@ -122,6 +122,11 @@
   resolved "https://registry.npmjs.org/@micro-zoe/micro-app/-/micro-app-1.0.0-rc.5.tgz#e8274e34fa1e8332d60857d4505025e29ada9345"
   integrity sha512-Z7Qkp1ZxFc04UYkR6UYPorg/VgACvE0E0Y8tyOKfR9AZmvoSNPdv4TpBFv3FRoYcvMlXW8TnEXhxL1VmCbL+2w==
 
+"@microsoft/fetch-event-source@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/fetch-event-source/-/fetch-event-source-2.0.1.tgz#9ceecc94b49fbaa15666e38ae8587f64acce007d"
+  integrity sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==
+
 "@next/env@14.1.3":
   version "14.1.3"
   resolved "https://registry.npmjs.org/@next/env/-/env-14.1.3.tgz#73007b64d487bbb95ed83145195f734fc1182d10"
@@ -256,6 +261,11 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/scheduler@*":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.23.0.tgz#0a6655b3e2708eaabca00b7372fafd7a792a7b09"
+  integrity sha512-YIoDCTH3Af6XM5VuwGG/QL/CJqga1Zm3NkU3HZ4ZHK2fRMPYP1VczsTUqtsf43PH/iJNVlPHAo2oWX7BSdB2Hw==
 
 "@typescript-eslint/parser@^5.4.2 || ^6.0.0":
   version "6.21.0"
@@ -621,11 +631,12 @@ caniuse-lite@^1.0.30001579:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001643.tgz#9c004caef315de9452ab970c3da71085f8241dbd"
   integrity sha512-ERgWGNleEilSrHM6iUz/zJNSQTP8Mr21wDWpdgvRwcTXGAq6jMtOUPP4dqFPTdKqZ2wKTdtB+uucZ3MRpAUSmg==
 
-chaingpt-component@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/chaingpt-component/-/chaingpt-component-0.1.1.tgz#d0ad8d4547a35e5defca9559803932f294ccc26d"
-  integrity sha512-OSU0v1VR57i0qtBeToW464OZCk+4YMwojRCgCh31YjHrWrtMCB21EsD9cR21CbSuIsbeNobhnZUS8QCsCCYpfA==
+chaingpt-component@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/chaingpt-component/-/chaingpt-component-0.1.5.tgz#7941bc87e3b01efe74e05b21e42437c38644996d"
+  integrity sha512-2YgHWu+BX4cyyNbHzTxfZK50B1160pfWgxu/WsHNBvTc61ABneSBwexU5YlkgdEvKozDjRcqWzKutwNwYo2sGg==
   dependencies:
+    "@microsoft/fetch-event-source" "^2.0.1"
     react "^18.3.1"
     react-dom "^18.3.1"
 
@@ -2802,6 +2813,7 @@ string-convert@^0.2.0:
   integrity sha512-u/1tdPl4yQnPBjnVrmdLo9gtuLvELKsAoRapekWggdiQNvvvum+jYF329d84NAa660KQw7pB2n36KrIKVoXa3A==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
