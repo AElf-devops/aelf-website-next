@@ -13,7 +13,7 @@ export default function ChainGPT(): JSX.Element {
     <>
       <div className={styles.chainGPTContainer}>
         <ChatBoxButton
-          apiUri="/api/demos/chaingpt"
+          apiUri="/api/chaingpt"
         />
       </div>
     </>
