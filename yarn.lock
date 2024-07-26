@@ -631,10 +631,10 @@ caniuse-lite@^1.0.30001579:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001643.tgz#9c004caef315de9452ab970c3da71085f8241dbd"
   integrity sha512-ERgWGNleEilSrHM6iUz/zJNSQTP8Mr21wDWpdgvRwcTXGAq6jMtOUPP4dqFPTdKqZ2wKTdtB+uucZ3MRpAUSmg==
 
-chaingpt-component@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/chaingpt-component/-/chaingpt-component-0.1.5.tgz#7941bc87e3b01efe74e05b21e42437c38644996d"
-  integrity sha512-2YgHWu+BX4cyyNbHzTxfZK50B1160pfWgxu/WsHNBvTc61ABneSBwexU5YlkgdEvKozDjRcqWzKutwNwYo2sGg==
+chaingpt-component@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/chaingpt-component/-/chaingpt-component-0.1.7.tgz#89538161c3762e00fb1bd3a10ebfed40e2c765b1"
+  integrity sha512-dxX82AzKBByC+VpIPnoKQP6R8lTDc6tciwBbAOiqbRCZDiWjWnj6R5ucZGwZVyysL/ImQeLTG2tH+wZx/XdziQ==
   dependencies:
     "@microsoft/fetch-event-source" "^2.0.1"
     react "^18.3.1"
