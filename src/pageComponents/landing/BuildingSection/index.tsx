@@ -5,9 +5,9 @@ import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
 import { CommonButtonType } from "@/components/CommonButton";
-import LandingBlockIllustrationDoc from "@/assets/landing/LandingBlockIllustrationDoc.svg";
-import LandingBlockIllustrationRocket from "@/assets/landing/LandingBlockIllustrationRocket.svg";
-import LandingBlockIllustrationEarth from "@/assets/landing/LandingBlockIllustrationEarth.svg";
+import LandingBlockIllustrationComputer from "@/assets/landing/LandingBlockIllustrationComputer.png";
+import LandingBlockIllustrationTool from "@/assets/landing/LandingBlockIllustrationTool.png";
+import LandingBlockIllustrationCommunity from "@/assets/landing/LandingBlockIllustrationCommunity.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -63,7 +63,7 @@ export default function BuildingSection() {
         className={styles.imageTextFirstPart}
         imageClassName={styles.image}
         imageWidth={firstImageWidth}
-        imageSrc={LandingBlockIllustrationDoc}
+        imageSrc={LandingBlockIllustrationComputer}
         contentList={[
           {
             title: "Easy to use Templates & SDKs",
@@ -82,7 +82,7 @@ export default function BuildingSection() {
         imageClassName={styles.image}
         imageWidth={secondImageWidth}
         desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
-        imageSrc={LandingBlockIllustrationRocket}
+        imageSrc={LandingBlockIllustrationTool}
         contentList={[
           {
             title: "Clear documentation and automated tools",
@@ -100,7 +100,7 @@ export default function BuildingSection() {
         className={styles.imageTextThirdPart}
         imageClassName={styles.image}
         imageWidth={thirdImageWidth}
-        imageSrc={LandingBlockIllustrationEarth}
+        imageSrc={LandingBlockIllustrationCommunity}
         contentList={[
           {
             title: "Be part of our growing community",

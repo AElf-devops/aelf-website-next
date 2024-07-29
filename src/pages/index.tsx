@@ -2,6 +2,7 @@ import axios from "axios";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/landing/FirstScreenSection";
+import PartnerSection from "@/pageComponents/landing/PartnerSection";
 import FunctionSection from "@/pageComponents/landing/FunctionSection";
 import BuildingSection from "@/pageComponents/landing/BuildingSection";
 import ListSection from "@/pageComponents/landing/ListSection";
@@ -25,6 +26,7 @@ export default function Landing({ blogList }: ILandingProps) {
     <>
       <CommonHeader />
       <FirstScreenSection />
+      <PartnerSection />
       <FunctionSection />
       <BuildingSection />
       <ListSection />

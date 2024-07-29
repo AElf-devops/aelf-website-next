@@ -1,11 +1,11 @@
 import ConfigProvider from "@/contexts/useConfig";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import "@/styles/globals.scss";
 import NextApp from "next/app";
 import { useRouter } from "next/router";
 import { userAgent } from "next/server";
 import Head from "next/head";
 import "antd/dist/antd.css";
+import "@/styles/globals.scss";
 import React, { useCallback, useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
 import dynamic from "next/dynamic";
