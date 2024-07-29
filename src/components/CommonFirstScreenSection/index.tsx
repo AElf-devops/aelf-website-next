@@ -134,13 +134,13 @@ export default function CommonFirstScreenSection({
       contentClassName={styles.commonFirstScreenContent}
     >
       <CommonImage
-        className={styles.gridBackground}
+        className={clsx(styles.gridBackground, styles.fadeIn)}
         src={GridBackground}
         width={gridBackgroundWidth}
         height={gridBackgroundHeight}
         priority
       />
-      <div className={styles.introductionPart}>
+      <div className={clsx(styles.introductionPart, styles.moveIn)}>
         {newTagConfig && (
           <CommonLink
             className={styles.newTagWrapper}
@@ -181,7 +181,7 @@ export default function CommonFirstScreenSection({
       </div>
       <div className={styles.heroPart}>
         <CommonImage
-          className={styles.heroImage}
+          className={clsx(styles.heroImage, styles.moveInDelayed100)}
           src={heroImage}
           width={heroImageWidth}
           height={heroImageHeight}
@@ -189,7 +189,7 @@ export default function CommonFirstScreenSection({
           priority
         />
         <CommonImage
-          className={styles.heroShape}
+          className={clsx(styles.heroShape, styles.moveInDelayed200)}
           src={heroShape}
           width={heroShapeWidth}
           height={heroShapeHeight}

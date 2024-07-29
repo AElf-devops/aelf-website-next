@@ -135,3 +135,37 @@
     bottom: -50px;
   }
 }
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeInAnimation 800ms ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  to {
+    opacity: 1;
+  }
+}
+
+.moveIn,
+.moveInDelayed100,
+.moveInDelayed200 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: moveInAnimation 800ms ease-out forwards;
+}
+
+.moveInDelayed100 {
+  animation-delay: 100ms;
+}
+
+.moveInDelayed200 {
+  animation-delay: 200ms;
+}
+
+@keyframes moveInAnimation {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
