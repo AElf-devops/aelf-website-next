@@ -22,7 +22,7 @@ export default function CommonImage({
       style={{ width, height, ...style }}
       onClick={onClick}
     >
-      <Image {...props} alt={alt} />
+      <Image {...props} width={width} height={height} alt={alt} />
     </div>
   );
 }
