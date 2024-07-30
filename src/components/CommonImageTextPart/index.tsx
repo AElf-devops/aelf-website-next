@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, ReactNode } from "react";
 import clsx from "clsx";
 import CommonImage from "../CommonImage";
 import CommonButton, {
@@ -36,19 +36,30 @@ export interface ICommonImageTextPartContentItem {
   buttonProps?: IButtonProps;
 }
 
-interface ICommonImageTextPartProps {
+type TCommonImageTextPartProps = {
   className?: string;
-  imageClassName?: string;
   contentWrapClassName?: string;
   contentListWrapClassName?: string;
   contentItemClassName?: string;
   desktopAndTabletImagePosition?: CommonImageTextPartImagePosition;
-  imageSrc: any;
-  imageAlt?: string;
-  imageWidth?: number | string;
   contentList: ICommonImageTextPartContentItem[];
   contentBottomButtonProps?: IButtonProps;
-}
+} & (
+  | {
+      imageClassName?: string;
+      imageSrc: any;
+      imageAlt?: string;
+      imageWidth?: number;
+      imageElement?: never;
+    }
+  | {
+      imageClassName?: never;
+      imageSrc?: never;
+      imageAlt?: never;
+      imageWidth?: never;
+      imageElement: ReactNode;
+    }
+);
 
 export default function CommonImageTextPart({
   className,
@@ -60,21 +71,21 @@ export default function CommonImageTextPart({
   imageSrc,
   imageAlt,
   imageWidth,
+  imageElement,
   contentList,
   contentBottomButtonProps,
-}: ICommonImageTextPartProps) {
+}: TCommonImageTextPartProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
   const defaultImageWidth = useMemo(() => {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
-        return "auto";
       case DeviceWidthType.TABLET:
-        return 303;
+        return 325;
       case DeviceWidthType.DESKTOP:
       default:
-        return 506;
+        return 521;
     }
   }, [deviceWidthType]);
 
@@ -145,12 +156,14 @@ export default function CommonImageTextPart({
           deviceWidthType !== DeviceWidthType.MOBILE,
       })}
     >
-      <CommonImage
-        className={clsx(styles.image, imageClassName)}
-        style={{ width: imageWidth || defaultImageWidth }}
-        src={imageSrc}
-        alt={imageAlt}
-      />
+      {imageElement || (
+        <CommonImage
+          className={imageClassName}
+          width={imageWidth || defaultImageWidth}
+          src={imageSrc}
+          alt={imageAlt}
+        />
+      )}
       <div className={clsx(styles.contentWrap, contentWrapClassName)}>
         <div className={clsx(styles.contentListWrap, contentListWrapClassName)}>
           {contentList.map((item, index) =>

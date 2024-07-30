@@ -52,7 +52,6 @@ export default function VenturesSection() {
   const imageTextPartImageWidth = useMemo(() => {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
-        return "auto";
       case DeviceWidthType.TABLET:
         return 280;
       case DeviceWidthType.DESKTOP:

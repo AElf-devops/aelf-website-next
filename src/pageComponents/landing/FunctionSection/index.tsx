@@ -10,7 +10,7 @@ import CommonCard, {
   CommonCardTheme,
   ICommonCardProps,
 } from "@/components/CommonCard";
-import LandingBlockIllustrationLock from "@/assets/landing/LandingBlockIllustrationLock.svg";
+import AnimationLogoIllustration from "./AnimationLogoIllustration";
 import { DappPortkey, DappEbridge, DappForest } from "@/assets/dapp";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
@@ -86,8 +86,7 @@ export default function FunctionSection() {
     >
       <CommonImageTextPart
         className={styles.imageTextPart}
-        imageClassName={styles.imageTextPartImage}
-        imageSrc={LandingBlockIllustrationLock}
+        imageElement={<AnimationLogoIllustration />}
         contentList={[
           {
             title: "Scalable Multi-Sidechain Architecture",

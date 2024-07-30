@@ -1,8 +1,7 @@
-import { useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
 import CommonImageTextPart, { CommonImageTextPartImagePosition } from "@/components/CommonImageTextPart";
-import PlatformBridge from "@/assets/platform/PlatformBridge.svg";
+import PlatformIllustrationBulb from "@/assets/platform/PlatformIllustrationBulb.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -11,18 +10,6 @@ import styles from "./styles.module.scss";
 export default function BridgeSection() {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
-
-  const imageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 280;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 422;
-    }
-  }, [deviceWidthType]);
 
   return (
     <CommonSection
@@ -36,13 +23,12 @@ export default function BridgeSection() {
         imageClassName={styles.imageTextPartImage}
         contentListWrapClassName={styles.imageTextPartContentListWrap}
         contentItemClassName={styles.imageTextPartContentItem}
-        imageWidth={imageWidth}
         desktopAndTabletImagePosition={
           deviceWidthType === DeviceWidthType.DESKTOP
             ? CommonImageTextPartImagePosition.RIGHT
             : CommonImageTextPartImagePosition.TOP
         }
-        imageSrc={PlatformBridge}
+        imageSrc={PlatformIllustrationBulb}
         contentList={[
           {
             title: "Simplified Gateway into web3",

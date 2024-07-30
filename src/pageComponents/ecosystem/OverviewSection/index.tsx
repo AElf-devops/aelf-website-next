@@ -20,7 +20,6 @@ export default function OverviewSection() {
   const firstImageWidth = useMemo(() => {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
-        return "auto";
       case DeviceWidthType.TABLET:
         return 280;
       case DeviceWidthType.DESKTOP:
@@ -32,7 +31,6 @@ export default function OverviewSection() {
   const secondImageWidth = useMemo(() => {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
-        return "auto";
       case DeviceWidthType.TABLET:
         return 280;
       case DeviceWidthType.DESKTOP:
@@ -44,7 +42,6 @@ export default function OverviewSection() {
   const thirdImageWidth = useMemo(() => {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
-        return "auto";
       case DeviceWidthType.TABLET:
         return 280;
       case DeviceWidthType.DESKTOP:

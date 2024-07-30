@@ -6,6 +6,7 @@ import CommonSection, {
 } from "@/components/CommonSection";
 import SectionTitle from "../SectionTitle";
 import LinkList, { ILinkListProps } from "../LinkList";
+import Explore from "@/assets/Explore.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -148,7 +149,9 @@ export default function ExploreSection() {
       contentClassName={styles.exploreContent}
       mobilePaddingLeftAndRightSize={MobilePaddingLeftAndRightSize.SM}
     >
-      <SectionTitle className={styles.sectionTitle}>Explore aelf</SectionTitle>
+      <SectionTitle className={styles.sectionTitle} icon={Explore}>
+        Explore aelf
+      </SectionTitle>
       <Row gutter={rowGutter}>
         {EXPLORE_LIST_CONFIG.map((config, index) => (
           <Col key={index} span={colSpan}>

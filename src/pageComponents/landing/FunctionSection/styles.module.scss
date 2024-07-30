@@ -2,7 +2,6 @@
   color: #fff;
   background-color: #127fff;
   .imageTextPart {
-    align-items: flex-end;
     margin-top: 120px;
   }
   .dappsPart {
@@ -40,15 +39,9 @@
   }
 }
 
-.desktop.functionSection {
-  .imageTextPartImage {
-    margin-left: 34px;
-  }
-}
-
 .tablet.functionSection {
   .imageTextPart {
-    align-items: center;
+    align-items: flex-start;
     margin-top: 64px;
   }
   .dappsPart {
@@ -67,7 +60,6 @@
 
 .mobile.functionSection {
   .imageTextPart {
-    align-items: center;
     margin-top: 48px;
   }
   .dappsPart {

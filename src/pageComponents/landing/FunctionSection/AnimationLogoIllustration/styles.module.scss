@@ -5,7 +5,8 @@
   opacity: $opacity;
 }
 
-.landingHeroAnimationImage {
+.animationLogoIllustration {
+  position: relative;
   img {
     width: 100%;
     height: 100%;
@@ -29,27 +30,27 @@
 
 /** Desktop styles **/
 @mixin desktopLogoStartStyles {
-  @include animationStyles(227px, 83px, 141px, 148px);
+  @include animationStyles(199px, 180px, 85px, 89px);
 }
 
 @mixin desktopLogoEndStyles {
-  @include animationStyles(227px, 99px, 141px, 148px);
+  @include animationStyles(199px, 194px, 85px, 89px);
 }
 
 @mixin desktopShadowLargeStartStyles {
-  @include animationStyles(295px, 99px, 137px, 104px, 0.6);
+  @include animationStyles(249px, 155px, 116px, 88px, 0.6);
 }
 
 @mixin desktopShadowLargeEndStyles {
-  @include animationStyles(292px, 124px, 117px, 89px, 1);
+  @include animationStyles(250px, 192px, 86px, 65px, 1);
 }
 
 @mixin desktopShadowSmallStartStyles {
-  @include animationStyles(257px, 218px, 91px, 41px, 0.6);
+  @include animationStyles(209px, 256px, 75px, 34px, 0.6);
 }
 
 @mixin desktopShadowSmallEndStyles {
-  @include animationStyles(270px, 221px, 64px, 29px, 1);
+  @include animationStyles(219px, 264px, 57px, 26px, 1);
 }
 
 @keyframes desktopLogoMove {
@@ -82,12 +83,7 @@
   }
 }
 
-.desktop.landingHeroAnimationImage {
-  position: absolute;
-  top: -151px;
-  right: -40px;
-  width: 604px;
-  height: 604px;
+.desktop.animationLogoIllustration {
   .logo {
     @include desktopLogoStartStyles;
     animation-name: desktopLogoMove;
@@ -104,27 +100,27 @@
 
 /** Tablet and mobile styles **/
 @mixin tabletLogoStartStyles {
-  @include animationStyles(114px, 42px, 71px, 74px);
+  @include animationStyles(124px, 112px, 53px, 56px);
 }
 
 @mixin tabletLogoEndStyles {
-  @include animationStyles(114px, 50px, 71px, 74px);
+  @include animationStyles(124px, 121px, 53px, 56px);
 }
 
 @mixin tabletShadowLargeStartStyles {
-  @include animationStyles(148px, 50px, 68px, 52px, 0.6);
+  @include animationStyles(155px, 97px, 73px, 55px, 0.6);
 }
 
 @mixin tabletShadowLargeEndStyles {
-  @include animationStyles(146px, 62px, 58px, 44px, 1);
+  @include animationStyles(157px, 120px, 53px, 41px, 1);
 }
 
 @mixin tabletShadowSmallStartStyles {
-  @include animationStyles(129px, 109px, 46px, 21px, 0.6);
+  @include animationStyles(130px, 160px, 47px, 21px, 0.6);
 }
 
 @mixin tabletShadowSmallEndStyles {
-  @include animationStyles(135px, 111px, 32px, 15px, 1);
+  @include animationStyles(137px, 165px, 36px, 16px, 1);
 }
 
 @keyframes tabletLogoMove {
@@ -157,12 +153,7 @@
   }
 }
 
-.tablet.landingHeroAnimationImage {
-  position: absolute;
-  top: -27px;
-  right: 0;
-  width: 302px;
-  height: 302px;
+.tablet.animationLogoIllustration {
   .logo {
     @include tabletLogoStartStyles;
     animation-name: tabletLogoMove;
@@ -177,11 +168,7 @@
   }
 }
 
-.mobile.landingHeroAnimationImage {
-  position: relative;
-  width: 302px;
-  height: 302px;
-  margin: 0 auto 32px;
+.mobile.animationLogoIllustration {
   .logo {
     @include tabletLogoStartStyles;
     animation-name: tabletLogoMove;

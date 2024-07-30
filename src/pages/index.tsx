@@ -1,5 +1,6 @@
 import axios from "axios";
 import FirstScreenSection from "@/pageComponents/landing/FirstScreenSection";
+import PartnerSection from "@/pageComponents/landing/PartnerSection";
 import FunctionSection from "@/pageComponents/landing/FunctionSection";
 import BuildingSection from "@/pageComponents/landing/BuildingSection";
 import ListSection from "@/pageComponents/landing/ListSection";
@@ -22,6 +23,7 @@ export default function Landing({ blogList }: ILandingProps) {
   return (
     <>
       <FirstScreenSection />
+      <PartnerSection />
       <FunctionSection />
       <BuildingSection />
       <ListSection />
