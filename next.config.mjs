@@ -11,10 +11,14 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_APP_ENV === "production"
+        ? "https://aelf.com"
+        : "https://test.aelf.com";
     return [
       {
         source: "/api/:path*",
-        destination: "https://test.aelf.com/:path*",
+        destination: `${apiBaseUrl}/api/:path*`,
       },
       {
         source: "/gtag/:path*",
