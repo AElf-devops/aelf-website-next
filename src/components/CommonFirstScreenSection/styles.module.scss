@@ -151,7 +151,7 @@
 .moveInDelayed100,
 .moveInDelayed200 {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(20px) translateY(var(--scroll-offset, 0)); // Used CSS variables in translateY to dynamically set the transform based on the scroll offset.
   animation: moveInAnimation 800ms ease-out forwards;
 }
 
@@ -166,6 +166,6 @@
 @keyframes moveInAnimation {
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateY(var(--scroll-offset, 0)); // Used CSS variables in translateY to dynamically set the transform based on the scroll offset.
   }
 }
