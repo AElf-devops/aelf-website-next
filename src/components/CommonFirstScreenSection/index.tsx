@@ -16,7 +16,7 @@ import ArrowRightBlack from "@/assets/ArrowRightBlack.svg";
 import ChevronRightWhite from "@/assets/ChevronRightWhite.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import { DeviceWidthType } from "@/constants/breakpoints";
+import { SCROLL_CONFIG, DIMENSION_CONFIG } from "./constants";
 import styles from "./styles.module.scss";
 
 interface INewTagConfig
@@ -48,27 +48,6 @@ interface CSSPropertiesWithVars extends CSSProperties {
   "--scroll-offset"?: string;
 }
 
-const SCROLL_CONFIG = {
-  [DeviceWidthType.MOBILE]: {
-    START_SCROLL: 0, // Scroll distance where heroImage and heroShape start moving
-    END_SCROLL: 331, // Scroll distance where heroImage and heroShape stop moving
-    HERO_IMAGE_FACTOR: 0.07, // HeroImage movement factor
-    HERO_SHAPE_FACTOR: 0.23, // HeroShape movement factor
-  },
-  [DeviceWidthType.TABLET]: {
-    START_SCROLL: 0,
-    END_SCROLL: 420,
-    HERO_IMAGE_FACTOR: 0.17,
-    HERO_SHAPE_FACTOR: 0.43,
-  },
-  [DeviceWidthType.DESKTOP]: {
-    START_SCROLL: 0,
-    END_SCROLL: 690,
-    HERO_IMAGE_FACTOR: 0.13,
-    HERO_SHAPE_FACTOR: 0.42,
-  },
-};
-
 export default function CommonFirstScreenSection({
   id,
   heroImage,
@@ -81,6 +60,15 @@ export default function CommonFirstScreenSection({
 }: ICommonFirstScreenSectionProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
+
+  const {
+    GRID_BACKGROUND_WIDTH,
+    GRID_BACKGROUND_HEIGHT,
+    HERO_IMAGE_WIDTH,
+    HERO_IMAGE_HEIGHT,
+    HERO_SHAPE_WIDTH,
+    HERO_SHAPE_HEIGHT,
+  } = useMemo(() => DIMENSION_CONFIG[deviceWidthType], [deviceWidthType]);
 
   const [heroImageOffset, setHeroImageOffset] = useState(0);
   const [heroShapeOffset, setHeroShapeOffset] = useState(0);
@@ -128,76 +116,6 @@ export default function CommonFirstScreenSection({
     };
   }, [handleScrollRAF]);
 
-  const gridBackgroundWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return 393;
-      case DeviceWidthType.TABLET:
-        return 400;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 656;
-    }
-  }, [deviceWidthType]);
-
-  const gridBackgroundHeight = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return 393;
-      case DeviceWidthType.TABLET:
-        return 400;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 656;
-    }
-  }, [deviceWidthType]);
-
-  const heroImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return 345;
-      case DeviceWidthType.TABLET:
-        return 322;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 672;
-    }
-  }, [deviceWidthType]);
-
-  const heroImageHeight = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return 237;
-      case DeviceWidthType.TABLET:
-        return 221;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 462;
-    }
-  }, [deviceWidthType]);
-
-  const heroShapeWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-      case DeviceWidthType.TABLET:
-        return 100;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 225;
-    }
-  }, [deviceWidthType]);
-
-  const heroShapeHeight = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-      case DeviceWidthType.TABLET:
-        return 100;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 225;
-    }
-  }, [deviceWidthType]);
-
   const renderTitle = useCallback(() => {
     if (Array.isArray(title)) {
       return title.map((row, index) => <p key={index}>{row}</p>);
@@ -215,8 +133,8 @@ export default function CommonFirstScreenSection({
       <CommonImage
         className={clsx(styles.gridBackground, styles.fadeIn)}
         src={GridBackground}
-        width={gridBackgroundWidth}
-        height={gridBackgroundHeight}
+        width={GRID_BACKGROUND_WIDTH}
+        height={GRID_BACKGROUND_HEIGHT}
         priority
       />
       <div className={clsx(styles.introductionPart, styles.moveIn)}>
@@ -267,8 +185,8 @@ export default function CommonFirstScreenSection({
             } as CSSPropertiesWithVars
           } // Dynamically set CSS variable
           src={heroImage}
-          width={heroImageWidth}
-          height={heroImageHeight}
+          width={HERO_IMAGE_WIDTH}
+          height={HERO_IMAGE_HEIGHT}
           alt={heroAlt}
           priority
         />
@@ -280,8 +198,8 @@ export default function CommonFirstScreenSection({
             } as CSSPropertiesWithVars
           } // Dynamically set CSS variable
           src={heroShape}
-          width={heroShapeWidth}
-          height={heroShapeHeight}
+          width={HERO_SHAPE_WIDTH}
+          height={HERO_SHAPE_HEIGHT}
           priority
         />
       </div>
