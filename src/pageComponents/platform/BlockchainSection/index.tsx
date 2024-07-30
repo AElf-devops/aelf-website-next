@@ -1,56 +1,16 @@
-import { useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
 import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
-import PlatformBlockchain1 from "@/assets/platform/PlatformBlockchain1.png";
-import PlatformBlockchain2 from "@/assets/platform/PlatformBlockchain2.png";
-import PlatformBlockchain3 from "@/assets/platform/PlatformBlockchain3.png";
+import PlatformIllustrationPlane from "@/assets/platform/PlatformIllustrationPlane.png";
+import PlatformIllustrationMachine from "@/assets/platform/PlatformIllustrationMachine.png";
+import PlatformIllustrationRoom from "@/assets/platform/PlatformIllustrationRoom.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import { useConfig } from "@/contexts/useConfig/hooks";
-import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 export default function BlockchainSection() {
   const deviceClassName = useDeviceClass(styles);
-  const [{ deviceWidthType }] = useConfig();
-
-  const firstImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 280;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 422;
-    }
-  }, [deviceWidthType]);
-
-  const secondImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 280;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 516;
-    }
-  }, [deviceWidthType]);
-
-  const thirdImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 280;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 480;
-    }
-  }, [deviceWidthType]);
 
   return (
     <CommonSection
@@ -62,8 +22,7 @@ export default function BlockchainSection() {
     >
       <CommonImageTextPart
         className={styles.imageTextPart}
-        imageWidth={firstImageWidth}
-        imageSrc={PlatformBlockchain1}
+        imageSrc={PlatformIllustrationPlane}
         contentList={[
           {
             title: "Scalability & Speed",
@@ -89,8 +48,7 @@ export default function BlockchainSection() {
       />
       <CommonImageTextPart
         className={styles.imageTextPart}
-        imageWidth={secondImageWidth}
-        imageSrc={PlatformBlockchain2}
+        imageSrc={PlatformIllustrationMachine}
         desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
         contentList={[
           {
@@ -112,8 +70,7 @@ export default function BlockchainSection() {
       />
       <CommonImageTextPart
         className={styles.imageTextPart}
-        imageWidth={thirdImageWidth}
-        imageSrc={PlatformBlockchain3}
+        imageSrc={PlatformIllustrationRoom}
         contentList={[
           {
             title: "Democratic Governance",
@@ -128,11 +85,13 @@ export default function BlockchainSection() {
               },
               {
                 label: "Transparent Voting",
-                content: "Customizable, incentivized voting ensures collective decision-making.",
+                content:
+                  "Customizable, incentivized voting ensures collective decision-making.",
               },
               {
                 label: "Independent Side-Chains",
-                content: "Encourages innovation and prioritizes high-performing alternatives.",
+                content:
+                  "Encourages innovation and prioritizes high-performing alternatives.",
               },
             ],
           },

@@ -10,6 +10,7 @@ export default function FirstScreenSection() {
       id={SECTION_ID.ECOSYSTEM.FIRST_SCREEN}
       heroImage={LandingHero}
       heroShape={ShapeLogo}
+      heroAlt="AI blockchain - aelf. Future of web3."
       title={["Experience AI +", "Blockchain of", "Tomorrow"]}
       description="We converge AI and Blockchain to power the future of Web3"
       newTagConfig={{

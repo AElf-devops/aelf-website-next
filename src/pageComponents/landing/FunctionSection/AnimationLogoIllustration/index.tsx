@@ -1,13 +1,14 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 import CommonImage from "@/components/CommonImage";
-import * as LandingHeroImage from "@/assets/landing/landingHero";
+import LandingIllustrationLogoBackground from "@/assets/landing/LandingIllustrationLogoBackground.png";
+import * as AnimationLogo from "@/assets/landing/animationLogo";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
-export default function LandingHeroAnimationImage() {
+export default function AnimationLogoIllustration() {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
@@ -15,10 +16,10 @@ export default function LandingHeroAnimationImage() {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
       case DeviceWidthType.TABLET:
-        return 302;
+        return 325;
       case DeviceWidthType.DESKTOP:
       default:
-        return 604;
+        return 521;
     }
   }, [deviceWidthType]);
 
@@ -26,32 +27,30 @@ export default function LandingHeroAnimationImage() {
     switch (deviceWidthType) {
       case DeviceWidthType.MOBILE:
       case DeviceWidthType.TABLET:
-        return 302;
+        return 325;
       case DeviceWidthType.DESKTOP:
       default:
-        return 604;
+        return 521;
     }
   }, [deviceWidthType]);
 
   return (
-    <div className={clsx(styles.landingHeroAnimationImage, deviceClassName)}>
+    <div className={clsx(styles.animationLogoIllustration, deviceClassName)}>
       <CommonImage
         className={styles.background}
-        src={LandingHeroImage.HeroBackground}
+        src={LandingIllustrationLogoBackground}
         width={backgroundWidth}
         height={backgroundHeight}
-        alt="AI blockchain - aelf. Future of web3."
-        priority
       />
       <CommonImage
         className={styles.shadowLarge}
-        src={LandingHeroImage.HeroShadowLarge}
+        src={AnimationLogo.AnimationLogoShadowLarge}
       />
       <CommonImage
         className={styles.shadowSmall}
-        src={LandingHeroImage.HeroShadowSmall}
+        src={AnimationLogo.AnimationLogoShadowSmall}
       />
-      <CommonImage className={styles.logo} src={LandingHeroImage.HeroLogo} />
+      <CommonImage className={styles.logo} src={AnimationLogo.AnimationLogo} />
     </div>
   );
 }
