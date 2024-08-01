@@ -40,29 +40,34 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         subtitle: "For Node Operators:",
         list: [
           {
-            linkText: "Operations",
-            description: "Steps to become a BP.",
-            href: "https://docs.aelf.com/quick-start/node-operators/operations/",
+            linkText: "Simulate a BP Node",
+            description: "Simulating a block producer (BP) node.",
+            href: "https://docs.aelf.com/quick-start/node-operators/simulating-a-bp-node/",
           },
           {
-            linkText: "Run a Testnet Node",
+            linkText: "Set up a Testnet Node",
             description: "Set up and run a node on Testnet.",
-            href: "https://docs.aelf.com/quick-start/node-operators/run-a-testnet-node",
+            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-node-on-testnet/",
           },
           {
-            linkText: "Run a Mainnet Node",
-            description: "Learn how to join the Mainnet.",
-            href: "https://docs.aelf.com/quick-start/node-operators/run-a-mainnet-node/",
+            linkText: "Set up a Mainnet Node",
+            description: "Set up and run a node on Mainnet.",
+            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-node-on-mainnet/",
           },
           {
-            linkText: "Simulation in the Local Environment",
-            description: "Explore setting up a full node.",
-            href: "https://docs.aelf.com/quick-start/node-operators/simulation-in-local-environment/",
+            linkText: "Apply to be a BP",
+            description: "Participate in the BP election process.",
+            href: "https://docs.aelf.com/quick-start/node-operators/apply-to-be-a-bp/",
           },
           {
-            linkText: "Creation of a Side Chain",
-            description: "Explore how to create a side chain.",
-            href: "https://docs.aelf.com/quick-start/node-operators/explore-running-aelf-side-chain/",
+            linkText: "Set Up a Side Chain",
+            description: "Explore setting up a side chain. ",
+            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-side-chain/",
+          },
+          {
+            linkText: "Run aelf on Cloud",
+            description: "Run an aelf node on Google Cloud Platform (GCP).",
+            href: "https://docs.aelf.com/quick-start/node-operators/run-aelf-on-cloud/",
           },
         ],
       },
@@ -82,11 +87,6 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/learn/cross-chain/",
       },
       {
-        linkText: "Smart Contract",
-        description: "aelf's smart contract architecture.",
-        href: "https://docs.aelf.com/learn/smart-contract/",
-      },
-      {
         linkText: "Consensus",
         description: "Understanding aelf's consensus mechanisms.",
         href: "https://docs.aelf.com/learn/consensus/",
@@ -97,6 +97,11 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/learn/network/",
       },
       {
+        linkText: "Boot Sequence",
+        description: "Learn about aelf's boot sequence.",
+        href: "https://docs.aelf.com/learn/boot-sequence/",
+      },
+      {
         linkText: "Addresses",
         description: "Managing aelf blockchain addresses.",
         href: "https://docs.aelf.com/learn/addresses/",
@@ -105,6 +110,11 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         linkText: "Transactions",
         description: "Handling transaction processes.",
         href: "https://docs.aelf.com/learn/transactions/",
+      },
+      {
+        linkText: "Smart Contract",
+        description: "aelf's smart contract architecture.",
+        href: "https://docs.aelf.com/learn/smart-contract/",
       },
       {
         linkText: "ACS Introduction",

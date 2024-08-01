@@ -37,13 +37,14 @@ const GUIDE_CARD_CONFIG: IGuideCardItemProps[] = [
     description: "Configure your development environment.",
     buttonProps: {
       text: "Set it Up",
-      href: "https://docs.aelf.com/tools/",
+      href: "https://docs.aelf.com/tools/setup-local-environment/",
     },
   },
   {
     imageSrc: DeveloperGuideCard.DeveloperGuideCard4,
     title: "Playground",
-    description: "Build, deploy and test aelf programs and smart contracts from a browser IDE.",
+    description:
+      "Build, deploy and test aelf programs and smart contracts from a browser IDE.",
     buttonProps: {
       text: "Try it Out",
       href: "https://docs.aelf.com/tools/aelf-playground/",
