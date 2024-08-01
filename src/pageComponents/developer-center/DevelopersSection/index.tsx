@@ -16,6 +16,11 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
     title: "Tools & References",
     list: [
       {
+        linkText: "Playground",
+        description: "An easy to use sandbox for smart contract development.",
+        href: "https://docs.aelf.com/tools/aelf-playground/",
+      },
+      {
         linkText: "Chain SDK",
         description: "Develop blockchain-specific applications using ChainSDK.",
         href: "https://docs.aelf.com/tools/chain-sdk/",
@@ -44,11 +49,6 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         linkText: "Design",
         description: "Explore aelf design library.",
         href: "https://docs.aelf.com/tools/design/",
-      },
-      {
-        linkText: "Playground",
-        description: "An easy to use sandbox for smart contract development.",
-        href: "https://docs.aelf.com/tools/aelf-playground/",
       },
       {
         linkText: "Contract SDK",
@@ -107,7 +107,7 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
       },
       {
         linkText: "Browser Extension",
-        description: "Explore Portkey wallet and other extensions.",
+        description: "Interact with the aelf blockchain via the web extension.",
         href: "https://docs.aelf.com/resources/browser-extension/",
       },
       {
