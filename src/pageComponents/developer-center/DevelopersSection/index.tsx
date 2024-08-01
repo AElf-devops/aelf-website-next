@@ -16,19 +16,14 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
     title: "Tools & References",
     list: [
       {
-        linkText: "Web API",
-        description: "Interact with the aelf blockchain through the web.",
-        href: "https://docs.aelf.com/tools/web-api/",
-      },
-      {
-        linkText: "Smart Contract API",
-        description: "Access smart contract functionalities using API.",
-        href: "https://docs.aelf.com/tools/smart-contract-api/",
-      },
-      {
         linkText: "Chain SDK",
         description: "Develop blockchain-specific applications using ChainSDK.",
         href: "https://docs.aelf.com/tools/chain-sdk/",
+      },
+      {
+        linkText: "aelf-deploy",
+        description: "Deploy your smart contract using this CLI.",
+        href: "https://docs.aelf.com/tools/aelf-deploy/",
       },
       {
         linkText: "aelf CLI",
@@ -41,11 +36,6 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/tools/smart-contract-templates/",
       },
       {
-        linkText: "Deploy Tools",
-        description: "Tools to test and deploy your DApp.",
-        href: "https://docs.aelf.com/tools/aelf-deploy/",
-      },
-      {
         linkText: "Faucet",
         description: "Test your dApp with aelf test tokens.",
         href: "https://docs.aelf.com/tools/faucet/",
@@ -55,11 +45,51 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         description: "Explore aelf design library.",
         href: "https://docs.aelf.com/tools/design/",
       },
+      {
+        linkText: "Playground",
+        description: "An easy to use sandbox for smart contract development.",
+        href: "https://docs.aelf.com/tools/aelf-playground/",
+      },
+      {
+        linkText: "Contract SDK",
+        description: "C# SDKs.",
+        href: "https://docs.aelf.com/tools/contract-sdk/",
+      },
+      {
+        linkText: "Smart Contract API",
+        description: "Access smart contract functionalities using API.",
+        href: "https://docs.aelf.com/tools/smart-contract-api/",
+      },
+      {
+        linkText: "Web API",
+        description: "Interact with the aelf blockchain through the web.",
+        href: "https://docs.aelf.com/tools/web-api/",
+      },
+      {
+        linkText: "Setup Local Environment",
+        description: "Node operator and developer setup guides.",
+        href: "https://docs.aelf.com/tools/setup-local-environment/",
+      },
     ],
   },
   {
     title: "Resources",
     list: [
+      {
+        linkText: "Whitepaper 2.0",
+        description: "Featuring AI + Blockchain.",
+        href: "https://docs.aelf.com/resources/whitepaper-2/",
+      },
+      {
+        linkText: "Whitepaper 1.0",
+        description: "The original aelf Whitepaper.",
+        href: "https://docs.aelf.com/resources/whitepaper/",
+      },
+      {
+        linkText: "Tokenomics",
+        description: "Economic and Governance.",
+        href: "https://docs.aelf.com/resources/tokenomics/",
+      },
       {
         linkText: "Integration Guide",
         description: "Learn how to integrate with other tools and DApps.",
@@ -91,9 +121,9 @@ const LINK_LIST_CONFIG: ILinkListProps[] = [
         href: "https://docs.aelf.com/resources/protobuf-extension/",
       },
       {
-        linkText: "aelf White Paper",
-        description: "Read aelf's whitepaper.",
-        href: "https://docs.aelf.com/resources/whitepaper-2/",
+        linkText: "Contribution Guide",
+        description: "Contribute to aelf.",
+        href: "https://docs.aelf.com/resources/contribution/",
       },
     ],
   },
