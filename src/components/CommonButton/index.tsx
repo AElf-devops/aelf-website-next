@@ -8,6 +8,7 @@ export enum CommonButtonType {
   GHOST_BLACK = "ghostBlack",
   GHOST_BLUE = "ghostBlue",
   WHITE = "white",
+  LINK = "link",
 }
 
 export enum CommonButtonSize {

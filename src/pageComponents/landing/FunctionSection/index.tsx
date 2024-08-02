@@ -1,27 +1,48 @@
 import { useCallback, useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
-import CommonImageTextPart from "@/components/CommonImageTextPart";
-import CommonButton, {
-  CommonButtonSize,
-  CommonButtonType,
-} from "@/components/CommonButton";
-import CommonCard, {
-  CommonCardTheme,
-  ICommonCardProps,
-} from "@/components/CommonCard";
-import AnimationLogoIllustration from "./AnimationLogoIllustration";
-import { DappPortkey, DappEbridge, DappForest } from "@/assets/dapp";
+import CommonButton, { CommonButtonSize } from "@/components/CommonButton";
+import CommonCard, { ICommonCardProps } from "@/components/CommonCard";
+import FunctionCardItem, { IFunctionCardItemProps } from "./FunctionCardItem";
+import {
+  DappPortkeyGray,
+  DappEbridgeGray,
+  DappForestGray,
+} from "@/assets/dapp";
+import ArchitectureIcon from "@/assets/Architecture.svg";
+import SecurityIcon from "@/assets/Security.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
+const FUNCTION_CARD_CONFIG: IFunctionCardItemProps[] = [
+  {
+    icon: ArchitectureIcon,
+    title: "Scalable Multi-Sidechain Architecture",
+    description:
+      "aelf’s unique multi-sidechain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
+    buttonConfig: {
+      text: "Learn More",
+      href: "/platform",
+    },
+  },
+  {
+    icon: SecurityIcon,
+    title: "High Security and Reliable Performance",
+    description:
+      "Featuring a modular and cloud-native architecture, aelf guarantees high security and efficiency. This makes it an ideal platform for developers and users seeking a secure and scalable blockchain solution for their AI or non AI dApps. ",
+    buttonConfig: {
+      text: "Read Docs",
+      href: "https://docs.aelf.com",
+    },
+  },
+];
+
 const DAPP_LIST: ICommonCardProps[] = [
   {
     className: styles.dappCard,
-    theme: CommonCardTheme.WHITE,
-    icon: DappPortkey,
+    icon: DappPortkeyGray,
     iconAlt: "Portkey - web3 AA wallet. aelf's ecosystem.",
     name: "Portkey",
     tagList: ["Wallet"],
@@ -31,8 +52,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     className: styles.dappCard,
-    theme: CommonCardTheme.WHITE,
-    icon: DappEbridge,
+    icon: DappEbridgeGray,
     iconAlt: "eBridge - Token bridge. aelf's ecosystem.",
     name: "eBridge",
     tagList: ["Bridge"],
@@ -42,8 +62,7 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
   {
     className: styles.dappCard,
-    theme: CommonCardTheme.WHITE,
-    icon: DappForest,
+    icon: DappForestGray,
     iconAlt: "Forest - NFT marketplace. aelf's ecosystem.",
     name: "Forest",
     tagList: ["NFT"],
@@ -68,7 +87,7 @@ export default function FunctionSection() {
   const renderExploreButton = useCallback(
     () => (
       <CommonButton
-        type={CommonButtonType.GHOST_BLACK}
+        className={styles.exploreButton}
         size={buttonSize}
         href="/ecosystem"
       >
@@ -84,32 +103,15 @@ export default function FunctionSection() {
       title="Elevate Your Blockchain Experience with aelf’s AI-enhanced Platform"
       description="We create a simple, scalable and secure environment for developers and users alike."
     >
-      <CommonImageTextPart
-        className={styles.imageTextPart}
-        imageElement={<AnimationLogoIllustration />}
-        contentList={[
-          {
-            title: "Scalable Multi-Sidechain Architecture",
-            description:
-              "aelf’s unique multi-sidechain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
-            buttonProps: {
-              type: CommonButtonType.GHOST_BLACK,
-              text: "Learn More",
-              href: "/platform",
-            },
-          },
-          {
-            title: "High Security and Reliable Performance",
-            description:
-              "Featuring a modular and cloud-native architecture, aelf guarantees high security and efficiency. This makes it an ideal platform for developers and users seeking a secure and scalable blockchain solution for their AI or non AI dApps. ",
-            buttonProps: {
-              type: CommonButtonType.GHOST_BLACK,
-              text: "Read Docs",
-              href: "https://docs.aelf.com",
-            },
-          },
-        ]}
-      />
+      <div className={styles.functionCardWrap}>
+        {FUNCTION_CARD_CONFIG.map((config, index) => (
+          <FunctionCardItem
+            {...config}
+            key={index}
+            className={styles.functionCardItem}
+          />
+        ))}
+      </div>
       <div className={styles.dappsPart}>
         <div className={styles.dappsPartHeader}>
           <div className={styles.dappsPartHeaderLeftWrap}>
