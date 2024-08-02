@@ -1,0 +1,63 @@
+.heroWrapper {
+  overflow: hidden;
+  position: relative;
+  .backgroundImage {
+    position: absolute;
+    top: 0;
+  }
+  .animationImage {
+    position: absolute;
+    animation: moveImage 10s linear infinite;
+  }
+}
+
+@mixin moveImage($start-left, $end-left) {
+  @keyframes moveImage {
+    0% {
+      left: $start-left;
+      opacity: 0.9;
+    }
+    4% {
+      left: $start-left;
+      opacity: 1;
+    }
+    96% {
+      left: $end-left;
+      opacity: 1;
+    }
+    100% {
+      left: $end-left;
+      opacity: 0.9;
+    }
+  }
+}
+
+.desktop.heroWrapper {
+  .backgroundImage {
+    left: -126px;
+  }
+  .animationImage {
+    top: -60px;
+    @include moveImage(-140px, -200px);
+  }
+}
+
+.tablet.heroWrapper {
+  .backgroundImage {
+    left: -60px;
+  }
+  .animationImage {
+    top: -30px;
+    @include moveImage(-60px, -95px);
+  }
+}
+
+.mobile.heroWrapper {
+  .backgroundImage {
+    left: -65px;
+  }
+  .animationImage {
+    top: -30px;
+    @include moveImage(-70px, -100px);
+  }
+}

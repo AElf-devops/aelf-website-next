@@ -5,7 +5,6 @@
   padding: 0 20px;
   border-radius: 40px;
   font-weight: 500;
-  line-height: normal;
   font-family: "Poppins-Medium";
   cursor: pointer;
 
@@ -62,6 +61,14 @@
       background-color: #fff;
     }
   }
+  &.linkButton {
+    display: inline;
+    padding: 0;
+    color: #127fff;
+    font-weight: 400;
+    font-family: "Poppins-Regular";
+    text-decoration-line: underline;
+  }
 
   &.mdButton {
     height: 48px;
@@ -70,5 +77,9 @@
   &.smButton {
     height: 42px;
     font-size: 12px;
+  }
+  &.linkButton.mdButton,
+  &.linkButton.smButton {
+    height: auto;
   }
 }

@@ -32,16 +32,18 @@ interface IButtonProps
   text: string;
 }
 
-interface ICommonFirstScreenSectionProps {
+type TCommonFirstScreenSectionProps = {
   id?: string;
-  heroImage: any;
   heroShape: any;
   heroAlt?: string;
   title: string | string[];
   description: string;
   newTagConfig?: INewTagConfig;
   buttonList?: IButtonProps[];
-}
+} & (
+  | { heroImage: any; heroImageElement?: never }
+  | { heroImage?: never; heroImageElement: React.ReactNode }
+);
 
 // Extend CSSProperties to include custom CSS variables
 interface CSSPropertiesWithVars extends CSSProperties {
@@ -51,13 +53,14 @@ interface CSSPropertiesWithVars extends CSSProperties {
 export default function CommonFirstScreenSection({
   id,
   heroImage,
+  heroImageElement,
   heroShape,
   heroAlt = "",
   title,
   description,
   newTagConfig,
   buttonList,
-}: ICommonFirstScreenSectionProps) {
+}: TCommonFirstScreenSectionProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
@@ -177,19 +180,33 @@ export default function CommonFirstScreenSection({
         )}
       </div>
       <div className={styles.heroPart}>
-        <CommonImage
-          className={clsx(styles.heroImage, styles.moveInDelayed100)}
-          style={
-            {
-              "--scroll-offset": `${heroImageOffset}px`,
-            } as CSSPropertiesWithVars
-          } // Dynamically set CSS variable
-          src={heroImage}
-          width={HERO_IMAGE_WIDTH}
-          height={HERO_IMAGE_HEIGHT}
-          alt={heroAlt}
-          priority
-        />
+        {heroImageElement ? (
+          <div
+            className={styles.moveInDelayed100}
+            style={
+              {
+                "--scroll-offset": `${heroImageOffset}px`,
+              } as CSSPropertiesWithVars
+            } // Dynamically set CSS variable
+          >
+            {heroImageElement}
+          </div>
+        ) : (
+          <CommonImage
+            className={styles.moveInDelayed100}
+            style={
+              {
+                "--scroll-offset": `${heroImageOffset}px`,
+              } as CSSPropertiesWithVars
+            } // Dynamically set CSS variable
+            src={heroImage}
+            width={HERO_IMAGE_WIDTH}
+            height={HERO_IMAGE_HEIGHT}
+            alt={heroAlt}
+            priority
+          />
+        )}
+
         <CommonImage
           className={clsx(styles.heroShape, styles.moveInDelayed200)}
           style={

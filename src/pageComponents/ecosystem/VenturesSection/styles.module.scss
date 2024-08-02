@@ -1,34 +1,43 @@
 .venturesSection {
+  background: url("../../../assets/ecosystem/EcosystemVenturesBackground.png")
+    no-repeat bottom;
+  background-size: 100% auto;
   background-color: #f5f5f5;
   color: #011853;
-  .cardPart {
+  .iconCardPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .portfolioPart {
     display: flex;
     flex-direction: column;
     gap: 32px;
   }
-  .cardPartTitle {
+  .portfolioPartTitle {
     color: #011853;
     text-align: center;
     font-family: "Poppins-Medium";
     font-weight: 500;
     line-height: normal;
   }
-  .cardWrap {
-    &:nth-child(1) .cardIcon {
+  .portfolioCardWrap {
+    &:nth-child(1) .portfolioCardIcon {
       width: 120px;
     }
-    &:nth-child(2) .cardIcon {
+    &:nth-child(2) .portfolioCardIcon {
       width: 111px;
     }
-    &:nth-child(3) .cardIcon {
+    &:nth-child(3) .portfolioCardIcon {
       width: 80px;
     }
   }
-  .card {
+  .portfolioCard {
     height: 100%;
     padding: 24px;
+    background-color: #fff;
   }
-  .cardIcon {
+  .portfolioCardIcon {
     height: 80px;
     img {
       width: 100%;
@@ -38,54 +47,56 @@
 }
 
 .desktop.venturesSection {
-  .imageTextPart,
-  .cardPart {
-    margin-top: 120px;
-  }
-  .imageTextPartContentWrap,
-  .imageTextPartContentListWrap {
+  padding-bottom: 300px;
+  .iconCardPart {
+    margin-top: 64px;
     gap: 48px;
   }
-  .cardPartTitle {
+  .portfolioPart {
+    margin-top: 64px;
+  }
+  .portfolioPartTitle {
     font-size: 32px;
   }
 }
 
 .tablet.venturesSection {
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 200px;
   .venturesHeader {
     max-width: none;
   }
-  .imageTextPart {
+  .iconCardPart {
+    margin-top: 80px;
     gap: 32px;
-    margin-top: 90px;
   }
-  .imageTextPartContentListWrap {
-    flex-direction: row;
-    gap: 16px;
+  .iconCardItemTitle {
+    font-size: 16px;
   }
-  .cardPart {
+  .portfolioPart {
     margin-top: 48px;
   }
-  .cardPartTitle {
+  .portfolioPartTitle {
     font-size: 20px;
   }
 }
 
 .mobile.venturesSection {
-  .imageTextPart,
-  .cardPart {
+  padding-bottom: 120px;
+  .iconCardPart {
     margin-top: 48px;
-  }
-  .imageTextPart,
-  .imageTextPartContentWrap {
     gap: 32px;
   }
-  .imageTextPartContentListWrap {
-    gap: 16px;
+  .iconCardItemTitle {
+    font-size: 20px;
   }
-  .cardPartTitle {
+  .speakButton {
+    width: 100%;
+  }
+  .portfolioPart {
+    margin-top: 48px;
+  }
+  .portfolioPartTitle {
     font-size: 20px;
   }
 }
