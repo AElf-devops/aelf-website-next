@@ -41,6 +41,7 @@ export default function TokenomicsSection() {
           </span>
           &nbsp;
           <CommonButton
+            className={styles.linkButton}
             type={CommonButtonType.LINK}
             href="https://docs.aelf.com/resources/tokenomics/"
           >
