@@ -5,6 +5,7 @@ import TokenomicsIncentiveModel from "@/assets/platform/TokenomicsIncentiveModel
 import TokenomicsResourceAllocationModel from "@/assets/platform/TokenomicsResourceAllocationModel.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
+import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 
 const TOKENOMICS_ITEM_LIST: ITokenomicsItemProps[] = [
   {
@@ -30,7 +31,24 @@ export default function TokenomicsSection() {
       sectionClassName={clsx(styles.tokenomicsSection, deviceClassName)}
       headerClassName={styles.tokenomicsHeader}
       title="aelf Tokenomics"
-      description="The aelf economic model plays an important role in strengthening the underlying ecosystem, ensuring the overall stability and functioning of the network while encouraging healthy collaboration within the community."
+      description={
+        <>
+          <span>
+            The aelf economic model plays an important role in strengthening the
+            underlying ecosystem, ensuring the overall stability and functioning
+            of the network while encouraging healthy collaboration within the
+            community.
+          </span>
+          &nbsp;
+          <CommonButton
+            className={styles.linkButton}
+            type={CommonButtonType.LINK}
+            href="https://docs.aelf.com/resources/tokenomics/"
+          >
+            Learn more about aelf tokenomics.
+          </CommonButton>
+        </>
+      }
     >
       <div className={styles.tokenomicsList}>
         {TOKENOMICS_ITEM_LIST.map((item, index) => (

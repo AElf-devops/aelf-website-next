@@ -1,15 +1,16 @@
 .functionSection {
-  color: #fff;
-  background-color: #127fff;
-  .imageTextPart {
-    align-items: flex-end;
-    margin-top: 120px;
+  background: url("../../../assets/landing/LandingFunctionBackground.png")
+    no-repeat bottom;
+  background-size: 100% auto;
+  background-color: #fff;
+  .functionCardWrap {
+    display: flex;
+    gap: 16px;
   }
   .dappsPart {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    margin-top: 108px;
   }
   .dappsPartHeader {
     display: flex;
@@ -38,21 +39,30 @@
   .dappCard {
     flex: 1;
   }
+  .exploreButton {
+    background-color: #fff;
+  }
 }
 
 .desktop.functionSection {
-  .imageTextPartImage {
-    margin-left: 34px;
+  padding-bottom: 350px;
+  .functionCardWrap,
+  .dappsPart {
+    margin-top: 64px;
+  }
+  .functionCardItem {
+    flex: 1 1 50%;
   }
 }
 
 .tablet.functionSection {
-  .imageTextPart {
-    align-items: center;
-    margin-top: 64px;
-  }
+  padding-bottom: 200px;
+  .functionCardWrap,
   .dappsPart {
-    margin-top: 64px;
+    margin-top: 48px;
+  }
+  .functionCardItem {
+    flex: 1 1 50%;
   }
   .dappsPartTitle {
     font-size: 16px;
@@ -66,13 +76,12 @@
 }
 
 .mobile.functionSection {
-  .imageTextPart {
-    align-items: center;
-    margin-top: 48px;
-  }
+  padding-bottom: 200px;
+  .functionCardWrap,
   .dappsPart {
-    margin-top: 48px;
+    margin-top: 24px;
   }
+  .functionCardWrap,
   .dappsPartList {
     flex-direction: column;
   }

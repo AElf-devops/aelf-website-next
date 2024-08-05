@@ -10,6 +10,8 @@ export type TCommonImageProps = TPartialOption<ImageProps, "alt"> & {
 export default function CommonImage({
   className,
   style,
+  width,
+  height,
   alt = "",
   onClick,
   ...props
@@ -17,10 +19,10 @@ export default function CommonImage({
   return (
     <div
       className={clsx([styles.commonImageWrap, className])}
-      style={style}
+      style={{ width, height, ...style }}
       onClick={onClick}
     >
-      <Image {...props} alt={alt} />
+      <Image {...props} width={width} height={height} alt={alt} />
     </div>
   );
 }

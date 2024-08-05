@@ -1,5 +1,4 @@
 .guideCardSection {
-  padding-top: 0;
   background-color: #fff;
   .cardItem {
     height: 100%;
@@ -7,6 +6,7 @@
 }
 
 .desktop.guideCardSection {
+  padding-top: 64px;
   padding-bottom: 64px;
   .sectionTitle {
     margin-bottom: 32px;
@@ -14,6 +14,7 @@
 }
 
 .tablet.guideCardSection {
+  padding-top: 48px;
   padding-bottom: 48px;
   .sectionTitle {
     margin-bottom: 24px;
@@ -21,6 +22,7 @@
 }
 
 .mobile.guideCardSection {
+  padding-top: 0;
   padding-bottom: 48px;
   .sectionTitle {
     margin-bottom: 32px;

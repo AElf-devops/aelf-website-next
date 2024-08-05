@@ -1,69 +1,27 @@
-import { useMemo } from "react";
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
 import CommonImageTextPart, {
   CommonImageTextPartImagePosition,
 } from "@/components/CommonImageTextPart";
 import { CommonButtonType } from "@/components/CommonButton";
-import LandingBlockIllustrationDoc from "@/assets/landing/LandingBlockIllustrationDoc.svg";
-import LandingBlockIllustrationRocket from "@/assets/landing/LandingBlockIllustrationRocket.svg";
-import LandingBlockIllustrationEarth from "@/assets/landing/LandingBlockIllustrationEarth.svg";
+import LandingIllustrationComputer from "@/assets/landing/LandingIllustrationComputer.png";
+import LandingIllustrationTool from "@/assets/landing/LandingIllustrationTool.png";
+import LandingIllustrationCommunity from "@/assets/landing/LandingIllustrationCommunity.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import { useConfig } from "@/contexts/useConfig/hooks";
-import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
 export default function BuildingSection() {
   const deviceClassName = useDeviceClass(styles);
-  const [{ deviceWidthType }] = useConfig();
-
-  const firstImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 258;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 516;
-    }
-  }, [deviceWidthType]);
-
-  const secondImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 229;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 457;
-    }
-  }, [deviceWidthType]);
-
-  const thirdImageWidth = useMemo(() => {
-    switch (deviceWidthType) {
-      case DeviceWidthType.MOBILE:
-        return "auto";
-      case DeviceWidthType.TABLET:
-        return 211;
-      case DeviceWidthType.DESKTOP:
-      default:
-        return 422;
-    }
-  }, [deviceWidthType]);
 
   return (
     <CommonSection
       sectionClassName={clsx(styles.buildingSection, deviceClassName)}
+      contentClassName={styles.buildingContent}
       title="We simplify building on Web3"
       description="aelf offers developers and creators AI powered easy to use tools coupled with a high-performance infrastructure to build, deploy and manage your ideal dApp."
     >
       <CommonImageTextPart
-        className={styles.imageTextFirstPart}
-        imageClassName={styles.image}
-        imageWidth={firstImageWidth}
-        imageSrc={LandingBlockIllustrationDoc}
+        imageSrc={LandingIllustrationComputer}
         contentList={[
           {
             title: "Easy to use Templates & SDKs",
@@ -78,11 +36,8 @@ export default function BuildingSection() {
         ]}
       />
       <CommonImageTextPart
-        className={styles.imageTextSecondPart}
-        imageClassName={styles.image}
-        imageWidth={secondImageWidth}
         desktopAndTabletImagePosition={CommonImageTextPartImagePosition.RIGHT}
-        imageSrc={LandingBlockIllustrationRocket}
+        imageSrc={LandingIllustrationTool}
         contentList={[
           {
             title: "Clear documentation and automated tools",
@@ -97,10 +52,7 @@ export default function BuildingSection() {
         ]}
       />
       <CommonImageTextPart
-        className={styles.imageTextThirdPart}
-        imageClassName={styles.image}
-        imageWidth={thirdImageWidth}
-        imageSrc={LandingBlockIllustrationEarth}
+        imageSrc={LandingIllustrationCommunity}
         contentList={[
           {
             title: "Be part of our growing community",

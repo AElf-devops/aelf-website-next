@@ -6,6 +6,7 @@ import CommonSection, {
 } from "@/components/CommonSection";
 import SectionTitle from "../SectionTitle";
 import LinkList, { ILinkListProps } from "../LinkList";
+import Developer from "@/assets/Developer.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -151,7 +152,7 @@ export default function DevelopersSection() {
       contentClassName={styles.developersContent}
       mobilePaddingLeftAndRightSize={MobilePaddingLeftAndRightSize.SM}
     >
-      <SectionTitle className={styles.sectionTitle}>
+      <SectionTitle className={styles.sectionTitle} icon={Developer}>
         For Developers
       </SectionTitle>
       <Row gutter={[16, 16]}>

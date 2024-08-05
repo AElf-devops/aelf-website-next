@@ -24,7 +24,7 @@ export interface ICommonSectionProps {
   mobilePaddingLeftAndRightSize?: MobilePaddingLeftAndRightSize;
   headerPosition?: SectionHeaderPosition;
   title?: string;
-  description?: string;
+  description?: React.ReactNode;
   children?: React.ReactNode;
 }
 export default function CommonSection({

@@ -1,9 +1,10 @@
 .sectionTitle {
-  color: #011853;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-family: "Poppins-Bold";
   font-size: 24px;
   font-weight: 700;
-  line-height: normal;
 }
 
 .mobile.sectionTitle {

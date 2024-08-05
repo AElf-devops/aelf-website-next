@@ -2,7 +2,9 @@ import { useMemo } from "react";
 import clsx from "clsx";
 import { Row, RowProps, Col } from "antd";
 import CommonSection from "@/components/CommonSection";
-import EdgeItem, { IEdgeItemProps } from "./EdgeItem";
+import CommonIconCard, {
+  ICommonIconCardProps,
+} from "@/components/CommonIconCard";
 import PlatformCode from "@/assets/platform/PlatformCode.svg";
 import PlatformNumber from "@/assets/platform/PlatformNumber.svg";
 import PlatformOptimization from "@/assets/platform/PlatformOptimization.svg";
@@ -14,7 +16,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
-const EDGE_LIST_CONFIG: IEdgeItemProps[] = [
+const EDGE_LIST_CONFIG: ICommonIconCardProps[] = [
   {
     icon: PlatformShell,
     title: "Envisioned as the AI powered 'Linux system' for Blockchain",
@@ -85,7 +87,7 @@ export default function TechnicalEdgeSection() {
       <Row className={styles.edgeList} gutter={rowGutter}>
         {EDGE_LIST_CONFIG.map((config, index) => (
           <Col key={index} span={colSpan}>
-            <EdgeItem className={styles.edgeItem} {...config} />
+            <CommonIconCard className={styles.edgeItem} {...config} />
           </Col>
         ))}
       </Row>
