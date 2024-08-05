@@ -11,22 +11,22 @@
   }
 }
 
-@mixin moveImage($start-left, $end-left) {
+@mixin moveImage($start, $end) {
   @keyframes moveImage {
     0% {
-      left: $start-left;
+      transform: translateX($start);
       opacity: 0.9;
     }
     4% {
-      left: $start-left;
+      transform: translateX($start);
       opacity: 1;
     }
     96% {
-      left: $end-left;
+      transform: translateX($end);
       opacity: 1;
     }
     100% {
-      left: $end-left;
+      transform: translateX($end);
       opacity: 0.9;
     }
   }
