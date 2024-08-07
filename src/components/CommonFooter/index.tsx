@@ -89,7 +89,7 @@ const SOCIAL_MEDIA_LIST: ISocialMediaListItem[] = [
   },
   {
     icon: Discord,
-    href: "https://discord.com/invite/bgysa9xjvD",
+    href: "https://discord.gg/aelfblockchain",
   },
   {
     icon: Github,
