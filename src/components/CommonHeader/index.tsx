@@ -6,6 +6,7 @@ import List from "@/assets/List.svg";
 import Close from "@/assets/Close.svg";
 import CommonImage from "../CommonImage";
 import CommonLink from "../CommonLink";
+import CommonButton, { CommonButtonType } from "../CommonButton";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -52,10 +53,27 @@ export default function CommonHeader() {
     </CommonLink>
   );
 
+  const renderBanner = () => (
+    <div className={styles.headerBanner}>
+      <p className={styles.bannerHornIcon}>📣</p>
+      <p className={styles.bannerContent}>
+        Join us for Hello AI, the pre-Token2049 party!&nbsp;🎉&nbsp;
+        <CommonButton
+          className={styles.bannerLink}
+          type={CommonButtonType.LINK}
+          href="https://lu.ma/pe14cn18"
+        >
+          Get your ticket NOW!
+        </CommonButton>
+      </p>
+    </div>
+  );
+
   return (
     <header className={clsx(styles.commonHeader, deviceClassName)}>
+      {renderBanner()}
       {deviceWidthType === DeviceWidthType.MOBILE ? (
-        <>
+        <div className={styles.header}>
           {renderLogo()}
           <CommonImage
             className={styles.menuIcon}
@@ -101,9 +119,9 @@ export default function CommonHeader() {
               ))}
             </div>
           </Drawer>
-        </>
+        </div>
       ) : (
-        <>
+        <div className={styles.header}>
           {renderLogo()}
           <div className={styles.navWrap}>
             {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
@@ -118,7 +136,7 @@ export default function CommonHeader() {
               )
             )}
           </div>
-        </>
+        </div>
       )}
     </header>
   );

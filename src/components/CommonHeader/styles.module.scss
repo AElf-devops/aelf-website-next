@@ -2,12 +2,37 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 40px;
-  border-bottom: 1px solid #e8e8e8;
-  background-color: #fff;
+  .headerBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 50px;
+    padding: 0 16px;
+    background-color: #266cd3;
+    color: #fff;
+  }
+  .bannerHornIcon {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .bannerContent {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .bannerLink {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #fff;
+  }
   .logo {
     width: 107px;
   }
@@ -32,7 +57,9 @@
 }
 
 .mobile.commonHeader {
-  padding: 16px;
+  .header {
+    padding: 16px;
+  }
   .logo {
     width: 87px;
   }
