@@ -57,13 +57,13 @@ export default function CommonHeader() {
     <div className={styles.headerBanner}>
       <p className={styles.bannerHornIcon}>📣</p>
       <p className={styles.bannerContent}>
-        Join us for Hello AI, the pre-Token2049 party!&nbsp;🎉&nbsp;
+        Join us for Hello [AI], a pre-TOKEN2049 party on 16 September!&nbsp;
         <CommonButton
           className={styles.bannerLink}
           type={CommonButtonType.LINK}
           href="https://lu.ma/pe14cn18"
         >
-          Get your ticket NOW!
+          RSVP here NOW!
         </CommonButton>
       </p>
     </div>
