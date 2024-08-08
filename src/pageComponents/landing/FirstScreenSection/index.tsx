@@ -1,6 +1,6 @@
 import CommonFirstScreenSection from "@/components/CommonFirstScreenSection";
 import { CommonButtonType } from "@/components/CommonButton";
-import LandingHero from "./LandingHero";
+import animationData from "@/assets/animationData/landingHero.json";
 import { ShapeLogo } from "@/assets/shape";
 import { SECTION_ID } from "@/constants/sectionId";
 
@@ -8,7 +8,7 @@ export default function FirstScreenSection() {
   return (
     <CommonFirstScreenSection
       id={SECTION_ID.ECOSYSTEM.FIRST_SCREEN}
-      heroImageElement={<LandingHero />}
+      heroImageAnimationData={animationData}
       heroShape={ShapeLogo}
       title={["Experience AI +", "Blockchain of", "Tomorrow"]}
       description="We converge AI and Blockchain to power the future of Web3"

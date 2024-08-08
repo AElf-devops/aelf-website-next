@@ -11,6 +11,7 @@ import CommonSection from "../CommonSection";
 import CommonImage from "../CommonImage";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonButton, { ICommonButtonProps } from "../CommonButton";
+import LottieAnimation from "../LottieAnimation";
 import GridBackground from "@/assets/GridBackground.svg";
 import ArrowRightBlack from "@/assets/ArrowRightBlack.svg";
 import ChevronRightWhite from "@/assets/ChevronRightWhite.svg";
@@ -41,8 +42,13 @@ type TCommonFirstScreenSectionProps = {
   newTagConfig?: INewTagConfig;
   buttonList?: IButtonProps[];
 } & (
-  | { heroImage: any; heroImageElement?: never }
-  | { heroImage?: never; heroImageElement: React.ReactNode }
+  | { heroImage: any; heroImageElement?: never; heroImageAnimationData?: never }
+  | {
+      heroImage?: never;
+      heroImageElement: React.ReactNode;
+      heroImageAnimationData?: never;
+    }
+  | { heroImage?: never; heroImageElement?: never; heroImageAnimationData: any }
 );
 
 // Extend CSSProperties to include custom CSS variables
@@ -54,6 +60,7 @@ export default function CommonFirstScreenSection({
   id,
   heroImage,
   heroImageElement,
+  heroImageAnimationData,
   heroShape,
   heroAlt = "",
   title,
@@ -127,6 +134,50 @@ export default function CommonFirstScreenSection({
     }
   }, [title]);
 
+  const hero = useMemo(() => {
+    const commonProps = {
+      className: styles.moveInDelayed100,
+      style: {
+        // Dynamically set CSS variable
+        "--scroll-offset": `${heroImageOffset}px`,
+      } as CSSPropertiesWithVars,
+    };
+    if (heroImage) {
+      return (
+        <CommonImage
+          {...commonProps}
+          src={heroImage}
+          width={HERO_IMAGE_WIDTH}
+          height={HERO_IMAGE_HEIGHT}
+          alt={heroAlt}
+          priority
+        />
+      );
+    } else if (heroImageElement) {
+      return <div {...commonProps}>{heroImageElement}</div>;
+    } else if (heroImageAnimationData) {
+      return (
+        <LottieAnimation
+          className={clsx(styles.lottieAnimation, commonProps.className)}
+          style={{
+            width: HERO_IMAGE_WIDTH,
+            height: HERO_IMAGE_HEIGHT,
+            ...commonProps.style,
+          }}
+          animationData={heroImageAnimationData}
+        />
+      );
+    }
+  }, [
+    HERO_IMAGE_HEIGHT,
+    HERO_IMAGE_WIDTH,
+    heroAlt,
+    heroImage,
+    heroImageAnimationData,
+    heroImageElement,
+    heroImageOffset,
+  ]);
+
   return (
     <CommonSection
       id={id}
@@ -180,33 +231,7 @@ export default function CommonFirstScreenSection({
         )}
       </div>
       <div className={styles.heroPart}>
-        {heroImageElement ? (
-          <div
-            className={styles.moveInDelayed100}
-            style={
-              {
-                "--scroll-offset": `${heroImageOffset}px`,
-              } as CSSPropertiesWithVars
-            } // Dynamically set CSS variable
-          >
-            {heroImageElement}
-          </div>
-        ) : (
-          <CommonImage
-            className={styles.moveInDelayed100}
-            style={
-              {
-                "--scroll-offset": `${heroImageOffset}px`,
-              } as CSSPropertiesWithVars
-            } // Dynamically set CSS variable
-            src={heroImage}
-            width={HERO_IMAGE_WIDTH}
-            height={HERO_IMAGE_HEIGHT}
-            alt={heroAlt}
-            priority
-          />
-        )}
-
+        {hero}
         <CommonImage
           className={clsx(styles.heroShape, styles.moveInDelayed200)}
           style={
