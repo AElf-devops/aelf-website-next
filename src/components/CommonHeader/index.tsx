@@ -37,7 +37,11 @@ const MENU_LIST = [
   },
 ];
 
-export default function CommonHeader() {
+interface ICommonHeaderProps {
+  topBannerConfig: ITopBannerConfig;
+}
+
+export default function CommonHeader({ topBannerConfig }: ICommonHeaderProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
@@ -53,21 +57,27 @@ export default function CommonHeader() {
     </CommonLink>
   );
 
-  const renderBanner = () => (
-    <div className={styles.headerBanner}>
-      <p className={styles.bannerHornIcon}>📣</p>
-      <p className={styles.bannerContent}>
-        Join us for Hello [AI], a pre-TOKEN2049 party on 16 September!&nbsp;
-        <CommonButton
-          className={styles.bannerLink}
-          type={CommonButtonType.LINK}
-          href="https://lu.ma/pe14cn18"
-        >
-          RSVP here NOW!
-        </CommonButton>
-      </p>
-    </div>
-  );
+  const renderBanner = () =>
+    topBannerConfig.isActive && (
+      <div className={styles.headerBanner}>
+        <p className={styles.bannerHornIcon}>📣</p>
+        <p className={styles.bannerContent}>
+          {topBannerConfig.text}
+          {topBannerConfig.linkText && (
+            <>
+              &nbsp;
+              <CommonButton
+                className={styles.bannerLink}
+                type={CommonButtonType.LINK}
+                href={topBannerConfig.href}
+              >
+                {topBannerConfig.linkText}
+              </CommonButton>
+            </>
+          )}
+        </p>
+      </div>
+    );
 
   return (
     <header className={clsx(styles.commonHeader, deviceClassName)}>

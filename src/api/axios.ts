@@ -114,8 +114,8 @@ const webflowAPI = new Request({
   timeout: 10000,
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_WEBFLOW_API_TOKEN}`,
-    'accept-version': '1.0.0',
-  }
+    "accept-version": "1.0.0",
+  },
 });
 
 const defaultRequest = new Request({});

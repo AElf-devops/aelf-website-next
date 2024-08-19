@@ -5,127 +5,22 @@ import CommonSection, {
   MobilePaddingLeftAndRightSize,
 } from "@/components/CommonSection";
 import SectionTitle from "../SectionTitle";
-import LinkList, { ILinkListProps } from "../LinkList";
-import Explore from "@/assets/Explore.svg";
+import LinkList from "../LinkList";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import { TSectionTitleConfig } from "../type";
 import styles from "./styles.module.scss";
 
-const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
-  {
-    title: "QuickStart",
-    groups: [
-      {
-        subtitle: "For Developers:",
-        list: [
-          {
-            linkText: "Hello World Contract",
-            description: "Simplest contract to get you started.",
-            href: "https://docs.aelf.com/quick-start/developers/hello-world-contract/",
-          },
-          {
-            linkText: "Lottery Game Contract",
-            description: "Moderately complex smart contract.",
-            href: "https://docs.aelf.com/quick-start/developers/lottery-game-smart-contract/",
-          },
-          {
-            linkText: "Vote Contract",
-            description: "Slightly more complex contract.",
-            href: "https://docs.aelf.com/quick-start/developers/vote-contract/",
-          },
-        ],
-      },
-      {
-        subtitle: "For Node Operators:",
-        list: [
-          {
-            linkText: "Simulate a BP Node",
-            description: "Simulating a block producer (BP) node.",
-            href: "https://docs.aelf.com/quick-start/node-operators/simulating-a-bp-node/",
-          },
-          {
-            linkText: "Set up a Testnet Node",
-            description: "Set up and run a node on Testnet.",
-            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-node-on-testnet/",
-          },
-          {
-            linkText: "Set up a Mainnet Node",
-            description: "Set up and run a node on Mainnet.",
-            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-node-on-mainnet/",
-          },
-          {
-            linkText: "Apply to be a BP",
-            description: "Participate in the BP election process.",
-            href: "https://docs.aelf.com/quick-start/node-operators/apply-to-be-a-bp/",
-          },
-          {
-            linkText: "Set Up a Side Chain",
-            description: "Explore setting up a side chain. ",
-            href: "https://docs.aelf.com/quick-start/node-operators/set-up-a-side-chain/",
-          },
-          {
-            linkText: "Run aelf on Cloud",
-            description: "Run an aelf node on Google Cloud Platform (GCP).",
-            href: "https://docs.aelf.com/quick-start/node-operators/run-aelf-on-cloud/",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Understanding aelf",
-    list: [
-      {
-        linkText: "Core",
-        description: "aelf's core architecture.",
-        href: "https://docs.aelf.com/learn/core/",
-      },
-      {
-        linkText: "Cross-chain",
-        description: "aelf's cross-chain architecture.",
-        href: "https://docs.aelf.com/learn/cross-chain/",
-      },
-      {
-        linkText: "Consensus",
-        description: "Understanding aelf's consensus mechanisms.",
-        href: "https://docs.aelf.com/learn/consensus/",
-      },
-      {
-        linkText: "Network",
-        description: "Exploring aelf's network architecture.",
-        href: "https://docs.aelf.com/learn/network/",
-      },
-      {
-        linkText: "Boot Sequence",
-        description: "Learn about aelf's boot sequence.",
-        href: "https://docs.aelf.com/learn/boot-sequence/",
-      },
-      {
-        linkText: "Addresses",
-        description: "Managing aelf blockchain addresses.",
-        href: "https://docs.aelf.com/learn/addresses/",
-      },
-      {
-        linkText: "Transactions",
-        description: "Handling transaction processes.",
-        href: "https://docs.aelf.com/learn/transactions/",
-      },
-      {
-        linkText: "Smart Contract",
-        description: "aelf's smart contract architecture.",
-        href: "https://docs.aelf.com/learn/smart-contract/",
-      },
-      {
-        linkText: "ACS Introduction",
-        description: "An introduction to aelf contract system.",
-        href: "https://docs.aelf.com/learn/acs-introduction/",
-      },
-    ],
-  },
-];
+export interface IExploreSectionProps {
+  sectionTitleConfig: TSectionTitleConfig;
+  exploreList: IExploreListItem[];
+}
 
-export default function ExploreSection() {
+export default function ExploreSection({
+  sectionTitleConfig,
+  exploreList,
+}: IExploreSectionProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 
@@ -148,10 +43,11 @@ export default function ExploreSection() {
       case DeviceWidthType.TABLET:
         return 12;
       case DeviceWidthType.DESKTOP:
+        return exploreList.length <= 2 ? 12 : 8;
       default:
         return 12;
     }
-  }, [deviceWidthType]);
+  }, [deviceWidthType, exploreList.length]);
 
   return (
     <CommonSection
@@ -159,11 +55,9 @@ export default function ExploreSection() {
       contentClassName={styles.exploreContent}
       mobilePaddingLeftAndRightSize={MobilePaddingLeftAndRightSize.SM}
     >
-      <SectionTitle className={styles.sectionTitle} icon={Explore}>
-        Explore aelf
-      </SectionTitle>
+      <SectionTitle {...sectionTitleConfig} className={styles.sectionTitle} />
       <Row gutter={rowGutter}>
-        {EXPLORE_LIST_CONFIG.map((config, index) => (
+        {exploreList.map((config, index) => (
           <Col key={index} span={colSpan}>
             <LinkList className={styles.exploreList} {...config} />
           </Col>

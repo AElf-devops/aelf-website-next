@@ -1,3 +1,6 @@
+import { ImageType } from "@/constants/image";
+import getUrlConfig from "@/constants/network/cms";
+
 export const formatDate = (date: string, type: "MDY" | "DMY" = "MDY") => {
   if (!date) {
     return "";
@@ -21,4 +24,19 @@ export const formatDate = (date: string, type: "MDY" | "DMY" = "MDY") => {
     return tempDateArr.join(" ");
   }
   return newDate;
+};
+
+const urlConfig = getUrlConfig();
+
+export const getCmsImage = ({
+  imageId,
+  imageType,
+}: {
+  imageId?: string;
+  imageType?: ImageType;
+}) => {
+  return (
+    imageId &&
+    `${urlConfig.cms}/assets/${imageId}.${imageType || ImageType.PNG}`
+  );
 };

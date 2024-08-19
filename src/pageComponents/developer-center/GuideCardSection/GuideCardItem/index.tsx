@@ -33,7 +33,7 @@ export default function GuideCardItem({
   const deviceClassName = useDeviceClass(styles);
   return (
     <div className={clsx(styles.guideCardItem, deviceClassName, className)}>
-      <CommonImage className={styles.image} src={imageSrc} />
+      <CommonImage src={imageSrc} width={160} height={160} />
       <div className={styles.textWrap}>
         <div className={styles.title}>{title}</div>
         <div className={styles.description}>{description}</div>

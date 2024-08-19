@@ -3,6 +3,8 @@ import path from "path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
+const isDev = process.env.NEXT_PUBLIC_APP_ENV === "development";
+
 const nextConfig = {
   reactStrictMode: false,
   sassOptions: {
@@ -55,7 +57,23 @@ const nextConfig = {
         hostname: "uploads-ssl.webflow.com",
         port: "",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8056",
+      },
+      {
+        protocol: "https",
+        hostname: "test-cms-v2.aelf.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "cms-v2.aelf.com",
+        port: "",
+      },
     ],
+    unoptimized: isDev,
   },
   transpilePackages: [
     // antd & deps

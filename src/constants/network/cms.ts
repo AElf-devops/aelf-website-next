@@ -1,5 +1,5 @@
 const devUrlConfig = {
-  cms: "http://localhost:8058",
+  cms: "http://localhost:8056",
   aelf: "http://localhost:3000",
   webflow: "https://api.webflow.com/v2",
 };

@@ -6,7 +6,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 
-interface ISectionTitle {
+export interface ISectionTitleProps {
   className?: string;
   icon?: any;
   children?: React.ReactNode;
@@ -16,7 +16,7 @@ export default function SectionTitle({
   className,
   icon,
   children,
-}: ISectionTitle) {
+}: ISectionTitleProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
 

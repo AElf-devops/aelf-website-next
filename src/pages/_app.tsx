@@ -14,6 +14,7 @@ import CommonHeader from "@/components/CommonHeader";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
+import { getTopBannerConfig } from "@/api/request";
 
 const GoogleTagManager = dynamic(
   () => import("@/components/GoogleTagManager"),
@@ -26,7 +27,7 @@ const urlConfig = getUrlConfig();
 
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
-function ComponentContainer({ Component, pageProps }: any) {
+function ComponentContainer({ Component, pageProps, topBannerConfig }: any) {
   const [initialized, setInitialized] = useState(false);
   const [_, dispatch] = useConfig();
 
@@ -116,21 +117,30 @@ function ComponentContainer({ Component, pageProps }: any) {
         <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
         <meta property="og:type" content="website" />
       </Head>
-      <CommonHeader />
+      <CommonHeader topBannerConfig={topBannerConfig} />
       <Component {...pageProps} />
       <CommonFooter />
     </>
   );
 }
 
-export default function App({ Component, pageProps, isMobile }: any) {
+export default function App({
+  Component,
+  pageProps,
+  isMobile,
+  topBannerConfig,
+}: any) {
   useEffect(() => {
     microApp.start();
   }, []);
   return (
     <ConfigProvider init={{ isMobile }}>
       <GoogleTagManager gtmId={GTM_ID} />
-      <ComponentContainer Component={Component} pageProps={pageProps} />
+      <ComponentContainer
+        Component={Component}
+        pageProps={pageProps}
+        topBannerConfig={topBannerConfig}
+      />
     </ConfigProvider>
   );
 }
@@ -184,5 +194,7 @@ App.getInitialProps = async (props: any): Promise<any> => {
   });
   const isMobile = device.type === "mobile" ? true : false;
 
-  return { isMobile, ...initialProps };
+  const { data: topBannerConfig } = await getTopBannerConfig();
+
+  return { isMobile, ...initialProps, topBannerConfig };
 };
