@@ -12,6 +12,8 @@ import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
+import CommonHeader from "@/components/CommonHeader";
+import CommonFooter from "@/components/CommonFooter";
 
 const GoogleTagManager = dynamic(
   () => import("@/components/GoogleTagManager"),
@@ -114,7 +116,9 @@ function ComponentContainer({ Component, pageProps }: any) {
         <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
         <meta property="og:type" content="website" />
       </Head>
+      <CommonHeader />
       <Component {...pageProps} />
+      <CommonFooter />
     </>
   );
 }
