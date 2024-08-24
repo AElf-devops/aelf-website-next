@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
+import Script from "next/script";
 
 const GoogleTagManager = dynamic(
   () => import("@/components/GoogleTagManager"),
@@ -107,6 +108,15 @@ function ComponentContainer({ Component, pageProps }: any) {
         ) : (
           <meta name="robots" content="noindex" />
         )}
+        <Script type="application/ld+json">
+          {`{
+            "@context" : "https://schema.org",
+            "@type" : "WebSite",
+            "name" : "aelf",
+            "alternateName" : "aelf",
+            "url" : "https://aelf.com"
+          }`}
+        </Script>
         <title>{pageMeta.TITLE}</title>
         <meta name="description" content={pageMeta.DESCRIPTION} />
         <meta property="og:title" content={pageMeta.TITLE} />

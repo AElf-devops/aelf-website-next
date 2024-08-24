@@ -82,7 +82,7 @@ export default function TechnicalEdgeSection() {
       sectionClassName={clsx(styles.technicalEdgeSection, deviceClassName)}
       headerClassName={styles.technicalEdgeHeader}
       title="aelf’s Technical Edge"
-      description="aelf aims to create a highly efficient, scalable, and customizable blockchain infrastructure to support a wide range of applications and industries."
+      description="Explore the innovative blockchain technology powering aelf"
     >
       <Row className={styles.edgeList} gutter={rowGutter}>
         {EDGE_LIST_CONFIG.map((config, index) => (
