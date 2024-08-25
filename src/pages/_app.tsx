@@ -108,15 +108,6 @@ function ComponentContainer({ Component, pageProps }: any) {
         ) : (
           <meta name="robots" content="noindex" />
         )}
-        <Script type="application/ld+json">
-          {`{
-            "@context" : "https://schema.org",
-            "@type" : "WebSite",
-            "name" : "aelf",
-            "alternateName" : "aelf",
-            "url" : "https://aelf.com"
-          }`}
-        </Script>
         <title>{pageMeta.TITLE}</title>
         <meta name="description" content={pageMeta.DESCRIPTION} />
         <meta property="og:title" content={pageMeta.TITLE} />
@@ -124,6 +115,19 @@ function ComponentContainer({ Component, pageProps }: any) {
         <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
         <meta property="og:type" content="website" />
       </Head>
+      <Script
+        id="structured-data-script"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "aelf(ELF)",
+            alternateName: "aelf(ELF)",
+            url: "https://aelf.com",
+          }),
+        }}
+      />
       <Component {...pageProps} />
     </>
   );

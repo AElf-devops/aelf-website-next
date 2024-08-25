@@ -115,7 +115,7 @@ const DAPP_LIST: ICommonCardProps[] = [
     name: "Symbol Market",
     tagList: ["NFT", "Mainnet"],
     description:
-      "Discover the vibrant ecosystem powered by aelf's blockchain and AI technology.",
+      "A user-friendly platform that allows individuals to create their own tokens and NFTs by acquiring unique SEEDs.",
     arrowText: "Learn more",
     href: "https://www.eforest.finance/symbolmarket",
   },
