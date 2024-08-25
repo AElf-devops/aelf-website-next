@@ -122,8 +122,8 @@ function ComponentContainer({ Component, pageProps }: any) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: "aelf(ELF)",
-            alternateName: "aelf(ELF)",
+            name: "aelf",
+            alternateName: "aelf",
             url: "https://aelf.com",
           }),
         }}
