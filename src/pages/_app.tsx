@@ -21,6 +21,10 @@ const GoogleTagManager = dynamic(
   }
 );
 
+const Hotjar = dynamic(() => import("@/components/Hotjar"), {
+  ssr: false,
+});
+
 const urlConfig = getUrlConfig();
 
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
@@ -140,6 +144,7 @@ export default function App({ Component, pageProps, isMobile }: any) {
   return (
     <ConfigProvider init={{ isMobile }}>
       <GoogleTagManager gtmId={GTM_ID} />
+      <Hotjar />
       <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );
