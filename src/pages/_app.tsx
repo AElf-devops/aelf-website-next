@@ -13,6 +13,8 @@ import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
 import Script from "next/script";
+import CommonHeader from "@/components/CommonHeader";
+import CommonFooter from "@/components/CommonFooter";
 
 const GoogleTagManager = dynamic(
   () => import("@/components/GoogleTagManager"),
@@ -132,7 +134,9 @@ function ComponentContainer({ Component, pageProps }: any) {
           }),
         }}
       />
+      <CommonHeader />
       <Component {...pageProps} />
+      <CommonFooter />
     </>
   );
 }
