@@ -71,6 +71,10 @@ const LINK_LIST: ILinkListItem[] = [
         href: "https://blog.aelf.com/",
         isExternalLinkTargetSelf: true,
       },
+      {
+        text: "About aelf",
+        href: "https://docs.aelf.com/about-aelf",
+      },
     ],
   },
   {
@@ -116,16 +120,20 @@ export default function CommonFooter() {
     <div className={styles.copyright}>Copyright © 2024 aelf</div>
   );
 
-  const renderLinkList = (config: ILinkListItem, index: number) => (
-    <div key={index} className={styles.linkList}>
-      <div className={styles.linkListTitle}>{config.title}</div>
-      {config.links.map((item, index) => (
-        <CommonLink {...item} key={index} className={styles.linkListItem}>
-          {item.text}
-        </CommonLink>
-      ))}
-    </div>
-  );
+  const renderLinkList = () =>
+    LINK_LIST.map((config, index) => (
+      <div key={index} className={styles.linkList}>
+        <div className={styles.linkListTitle}>{config.title}</div>
+        {config.links.map((item, idx) => (
+          <CommonLink {...item} key={idx} className={styles.linkListItem}>
+            {item.text}
+          </CommonLink>
+        ))}
+        {index === LINK_LIST.length - 1 &&
+          deviceWidthType === DeviceWidthType.MOBILE &&
+          renderSocialMediaList()}
+      </div>
+    ));
 
   const renderSocialMediaList = () => (
     <div className={styles.socialMediumList}>
@@ -146,7 +154,7 @@ export default function CommonFooter() {
       <ChatPAAL />
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
-          {renderSocialMediaList()}
+          <div className={styles.linkWrap}>{renderLinkList()}</div>
           <div className={styles.divider} />
           <div className={styles.mobileCopyrightWrap}>
             {renderLogo()}
@@ -157,12 +165,12 @@ export default function CommonFooter() {
         <>
           <div className={styles.linkWrap}>
             {renderLogo()}
-            {LINK_LIST.map((config, index) => renderLinkList(config, index))}
+            {renderLinkList()}
           </div>
           <div className={styles.divider} />
           <div className={styles.infoWrap}>
-            {renderCopyright()}
             {renderSocialMediaList()}
+            {renderCopyright()}
           </div>
         </>
       )}
