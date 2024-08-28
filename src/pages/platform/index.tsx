@@ -1,5 +1,3 @@
-import CommonHeader from "@/components/CommonHeader";
-import CommonFooter from "@/components/CommonFooter";
 import FirstScreenSection from "@/pageComponents/platform/FirstScreenSection";
 import BlockchainSection from "@/pageComponents/platform/BlockchainSection";
 import BridgeSection from "@/pageComponents/platform/BridgeSection";
@@ -10,14 +8,12 @@ import CommonStartSection from "@/components/CommonStartSection";
 export default function Platform() {
   return (
     <>
-      <CommonHeader />
       <FirstScreenSection />
       <BlockchainSection />
       <BridgeSection />
       <TechnicalEdgeSection />
       <TokenomicsSection />
       <CommonStartSection />
-      <CommonFooter />
     </>
   );
 }
