@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Logo from "@/assets/Logo.svg";
 import { Discord, Github, Telegram, X } from "@/assets/socialMedia";
+import ChatPAAL from "../ChatPAAL";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonImage from "../CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -152,6 +153,7 @@ export default function CommonFooter() {
 
   return (
     <footer className={clsx(styles.commonFooter, deviceClassName)}>
+      <ChatPAAL />
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
           <div className={styles.linkWrap}>{renderLinkList()}</div>
