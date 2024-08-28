@@ -8,7 +8,7 @@ export default function FirstScreenSection() {
       heroImageAnimationData={animationData}
       heroShape={ShapeCylinder}
       title={["A Performant", "Cloud-Native Layer 1 Powered by AI"]}
-      description="Explore the innovative platform behind aelf’s blockchain technology."
+      description="Explore the innovative blockchain technology powering aelf."
     />
   );
 }

@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
 import { GTM_ID, PAGE_METADATA } from "@/constants";
 import getUrlConfig from "@/constants/network/cms";
+import Script from "next/script";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 
@@ -21,6 +22,10 @@ const GoogleTagManager = dynamic(
     ssr: false,
   }
 );
+
+const Hotjar = dynamic(() => import("@/components/Hotjar"), {
+  ssr: false,
+});
 
 const urlConfig = getUrlConfig();
 
@@ -116,6 +121,19 @@ function ComponentContainer({ Component, pageProps }: any) {
         <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
         <meta property="og:type" content="website" />
       </Head>
+      <Script
+        id="structured-data-script"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "aelf",
+            alternateName: "aelf",
+            url: "https://aelf.com",
+          }),
+        }}
+      />
       <CommonHeader />
       <Component {...pageProps} />
       <CommonFooter />
@@ -130,6 +148,7 @@ export default function App({ Component, pageProps, isMobile }: any) {
   return (
     <ConfigProvider init={{ isMobile }}>
       <GoogleTagManager gtmId={GTM_ID} />
+      <Hotjar />
       <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );

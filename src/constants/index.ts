@@ -9,8 +9,7 @@ export const PAGE_METADATA = {
   },
   PLATFORM: {
     TITLE: "aelf | Platform",
-    DESCRIPTION:
-      "Deep dive into aelf's high-performance AI blockchain platform with cross-chain interoperability and a robust ecosystem for seamless Web3 DApp development.",
+    DESCRIPTION: "Explore the innovative blockchain technology powering aelf.",
     PATH: "/platform",
   },
   DEVELOPER_CENTER: {
@@ -22,7 +21,7 @@ export const PAGE_METADATA = {
   ECOSYSTEM: {
     TITLE: "aelf | Ecosystem",
     DESCRIPTION:
-      "Explore the aelf ecosystem with cutting-edge AI blockchain technology. Discover the diverse dApps for various use cases in the Web3 crypto industry.",
+      "Discover the vibrant ecosystem powered by aelf's blockchain and AI technology.",
     PATH: "/ecosystem",
   },
 };
