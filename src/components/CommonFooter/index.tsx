@@ -33,10 +33,13 @@ const LINK_LIST: ILinkListItem[] = [
         text: "Audit Report",
         href: "https://github.com/AElfProject/aelf-audit-reports",
       },
-      { text: "Privacy", href: "https://docs.aelf.com/legal/privacy-policy/" },
       {
         text: "Terms of Use",
         href: "https://docs.aelf.com/legal/terms-of-use/",
+      },
+      {
+        text: "Privacy Policy",
+        href: "https://docs.aelf.com/legal/privacy-policy/",
       },
       {
         text: "Cookie Policy",
@@ -66,20 +69,22 @@ const LINK_LIST: ILinkListItem[] = [
         text: "aelf Ventures",
         href: `/ecosystem#${SECTION_ID.ECOSYSTEM.VENTURES}`,
       },
+    ],
+  },
+  {
+    title: "General",
+    links: [
+      {
+        text: "About aelf",
+        href: "https://docs.aelf.com/about-aelf",
+      },
       {
         text: "Blog",
         href: "https://blog.aelf.com/",
         isExternalLinkTargetSelf: true,
       },
-      {
-        text: "About aelf",
-        href: "https://docs.aelf.com/about-aelf",
-      },
+      { text: "Contact Us", href: "https://form.aelf.com/contact" },
     ],
-  },
-  {
-    title: "Connect",
-    links: [{ text: "Contact Us", href: "https://form.aelf.com/contact" }],
   },
 ];
 
@@ -129,9 +134,6 @@ export default function CommonFooter() {
             {item.text}
           </CommonLink>
         ))}
-        {index === LINK_LIST.length - 1 &&
-          deviceWidthType === DeviceWidthType.MOBILE &&
-          renderSocialMediaList()}
       </div>
     ));
 
@@ -155,6 +157,9 @@ export default function CommonFooter() {
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
           <div className={styles.linkWrap}>{renderLinkList()}</div>
+          <div className={styles.socialMediumListWrap}>
+            {renderSocialMediaList()}
+          </div>
           <div className={styles.divider} />
           <div className={styles.mobileCopyrightWrap}>
             {renderLogo()}
