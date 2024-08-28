@@ -1,8 +1,6 @@
 import ConfigProvider from "@/contexts/useConfig";
 import { useConfig } from "@/contexts/useConfig/hooks";
-import NextApp from "next/app";
 import { useRouter } from "next/router";
-import { userAgent } from "next/server";
 import Head from "next/head";
 import "antd/dist/antd.css";
 import "@/styles/globals.scss";
@@ -10,8 +8,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import microApp from "@micro-zoe/micro-app";
 import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
-import { GTM_ID, PAGE_METADATA } from "@/constants";
-import getUrlConfig from "@/constants/network/cms";
+import { GTM_ID } from "@/constants";
 import Script from "next/script";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
@@ -27,8 +24,6 @@ const Hotjar = dynamic(() => import("@/components/Hotjar"), {
   ssr: false,
 });
 
-const urlConfig = getUrlConfig();
-
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
 function ComponentContainer({ Component, pageProps }: any) {
@@ -36,10 +31,6 @@ function ComponentContainer({ Component, pageProps }: any) {
   const [_, dispatch] = useConfig();
 
   const router = useRouter();
-
-  const pageMeta =
-    Object.values(PAGE_METADATA).find((meta) => meta.PATH === router.asPath) ||
-    PAGE_METADATA.LANDING;
 
   const resize = useCallback(() => {
     if (window.innerWidth >= BREAKPOINTS.MD) {
@@ -114,12 +105,6 @@ function ComponentContainer({ Component, pageProps }: any) {
         ) : (
           <meta name="robots" content="noindex" />
         )}
-        <title>{pageMeta.TITLE}</title>
-        <meta name="description" content={pageMeta.DESCRIPTION} />
-        <meta property="og:title" content={pageMeta.TITLE} />
-        <meta property="og:description" content={pageMeta.DESCRIPTION} />
-        <meta property="og:url" content={`${urlConfig.aelf}${router.asPath}`} />
-        <meta property="og:type" content="website" />
       </Head>
       <Script
         id="structured-data-script"
@@ -141,67 +126,15 @@ function ComponentContainer({ Component, pageProps }: any) {
   );
 }
 
-export default function App({ Component, pageProps, isMobile }: any) {
+export default function App({ Component, pageProps }: any) {
   useEffect(() => {
     microApp.start();
   }, []);
   return (
-    <ConfigProvider init={{ isMobile }}>
+    <ConfigProvider>
       <GoogleTagManager gtmId={GTM_ID} />
       <Hotjar />
       <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
   );
 }
-
-App.getInitialProps = async (props: any): Promise<any> => {
-  const initialProps = await NextApp.getInitialProps(props);
-
-  const { ctx } = props;
-  const _userAgent =
-    typeof window === "undefined"
-      ? ctx.req.headers["user-agent"]
-      : window.navigator.userAgent;
-
-  const { device } = userAgent({
-    headers: {
-      get: (key: string) => _userAgent,
-      append: function (name: string, value: string): void {
-        throw new Error("Function not implemented.");
-      },
-      delete: function (name: string): void {
-        throw new Error("Function not implemented.");
-      },
-      getSetCookie: function (): string[] {
-        throw new Error("Function not implemented.");
-      },
-      has: function (name: string): boolean {
-        throw new Error("Function not implemented.");
-      },
-      set: function (name: string, value: string): void {
-        throw new Error("Function not implemented.");
-      },
-      forEach: function (
-        callbackfn: (value: string, key: string, parent: Headers) => void,
-        thisArg?: any
-      ): void {
-        throw new Error("Function not implemented.");
-      },
-      entries: function (): IterableIterator<[string, string]> {
-        throw new Error("Function not implemented.");
-      },
-      keys: function (): IterableIterator<string> {
-        throw new Error("Function not implemented.");
-      },
-      values: function (): IterableIterator<string> {
-        throw new Error("Function not implemented.");
-      },
-      [Symbol.iterator]: function (): IterableIterator<[string, string]> {
-        throw new Error("Function not implemented.");
-      },
-    },
-  });
-  const isMobile = device.type === "mobile" ? true : false;
-
-  return { isMobile, ...initialProps };
-};

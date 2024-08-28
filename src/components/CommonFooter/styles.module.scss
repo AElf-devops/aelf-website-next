@@ -69,8 +69,17 @@
 .mobile.commonFooter {
   max-width: none;
   padding-top: 24px;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-right: 24px;
+  padding-left: 24px;
+  .linkWrap {
+    flex-wrap: wrap;
+  }
+  .linkList {
+    flex: 1 1 40%;
+  }
+  .socialMediumListWrap {
+    margin-top: 16px;
+  }
   .divider {
     margin: 16px 0;
   }
