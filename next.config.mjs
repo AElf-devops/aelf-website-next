@@ -49,7 +49,16 @@ const nextConfig = {
     ];
   },
   images: {
+    domains: [
+      "cdn.prod.website-files.com",
+      "uploads-ssl.webflow.com",
+    ],
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.prod.website-files.com",
+        port: "",
+      },
       {
         protocol: "https",
         hostname: "uploads-ssl.webflow.com",

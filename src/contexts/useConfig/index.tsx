@@ -2,13 +2,11 @@ import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { DeviceWidthType } from "@/constants/breakpoints";
 
 const INITIAL_STATE = {
-  isMobile: false,
   deviceWidthType: DeviceWidthType.DESKTOP,
 };
 const ConfigContext = createContext<any>(INITIAL_STATE);
 
 type TConfigState = {
-  isMobile: boolean;
   deviceWidthType: DeviceWidthType;
 };
 
