@@ -20,6 +20,10 @@ const GoogleTagManager = dynamic(
   }
 );
 
+const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
+  ssr: false,
+});
+
 const Hotjar = dynamic(() => import("@/components/Hotjar"), {
   ssr: false,
 });
@@ -133,6 +137,7 @@ export default function App({ Component, pageProps }: any) {
   return (
     <ConfigProvider>
       <GoogleTagManager gtmId={GTM_ID} />
+      <GoogleAnalytics />
       <Hotjar />
       <ComponentContainer Component={Component} pageProps={pageProps} />
     </ConfigProvider>
