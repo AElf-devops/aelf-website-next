@@ -34,7 +34,7 @@ export default function CommonSEOHead({ pageKey }: ICommonSEOHeadProps) {
         <meta property="og:type" content="website" />
       </Head>
       <script
-        id="structured-data-script"
+        id="webpage-structured-data-script"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
