@@ -102,6 +102,7 @@ export default function VenturesSection() {
               : CommonButtonSize.MD
           }
           href="mailto: ventures@aelf.io"
+          hjId="Speak with Us"
         >
           Speak with Us
         </CommonButton>

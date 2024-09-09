@@ -4,6 +4,7 @@ import CommonImage from "../CommonImage";
 import ArrowRightWhite from "@/assets/ArrowRightWhite.svg";
 import ArrowRightBlack from "@/assets/ArrowRightBlack.svg";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../utils";
 
 export enum CommonCardTheme {
   WHITE = "white",
@@ -65,6 +66,12 @@ export default function CommonCard({
           className={styles.arrowWrap}
           href={href}
           isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+          onClick={() => {
+            window.hj(
+              "event",
+              `click_${toSnakeCase(name!)}_${toSnakeCase(arrowText)}`
+            );
+          }}
         >
           <span>{arrowText}</span>
           <CommonImage
