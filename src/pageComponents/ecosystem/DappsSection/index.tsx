@@ -173,6 +173,7 @@ export default function DappsSection() {
             : CommonButtonSize.SM
         }
         href="https://form.aelf.com/submit-project"
+        hjId="Submit a Project"
       >
         Submit a Project
       </CommonButton>

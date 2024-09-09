@@ -10,4 +10,5 @@ declare module "lodash/debounce";
 // global.d.ts
 interface Window {
   dataLayer: any[];
+  hj: (...args: any[]) => void;
 }

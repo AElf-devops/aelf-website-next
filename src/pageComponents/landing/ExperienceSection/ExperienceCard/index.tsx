@@ -4,6 +4,7 @@ import CommonImage from "@/components/CommonImage";
 import ArrowRightWhite from "@/assets/ArrowRightWhite.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../../../utils";
 
 interface IExperienceCardProps
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
@@ -34,6 +35,9 @@ export default function ExperienceCard({
           className={styles.linkButton}
           href={href}
           isExternalLinkTargetSelf={isExternalLinkTargetSelf}
+          onClick={() => {
+            window.hj("event", `click_${toSnakeCase(arrowText)}`);
+          }}
         >
           <span>{arrowText}</span>
           <CommonImage className={styles.arrowRight} src={ArrowRightWhite} />

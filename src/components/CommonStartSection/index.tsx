@@ -89,6 +89,7 @@ export default function CommonStartSection({
                   ? CommonButtonSize.MD
                   : CommonButtonSize.SM
               }
+              hjId={config.text}
             >
               {config.text}
             </CommonButton>

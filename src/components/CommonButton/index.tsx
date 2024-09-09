@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../utils";
 
 export enum CommonButtonType {
   PRIMARY = "primary",
@@ -23,6 +24,7 @@ export interface ICommonButtonProps
   size?: CommonButtonSize;
   ghostHoverTextColor?: string;
   children?: React.ReactNode;
+  hjId?: string;
   onClick?: () => void;
 }
 
@@ -33,6 +35,7 @@ export default function CommonButton({
   children,
   href,
   isExternalLinkTargetSelf,
+  hjId,
   onClick,
 }: ICommonButtonProps) {
   const containerProps = {
@@ -42,7 +45,12 @@ export default function CommonButton({
       styles[`${type}Button`],
       styles[`${size}Button`]
     ),
-    onClick,
+    onClick: () => {
+      if (hjId) {
+        window.hj("event", `click_${toSnakeCase(hjId)}`);
+      }
+      onClick?.();
+    },
   };
 
   if (href) {

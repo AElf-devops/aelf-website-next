@@ -90,6 +90,7 @@ export default function FunctionSection() {
         className={styles.exploreButton}
         size={buttonSize}
         href="/ecosystem"
+        hjId="Explore dApps"
       >
         Explore dApps
       </CommonButton>

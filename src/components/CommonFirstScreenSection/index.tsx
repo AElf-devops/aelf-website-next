@@ -19,6 +19,7 @@ import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { SCROLL_CONFIG, DIMENSION_CONFIG } from "./constants";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../utils";
 
 interface INewTagConfig
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
@@ -70,7 +71,6 @@ export default function CommonFirstScreenSection({
 }: TCommonFirstScreenSectionProps) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
-
   const {
     GRID_BACKGROUND_WIDTH,
     GRID_BACKGROUND_HEIGHT,
@@ -197,6 +197,9 @@ export default function CommonFirstScreenSection({
             className={styles.newTagWrapper}
             href={newTagConfig.href}
             isExternalLinkTargetSelf={newTagConfig.isExternalLinkTargetSelf}
+            onClick={() => {
+              window.hj("event", `click_${toSnakeCase(newTagConfig.text)}`);
+            }}
           >
             <div className={styles.newTag}>NEW</div>
             <div>{newTagConfig.text}</div>
@@ -216,6 +219,7 @@ export default function CommonFirstScreenSection({
               <CommonButton
                 key={index}
                 {...buttonConfig}
+                hjId={buttonConfig.text}
                 className={clsx(styles.button, buttonConfig.className)}
               >
                 <p>{buttonConfig.text}</p>
