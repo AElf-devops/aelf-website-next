@@ -110,6 +110,19 @@ function ComponentContainer({ Component, pageProps }: any) {
           <meta name="robots" content="noindex" />
         )}
       </Head>
+      <Script
+        id="website-structured-data-script"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "aelf",
+            alternateName: "aelf",
+            url: "https://aelf.com",
+          }),
+        }}
+      />
       <CommonHeader />
       <Component {...pageProps} />
       <CommonFooter />
