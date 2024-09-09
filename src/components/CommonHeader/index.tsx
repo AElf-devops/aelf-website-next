@@ -11,6 +11,7 @@ import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../utils";
 
 const MENU_LIST = [
   {
@@ -62,6 +63,7 @@ export default function CommonHeader() {
           className={styles.bannerLink}
           type={CommonButtonType.LINK}
           href="https://lu.ma/pe14cn18"
+          hjId="RSVP here NOW!"
         >
           RSVP here NOW!
         </CommonButton>
@@ -110,7 +112,10 @@ export default function CommonHeader() {
                   key={index}
                   href={item.href}
                   isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
-                  onClick={() => setIsMenuDrawerOpen(false)}
+                  onClick={() => {
+                    window.hj("event", `click_${toSnakeCase(item.text)}`);
+                    setIsMenuDrawerOpen(false);
+                  }}
                 >
                   <div className={styles.menuDrawerContentItem}>
                     {item.text}
@@ -124,12 +129,15 @@ export default function CommonHeader() {
         <div className={styles.header}>
           {renderLogo()}
           <div className={styles.navWrap}>
-            {MENU_LIST.filter((item) => !item.onlyMobileShow).map(
+            {MENU_LIST.filter(item => !item.onlyMobileShow).map(
               (item, index) => (
                 <CommonLink
                   key={index}
                   href={item.href}
                   isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
+                  onClick={() => {
+                    window.hj("event", `click_${toSnakeCase(item.text)}`);
+                  }}
                 >
                   <div className={styles.navItem}>{item.text}</div>
                 </CommonLink>

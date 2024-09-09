@@ -8,6 +8,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 import { SECTION_ID } from "@/constants/sectionId";
+import { toSnakeCase } from "../../utils";
 
 interface ILink
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
@@ -119,7 +120,14 @@ export default function CommonFooter() {
     <div key={index} className={styles.linkList}>
       <div className={styles.linkListTitle}>{config.title}</div>
       {config.links.map((item, index) => (
-        <CommonLink {...item} key={index} className={styles.linkListItem}>
+        <CommonLink
+          {...item}
+          key={index}
+          className={styles.linkListItem}
+          onClick={() => {
+            window.hj("event", `click_${toSnakeCase(item.text)}`);
+          }}
+        >
           {item.text}
         </CommonLink>
       ))}

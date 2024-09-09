@@ -42,6 +42,7 @@ export default function GuideCardItem({
         {...buttonProps}
         className={styles.button}
         type={CommonButtonType.PRIMARY}
+        hjId={buttonProps.text}
       >
         {buttonProps.text}
       </CommonButton>

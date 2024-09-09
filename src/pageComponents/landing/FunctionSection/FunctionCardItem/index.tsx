@@ -44,6 +44,7 @@ export default function FunctionCardItem({
             ? CommonButtonSize.MD
             : CommonButtonSize.SM
         }
+        hjId={buttonConfig.text}
       >
         {buttonConfig.text}
       </CommonButton>

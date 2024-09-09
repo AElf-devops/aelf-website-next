@@ -22,3 +22,7 @@ export const formatDate = (date: string, type: "MDY" | "DMY" = "MDY") => {
   }
   return newDate;
 };
+
+export function toSnakeCase(str: string) {
+  return str.toLowerCase().replace(/\s+/g, "_");
+}

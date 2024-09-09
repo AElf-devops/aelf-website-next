@@ -2,6 +2,7 @@ import clsx from "clsx";
 import CommonLink, { ICommonLinkProps } from "@/components/CommonLink";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
+import { toSnakeCase } from "../../../utils";
 
 interface ILinkListItem
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
@@ -42,6 +43,9 @@ export default function LinkList({
             className={styles.link}
             href={item.href}
             isExternalLinkTargetSelf={item.isExternalLinkTargetSelf}
+            onClick={() => {
+              window.hj("event", `click_${toSnakeCase(item.linkText)}`);
+            }}
           >
             {item.linkText}
           </CommonLink>
