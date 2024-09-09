@@ -32,6 +32,11 @@ const MENU_LIST = [
     isExternalLinkTargetSelf: true,
   },
   {
+    text: "About aelf",
+    href: "https://docs.aelf.com/about-aelf",
+    onlyMobileShow: true,
+  },
+  {
     text: "Contact Us",
     href: "https://form.aelf.com/contact",
     onlyMobileShow: true,

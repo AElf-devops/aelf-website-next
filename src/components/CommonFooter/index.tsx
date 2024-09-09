@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Logo from "@/assets/Logo.svg";
 import { Discord, Github, Telegram, X } from "@/assets/socialMedia";
+import ChatPAAL from "../ChatPAAL";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonImage from "../CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -33,10 +34,13 @@ const LINK_LIST: ILinkListItem[] = [
         text: "Audit Report",
         href: "https://github.com/AElfProject/aelf-audit-reports",
       },
-      { text: "Privacy", href: "https://docs.aelf.com/legal/privacy-policy/" },
       {
         text: "Terms of Use",
         href: "https://docs.aelf.com/legal/terms-of-use/",
+      },
+      {
+        text: "Privacy Policy",
+        href: "https://docs.aelf.com/legal/privacy-policy/",
       },
       {
         text: "Cookie Policy",
@@ -66,16 +70,22 @@ const LINK_LIST: ILinkListItem[] = [
         text: "aelf Ventures",
         href: `/ecosystem#${SECTION_ID.ECOSYSTEM.VENTURES}`,
       },
+    ],
+  },
+  {
+    title: "General",
+    links: [
+      {
+        text: "About aelf",
+        href: "https://docs.aelf.com/about-aelf",
+      },
       {
         text: "Blog",
         href: "https://blog.aelf.com/",
         isExternalLinkTargetSelf: true,
       },
+      { text: "Contact Us", href: "https://form.aelf.com/contact" },
     ],
-  },
-  {
-    title: "Connect",
-    links: [{ text: "Contact Us", href: "https://form.aelf.com/contact" }],
   },
 ];
 
@@ -115,24 +125,24 @@ export default function CommonFooter() {
   const renderCopyright = () => (
     <div className={styles.copyright}>Copyright © 2024 aelf</div>
   );
-
-  const renderLinkList = (config: ILinkListItem, index: number) => (
-    <div key={index} className={styles.linkList}>
-      <div className={styles.linkListTitle}>{config.title}</div>
-      {config.links.map((item, index) => (
-        <CommonLink
-          {...item}
-          key={index}
-          className={styles.linkListItem}
-          onClick={() => {
-            window.hj("event", `click_${toSnakeCase(item.text)}`);
-          }}
-        >
-          {item.text}
-        </CommonLink>
-      ))}
-    </div>
-  );
+  const renderLinkList = () =>
+    LINK_LIST.map((config, index) => (
+      <div key={index} className={styles.linkList}>
+        <div className={styles.linkListTitle}>{config.title}</div>
+        {config.links.map((item, idx) => (
+          <CommonLink
+            {...item}
+            key={idx}
+            className={styles.linkListItem}
+            onClick={() => {
+              window.hj("event", `click_${toSnakeCase(item.text)}`);
+            }}
+          >
+            {item.text}
+          </CommonLink>
+        ))}
+      </div>
+    ));
 
   const renderSocialMediaList = () => (
     <div className={styles.socialMediumList}>
@@ -150,9 +160,13 @@ export default function CommonFooter() {
 
   return (
     <footer className={clsx(styles.commonFooter, deviceClassName)}>
+      <ChatPAAL />
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <>
-          {renderSocialMediaList()}
+          <div className={styles.linkWrap}>{renderLinkList()}</div>
+          <div className={styles.socialMediumListWrap}>
+            {renderSocialMediaList()}
+          </div>
           <div className={styles.divider} />
           <div className={styles.mobileCopyrightWrap}>
             {renderLogo()}
@@ -163,12 +177,12 @@ export default function CommonFooter() {
         <>
           <div className={styles.linkWrap}>
             {renderLogo()}
-            {LINK_LIST.map((config, index) => renderLinkList(config, index))}
+            {renderLinkList()}
           </div>
           <div className={styles.divider} />
           <div className={styles.infoWrap}>
-            {renderCopyright()}
             {renderSocialMediaList()}
+            {renderCopyright()}
           </div>
         </>
       )}

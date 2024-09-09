@@ -1,6 +1,5 @@
 import axios from "axios";
-import CommonHeader from "@/components/CommonHeader";
-import CommonFooter from "@/components/CommonFooter";
+import CommonSEOHead from "@/components/CommonSEOHead";
 import FirstScreenSection from "@/pageComponents/landing/FirstScreenSection";
 import PartnerSection from "@/pageComponents/landing/PartnerSection";
 import FunctionSection from "@/pageComponents/landing/FunctionSection";
@@ -9,6 +8,7 @@ import ListSection from "@/pageComponents/landing/ListSection";
 import ExperienceSection from "@/pageComponents/landing/ExperienceSection";
 import { IRecentBlogItem } from "@/types/webflow";
 import getUrlConfig from "@/constants/network/cms";
+import { PAGE_KEY } from "@/constants";
 
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
@@ -24,14 +24,13 @@ interface ILandingProps {
 export default function Landing({ blogList }: ILandingProps) {
   return (
     <>
-      <CommonHeader />
+      <CommonSEOHead pageKey={PAGE_KEY.LANDING} />
       <FirstScreenSection />
       <PartnerSection />
       <FunctionSection />
       <BuildingSection />
       <ListSection />
       <ExperienceSection blogList={blogList} />
-      <CommonFooter />
     </>
   );
 }
