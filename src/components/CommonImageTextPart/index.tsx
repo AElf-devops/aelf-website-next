@@ -141,7 +141,7 @@ export default function CommonImageTextPart({
             {...buttonProps}
             className={clsx(styles.contentItemButton, buttonProps.className)}
             size={contentItemButtonSize}
-            hjId={buttonProps.text}
+            hjId={`${title}_${buttonProps.text}`}
           >
             {buttonProps.text}
           </CommonButton>

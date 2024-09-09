@@ -67,7 +67,10 @@ export default function CommonCard({
           href={href}
           isExternalLinkTargetSelf={isExternalLinkTargetSelf}
           onClick={() => {
-            window.hj("event", `click_${toSnakeCase(arrowText)}`);
+            window.hj(
+              "event",
+              `click_${toSnakeCase(name!)}_${toSnakeCase(arrowText)}`
+            );
           }}
         >
           <span>{arrowText}</span>
