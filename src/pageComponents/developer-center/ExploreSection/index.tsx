@@ -21,18 +21,39 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
         list: [
           {
             linkText: "Hello World Contract",
-            description: "Simplest contract to get you started.",
+            description:
+              "Learn the basics of smart contract syntax and deployment on the aelf blockchain.",
             href: "https://docs.aelf.com/quick-start/developers/hello-world-contract/",
           },
           {
             linkText: "Lottery Game Contract",
-            description: "Moderately complex smart contract.",
+            description:
+              "Build a simple lottery game showcasing state variables, user interaction, and random number generation.",
             href: "https://docs.aelf.com/quick-start/developers/lottery-game-smart-contract/",
           },
           {
-            linkText: "Vote Contract",
-            description: "Slightly more complex contract.",
-            href: "https://docs.aelf.com/quick-start/developers/vote-contract/",
+            linkText: "DAO dApp",
+            description:
+              "Master advanced smart contract logic, security practices, and data management in decentralized autonomous organizations.",
+            href: "https://docs.aelf.com/quick-start/developers/dao-dapp/",
+          },
+          {
+            linkText: "NFT dApp",
+            description:
+              "Explore NFT creation, minting, and token transfers using aelf’s multi-token contract to build your own NFT collection.",
+            href: "https://docs.aelf.com/quick-start/developers/nft-dapp/",
+          },
+          {
+            linkText: "ToDo dApp",
+            description:
+              "Develop a task management system with a focus on state handling, user input, and contract updates in aelf.",
+            href: "https://docs.aelf.com/quick-start/developers/todo-dapp/",
+          },
+          {
+            linkText: "Tic-Tac-Toe dApp",
+            description:
+              "Learn to create a transparent, immutable Tic-Tac-Toe game, applying core concepts of smart contract and dApp development.",
+            href: "https://docs.aelf.com/quick-start/developers/tic-tac-toe-dapp/",
           },
         ],
       },
