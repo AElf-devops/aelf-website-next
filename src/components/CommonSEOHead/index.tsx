@@ -17,8 +17,8 @@ export default function CommonSEOHead({ pageKey }: ICommonSEOHeadProps) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: TITLE,
-    alternateName: TITLE,
+    name: "aelf",
+    alternateName: "aelf",
     description: DESCRIPTION,
     url,
   };
