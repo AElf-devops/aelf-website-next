@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 import { GTM_ID } from "@/constants";
 
 export default function Document() {
@@ -25,6 +26,14 @@ export default function Document() {
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
+        />
+        <Script
+          src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://mediafiles.botpress.cloud/31eff7e5-2a99-49db-9294-10d5ee389efe/webchat/v2.1/config.js"
+          strategy="beforeInteractive"
         />
       </Head>
       <body>
