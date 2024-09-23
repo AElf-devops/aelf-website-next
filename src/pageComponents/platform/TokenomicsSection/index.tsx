@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import CommonSection from "@/components/CommonSection";
+import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 import TokenomicsItem, { ITokenomicsItemProps } from "./TokenomicsItem";
+import TokenomicsDescription from './TokenomicsDescription';
 import TokenomicsIncentiveModel from "@/assets/platform/TokenomicsIncentiveModel.png";
 import TokenomicsResourceAllocationModel from "@/assets/platform/TokenomicsResourceAllocationModel.png";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import styles from "./styles.module.scss";
-import CommonButton, { CommonButtonType } from "@/components/CommonButton";
 
 const TOKENOMICS_ITEM_LIST: ITokenomicsItemProps[] = [
   {
@@ -60,6 +61,7 @@ export default function TokenomicsSection() {
           />
         ))}
       </div>
+      <TokenomicsDescription />
     </CommonSection>
   );
 }
