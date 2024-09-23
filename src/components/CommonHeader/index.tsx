@@ -6,7 +6,7 @@ import List from "@/assets/List.svg";
 import Close from "@/assets/Close.svg";
 import CommonImage from "../CommonImage";
 import CommonLink from "../CommonLink";
-import CommonButton, { CommonButtonType } from "../CommonButton";
+// import CommonButton, { CommonButtonType } from "../CommonButton";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
@@ -59,26 +59,27 @@ export default function CommonHeader() {
     </CommonLink>
   );
 
-  const renderBanner = () => (
-    <div className={styles.headerBanner}>
-      <p className={styles.bannerHornIcon}>📣</p>
-      <p className={styles.bannerContent}>
-        Join us for Hello [AI], a pre-TOKEN2049 party on 16 September!&nbsp;
-        <CommonButton
-          className={styles.bannerLink}
-          type={CommonButtonType.LINK}
-          href="https://lu.ma/pe14cn18"
-          hjId="RSVP here NOW!"
-        >
-          RSVP here NOW!
-        </CommonButton>
-      </p>
-    </div>
-  );
+  // const renderBanner = () => (
+  //   <div className={styles.headerBanner}>
+  //     <p className={styles.bannerHornIcon}>📣</p>
+  //     <p className={styles.bannerContent}>
+  //       Join us for Hello [AI], a pre-TOKEN2049 party on 16 September!&nbsp;
+  //       <CommonButton
+  //         className={styles.bannerLink}
+  //         type={CommonButtonType.LINK}
+  //         href="https://lu.ma/pe14cn18"
+  //         hjId="RSVP here NOW!"
+  //       >
+  //         RSVP here NOW!
+  //       </CommonButton>
+  //     </p>
+  //   </div>
+  // );
 
   return (
     <header className={clsx(styles.commonHeader, deviceClassName)}>
-      {renderBanner()}
+      {/* Hide banner */}
+      {/* {renderBanner()} */}
       {deviceWidthType === DeviceWidthType.MOBILE ? (
         <div className={styles.header}>
           {renderLogo()}
