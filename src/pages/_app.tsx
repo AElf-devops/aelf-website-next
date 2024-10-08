@@ -13,6 +13,9 @@ import Script from "next/script";
 import CommonHeader from "@/components/CommonHeader";
 import CommonFooter from "@/components/CommonFooter";
 
+const Amplitude = dynamic(() => import("@/components/Amplitude"), {
+  ssr: false,
+});
 const GoogleTagManager = dynamic(
   () => import("@/components/GoogleTagManager"),
   {
@@ -136,6 +139,7 @@ export default function App({ Component, pageProps }: any) {
   }, []);
   return (
     <ConfigProvider>
+      <Amplitude />
       <GoogleTagManager gtmId={GTM_ID} />
       <GoogleAnalytics />
       <Hotjar />
