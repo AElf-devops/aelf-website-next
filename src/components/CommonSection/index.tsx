@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
+import CommonTabs, { ICommonTabsProps } from "../CommonTabs";
 import styles from "./styles.module.scss";
 
 export enum MobilePaddingLeftAndRightSize {
@@ -14,7 +15,7 @@ export enum SectionHeaderPosition {
   CENTER = "center",
 }
 
-export interface ICommonSectionProps {
+export interface ICommonSectionProps<T> {
   id?: string;
   sectionClassName?: string;
   contentClassName?: string;
@@ -23,11 +24,12 @@ export interface ICommonSectionProps {
   descriptionClassName?: string;
   mobilePaddingLeftAndRightSize?: MobilePaddingLeftAndRightSize;
   headerPosition?: SectionHeaderPosition;
+  tabsProps?: ICommonTabsProps<T>;
   title?: string;
   description?: React.ReactNode;
   children?: React.ReactNode;
 }
-export default function CommonSection({
+export default function CommonSection<T extends string>({
   id,
   sectionClassName,
   contentClassName,
@@ -36,10 +38,11 @@ export default function CommonSection({
   descriptionClassName,
   mobilePaddingLeftAndRightSize = MobilePaddingLeftAndRightSize.MD,
   headerPosition = SectionHeaderPosition.LEFT,
+  tabsProps,
   title,
   description,
   children,
-}: ICommonSectionProps) {
+}: ICommonSectionProps<T>) {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
   return (
@@ -56,6 +59,7 @@ export default function CommonSection({
       ])}
     >
       <div className={clsx([styles.commonContent, contentClassName])}>
+        {tabsProps && <CommonTabs {...tabsProps} />}
         {(title || description) && (
           <div
             className={clsx(

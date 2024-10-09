@@ -1,0 +1,21 @@
+.commonTabs {
+  display: flex;
+  padding: 4px;
+  gap: 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  .tabItem {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    padding: 8px;
+    border-radius: 9999px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .activeTabItem {
+    background-color: #127fff;
+  }
+}
