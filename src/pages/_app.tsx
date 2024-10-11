@@ -139,7 +139,7 @@ export default function App({ Component, pageProps }: any) {
   }, []);
   return (
     <ConfigProvider>
-      <Amplitude />
+      {process.env.NEXT_PUBLIC_APP_ENV === "production" && <Amplitude />}
       <GoogleTagManager gtmId={GTM_ID} />
       <GoogleAnalytics />
       <Hotjar />

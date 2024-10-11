@@ -1,9 +1,6 @@
 export const GTM_ID = "GTM-W8D6DHQZ";
 
-export const AMPLITUDE_ID =
-  process.env.NEXT_PUBLIC_APP_ENV === "production"
-    ? "bee82a4c25f050b76de824d4205598af"
-    : "f8353b12940003d29591e81df4f7007f";
+export const AMPLITUDE_ID = "bee82a4c25f050b76de824d4205598af";
 
 export const AMPLITUDE_SAMPLE_RATE =
   process.env.NEXT_PUBLIC_APP_ENV === "production" ? 0.1 : 1;
