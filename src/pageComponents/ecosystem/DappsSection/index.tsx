@@ -61,6 +61,17 @@ const AI_PARTNERS_LIST: ICommonCardProps[] = [
   },
   {
     theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AiChaingpt,
+    iconAlt: "ChainGPT - aelf AI Partner",
+    name: "ChainGPT",
+    tagList: ["Chatbot", "NFT Generator"],
+    description:
+      "ChainGPT is an advanced AI infrastructure that develops AI-powered technologies for the Web3, Blockchain, and Crypto space.",
+    arrowText: "Learn more",
+    href: "https://www.chaingpt.org/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
     icon: AIPartnersIcon.AIInferium,
     iconAlt: "Inferium - aelf AI Partner",
     name: "Inferium",
