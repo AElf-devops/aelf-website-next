@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import clsx from "clsx";
 import { Row, RowProps, Col } from "antd";
 import CommonSection, {
@@ -12,12 +12,131 @@ import CommonButton, {
   CommonButtonSize,
   CommonButtonType,
 } from "@/components/CommonButton";
+import * as AIPartnersIcon from "@/assets/aiPartners";
 import * as DappIcon from "@/assets/dapp";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
 import { SECTION_ID } from "@/constants/sectionId";
 import styles from "./styles.module.scss";
+
+enum TabKey {
+  AI_PARTNERS = "AI Partners",
+  DAPPS = "dApps",
+}
+
+const TAB_ITEMS = [
+  {
+    label: TabKey.AI_PARTNERS,
+    key: TabKey.AI_PARTNERS,
+  },
+  {
+    label: TabKey.DAPPS,
+    key: TabKey.DAPPS,
+  },
+];
+
+const AI_PARTNERS_LIST: ICommonCardProps[] = [
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AINetmind,
+    iconAlt: "Netmind - aelf AI Partner",
+    name: "Netmind",
+    tagList: ["Compute", "Dataset", "Model", "Agent"],
+    description:
+      "Netmind is building the decentralized infrastructure and interconnected ecosystem that will underpin the future of Artificial General Intelligence (AGI).",
+    arrowText: "Learn more",
+    href: "https://netmind.ai/home",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AIEmc,
+    iconAlt: "EMC - aelf AI Partner",
+    name: "EMC",
+    tagList: ["Compute"],
+    description:
+      "EMC is a leading multi-chain AI infrastructure paving the way for the future of Decentralized AI (DeAI).",
+    arrowText: "Learn more",
+    href: "https://emc.network/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AiChaingpt,
+    iconAlt: "ChainGPT - aelf AI Partner",
+    name: "ChainGPT",
+    tagList: ["Chatbot", "NFT Generator"],
+    description:
+      "ChainGPT is an advanced AI infrastructure that develops AI-powered technologies for the Web3, Blockchain, and Crypto space.",
+    arrowText: "Learn more",
+    href: "https://www.chaingpt.org/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AIInferium,
+    iconAlt: "Inferium - aelf AI Partner",
+    name: "Inferium",
+    tagList: ["Dataset", "Model"],
+    description:
+      "Inferium is the pioneer ML-driven intelligent store and aggregator for AI inference.",
+    arrowText: "Learn more",
+    href: "https://www.inferium.io/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AIW3ai,
+    iconAlt: "W3AI - aelf AI Partner",
+    name: "W3AI",
+    tagList: ["Compute", "Model"],
+    description:
+      "W3AI is an AI-as-a-service platform powered by DePIN GPUs, a Web3-incentivized collaborative AI marketplace, and AI data storage.",
+    arrowText: "Learn more",
+    href: "https://aioz.network/w3ai",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AIMagnetai,
+    iconAlt: "Magnet.ai - aelf AI Partner",
+    name: "Magnet.ai",
+    tagList: ["Agent"],
+    description:
+      "Magnet is a platform that lets users create, share and use action agents.",
+    arrowText: "Learn more",
+    href: "https://www.magnetlabs.xyz/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AIFlockio,
+    iconAlt: "Flock.io - aelf AI Partner",
+    name: "Flock.io",
+    tagList: ["Model"],
+    description:
+      "FLock.io is a decentralised AI model training and validation network unicorn, enabling AI models to be trained while data stays local.",
+    arrowText: "Learn more",
+    href: "https://www.flock.io/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AINeurochain,
+    iconAlt: "Neurochain - aelf AI Partner",
+    name: "Neurochain",
+    tagList: ["Dataset", "Model"],
+    description:
+      "NeurochainAI is revolutionizing the AI compute market with a consumer-grade hardware network and innovation in AI model quantization to power the AI-driven digital world.",
+    arrowText: "Learn more",
+    href: "https://www.neurochain.ai/",
+  },
+  {
+    theme: CommonCardTheme.WHITE,
+    icon: AIPartnersIcon.AINuklai,
+    iconAlt: "Nukl.ai - aelf AI Partner",
+    name: "Nukl.ai",
+    tagList: ["Dataset"],
+    description:
+      "Nuklai is a layer 1 blockchain infrastructure that fuels LLMs with rich data and decentralized computational performance.",
+    arrowText: "Learn more",
+    href: "https://www.nukl.ai/",
+  },
+];
 
 const DAPP_LIST: ICommonCardProps[] = [
   {
@@ -121,6 +240,19 @@ const DAPP_LIST: ICommonCardProps[] = [
   },
 ];
 
+const TAB_ITEMS_CHILDREN_CONFIG = {
+  [TabKey.AI_PARTNERS]: {
+    title: "AI Partners",
+    description: "Explore our AI solution partners.",
+    listConfig: AI_PARTNERS_LIST,
+  },
+  [TabKey.DAPPS]: {
+    title: "dApps",
+    description: "Discover projects across the aelf Ecosystem.",
+    listConfig: DAPP_LIST,
+  },
+};
+
 export default function DappsSection() {
   const deviceClassName = useDeviceClass(styles);
   const [{ deviceWidthType }] = useConfig();
@@ -149,34 +281,49 @@ export default function DappsSection() {
     }
   }, [deviceWidthType]);
 
+  const [activeTabKey, setActiveTabKey] = useState(TabKey.AI_PARTNERS);
+
+  const onTabsChange = (key: TabKey) => {
+    setActiveTabKey(key);
+  };
+
   return (
     <CommonSection
       id={SECTION_ID.ECOSYSTEM.DAPPS}
       sectionClassName={clsx(styles.dappsSection, deviceClassName)}
       contentClassName={styles.dappsContent}
       headerPosition={SectionHeaderPosition.CENTER}
-      title="dApps"
-      description="Discover projects across the aelf Ecosystem."
+      tabsProps={{
+        items: TAB_ITEMS,
+        activeKey: activeTabKey,
+        onChange: onTabsChange,
+      }}
+      title={TAB_ITEMS_CHILDREN_CONFIG[activeTabKey].title}
+      description={TAB_ITEMS_CHILDREN_CONFIG[activeTabKey].description}
     >
       <Row gutter={rowGutter}>
-        {DAPP_LIST.map((item, index) => (
-          <Col key={index} span={colSpan}>
-            <CommonCard className={styles.dappCard} {...item} />
-          </Col>
-        ))}
+        {TAB_ITEMS_CHILDREN_CONFIG[activeTabKey].listConfig.map(
+          (item, index) => (
+            <Col key={index} span={colSpan}>
+              <CommonCard className={styles.dappCard} {...item} />
+            </Col>
+          )
+        )}
       </Row>
-      <CommonButton
-        type={CommonButtonType.GHOST_BLACK}
-        size={
-          deviceWidthType === DeviceWidthType.DESKTOP
-            ? CommonButtonSize.MD
-            : CommonButtonSize.SM
-        }
-        href="https://form.aelf.com/submit-project"
-        hjId="Submit a Project"
-      >
-        Submit a Project
-      </CommonButton>
+      {activeTabKey === TabKey.DAPPS && (
+        <CommonButton
+          type={CommonButtonType.GHOST_BLACK}
+          size={
+            deviceWidthType === DeviceWidthType.DESKTOP
+              ? CommonButtonSize.MD
+              : CommonButtonSize.SM
+          }
+          href="https://form.aelf.com/submit-project"
+          hjId="Submit a Project"
+        >
+          Submit a Project
+        </CommonButton>
+      )}
     </CommonSection>
   );
 }
