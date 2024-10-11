@@ -1,3 +1,4 @@
+export { default as AiChaingpt } from "./AiChaingpt.png";
 export { default as AIEmc } from "./AIEmc.png";
 export { default as AIFlockio } from "./AIFlockio.png";
 export { default as AIInferium } from "./AIInferium.png";
