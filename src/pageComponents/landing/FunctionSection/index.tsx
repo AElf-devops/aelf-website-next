@@ -19,9 +19,9 @@ import styles from "./styles.module.scss";
 const FUNCTION_CARD_CONFIG: IFunctionCardItemProps[] = [
   {
     icon: ArchitectureIcon,
-    title: "Scalable Multi-Sidechain Architecture",
+    title: "Scalable Multi-DAppChain Architecture",
     description:
-      "aelf’s unique multi-sidechain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
+      "aelf’s unique multi-dAppChain structure and AI-enhanced architecture enables parallel processing, ensuring the network can handle an increasing number of transactions without compromising performance.",
     buttonConfig: {
       text: "Learn More",
       href: "/platform",
