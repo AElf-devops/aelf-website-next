@@ -8,3 +8,5 @@ export { default as Telegram } from "./Telegram.svg";
 export { default as WeChat } from "./WeChat.svg";
 export { default as X } from "./X.svg";
 export { default as Youtube } from "./Youtube.svg";
+export { default as Linkedin } from "./Linkedin.svg";
+export { default as Chats } from "./Chats.svg";
