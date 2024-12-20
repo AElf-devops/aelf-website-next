@@ -55,6 +55,21 @@ const EXPLORE_LIST_CONFIG: ILinkListProps[] = [
               "Learn to create a transparent, immutable Tic-Tac-Toe game, applying core concepts of smart contract and dApp development.",
             href: "https://docs.aelf.com/quick-start/developers/tic-tac-toe-dapp/",
           },
+          {
+            linkText: "Expense Tracker dApp",
+            description:"Manage personal finances by recording expenses, categorizing them, and tracking spending habits securely on the aelf blockchain.",
+            href: "https://docs.aelf.com/quick-start/developers/expense-tracker/",
+          },
+          {
+            linkText: "Single Pool Staking dApp",
+            description: "Stake tokens in a single pool to earn rewards while learning about blockchain-based staking mechanisms and reward distribution.",
+            href: "https://docs.aelf.com/quick-start/developers/single-pool-staking-dapp/",
+          },
+          {
+            linkText: "Allowance dApp",
+            description: "Learn role-based access and fund management with inter-contract calls for secure role and allowance logic on the aelf blockchain.",
+            href: "https://docs.aelf.com/quick-start/developers/allowance-dapp/",
+          },
         ],
       },
       {

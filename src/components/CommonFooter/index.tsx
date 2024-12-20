@@ -1,6 +1,15 @@
 import clsx from "clsx";
 import Logo from "@/assets/Logo.svg";
-import { Discord, Github, Telegram, X } from "@/assets/socialMedia";
+import {
+  Discord,
+  Github,
+  Telegram,
+  X,
+  Reddit,
+  Linkedin,
+  Chats,
+  Youtube,
+} from "@/assets/socialMedia";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonImage from "../CommonImage";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
@@ -104,6 +113,22 @@ const SOCIAL_MEDIA_LIST: ISocialMediaListItem[] = [
   {
     icon: Github,
     href: "https://github.com/aelfProject",
+  },
+  {
+    icon: Reddit,
+    href: "https://www.reddit.com/r/aelfofficial/",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/aelfblockchain",
+  },
+  {
+    icon: Youtube,
+    href: "https://www.youtube.com/@aelfblockchain",
+  },
+  {
+    icon: Chats,
+    href: "https://forum.aelf.com/",
   },
 ];
 
