@@ -11,7 +11,7 @@ import NikaLabsImg from "@/assets/ecosystem/NikaLabs.png";
 import GenifyBanner from "@/assets/ecosystem/GenifyBanner.png";
 import MythicProtocolBanner from "@/assets/ecosystem/MythicProtocolBanner.png";
 import PlutoBanner from "@/assets/ecosystem/PlutoBanner.png";
-import CrystalFunBanner from "@/assets/ecosystem/CrystalFunBanner.png";
+import CrystalBanner from "@/assets/ecosystem/CrystalBanner.png";
 import NikaLabsBanner from "@/assets/ecosystem/NikaLabsBanner.png";
 
 export const ICON_CARD_LIST: ICommonIconCardProps[] = [
@@ -39,7 +39,7 @@ export const PORTFOLIO_CARD_LIST: ICommonCardProps[] = [
   {
     icon: CrystalFunImg,
     iconAlt: "Crystal Fun - decentralised Web3 game. aelf's portfolio.",
-    bannerImg: CrystalFunBanner,
+    bannerImg: CrystalBanner,
     description:
       "Crystal Fun, a decentralized Web3 game ecosystem, ushering ground breaking experiences with high-quality Web3 games.",
     arrowText: "Learn more",
