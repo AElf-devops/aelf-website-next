@@ -56,7 +56,7 @@ export default function VenturesSection() {
         return [16, 16];
       case DeviceWidthType.DESKTOP:
       default:
-        return 24;
+        return [24, 24];
     }
   }, [deviceWidthType]);
 
@@ -69,6 +69,17 @@ export default function VenturesSection() {
       case DeviceWidthType.DESKTOP:
       default:
         return 8;
+    }
+  }, [deviceWidthType]);
+
+  const portfolioCardJustify = useMemo(() => {
+    switch (deviceWidthType) {
+      case DeviceWidthType.TABLET:
+        return "start";
+      case DeviceWidthType.MOBILE:
+      case DeviceWidthType.DESKTOP:
+      default:
+        return "center";
     }
   }, [deviceWidthType]);
 
@@ -109,7 +120,7 @@ export default function VenturesSection() {
       </div>
       <div className={styles.portfolioPart}>
         <div className={styles.portfolioPartTitle}>Our Portfolio</div>
-        <Row gutter={portfolioCardRowGutter}>
+        <Row gutter={portfolioCardRowGutter} justify={portfolioCardJustify}>
           {PORTFOLIO_CARD_LIST.map((item, index) => (
             <Col
               key={index}

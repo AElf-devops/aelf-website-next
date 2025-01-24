@@ -22,20 +22,21 @@
     line-height: normal;
   }
   .portfolioCardWrap {
-    &:nth-child(1) .portfolioCardIcon {
-      width: 120px;
+    .portfolioCardIcon {
+      width: 100%;
     }
-    &:nth-child(2) .portfolioCardIcon {
-      width: 111px;
-    }
-    &:nth-child(3) .portfolioCardIcon {
-      width: 80px;
+    &:nth-child(5) .portfolioCardIcon {
+      width: 86px;
+      height: 80px;
+      padding: 18px 4px;
     }
   }
   .portfolioCard {
     height: 100%;
     padding: 24px;
     background-color: #fff;
+    display: flex;
+    align-items: center;
   }
   .portfolioCardIcon {
     height: 80px;

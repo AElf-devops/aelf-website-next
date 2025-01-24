@@ -139,7 +139,7 @@ export default function App({ Component, pageProps }: any) {
   }, []);
   return (
     <ConfigProvider>
-      <Amplitude />
+      {isProduction && <Amplitude />}
       <GoogleTagManager gtmId={GTM_ID} />
       <GoogleAnalytics />
       <Hotjar />

@@ -6,6 +6,13 @@ import Partner from "@/assets/Partner.svg";
 import CrystalFunImg from "@/assets/ecosystem/CrystalFun.png";
 import MythicProtocolImg from "@/assets/ecosystem/MythicProtocol.png";
 import PlutoImg from "@/assets/ecosystem/Pluto.png";
+import GenifyImg from "@/assets/ecosystem/Genify.png";
+import NikaLabsImg from "@/assets/ecosystem/NikaLabs.png";
+import GenifyBanner from "@/assets/ecosystem/GenifyBanner.png";
+import MythicProtocolBanner from "@/assets/ecosystem/MythicProtocolBanner.png";
+import PlutoBanner from "@/assets/ecosystem/PlutoBanner.png";
+import CrystalBanner from "@/assets/ecosystem/CrystalBanner.png";
+import NikaLabsBanner from "@/assets/ecosystem/NikaLabsBanner.png";
 
 export const ICON_CARD_LIST: ICommonIconCardProps[] = [
   {
@@ -32,6 +39,7 @@ export const PORTFOLIO_CARD_LIST: ICommonCardProps[] = [
   {
     icon: CrystalFunImg,
     iconAlt: "Crystal Fun - decentralised Web3 game. aelf's portfolio.",
+    bannerImg: CrystalBanner,
     description:
       "Crystal Fun, a decentralized Web3 game ecosystem, ushering ground breaking experiences with high-quality Web3 games.",
     arrowText: "Learn more",
@@ -41,6 +49,7 @@ export const PORTFOLIO_CARD_LIST: ICommonCardProps[] = [
     icon: MythicProtocolImg,
     iconAlt:
       "Confiction (previously Mythic Protocol) - gameplay-first ARPG with blockchain technology. aelf's portfolio.",
+    bannerImg: MythicProtocolBanner,
     description:
       "Confiction (ex-name: Mythic Protocol) is developing an exhilarating gameplay-first roguelike ARPG with blockchain technology.",
     arrowText: "Learn more",
@@ -50,9 +59,28 @@ export const PORTFOLIO_CARD_LIST: ICommonCardProps[] = [
     icon: PlutoImg,
     iconAlt:
       "Pluto - gaming studio bridging Web2 into Web3 games. aelf's portfolio.",
+    bannerImg: PlutoBanner,
     description:
       "Pluto is a gaming studio, with a vision of bridging casual to midcore Web2 into Web3 games across Ton and multichain ecosystems.",
     arrowText: "Learn more",
     href: "https://www.pluto.vision/",
+  },
+  {
+    icon: GenifyImg,
+    iconAlt: "Genify",
+    bannerImg: GenifyBanner,
+    description:
+      "Genify Studio specializes in end-to-end mobile game development, focusing on hyper-casual games. Its standout title, Fall.io , showcases its creativity and innovation in game design.",
+    arrowText: "Learn more",
+    href: "https://genify.vn/",
+  },
+  {
+    icon: NikaLabsImg,
+    iconAlt: "Nika Labs",
+    bannerImg: NikaLabsBanner,
+    description:
+      "Nika Labs pioneers on-chain game interaction design. They published Fishtopia, a fishing game on Telegram, showcasing their focus on innovative and engaging gameplay.",
+    arrowText: "Learn more",
+    href: "https://www.nikalabs.org/",
   },
 ];

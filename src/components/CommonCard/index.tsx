@@ -22,6 +22,7 @@ export interface ICommonCardProps
   tagList?: string[];
   description: string;
   arrowText?: string;
+  bannerImg?: any;
 }
 
 export default function CommonCard({
@@ -36,6 +37,7 @@ export default function CommonCard({
   arrowText,
   href,
   isExternalLinkTargetSelf,
+  bannerImg,
 }: ICommonCardProps) {
   const cardContent = (
     <>
@@ -60,6 +62,9 @@ export default function CommonCard({
           </div>
         )}
       </div>
+      {bannerImg && (
+        <CommonImage src={bannerImg} alt={name} className={styles.bannerImg} />
+      )}
       <div className={styles.description}>{description}</div>
       {arrowText && (
         <CommonLink
