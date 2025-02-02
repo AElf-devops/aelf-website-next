@@ -147,8 +147,10 @@ export default function CommonFooter() {
     </div>
   );
 
+  const getFullYear = new Date().getFullYear();
+
   const renderCopyright = () => (
-    <div className={styles.copyright}>Copyright © 2024 aelf</div>
+    <div className={styles.copyright}>Copyright © {getFullYear} aelf</div>
   );
   const renderLinkList = () =>
     LINK_LIST.map((config, index) => (
