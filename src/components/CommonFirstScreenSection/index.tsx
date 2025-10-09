@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import {
   CSSProperties,
   useCallback,
@@ -11,7 +12,6 @@ import CommonSection from "../CommonSection";
 import CommonImage from "../CommonImage";
 import CommonLink, { ICommonLinkProps } from "../CommonLink";
 import CommonButton, { ICommonButtonProps } from "../CommonButton";
-import LottieAnimation from "../LottieAnimation";
 import GridBackground from "@/assets/GridBackground.svg";
 import ArrowRightBlack from "@/assets/ArrowRightBlack.svg";
 import ChevronRightWhite from "@/assets/ChevronRightWhite.svg";
@@ -20,6 +20,7 @@ import { useConfig } from "@/contexts/useConfig/hooks";
 import { SCROLL_CONFIG, DIMENSION_CONFIG } from "./constants";
 import styles from "./styles.module.scss";
 import { toSnakeCase } from "../../utils";
+const LottieAnimation = dynamic(() => import('../LottieAnimation'), { ssr: false });
 
 interface INewTagConfig
   extends Pick<ICommonLinkProps, "href" | "isExternalLinkTargetSelf"> {
