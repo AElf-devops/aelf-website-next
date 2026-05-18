@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { TBlogContent } from "@/types/blog";
 
 const HTML_CONTENT_PATTERN =
   /<\/?(p|h[1-6]|ul|ol|li|a|strong|em|img|blockquote|br|div|span)\b/i;
+
+export type TBlogContentFormat = "blocks" | "html" | "markdown";
 
 function isSafeUrl(url: string) {
   return /^(https?:\/\/|mailto:|\/|#)/i.test(url);
@@ -12,8 +14,11 @@ function isSafeUrl(url: string) {
 function renderText(children: any[] = []) {
   return children.map((child, index) => {
     let node: ReactNode = child.text || "";
+    if (child.code) node = <code key={index}>{node}</code>;
     if (child.bold) node = <strong key={index}>{node}</strong>;
     if (child.italic) node = <em key={index}>{node}</em>;
+    if (child.underline) node = <u key={index}>{node}</u>;
+    if (child.strikethrough) node = <del key={index}>{node}</del>;
     return <span key={index}>{node}</span>;
   });
 }
@@ -47,7 +52,7 @@ function renderBlock(block: any, index: number): ReactNode {
 function renderInlineMarkdown(text: string, keyPrefix: string): ReactNode[] {
   const nodes: ReactNode[] = [];
   const pattern =
-    /!\[([^\]]*)\]\(([^)]+)\)|\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+    /!\[([^\]]*)\]\(([^)]+)\)|\[([^\]]+)\]\(([^)]+)\)|<u>([\s\S]+?)<\/u>|~~([\s\S]+?)~~|`([^`]+)`|\*\*([^*]+)\*\*|\*([^*]+)\*/gi;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let index = 0;
@@ -75,9 +80,15 @@ function renderInlineMarkdown(text: string, keyPrefix: string): ReactNode[] {
         )
       );
     } else if (match[5] !== undefined) {
-      nodes.push(<strong key={key}>{match[5]}</strong>);
+      nodes.push(<u key={key}>{match[5]}</u>);
     } else if (match[6] !== undefined) {
-      nodes.push(<em key={key}>{match[6]}</em>);
+      nodes.push(<del key={key}>{match[6]}</del>);
+    } else if (match[7] !== undefined) {
+      nodes.push(<code key={key}>{match[7]}</code>);
+    } else if (match[8] !== undefined) {
+      nodes.push(<strong key={key}>{match[8]}</strong>);
+    } else if (match[9] !== undefined) {
+      nodes.push(<em key={key}>{match[9]}</em>);
     }
 
     lastIndex = pattern.lastIndex;
@@ -132,6 +143,33 @@ function renderMarkdownContent(content: string) {
 
     if (!line) {
       index += 1;
+      continue;
+    }
+
+    const codeFence = line.match(/^```([a-z0-9_-]+)?\s*$/i);
+    if (codeFence) {
+      const codeLines: string[] = [];
+      const startIndex = index;
+      index += 1;
+
+      while (index < lines.length && !/^```\s*$/.test(lines[index].trim())) {
+        codeLines.push(lines[index]);
+        index += 1;
+      }
+
+      if (index < lines.length) {
+        index += 1;
+      }
+
+      nodes.push(
+        <pre key={startIndex}>
+          <code
+            className={codeFence[1] ? `language-${codeFence[1]}` : undefined}
+          >
+            {codeLines.join("\n")}
+          </code>
+        </pre>
+      );
       continue;
     }
 
@@ -200,9 +238,17 @@ function renderMarkdownContent(content: string) {
   return <>{nodes}</>;
 }
 
+export function getBlogContentFormat(content: TBlogContent): TBlogContentFormat {
+  if (typeof content !== "string") {
+    return "blocks";
+  }
+
+  return HTML_CONTENT_PATTERN.test(content) ? "html" : "markdown";
+}
+
 export function renderBlogContent(content: TBlogContent) {
   if (typeof content === "string") {
-    if (!HTML_CONTENT_PATTERN.test(content)) {
+    if (getBlogContentFormat(content) === "markdown") {
       return renderMarkdownContent(content);
     }
 

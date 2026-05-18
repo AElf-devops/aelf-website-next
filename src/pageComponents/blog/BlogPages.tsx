@@ -5,7 +5,7 @@ import LeftOutlined from "@ant-design/icons/LeftOutlined";
 import clsx from "clsx";
 import CommonLink from "@/components/CommonLink";
 import { formatDate } from "@/utils";
-import { renderBlogContent } from "@/lib/blog/content";
+import { getBlogContentFormat, renderBlogContent } from "@/lib/blog/content";
 import { IBlogPost, IBlogTaxonomy } from "@/types/blog";
 import styles from "./styles.module.scss";
 
@@ -399,6 +399,7 @@ export function BlogListPage({
 
 export function BlogPostPage({ post, latestPosts }: IBlogPostPageProps) {
   const headerImage = getPostHeaderImage(post);
+  const contentFormat = getBlogContentFormat(post.content);
 
   return (
     <main className={styles.postPage}>
@@ -427,7 +428,11 @@ export function BlogPostPage({ post, latestPosts }: IBlogPostPageProps) {
         </section>
 
         <section className={styles.articleContentSection}>
-          <div className={styles.articleContent}>
+          <div
+            className={clsx(styles.articleContent, {
+              [styles.markdownArticleContent]: contentFormat !== "html",
+            })}
+          >
             {renderBlogContent(post.content)}
           </div>
           <CommonLink className={styles.backButton} href="/blog">

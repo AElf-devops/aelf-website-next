@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { getBlogContentFormat, renderBlogContent } from "../content";
 import { getBlogRevalidatePaths, isBlogRevalidateAuthorized } from "../revalidate";
 import { createBlogSlug } from "../slug";
 import { mapStrapiBlogPost, mapStrapiBlogPostsResponse } from "../strapi";
@@ -145,6 +147,49 @@ describe("mapStrapiBlogPost", () => {
       false
     );
     expect(Object.prototype.hasOwnProperty.call(post, "coverImage")).toBe(false);
+  });
+});
+
+describe("renderBlogContent", () => {
+  it("keeps migrated Webflow HTML on the legacy HTML path", () => {
+    expect(getBlogContentFormat("<p>Legacy <strong>HTML</strong></p>")).toBe(
+      "html"
+    );
+  });
+
+  it("renders common Strapi markdown preview formats", () => {
+    const markup = renderToStaticMarkup(
+      renderBlogContent(`# Heading
+
+Text with **bold**, *italic*, <u>underline</u>, ~~deleted~~, and \`code\`.
+
+- Bullet item
+
+1. Ordered item
+
+> Quote item
+
+\`\`\`js
+const message = "hello";
+\`\`\`
+
+![Alt text](https://aelf.com/image.png)
+
+[aelf](https://aelf.com/)`)
+    );
+
+    expect(markup).toContain("<h1>Heading</h1>");
+    expect(markup).toContain("<strong>bold</strong>");
+    expect(markup).toContain("<em>italic</em>");
+    expect(markup).toContain("<u>underline</u>");
+    expect(markup).toContain("<del>deleted</del>");
+    expect(markup).toContain("<code>code</code>");
+    expect(markup).toContain("<ul>");
+    expect(markup).toContain("<ol>");
+    expect(markup).toContain("<blockquote>Quote item</blockquote>");
+    expect(markup).toContain('<code class="language-js">');
+    expect(markup).toContain('<img src="https://aelf.com/image.png"');
+    expect(markup).toContain('<a href="https://aelf.com/">aelf</a>');
   });
 });
 

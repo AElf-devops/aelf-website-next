@@ -449,6 +449,140 @@ $line: #e6e6e6;
   }
 }
 
+.markdownArticleContent {
+  max-width: 1040px;
+  color: #32324d;
+  font-size: 20px;
+  line-height: 32px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 32px;
+    margin-bottom: 18px;
+    color: #32324d;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  h2 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  h4 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  h5 {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  h6 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  p {
+    margin-bottom: 24px;
+    color: #32324d;
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  ul,
+  ol {
+    margin-bottom: 28px;
+    padding-left: 30px;
+  }
+
+  li {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-left: 6px;
+    color: #32324d;
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  a {
+    color: $brand;
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: underline;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+
+  code {
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: #fff;
+    background: #32324d;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 0.86em;
+  }
+
+  pre {
+    overflow-x: auto;
+    margin: 32px 0;
+    border-radius: 0;
+    padding: 18px 22px;
+    background: #32324d;
+
+    code {
+      display: block;
+      padding: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 15px;
+      line-height: 24px;
+      white-space: pre;
+    }
+  }
+
+  blockquote {
+    border-top: 0;
+    border-left: 6px solid #e4e6ef;
+    margin: 44px 0;
+    padding: 18px 0 18px 28px;
+    color: #32324d;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 32px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 32px 0;
+    border-radius: 0;
+  }
+}
+
 .backButton {
   display: inline-flex;
   align-items: center;
@@ -526,6 +660,39 @@ $line: #e6e6e6;
     h1 {
       font-size: 36px;
       line-height: 48px;
+    }
+  }
+
+  .markdownArticleContent {
+    max-width: 100%;
+    font-size: 18px;
+    line-height: 30px;
+
+    h1 {
+      font-size: 40px;
+      line-height: 48px;
+    }
+
+    h2 {
+      font-size: 34px;
+      line-height: 42px;
+    }
+
+    h3 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    h4 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    p,
+    li,
+    blockquote {
+      font-size: 18px;
+      line-height: 30px;
     }
   }
 }
@@ -613,6 +780,40 @@ $line: #e6e6e6;
     li {
       font-size: 16px;
       line-height: 26px;
+    }
+  }
+
+  .markdownArticleContent {
+    h1 {
+      font-size: 34px;
+      line-height: 42px;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 38px;
+    }
+
+    h3 {
+      font-size: 26px;
+      line-height: 34px;
+    }
+
+    h4 {
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    p,
+    li,
+    blockquote {
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    blockquote {
+      margin: 32px 0;
+      padding-left: 20px;
     }
   }
 }
