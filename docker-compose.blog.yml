@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: aelf_blog
+      POSTGRES_USER: aelf_blog
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-aelf_blog}
+    volumes:
+      - aelf_blog_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aelf_blog -d aelf_blog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  strapi:
+    build:
+      context: ./cms
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./cms/.env
+    ports:
+      - "1337:1337"
+
+volumes:
+  aelf_blog_postgres:

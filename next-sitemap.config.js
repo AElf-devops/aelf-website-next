@@ -24,4 +24,7 @@ const urlConfig = getUrlConfig();
 module.exports = {
   siteUrl: urlConfig.aelf,
   generateRobotsTxt: true,
+  additionalSitemaps: [
+    `${process.env.BLOG_CANONICAL_ORIGIN || "https://blog.aelf.com"}/blog-sitemap.xml`,
+  ],
 };

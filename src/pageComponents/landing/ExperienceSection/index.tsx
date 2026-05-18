@@ -5,11 +5,11 @@ import RecentBlogList from "./RecentBlogList";
 import BlogIcon from "@/assets/Blog.svg";
 import BuildIcon from "@/assets/Build.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
-import { IRecentBlogItem } from "@/types/webflow";
+import { IBlogPost } from "@/types/blog";
 import styles from "./styles.module.scss";
 
 interface IExperienceSectionProps {
-  blogList: IRecentBlogItem[];
+  blogList: IBlogPost[];
 }
 
 export default function ExperienceSection({
@@ -37,7 +37,7 @@ export default function ExperienceSection({
           title="Blog"
           description="Stay informed on aelf news and featured updates."
           arrowText="Read our blog"
-          href="https://blog.aelf.com/"
+          href="/blog"
           isExternalLinkTargetSelf
         />
       </div>

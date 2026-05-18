@@ -35,7 +35,6 @@ const ChatComponent = () => {
       <iframe
         id="paal-chat"
         src="https://app.paal.ai/wg?bid=ccee00d2"
-        allowTransparency={true}
         style={{
           colorScheme: "normal",
           border: "none",

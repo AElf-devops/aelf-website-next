@@ -109,15 +109,6 @@ const apiServer = new Request({
   baseURL: urlConfig.cms + "/",
 });
 
-const webflowAPI = new Request({
-  baseURL: urlConfig.webflow + "/",
-  timeout: 10000,
-  headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_WEBFLOW_API_TOKEN}`,
-    'accept-version': '1.0.0',
-  }
-});
-
 const defaultRequest = new Request({});
 export default defaultRequest;
-export { apiServer, webflowAPI };
+export { apiServer };

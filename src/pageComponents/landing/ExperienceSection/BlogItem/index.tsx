@@ -7,7 +7,7 @@ import { toSnakeCase } from "../../../../utils";
 
 export interface IBlogItemProps {
   className?: string;
-  imageSrc: any;
+  imageSrc?: string;
   imageAlt?: string;
   date: string;
   title: string;
@@ -26,18 +26,22 @@ export default function BlogItem({
   return (
     <CommonLink
       className={clsx(styles.blogItem, deviceClassName, className)}
-      href={`https://blog.aelf.com/posts/${slug}`}
+      href={`/posts/${slug}`}
       isExternalLinkTargetSelf
       onClick={() => {
         window.hj("event", `click_posts_${toSnakeCase(slug)}`);
       }}
     >
-      <CommonImage
-        className={styles.image}
-        src={imageSrc}
-        alt={imageAlt}
-        fill
-      />
+      {imageSrc ? (
+        <CommonImage
+          className={styles.image}
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+        />
+      ) : (
+        <div className={styles.image} />
+      )}
       <div className={styles.info}>
         <div className={styles.date}>{date}</div>
         <div className={styles.title}>{title}</div>

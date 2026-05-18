@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import "antd/dist/antd.css";
 import "@/styles/globals.scss";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import microApp from "@micro-zoe/micro-app";
 import dynamic from "next/dynamic";
 import { BREAKPOINTS, DeviceWidthType } from "@/constants/breakpoints";
@@ -34,10 +34,12 @@ const Hotjar = dynamic(() => import("@/components/Hotjar"), {
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
 function ComponentContainer({ Component, pageProps }: any) {
-  const [initialized, setInitialized] = useState(false);
   const [_, dispatch] = useConfig();
 
   const router = useRouter();
+  const canonicalUrl =
+    pageProps.canonicalUrl ||
+    (isProduction ? `https://aelf.com${router.asPath}` : undefined);
 
   const resize = useCallback(() => {
     if (window.innerWidth >= BREAKPOINTS.MD) {
@@ -62,7 +64,6 @@ function ComponentContainer({ Component, pageProps }: any) {
     if (typeof window === "undefined") return;
     resize();
     window.addEventListener("resize", resize);
-    setInitialized(true);
     return () => {
       window.removeEventListener("resize", resize);
     };
@@ -100,15 +101,11 @@ function ComponentContainer({ Component, pageProps }: any) {
     };
   }, [router.events]);
 
-  if (!initialized) {
-    return null;
-  }
-
   return (
     <>
       <Head>
-        {isProduction ? (
-          <link rel="canonical" href={`https://aelf.com${router.asPath}`} />
+        {canonicalUrl ? (
+          <link rel="canonical" href={canonicalUrl} />
         ) : (
           <meta name="robots" content="noindex" />
         )}
