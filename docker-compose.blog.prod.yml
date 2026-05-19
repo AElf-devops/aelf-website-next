@@ -1,0 +1,99 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${BLOG_DATABASE_NAME:?BLOG_DATABASE_NAME is required}
+      POSTGRES_USER: ${BLOG_DATABASE_USERNAME:?BLOG_DATABASE_USERNAME is required}
+      POSTGRES_PASSWORD: ${BLOG_DATABASE_PASSWORD:?BLOG_DATABASE_PASSWORD is required}
+    volumes:
+      - aelf_blog_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${BLOG_DATABASE_USERNAME:?BLOG_DATABASE_USERNAME is required} -d ${BLOG_DATABASE_NAME:?BLOG_DATABASE_NAME is required}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - aelf_blog
+
+  strapi:
+    build:
+      context: ./cms
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./cms/.env.production
+    environment:
+      NODE_ENV: production
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${BLOG_DATABASE_NAME:?BLOG_DATABASE_NAME is required}
+      DATABASE_USERNAME: ${BLOG_DATABASE_USERNAME:?BLOG_DATABASE_USERNAME is required}
+      DATABASE_PASSWORD: ${BLOG_DATABASE_PASSWORD:?BLOG_DATABASE_PASSWORD is required}
+      DATABASE_SSL: ${DATABASE_SSL:-false}
+    ports:
+      - "127.0.0.1:1337:1337"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:1337/admin/init').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - aelf_blog
+
+  postgres-backup:
+    image: postgres:16-alpine
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: ${BLOG_DATABASE_NAME:?BLOG_DATABASE_NAME is required}
+      PGUSER: ${BLOG_DATABASE_USERNAME:?BLOG_DATABASE_USERNAME is required}
+      PGPASSWORD: ${BLOG_DATABASE_PASSWORD:?BLOG_DATABASE_PASSWORD is required}
+    volumes:
+      - ./backups/postgres:/backups
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -eu
+        mkdir -p /backups/daily /backups/weekly /backups/monthly
+        while true; do
+          timestamp="$$(date -u +%Y%m%dT%H%M%SZ)"
+          daily="/backups/daily/aelf_blog_$${timestamp}.dump"
+          pg_dump -Fc -f "$${daily}"
+          if [ "$$(date -u +%u)" = "1" ]; then
+            cp "$${daily}" "/backups/weekly/aelf_blog_$${timestamp}.dump"
+          fi
+          if [ "$$(date -u +%d)" = "01" ]; then
+            cp "$${daily}" "/backups/monthly/aelf_blog_$${timestamp}.dump"
+          fi
+          find /backups/daily -name '*.dump' -mtime +7 -delete
+          find /backups/weekly -name '*.dump' -mtime +28 -delete
+          find /backups/monthly -name '*.dump' -mtime +183 -delete
+          sleep 86400
+        done
+    restart: unless-stopped
+    networks:
+      - aelf_blog
+
+volumes:
+  aelf_blog_postgres:
+
+networks:
+  aelf_blog:
+    driver: bridge
