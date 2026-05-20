@@ -154,7 +154,6 @@ Build the website image after production Strapi is reachable:
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_APP_ENV=production \
-  --build-arg NEXT_PUBLIC_PAAL_CHAT_ENABLED=false \
   --build-arg STRAPI_API_URL=https://cms.aelf.com \
   --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
   --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \

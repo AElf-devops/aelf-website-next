@@ -154,7 +154,6 @@ CMS 启动后，在 Strapi 后台创建生产只读 API token 给 Website 使用
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_APP_ENV=production \
-  --build-arg NEXT_PUBLIC_PAAL_CHAT_ENABLED=false \
   --build-arg STRAPI_API_URL=https://cms.aelf.com \
   --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
   --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
