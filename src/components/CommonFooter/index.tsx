@@ -90,7 +90,7 @@ const LINK_LIST: ILinkListItem[] = [
       },
       {
         text: "Blog",
-        href: "/blog",
+        href: "https://blog.aelf.com",
       },
       { text: "Contact Us", href: "https://form.aelf.com/contact" },
     ],

@@ -26,7 +26,7 @@ export default function BlogItem({
   return (
     <CommonLink
       className={clsx(styles.blogItem, deviceClassName, className)}
-      href={`/posts/${slug}`}
+      href={`https://blog.aelf.com/posts/${slug}`}
       isExternalLinkTargetSelf
       onClick={() => {
         window.hj("event", `click_posts_${toSnakeCase(slug)}`);

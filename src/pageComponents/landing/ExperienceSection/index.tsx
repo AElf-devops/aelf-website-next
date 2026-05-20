@@ -37,7 +37,7 @@ export default function ExperienceSection({
           title="Blog"
           description="Stay informed on aelf news and featured updates."
           arrowText="Read our blog"
-          href="/blog"
+          href="https://blog.aelf.com"
           isExternalLinkTargetSelf
         />
       </div>

@@ -35,7 +35,8 @@ const MENU_LIST: IMenuItem[] = [
   },
   {
     text: "Blog",
-    href: "/blog",
+    href: "https://blog.aelf.com",
+    isExternalLinkTargetSelf: true,
   },
   {
     text: "About aelf",
