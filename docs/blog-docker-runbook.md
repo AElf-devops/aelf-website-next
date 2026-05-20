@@ -154,6 +154,7 @@ Build the website image after production Strapi is reachable:
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_APP_ENV=production \
+  --build-arg NEXT_PUBLIC_PAAL_CHAT_ENABLED=false \
   --build-arg STRAPI_API_URL=https://cms.aelf.com \
   --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
   --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
@@ -167,6 +168,8 @@ At runtime, set:
 - `STRAPI_REVALIDATE_SECRET=<production_secret>`
 - `BLOG_CANONICAL_ORIGIN=https://blog.aelf.com`
 - `STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com`
+
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, disabling the legacy PAAL iframe and its third-party payload. Rebuild the website image with `NEXT_PUBLIC_PAAL_CHAT_ENABLED=true` only if PAAL is intentionally restored.
 
 ## Revalidate
 

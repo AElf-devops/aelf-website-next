@@ -154,6 +154,7 @@ Build the website image with production blog values:
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_APP_ENV=production \
+  --build-arg NEXT_PUBLIC_PAAL_CHAT_ENABLED=false \
   --build-arg STRAPI_API_URL=https://cms.aelf.com \
   --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
   --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
@@ -169,6 +170,8 @@ STRAPI_REVALIDATE_SECRET=<production_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
+
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded. Set it to `true` only if the PAAL widget is confirmed working and the website image is rebuilt with that value.
 
 ## Maintenance
 

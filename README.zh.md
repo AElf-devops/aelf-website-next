@@ -154,6 +154,7 @@ CMS 启动后，在 Strapi 后台创建生产只读 API token 给 Website 使用
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_APP_ENV=production \
+  --build-arg NEXT_PUBLIC_PAAL_CHAT_ENABLED=false \
   --build-arg STRAPI_API_URL=https://cms.aelf.com \
   --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
   --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
@@ -169,6 +170,8 @@ STRAPI_REVALIDATE_SECRET=<production_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
+
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧的 PAAL iframe 不会渲染，也不会下载第三方脚本。只有确认 PAAL widget 仍可用时，才设置为 `true` 并重新构建官网镜像。
 
 ## 维护方式
 
