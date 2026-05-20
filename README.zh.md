@@ -170,6 +170,8 @@ BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧的 PAAL iframe 不会渲染，也不会下载第三方脚本。只有确认 PAAL widget 仍可用时，才设置为 `true` 并重新构建官网镜像。
+
 ## 维护方式
 
 ### 查看状态

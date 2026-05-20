@@ -170,6 +170,8 @@ BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded. Set it to `true` only if the PAAL widget is confirmed working and the website image is rebuilt with that value.
+
 ## Maintenance
 
 ### Status

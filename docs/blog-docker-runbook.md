@@ -168,6 +168,8 @@ At runtime, set:
 - `BLOG_CANONICAL_ORIGIN=https://blog.aelf.com`
 - `STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com`
 
+`NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, disabling the legacy PAAL iframe and its third-party payload. Rebuild the website image with `NEXT_PUBLIC_PAAL_CHAT_ENABLED=true` only if PAAL is intentionally restored.
+
 ## Revalidate
 
 Configure Strapi webhook to call:

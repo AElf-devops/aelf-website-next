@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { isPaalChatEnabled } from "./config";
 
-const ChatComponent = () => {
+const ChatFrame = () => {
   const [styles, setStyles] = React.useState({
     bottom: "-90px",
     width: "100px",
@@ -34,6 +35,7 @@ const ChatComponent = () => {
     <div>
       <iframe
         id="paal-chat"
+        title="PAAL chat assistant"
         src="https://app.paal.ai/wg?bid=ccee00d2"
         style={{
           colorScheme: "normal",
@@ -50,6 +52,14 @@ const ChatComponent = () => {
       />
     </div>
   );
+};
+
+const ChatComponent = () => {
+  if (!isPaalChatEnabled()) {
+    return null;
+  }
+
+  return <ChatFrame />;
 };
 
 export default ChatComponent;
