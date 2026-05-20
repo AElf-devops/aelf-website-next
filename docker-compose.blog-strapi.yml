@@ -1,0 +1,34 @@
+services:
+  strapi:
+    image: ${STRAPI_IMAGE:?STRAPI_IMAGE is required}
+    env_file:
+      - ${STRAPI_ENV_FILE:-./cms/.env.production}
+    environment:
+      NODE_ENV: production
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: ${DATABASE_HOST:-postgres}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${BLOG_DATABASE_NAME:?BLOG_DATABASE_NAME is required}
+      DATABASE_USERNAME: ${BLOG_DATABASE_USERNAME:?BLOG_DATABASE_USERNAME is required}
+      DATABASE_PASSWORD: ${BLOG_DATABASE_PASSWORD:?BLOG_DATABASE_PASSWORD is required}
+      DATABASE_SSL: ${DATABASE_SSL:-false}
+    ports:
+      - "${STRAPI_HOST_BIND:-127.0.0.1}:${STRAPI_HOST_PORT:-1337}:1337"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:1337/admin/init').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - aelf_blog
+
+networks:
+  aelf_blog:
+    external: true
+    name: ${BLOG_DOCKER_NETWORK:-aelf-blog_aelf_blog}

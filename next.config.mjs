@@ -3,6 +3,13 @@ import path from "path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
+const blogMediaHostname =
+  process.env.BLOG_MEDIA_HOSTNAME || process.env.NEXT_PUBLIC_BLOG_MEDIA_HOSTNAME;
+const blogMediaProtocol =
+  process.env.BLOG_MEDIA_PROTOCOL ||
+  (blogMediaHostname === "localhost" ? "http" : "https");
+const blogMediaPort = process.env.BLOG_MEDIA_PORT || "";
+
 const nextConfig = {
   reactStrictMode: false,
   sassOptions: {
@@ -49,21 +56,16 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: [
-      "cdn.prod.website-files.com",
-      "uploads-ssl.webflow.com",
-    ],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.prod.website-files.com",
-        port: "",
-      },
-      {
-        protocol: "https",
-        hostname: "uploads-ssl.webflow.com",
-        port: "",
-      },
+      ...(blogMediaHostname
+        ? [
+            {
+              protocol: blogMediaProtocol,
+              hostname: blogMediaHostname,
+              port: blogMediaPort,
+            },
+          ]
+        : []),
     ],
   },
   transpilePackages: [

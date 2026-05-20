@@ -7,7 +7,7 @@ import { toSnakeCase } from "../../../../utils";
 
 export interface IBlogItemProps {
   className?: string;
-  imageSrc: any;
+  imageSrc?: string;
   imageAlt?: string;
   date: string;
   title: string;
@@ -32,12 +32,16 @@ export default function BlogItem({
         window.hj("event", `click_posts_${toSnakeCase(slug)}`);
       }}
     >
-      <CommonImage
-        className={styles.image}
-        src={imageSrc}
-        alt={imageAlt}
-        fill
-      />
+      {imageSrc ? (
+        <CommonImage
+          className={styles.image}
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+        />
+      ) : (
+        <div className={styles.image} />
+      )}
       <div className={styles.info}>
         <div className={styles.date}>{date}</div>
         <div className={styles.title}>{title}</div>

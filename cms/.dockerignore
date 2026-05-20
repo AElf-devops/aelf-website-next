@@ -1,0 +1,14 @@
+.env
+.env.*
+.cache
+.strapi
+.strapi-updater.json
+.tmp
+build
+dist
+node_modules
+types/generated
+public/uploads/*
+!public/uploads/.gitkeep
+*.log
+.DS_Store

@@ -7,12 +7,13 @@ import NewsIcon from "@/assets/News.svg";
 import { useDeviceClass } from "@/hooks/useDeviceClass";
 import { useConfig } from "@/contexts/useConfig/hooks";
 import { DeviceWidthType } from "@/constants/breakpoints";
-import { IRecentBlogItem } from "@/types/webflow";
+import { formatDate } from "@/utils";
+import { IBlogPost } from "@/types/blog";
 import styles from "./styles.module.scss";
 
 interface IRecentBlogListProps {
   className?: string;
-  blogList: IRecentBlogItem[];
+  blogList: IBlogPost[];
 }
 
 export default function RecentBlogList({
@@ -46,9 +47,9 @@ export default function RecentBlogList({
         {blogList.map((item, index) => (
           <Col key={index} span={colSpan}>
             <BlogItem
-              imageSrc={item.articleHeaderImage.url}
-              imageAlt={item.articleHeaderImage.alt}
-              date={item.postDate}
+              imageSrc={item.coverImage?.url}
+              imageAlt={item.coverImage?.alt}
+              date={formatDate(item.publishedAt)}
               title={item.title}
               slug={item.slug}
             />

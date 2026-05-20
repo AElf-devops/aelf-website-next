@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+node_modules/
 /.pnp
 .pnp.js
 
@@ -18,6 +19,8 @@
 # misc
 .DS_Store
 *.pem
+.tmp/
+*.dump
 
 # debug
 npm-debug.log*
@@ -29,6 +32,17 @@ yarn-error.log*
 .env
 .env*.local
 .env.production
+
+# strapi cms local artifacts
+/cms/.cache/
+/cms/.strapi/
+/cms/.strapi-updater.json
+/cms/.tmp/
+/cms/build/
+/cms/dist/
+/cms/public/uploads/*
+!/cms/public/uploads/.gitkeep
+/cms/types/generated/
 
 # vercel
 .vercel

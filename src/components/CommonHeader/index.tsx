@@ -13,7 +13,14 @@ import { DeviceWidthType } from "@/constants/breakpoints";
 import styles from "./styles.module.scss";
 import { toSnakeCase } from "../../utils";
 
-const MENU_LIST = [
+interface IMenuItem {
+  text: string;
+  href: string;
+  isExternalLinkTargetSelf?: boolean;
+  onlyMobileShow?: boolean;
+}
+
+const MENU_LIST: IMenuItem[] = [
   {
     text: "Platform",
     href: "/platform",
@@ -28,7 +35,7 @@ const MENU_LIST = [
   },
   {
     text: "Blog",
-    href: "https://blog.aelf.com/",
+    href: "https://blog.aelf.com",
     isExternalLinkTargetSelf: true,
   },
   {

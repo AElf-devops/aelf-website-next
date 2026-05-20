@@ -1,12 +1,16 @@
-export const formatDate = (date: string, type: "MDY" | "DMY" = "MDY") => {
+export const formatDate = (
+  date: string,
+  type: "MDY" | "DMY" = "MDY",
+  month: "short" | "long" = "short"
+) => {
   if (!date) {
     return "";
   }
 
   const originalDate = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
-    month: "short",
-    day: "2-digit",
+    month,
+    day: month === "long" ? "numeric" : "2-digit",
     year: "numeric",
   };
   const newDate = originalDate.toLocaleDateString("en-US", options);
