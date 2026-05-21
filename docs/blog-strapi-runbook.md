@@ -178,9 +178,64 @@ Expected Strapi container status:
 healthy
 ```
 
-## 6. Create Website API Token
+## 6. Initialize Admin Access
+
+Check whether the restored database already has an admin account:
+
+```bash
+curl -s http://127.0.0.1:1337/admin/init
+```
+
+Expected after restoring the golden CMS dump:
+
+```json
+{"data":{"uuid":false,"hasAdmin":true,"menuLogo":null,"authLogo":null}}
+```
+
+If the restored admin account is known, reset its password before production use:
+
+```bash
+cd /opt/aelf/blog-strapi
+
+docker compose \
+  --env-file deploy/blog-strapi.env \
+  -p aelf-blog-strapi \
+  -f docker-compose.blog-strapi.yml \
+  exec strapi \
+  npm run strapi -- admin:reset-user-password \
+  --email <admin_email> \
+  --password '<new_strong_password>'
+```
+
+If this is a fresh database and `hasAdmin:false`, create the first Super Admin:
+
+```bash
+cd /opt/aelf/blog-strapi
+
+docker compose \
+  --env-file deploy/blog-strapi.env \
+  -p aelf-blog-strapi \
+  -f docker-compose.blog-strapi.yml \
+  exec strapi \
+  npm run strapi -- admin:create-user \
+  --email <admin_email> \
+  --password '<new_strong_password>' \
+  --firstname aelf \
+  --lastname Admin
+```
+
+After login, create named editor accounts for the team instead of sharing the Super Admin account.
+
+## 7. Create Website API Token
 
 Open Strapi Admin through the internal domain or SSH tunnel, then create a read-only API token for the website.
+
+Recommended token setup:
+
+- Create a new production token after restore; do not reuse local tokens restored from the dump.
+- Use read-only access.
+- Enable reads for `blog-post`, `blog-category`, `blog-tag`, and media assets if the UI exposes granular permissions.
+- Store the token only in the website runtime env.
 
 The website runtime env should use:
 
@@ -192,7 +247,36 @@ BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
-## 7. Useful Commands
+Verify the token locally from the Strapi machine:
+
+```bash
+STRAPI_API_TOKEN='<production_read_only_token>'
+
+curl -s \
+  -H "Authorization: Bearer $STRAPI_API_TOKEN" \
+  'http://127.0.0.1:1337/api/blog-posts?pagination%5BpageSize%5D=1&fields%5B0%5D=title' \
+  | head -c 300
+```
+
+## 8. Verify Media Upload And Webhook Setup
+
+Media upload:
+
+1. Upload one small test image in Strapi Media Library.
+2. Confirm the generated URL loads from `https://s3.ap-east-1.amazonaws.com/aelf.com/blog/`.
+3. Delete the test asset if it should not stay in production.
+
+Webhook:
+
+1. Generate a revalidation secret with `openssl rand -base64 32`.
+2. Add it to every website container as `STRAPI_REVALIDATE_SECRET`.
+3. In Strapi Admin, create a publish/update/delete webhook:
+
+```text
+https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>
+```
+
+## 9. Useful Commands
 
 Logs:
 

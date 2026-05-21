@@ -193,7 +193,9 @@ docker compose \
 - `postgres-backup` 至少生成了一个 dump 文件。
 - Strapi 镜像架构和生产机器 CPU 架构一致。
 - Strapi `/admin` 返回 `200`。
+- 生产 Strapi admin 已创建，或已重置从 dump 恢复出来的 admin 密码。
 - 已创建生产只读 Strapi API token。
+- Strapi Media Library 上传能写入配置的 S3/CDN 路径。
 - 每台官网机器的 `envfile` 都有 CMS 运行时 env。
 - 官网 container 内部可以访问 `STRAPI_API_URL`。
 - Website `/blog`、`/latest-posts`、旧 `/posts/:slug` 都返回 `200`。

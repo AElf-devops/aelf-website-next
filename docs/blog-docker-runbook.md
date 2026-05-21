@@ -135,6 +135,8 @@ docker compose \
   up -d postgres
 ```
 
+On first start, the `postgres:16-alpine` image initializes the database, user, password, and Docker volume from `deploy/blog-postgres.env`. After that, the volume is the source of truth; changing the env file later does not rewrite an existing database volume.
+
 Verify health:
 
 ```bash
@@ -303,14 +305,84 @@ Expected total:
 "total":251
 ```
 
-After Strapi is healthy:
+## 5. Initialize Strapi Admin And API Access
+
+Strapi is restored from the golden database, so production usually starts with `hasAdmin:true`. Verify the Admin bootstrap state:
+
+```bash
+curl -s http://127.0.0.1:1337/admin/init
+```
+
+Expected after restoring the golden dump:
+
+```json
+{"data":{"uuid":false,"hasAdmin":true,"menuLogo":null,"authLogo":null}}
+```
+
+If the restored admin account is known, reset its password before handing CMS access to editors:
+
+```bash
+cd /opt/aelf/blog-strapi
+
+docker compose \
+  --env-file deploy/blog-strapi.env \
+  -p aelf-blog-strapi \
+  -f docker-compose.blog-strapi.yml \
+  exec strapi \
+  npm run strapi -- admin:reset-user-password \
+  --email <admin_email> \
+  --password '<new_strong_password>'
+```
+
+If this is a fresh database and `hasAdmin:false`, create the first Super Admin instead:
+
+```bash
+cd /opt/aelf/blog-strapi
+
+docker compose \
+  --env-file deploy/blog-strapi.env \
+  -p aelf-blog-strapi \
+  -f docker-compose.blog-strapi.yml \
+  exec strapi \
+  npm run strapi -- admin:create-user \
+  --email <admin_email> \
+  --password '<new_strong_password>' \
+  --firstname aelf \
+  --lastname Admin
+```
+
+Then initialize editorial access:
 
 1. Open Strapi Admin through `cms.aelf.com` or an SSH tunnel.
-2. Reset or recreate the production admin account.
-3. Create a production read-only API token for `blog-post`, `blog-category`, and `blog-tag` reads.
-4. Keep the token in the website `envfile` only, not in code.
+2. Confirm `Blog Post`, `Blog Category`, and `Blog Tag` appear in Content Manager.
+3. Create production editor accounts instead of sharing the Super Admin account.
+4. Create a new production API token for the website. Use read-only access and enable reads for `blog-post`, `blog-category`, `blog-tag`, and media assets if the UI exposes granular permissions.
+5. Save this token only in the website `envfile`; do not reuse local API tokens restored from the dump.
 
-## 5. Publish The Website Container
+Verify the API token from the CMS machine:
+
+```bash
+STRAPI_API_TOKEN='<production_read_only_token>'
+
+curl -s \
+  -H "Authorization: Bearer $STRAPI_API_TOKEN" \
+  'http://127.0.0.1:1337/api/blog-posts?pagination%5BpageSize%5D=1&fields%5B0%5D=title' \
+  | head -c 300
+```
+
+Verify media/S3 setup:
+
+1. In Strapi Admin, upload one small test image to Media Library.
+2. Confirm it loads through the returned S3/CDN URL under `https://s3.ap-east-1.amazonaws.com/aelf.com/blog/`.
+3. Delete the test asset after verification if it should not stay in production.
+
+Create the website revalidation secret now and keep the same value for Website env and Strapi webhook:
+
+```bash
+openssl rand -base64 32
+```
+
+## 6. Publish The Website Container
 
 The website uses the existing Docker release flow. The important part is that every website container receives the CMS runtime env.
 
@@ -361,7 +433,7 @@ curl -s http://127.0.0.1:3000/ | grep -E 'paal-chat|app\.paal\.ai' || echo 'PAAL
 
 Repeat this step on every website machine. The site is stateless, so all machines should use the same `STRAPI_API_URL`, `STRAPI_API_TOKEN`, canonical origin, and media origin.
 
-## 6. Configure Domains And Reverse Proxy
+## 7. Configure Domains And Reverse Proxy
 
 ### `aelf.com`
 
@@ -390,9 +462,9 @@ STRAPI_HOST_BIND=127.0.0.1
 
 If the website machines call Strapi directly by private IP, bind Strapi to a private interface or `0.0.0.0` and restrict access with firewall rules. Do not expose PostgreSQL.
 
-## 7. Configure Strapi Revalidation Webhook
+## 8. Configure Strapi Revalidation Webhook
 
-In Strapi Admin, create a webhook for publish/update/delete events:
+In Strapi Admin, create a webhook for publish/update/delete events after `STRAPI_REVALIDATE_SECRET` has been added to the website runtime env:
 
 ```text
 https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>
@@ -400,9 +472,15 @@ https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>
 
 Use the same `STRAPI_REVALIDATE_SECRET` value from the website runtime env.
 
+Smoke test the endpoint after the website is deployed:
+
+```bash
+curl -I "https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>&path=/blog"
+```
+
 If multiple website machines serve ISR independently, either call each instance through an internal endpoint or accept the current ISR fallback of up to 300 seconds.
 
-## 8. Final Launch Checks
+## 9. Final Launch Checks
 
 Run these from an external machine after DNS/proxy changes:
 
@@ -437,7 +515,7 @@ cd /opt/aelf/blog-postgres
 find backups/postgres -maxdepth 3 -type f -name '*.dump' -print -exec ls -lh {} \;
 ```
 
-## 9. Maintenance Commands
+## 10. Maintenance Commands
 
 PostgreSQL:
 

@@ -193,7 +193,9 @@ docker compose \
 - `postgres-backup` created at least one dump file.
 - Strapi image architecture matches the production host.
 - Strapi `/admin` returns `200`.
+- Production Strapi admin access is created or the restored admin password is reset.
 - A production read-only Strapi API token exists.
+- Strapi Media Library upload writes to the configured S3/CDN path.
 - Every website machine has the CMS env values in its `envfile`.
 - Website containers can request `STRAPI_API_URL` from inside Docker.
 - Website `/blog`, `/latest-posts`, and old `/posts/:slug` URLs return `200`.
