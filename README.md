@@ -23,7 +23,7 @@ The blog deployment is split into three main services.
 | `docker-compose.blog.yml` | Local full-stack verification: PostgreSQL, Strapi, and Website. |
 | `docker-compose.blog-postgres.yml` | Production PostgreSQL and backup sidecar only. Does not publish port `5432`. |
 | `docker-compose.blog-strapi.yml` | Production Strapi only. Joins the existing PostgreSQL Docker network. |
-| `docker-compose.blog.prod.yml` | All-in-one fallback for a single-machine deployment. Do not run this on top of an existing PostgreSQL deployment. |
+| `docker-compose.blog.prod.yml` | Single-machine CMS fallback for PostgreSQL, Strapi, and backups. Do not run this on top of an existing PostgreSQL deployment. |
 | `deploy/blog-postgres.env.example` | PostgreSQL deployment env template. |
 | `deploy/blog-strapi.env.example` | Strapi deployment env template. |
 | `cms/.env.production.example` | Strapi runtime secrets and S3 env template. |
@@ -75,102 +75,49 @@ curl -I http://localhost:3000/latest-posts
 curl -I http://localhost:3000/posts/etransfer-service-sunset-announcement
 ```
 
-## Production Release Flow
+## Production Docker Deployment
+
+Use `docs/blog-docker-runbook.md` as the source of truth for a from-scratch Docker deployment. It covers the website, PostgreSQL, Strapi, data import, Nginx/DNS, validation, maintenance, and rollback.
 
 Recommended MVP topology:
 
-- Machine A: existing website Docker deployment and Nginx for `aelf.com` / `blog.aelf.com`.
-- Machine B: PostgreSQL, backup sidecar, and Strapi. PostgreSQL stays private on Docker network `aelf-blog_aelf_blog`.
+- Website machine(s): existing website Docker container and Nginx for `aelf.com` / `blog.aelf.com`.
+- CMS machine: PostgreSQL, `postgres-backup`, and Strapi. PostgreSQL stays private on Docker network `aelf-blog_aelf_blog`.
 
-### 1. Start PostgreSQL
+High-level order:
 
-Follow `docs/blog-postgres-runbook.md`.
+1. Export the golden local CMS dump.
+2. Build and push the Strapi image for the production CPU architecture.
+3. Start PostgreSQL with `docker-compose.blog-postgres.yml`.
+4. Restore the CMS dump and verify `251` published posts.
+5. Start `postgres-backup`.
+6. Start Strapi with `docker-compose.blog-strapi.yml`.
+7. Create the production read-only Strapi API token.
+8. Add CMS env values to every website machine's `envfile`.
+9. Deploy the website image with the existing website `start.sh` flow.
+10. Configure `cms.aelf.com`, then cut `blog.aelf.com` from Webflow to the website entry when ready.
 
-High-level flow:
-
-```bash
-sudo mkdir -p /opt/aelf/blog-postgres/{deploy,import,backups/postgres}
-sudo chown -R "$USER:$USER" /opt/aelf/blog-postgres
-
-cd /opt/aelf/blog-postgres
-
-docker compose \
-  --env-file deploy/blog-postgres.env \
-  -p aelf-blog \
-  -f docker-compose.blog-postgres.yml \
-  up -d postgres
-```
-
-Import the local CMS dump with `pg_restore`, then verify that published blog posts count is `251`.
-
-Start the backup sidecar:
-
-```bash
-docker compose \
-  --env-file deploy/blog-postgres.env \
-  -p aelf-blog \
-  -f docker-compose.blog-postgres.yml \
-  up -d postgres-backup
-```
-
-### 2. Start Strapi
-
-Follow `docs/blog-strapi-runbook.md`.
-
-Build and push the Strapi image:
-
-```bash
-TAG=$(git rev-parse --short HEAD)
-
-docker build \
-  -f cms/Dockerfile \
-  -t <registry>/aelf/aelf-blog-strapi:${TAG} \
-  cms
-
-docker push <registry>/aelf/aelf-blog-strapi:${TAG}
-```
-
-Start Strapi:
-
-```bash
-sudo mkdir -p /opt/aelf/blog-strapi/{cms,deploy}
-sudo chown -R "$USER:$USER" /opt/aelf/blog-strapi
-
-cd /opt/aelf/blog-strapi
-
-docker compose \
-  --env-file deploy/blog-strapi.env \
-  -p aelf-blog-strapi \
-  -f docker-compose.blog-strapi.yml \
-  up -d
-```
-
-Create a production read-only Strapi API token for the website after the CMS is up.
-
-### 3. Release the Website
-
-Build the website image with production blog values:
-
-```bash
-docker build \
-  --build-arg NEXT_PUBLIC_APP_ENV=production \
-  --build-arg STRAPI_API_URL=https://cms.aelf.com \
-  --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
-  --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
-  -t aelf-website-next:<tag> .
-```
-
-Runtime env must include:
+Website runtime env must include:
 
 ```text
-STRAPI_API_URL=https://cms.aelf.com
+STRAPI_API_URL=<cms_api_origin>
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
-`NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded. Set it to `true` only if the PAAL widget is confirmed working and the website image is rebuilt with that value.
+Use `STRAPI_API_URL=https://cms.aelf.com` when Strapi is behind the CMS reverse proxy. Use `STRAPI_API_URL=http://<CMS_PRIVATE_IP>:1337` only when Strapi binds to a private interface or `0.0.0.0` and firewall rules restrict access to website machines. `NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded unless it is explicitly set to `true` and the website image is rebuilt.
+
+Existing website deployment pattern:
+
+```bash
+sudo bash /opt/official-web/aelf-website-next/start.sh \
+  init \
+  official-web \
+  aelf-website-next \
+  aelf/aelf-website-next:<tag>
+```
 
 ## Maintenance
 
@@ -244,9 +191,15 @@ docker compose \
 - PostgreSQL container is healthy.
 - CMS data import is verified with `251` published posts.
 - `postgres-backup` created at least one dump file.
+- Strapi image architecture matches the production host.
 - Strapi `/admin` returns `200`.
+- Production Strapi admin access is created or the restored admin password is reset.
 - A production read-only Strapi API token exists.
+- Strapi Media Library upload writes to the configured S3/CDN path.
+- Every website machine has the CMS env values in its `envfile`.
+- Website containers can request `STRAPI_API_URL` from inside Docker.
 - Website `/blog`, `/latest-posts`, and old `/posts/:slug` URLs return `200`.
+- `cms.aelf.com` or the private Strapi endpoint is reachable by the website runtime.
 - Canonical URLs point to `https://blog.aelf.com`.
 - Blog sitemap includes published indexed posts.
 - Strapi webhook calls `/api/blog/revalidate` with `STRAPI_REVALIDATE_SECRET`.

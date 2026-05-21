@@ -8,6 +8,8 @@ PostgreSQL is not installed on the host OS. The host only needs Docker and Docke
 
 This compose file does not publish port `5432`, so it will not take over the host PostgreSQL port or affect the existing website container. Strapi should run on the same Docker host and join the `aelf-blog_aelf_blog` network for the MVP release.
 
+For the full from-scratch Docker deployment order, including Website and Strapi, use `docs/blog-docker-runbook.md` as the main runbook.
+
 ## Files
 
 - `docker-compose.blog-postgres.yml`
@@ -52,6 +54,8 @@ docker-compose.blog-postgres.yml
 deploy/blog-postgres.env
 ```
 
+Use `deploy/blog-postgres.env.example` as the template for `deploy/blog-postgres.env`.
+
 Move the dump into place:
 
 ```bash
@@ -74,6 +78,7 @@ BLOG_DATABASE_NAME=aelf_blog
 BLOG_DATABASE_USERNAME=aelf_blog
 BLOG_DATABASE_PASSWORD=replace_with_strong_password
 EOF
+chmod 600 deploy/blog-postgres.env
 ```
 
 ## 4. Start PostgreSQL

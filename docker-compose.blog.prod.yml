@@ -1,12 +1,12 @@
 #
-# All-in-one production compose for a single-machine deployment.
+# All-in-one CMS production compose for a single-machine deployment.
 #
 # For the staged release flow, run PostgreSQL first with:
 #   docker-compose.blog-postgres.yml
 # Then run Strapi with:
 #   docker-compose.blog-strapi.yml
 #
-# Do not run this all-in-one compose on top of an existing production
+# Do not run this all-in-one CMS compose on top of an existing production
 # PostgreSQL deployment, otherwise a second database container may be created.
 #
 services:
