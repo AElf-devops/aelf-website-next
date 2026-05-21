@@ -8,6 +8,8 @@ Do not start a second PostgreSQL instance for Strapi. Strapi should join the exi
 
 For the MVP release, run Strapi on the same Docker host as PostgreSQL. This keeps PostgreSQL private with no published `5432` port. If Strapi is moved to another host later, `DATABASE_HOST` must be changed to the PostgreSQL private IP or DNS name, and PostgreSQL must be exposed only to that private network with firewall protection.
 
+For the full from-scratch Docker deployment order, including Website, PostgreSQL, DNS, and launch checks, use `docs/blog-docker-runbook.md` as the main runbook.
+
 ## Prerequisites
 
 PostgreSQL has already been started with:
@@ -34,7 +36,20 @@ docker network inspect aelf-blog_aelf_blog >/dev/null
 
 ## 1. Build And Push Strapi Image
 
-Run this in CI or on a build machine:
+Run this in CI or on a build machine. If production runs on `linux/amd64` and the image is built from Apple Silicon, use `buildx` so the pushed image matches the server architecture:
+
+```bash
+TAG=$(git rev-parse --short HEAD)
+
+docker buildx build \
+  --platform linux/amd64 \
+  -f cms/Dockerfile \
+  -t <harbor>/aelf/aelf-blog-strapi:${TAG}-amd64 \
+  --push \
+  cms
+```
+
+If the build machine is already amd64, this simpler command is fine:
 
 ```bash
 TAG=$(git rev-parse --short HEAD)
@@ -65,6 +80,8 @@ deploy/blog-strapi.env
 cms/.env.production
 ```
 
+Use `deploy/blog-strapi.env.example` as the template for `deploy/blog-strapi.env`, and `cms/.env.production.example` as the template for `cms/.env.production`.
+
 ## 3. Create Deploy Env
 
 Create `deploy/blog-strapi.env`:
@@ -85,9 +102,12 @@ BLOG_DATABASE_USERNAME=aelf_blog
 BLOG_DATABASE_PASSWORD=<same_password_as_blog-postgres.env>
 DATABASE_SSL=false
 EOF
+chmod 600 deploy/blog-strapi.env
 ```
 
 `BLOG_DATABASE_PASSWORD` must match the password in `deploy/blog-postgres.env` on the PostgreSQL machine.
+
+Keep `STRAPI_HOST_BIND=127.0.0.1` when Nginx proxies `cms.aelf.com` on the same machine. If website containers on another machine must call Strapi directly by private IP, bind Strapi to a private interface or `0.0.0.0` and restrict access with firewall rules.
 
 ## 4. Create Strapi Env
 
@@ -114,6 +134,12 @@ AWS_ACL=public-read
 AWS_ROOT_PATH=blog
 AWS_SIGNED_URL_EXPIRES=900
 AWS_CDN_URL=https://s3.ap-east-1.amazonaws.com/aelf.com
+```
+
+Protect the production env file:
+
+```bash
+chmod 600 cms/.env.production
 ```
 
 Generate secrets with:

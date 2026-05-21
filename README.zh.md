@@ -23,7 +23,7 @@ Blog 部署拆成三个主要服务。
 | `docker-compose.blog.yml` | 本地完整验收：PostgreSQL、Strapi、Website。 |
 | `docker-compose.blog-postgres.yml` | 生产 PostgreSQL 和备份 sidecar。不会暴露 `5432`。 |
 | `docker-compose.blog-strapi.yml` | 生产 Strapi。接入已有 PostgreSQL Docker network。 |
-| `docker-compose.blog.prod.yml` | 单机 all-in-one 备用方案。不要叠加跑在已有 PostgreSQL 上。 |
+| `docker-compose.blog.prod.yml` | 单机 CMS 备用方案，包含 PostgreSQL、Strapi、备份 sidecar。不要叠加跑在已有 PostgreSQL 上。 |
 | `deploy/blog-postgres.env.example` | PostgreSQL 部署 env 模板。 |
 | `deploy/blog-strapi.env.example` | Strapi 部署 env 模板。 |
 | `cms/.env.production.example` | Strapi runtime secrets 和 S3 env 模板。 |
@@ -75,102 +75,49 @@ curl -I http://localhost:3000/latest-posts
 curl -I http://localhost:3000/posts/etransfer-service-sunset-announcement
 ```
 
-## 生产发布流程
+## 生产 Docker 部署
+
+从零部署一套官网 + PostgreSQL + Strapi CMS 时，以 `docs/blog-docker-runbook.md` 为主文档。它覆盖官网、PostgreSQL、Strapi、数据导入、Nginx/DNS、验收、维护和回滚。
 
 MVP 推荐拓扑：
 
-- 机器 A：现有官网 Docker 部署和 Nginx，承载 `aelf.com` / `blog.aelf.com`。
-- 机器 B：PostgreSQL、backup sidecar、Strapi。PostgreSQL 只在 Docker network `aelf-blog_aelf_blog` 内部访问。
+- 官网机器：现有官网 Docker container 和 Nginx，承载 `aelf.com` / `blog.aelf.com`。
+- CMS 机器：PostgreSQL、`postgres-backup`、Strapi。PostgreSQL 只在 Docker network `aelf-blog_aelf_blog` 内部访问。
 
-### 1. 启动 PostgreSQL
+整体顺序：
 
-详细步骤看 `docs/blog-postgres-runbook.md`。
+1. 从本地 golden CMS 数据库导出 dump。
+2. 按生产 CPU 架构构建并推送 Strapi 镜像。
+3. 用 `docker-compose.blog-postgres.yml` 启动 PostgreSQL。
+4. 恢复 CMS dump，并确认 published posts 是 `251`。
+5. 启动 `postgres-backup`。
+6. 用 `docker-compose.blog-strapi.yml` 启动 Strapi。
+7. 在 Strapi 后台创建生产只读 API token。
+8. 在每台官网机器的 `envfile` 加 CMS 运行时配置。
+9. 用现有官网 `start.sh` 流程发布官网镜像。
+10. 配好 `cms.aelf.com`，准备好后再把 `blog.aelf.com` 从 Webflow 切到官网入口。
 
-核心流程：
-
-```bash
-sudo mkdir -p /opt/aelf/blog-postgres/{deploy,import,backups/postgres}
-sudo chown -R "$USER:$USER" /opt/aelf/blog-postgres
-
-cd /opt/aelf/blog-postgres
-
-docker compose \
-  --env-file deploy/blog-postgres.env \
-  -p aelf-blog \
-  -f docker-compose.blog-postgres.yml \
-  up -d postgres
-```
-
-用 `pg_restore` 导入本地 CMS dump，然后确认 published blog posts 数量是 `251`。
-
-启动备份 sidecar：
-
-```bash
-docker compose \
-  --env-file deploy/blog-postgres.env \
-  -p aelf-blog \
-  -f docker-compose.blog-postgres.yml \
-  up -d postgres-backup
-```
-
-### 2. 启动 Strapi
-
-详细步骤看 `docs/blog-strapi-runbook.md`。
-
-构建并推送 Strapi 镜像：
-
-```bash
-TAG=$(git rev-parse --short HEAD)
-
-docker build \
-  -f cms/Dockerfile \
-  -t <registry>/aelf/aelf-blog-strapi:${TAG} \
-  cms
-
-docker push <registry>/aelf/aelf-blog-strapi:${TAG}
-```
-
-启动 Strapi：
-
-```bash
-sudo mkdir -p /opt/aelf/blog-strapi/{cms,deploy}
-sudo chown -R "$USER:$USER" /opt/aelf/blog-strapi
-
-cd /opt/aelf/blog-strapi
-
-docker compose \
-  --env-file deploy/blog-strapi.env \
-  -p aelf-blog-strapi \
-  -f docker-compose.blog-strapi.yml \
-  up -d
-```
-
-CMS 启动后，在 Strapi 后台创建生产只读 API token 给 Website 使用。
-
-### 3. 发布 Website
-
-用生产 Blog 参数构建官网镜像：
-
-```bash
-docker build \
-  --build-arg NEXT_PUBLIC_APP_ENV=production \
-  --build-arg STRAPI_API_URL=https://cms.aelf.com \
-  --build-arg STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com \
-  --build-arg BLOG_CANONICAL_ORIGIN=https://blog.aelf.com \
-  -t aelf-website-next:<tag> .
-```
-
-运行时 env 需要包含：
+官网运行时 env 需要包含：
 
 ```text
-STRAPI_API_URL=https://cms.aelf.com
+STRAPI_API_URL=<cms_api_origin>
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
-`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧的 PAAL iframe 不会渲染，也不会下载第三方脚本。只有确认 PAAL widget 仍可用时，才设置为 `true` 并重新构建官网镜像。
+Strapi 走 CMS 反向代理时，`STRAPI_API_URL` 用 `https://cms.aelf.com`。只有在 Strapi 绑定内网网卡或 `0.0.0.0`，并且防火墙只允许官网机器访问时，才用 `http://<CMS_PRIVATE_IP>:1337`。`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧 PAAL iframe 不会渲染，也不会下载第三方脚本；只有明确恢复 PAAL 时才设置成 `true` 并重新构建官网镜像。
+
+现有官网发布命令形态：
+
+```bash
+sudo bash /opt/official-web/aelf-website-next/start.sh \
+  init \
+  official-web \
+  aelf-website-next \
+  aelf/aelf-website-next:<tag>
+```
 
 ## 维护方式
 
@@ -244,9 +191,13 @@ docker compose \
 - PostgreSQL container 是 healthy。
 - CMS 数据导入后，published posts 数量是 `251`。
 - `postgres-backup` 至少生成了一个 dump 文件。
+- Strapi 镜像架构和生产机器 CPU 架构一致。
 - Strapi `/admin` 返回 `200`。
 - 已创建生产只读 Strapi API token。
+- 每台官网机器的 `envfile` 都有 CMS 运行时 env。
+- 官网 container 内部可以访问 `STRAPI_API_URL`。
 - Website `/blog`、`/latest-posts`、旧 `/posts/:slug` 都返回 `200`。
+- `cms.aelf.com` 或内网 Strapi endpoint 对官网运行时可达。
 - Canonical URL 指向 `https://blog.aelf.com`。
 - Blog sitemap 包含已发布且允许索引的文章。
 - Strapi webhook 使用 `STRAPI_REVALIDATE_SECRET` 调用 `/api/blog/revalidate`。

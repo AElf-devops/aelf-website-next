@@ -6,6 +6,8 @@
 - Strapi owns editorial data in PostgreSQL. Images are uploaded through Strapi's S3 upload provider and exposed through the configured media origin/CDN.
 - Next.js reads Strapi through `STRAPI_API_URL` and `STRAPI_API_TOKEN`, statically renders blog pages with ISR, and accepts Strapi publish webhooks at `/api/blog/revalidate?secret=...`.
 
+For the production Docker deployment sequence, including Website, PostgreSQL, Strapi, data import, DNS, and validation, use `docs/blog-docker-runbook.md`.
+
 ## Required Website Env
 
 ```bash
