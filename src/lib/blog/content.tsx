@@ -176,7 +176,7 @@ function renderMarkdownContent(content: string) {
     const heading = line.match(/^(#{1,6})\s+(.+)$/);
     if (heading) {
       const level = Math.min(Math.max(heading[1].length, 1), 6);
-      const Heading = `h${level}` as keyof JSX.IntrinsicElements;
+      const Heading = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
       nodes.push(
         <Heading key={index}>
           {renderInlineMarkdown(heading[2], `heading-${index}`)}
