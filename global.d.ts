@@ -1,23 +1,23 @@
 // global.d.ts
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
-interface Window {
-  dataLayer: any[];
-  hj: (...args: any[]) => void;
-  amplitude: {
-    init: (apiKey: string, options: any) => void;
-    add: (plugin: any) => void;
-  };
-  sessionReplay?: {
-    plugin: (options: {
-      sampleRate?: number;
-      captureScroll?: boolean;
-      onError?: (error: Error) => void;
-    }) => any;
-  };
-}
-
 declare global {
+  interface Window {
+    dataLayer: any[];
+    hj: (...args: any[]) => void;
+    amplitude: {
+      init: (apiKey: string, options: any) => void;
+      add: (plugin: any) => void;
+    };
+    sessionReplay?: {
+      plugin: (options: {
+        sampleRate?: number;
+        captureScroll?: boolean;
+        onError?: (error: Error) => void;
+      }) => any;
+    };
+  }
+
   namespace JSX {
     interface IntrinsicElements {
       "micro-app": DetailedHTMLProps<
