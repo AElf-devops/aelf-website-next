@@ -1,11 +1,6 @@
 // global.d.ts
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
-declare module "*.css";
-declare module "*.scss";
-declare module "*.sass";
-declare module "*.less";
-
 declare global {
   interface Window {
     dataLayer: any[];
