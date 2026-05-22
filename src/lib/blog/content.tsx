@@ -29,7 +29,7 @@ function renderBlock(block: any, index: number): ReactNode {
   switch (block.type) {
     case "heading": {
       const level = Math.min(Math.max(Number(block.level) || 2, 2), 4);
-      const Heading = `h${level}` as keyof JSX.IntrinsicElements;
+      const Heading = `h${level}` as "h2" | "h3" | "h4";
       return <Heading key={index}>{children}</Heading>;
     }
     case "list": {
