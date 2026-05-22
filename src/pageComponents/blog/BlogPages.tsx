@@ -103,7 +103,7 @@ function BlogPostCard({
   headingLevel?: 2 | 3;
   showTaxonomy?: boolean;
 }) {
-  const Heading = `h${headingLevel}` as keyof JSX.IntrinsicElements;
+  const Heading = `h${headingLevel}` as "h2" | "h3";
   const thumbnail = getPostThumbnail(post);
 
   return (
