@@ -1,5 +1,5 @@
 const {
-  revalidateBlogPages,
+  scheduleBlogRevalidation,
 } = require("../src/api/blog-post/content-types/blog-post/revalidate");
 
 module.exports = ({ env }) => {
@@ -11,10 +11,10 @@ module.exports = ({ env }) => {
         contentTypes: ["api::blog-post.blog-post"],
         hooks: {
           afterPublish: async ({ strapi, uid, entity }) => {
-            await revalidateBlogPages({ env, strapi, uid, entity });
+            scheduleBlogRevalidation({ env, strapi, uid, entity });
           },
           afterUnpublish: async ({ strapi, uid, entity }) => {
-            await revalidateBlogPages({ env, strapi, uid, entity });
+            scheduleBlogRevalidation({ env, strapi, uid, entity });
           },
         },
       },

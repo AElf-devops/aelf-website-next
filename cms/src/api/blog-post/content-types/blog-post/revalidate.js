@@ -22,11 +22,6 @@ async function revalidateBlogPages({
   }
 
   try {
-    const delayMs = getRevalidateDelayMs(env);
-    if (delayMs > 0) {
-      await wait(delayMs);
-    }
-
     const url = new URL(revalidateUrl);
     url.searchParams.set("secret", secret);
 
@@ -55,6 +50,19 @@ async function revalidateBlogPages({
   }
 }
 
+function scheduleBlogRevalidation(args) {
+  const delayMs = getRevalidateDelayMs(args.env);
+  const timer = setTimeout(() => {
+    revalidateBlogPages(args).catch((error) => {
+      args.strapi?.log?.warn(`Blog revalidation failed: ${error.message}`);
+    });
+  }, delayMs);
+
+  if (typeof timer.unref === "function") {
+    timer.unref();
+  }
+}
+
 function getRevalidateDelayMs(env) {
   const value = env("BLOG_REVALIDATE_DELAY_MS", DEFAULT_REVALIDATE_DELAY_MS);
   const delayMs = Number(value);
@@ -62,12 +70,6 @@ function getRevalidateDelayMs(env) {
   return Number.isFinite(delayMs) && delayMs >= 0
     ? delayMs
     : DEFAULT_REVALIDATE_DELAY_MS;
-}
-
-function wait(delayMs) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delayMs);
-  });
 }
 
 async function getRevalidatePayload({ strapi, uid, entity, previousEntity }) {
@@ -192,5 +194,6 @@ module.exports = {
   getCategorySlugs,
   getRevalidatePayload,
   revalidateBlogPages,
+  scheduleBlogRevalidation,
   shouldRevalidateBlogPostChange,
 };

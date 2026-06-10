@@ -3,7 +3,7 @@
 const { getBlogPreviewUrlFromEnv } = require("./preview-url");
 const {
   BLOG_POST_UID,
-  revalidateBlogPages,
+  scheduleBlogRevalidation,
   shouldRevalidateBlogPostChange,
 } = require("./revalidate");
 
@@ -86,7 +86,7 @@ async function revalidateIfPublishedChanged({ currentPost, previousPost }) {
     return;
   }
 
-  await revalidateBlogPages({
+  scheduleBlogRevalidation({
     env: getRuntimeEnv,
     strapi,
     uid: BLOG_POST_UID,
