@@ -206,5 +206,5 @@ docker compose \
 - `cms.aelf.com` or the private Strapi endpoint is reachable by the website runtime.
 - Canonical URLs point to `https://blog.aelf.com`.
 - Blog sitemap includes published indexed posts.
-- Strapi scheduled publish revalidation calls `/api/blog/revalidate` with `STRAPI_REVALIDATE_SECRET`, or ISR fallback within 300 seconds is accepted.
+- Strapi publish revalidation calls `/api/blog/revalidate` with `STRAPI_REVALIDATE_SECRET` for direct publish, unpublish, published-post updates, and scheduled publishing. Draft saves affect preview only. If revalidation is unavailable, ISR fallback within 300 seconds is accepted.
 - DNS cutover keeps the Webflow rollback window for 24-72 hours.

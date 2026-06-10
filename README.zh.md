@@ -206,5 +206,5 @@ docker compose \
 - `cms.aelf.com` 或内网 Strapi endpoint 对官网运行时可达。
 - Canonical URL 指向 `https://blog.aelf.com`。
 - Blog sitemap 包含已发布且允许索引的文章。
-- Strapi 预约发布 revalidation 使用 `STRAPI_REVALIDATE_SECRET` 调用 `/api/blog/revalidate`，或接受 ISR 最多 300 秒兜底刷新。
+- Strapi 发布 revalidation 使用 `STRAPI_REVALIDATE_SECRET` 调用 `/api/blog/revalidate`，覆盖直接发布、取消发布、已发布文章更新和预约发布。Draft 保存只影响 preview。若 revalidation 不可用，则接受 ISR 最多 300 秒兜底刷新。
 - DNS 切流后保留 Webflow 24-72 小时回滚窗口。

@@ -1,6 +1,11 @@
 "use strict";
 
 const { getBlogPreviewUrlFromEnv } = require("./preview-url");
+const {
+  BLOG_POST_UID,
+  revalidateBlogPages,
+  shouldRevalidateBlogPostChange,
+} = require("./revalidate");
 
 module.exports = {
   async beforeCreate(event) {
@@ -8,6 +13,9 @@ module.exports = {
   },
 
   async beforeUpdate(event) {
+    event.state = event.state || {};
+    event.state.previousPost = await getExistingPost(event);
+
     const data = event.params.data;
 
     if (!data) {
@@ -23,6 +31,30 @@ module.exports = {
     data.previewUrl = getBlogPreviewUrlFromEnv({
       env: getRuntimeEnv,
       identifier: slug,
+    });
+  },
+
+  async afterCreate(event) {
+    await revalidateIfPublishedChanged({
+      currentPost: event.result,
+    });
+  },
+
+  async afterUpdate(event) {
+    await revalidateIfPublishedChanged({
+      currentPost: event.result,
+      previousPost: event.state?.previousPost,
+    });
+  },
+
+  async beforeDelete(event) {
+    event.state = event.state || {};
+    event.state.previousPost = await getExistingPost(event);
+  },
+
+  async afterDelete(event) {
+    await revalidateIfPublishedChanged({
+      previousPost: event.state?.previousPost,
     });
   },
 };
@@ -44,7 +76,30 @@ function getRuntimeEnv(name) {
   return process.env[name];
 }
 
+async function revalidateIfPublishedChanged({ currentPost, previousPost }) {
+  if (
+    !shouldRevalidateBlogPostChange({
+      currentPost,
+      previousPost,
+    })
+  ) {
+    return;
+  }
+
+  await revalidateBlogPages({
+    env: getRuntimeEnv,
+    strapi,
+    uid: BLOG_POST_UID,
+    entity: currentPost,
+    previousEntity: previousPost,
+  });
+}
+
 async function getExistingSlug(event) {
+  return (await getExistingPost(event))?.slug;
+}
+
+async function getExistingPost(event) {
   const where = event.params.where || {};
   const id = where.id;
   const documentId = where.documentId;
@@ -54,14 +109,16 @@ async function getExistingSlug(event) {
   }
 
   try {
-    const post = await strapi.db.query("api::blog-post.blog-post").findOne({
+    return await strapi.db.query(BLOG_POST_UID).findOne({
       where: documentId ? { documentId } : { id },
-      select: ["slug"],
+      populate: {
+        categories: true,
+      },
     });
-
-    return post?.slug;
   } catch (error) {
-    strapi.log.warn(`Failed to resolve blog previewUrl slug: ${error.message}`);
+    strapi.log.warn(
+      `Failed to resolve blog post lifecycle state: ${error.message}`
+    );
     return undefined;
   }
 }

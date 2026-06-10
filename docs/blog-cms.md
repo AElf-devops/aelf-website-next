@@ -23,7 +23,7 @@ BLOG_MEDIA_PROTOCOL=https
 BLOG_MEDIA_PORT=
 ```
 
-## Required Strapi Scheduling Env
+## Required Strapi Publishing Env
 
 ```bash
 CRON_ENABLED=true
@@ -33,6 +33,7 @@ STRAPI_REVALIDATE_SECRET=replace_me
 ```
 
 Only one Strapi instance should set both `CRON_ENABLED=true` and `PLUGIN_PUBLISHER_ENABLED=true`. If Strapi is ever deployed with multiple instances, keep the extra instances with cron disabled so the same scheduled action cannot run twice.
+Direct Blog Post publish, unpublish, and published-post updates also call the same revalidation endpoint through the Blog Post lifecycle. Draft saves do not revalidate public pages; they only affect the protected website preview route.
 
 ## Required Strapi Preview Env
 

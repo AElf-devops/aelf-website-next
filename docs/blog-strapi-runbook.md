@@ -294,7 +294,7 @@ Publisher revalidation:
 3. Add the same secret to Strapi as `STRAPI_REVALIDATE_SECRET`.
 4. Set `BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate`.
 
-The Publisher `afterPublish` and `afterUnpublish` hooks call the website revalidation endpoint automatically when both Strapi env values are set. If revalidation is unavailable, the website still refreshes through the 300-second ISR fallback.
+The Blog Post lifecycle calls the website revalidation endpoint for direct publish, unpublish, and published-post updates. The Publisher `afterPublish` and `afterUnpublish` hooks call the same endpoint for scheduled publishing. Draft saves do not revalidate public pages; they only affect the protected website preview route. If revalidation is unavailable, the website still refreshes through the 300-second ISR fallback.
 
 ## 9. Useful Commands
 

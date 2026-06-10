@@ -244,14 +244,18 @@ describe("blog revalidation", () => {
     expect(
       getBlogRevalidatePaths({
         slug: "aelf-completes-2-000-000-elf-allocation",
+        previousSlug: "aelf-old-allocation-slug",
         categories: ["product-updates"],
+        previousCategories: ["community", "product-updates"],
       })
     ).toEqual([
       "/",
       "/blog",
       "/latest-posts",
       "/posts/aelf-completes-2-000-000-elf-allocation",
+      "/posts/aelf-old-allocation-slug",
       "/category/product-updates",
+      "/category/community",
     ]);
   });
 

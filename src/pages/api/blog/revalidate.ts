@@ -35,7 +35,9 @@ export default async function handler(
   try {
     const paths = getBlogRevalidatePaths({
       slug: req.body?.slug,
+      previousSlug: req.body?.previousSlug,
       categories: req.body?.categories,
+      previousCategories: req.body?.previousCategories,
     });
 
     await Promise.all(paths.map((path) => res.revalidate(path)));

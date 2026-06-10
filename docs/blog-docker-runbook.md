@@ -487,7 +487,9 @@ Use it from Strapi Admin:
 3. Save the scheduled action.
 4. Keep the entry unpublished until the selected time.
 
-The Publisher `afterPublish` and `afterUnpublish` hooks call the website revalidation endpoint automatically when these Strapi env values are set:
+The Blog Post lifecycle calls the website revalidation endpoint for direct publish, unpublish, and published-post updates. The Publisher `afterPublish` and `afterUnpublish` hooks call the same endpoint for scheduled publishing. Draft saves do not revalidate public pages; they only affect the protected website preview route.
+
+Both paths use these Strapi env values:
 
 ```bash
 BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate

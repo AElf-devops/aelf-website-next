@@ -2,7 +2,9 @@ const BASE_REVALIDATE_PATHS = ["/", "/blog", "/latest-posts"];
 
 interface IRevalidatePostInput {
   slug?: string;
+  previousSlug?: string;
   categories?: string[];
+  previousCategories?: string[];
 }
 
 export function isBlogRevalidateAuthorized(
@@ -18,15 +20,19 @@ export function isBlogRevalidateAuthorized(
 
 export function getBlogRevalidatePaths({
   slug,
+  previousSlug,
   categories = [],
+  previousCategories = [],
 }: IRevalidatePostInput): string[] {
   const paths = [...BASE_REVALIDATE_PATHS];
 
-  if (slug) {
-    paths.push(`/posts/${slug}`);
-  }
+  [slug, previousSlug].forEach((postSlug) => {
+    if (postSlug) {
+      paths.push(`/posts/${postSlug}`);
+    }
+  });
 
-  categories.forEach((category) => {
+  [...categories, ...previousCategories].forEach((category) => {
     if (category) {
       paths.push(`/category/${category}`);
     }
