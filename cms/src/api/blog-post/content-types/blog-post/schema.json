@@ -65,6 +65,9 @@
     "seoDescription": {
       "type": "text"
     },
+    "previewUrl": {
+      "type": "text"
+    },
     "author": {
       "type": "string"
     },

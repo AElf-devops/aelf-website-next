@@ -5,7 +5,7 @@
 Deploy one production-ready aelf website + self-hosted blog stack from scratch with Docker:
 
 - Website: Next.js container serving `aelf.com`, `/posts/:slug`, `/blog`, `/latest-posts`, blog SEO, sitemap, and ISR revalidation.
-- CMS: Strapi container serving Admin UI and blog content API.
+- CMS: Strapi container serving Admin UI, blog content API, and scheduled publishing through `strapi-plugin-publisher`.
 - Database: PostgreSQL container for Strapi content and admin data.
 - Backup: PostgreSQL sidecar that creates and prunes scheduled dumps.
 
@@ -242,6 +242,9 @@ BLOG_DATABASE_NAME=aelf_blog
 BLOG_DATABASE_USERNAME=aelf_blog
 BLOG_DATABASE_PASSWORD=<same_password_as_blog-postgres.env>
 DATABASE_SSL=false
+
+BLOG_PREVIEW_ORIGIN=https://aelf.com
+STRAPI_PREVIEW_SECRET=<same_preview_secret_as_website_env>
 EOF
 chmod 600 deploy/blog-strapi.env
 ```
@@ -262,6 +265,13 @@ ENCRYPTION_KEY=<secret>
 DATABASE_CLIENT=postgres
 DATABASE_SSL=false
 
+CRON_ENABLED=true
+PLUGIN_PUBLISHER_ENABLED=true
+BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate
+STRAPI_REVALIDATE_SECRET=<same_secret_as_website_env>
+BLOG_PREVIEW_ORIGIN=https://aelf.com
+STRAPI_PREVIEW_SECRET=<same_preview_secret_as_website_env>
+
 AWS_ACCESS_KEY_ID=<production_s3_key>
 AWS_ACCESS_SECRET=<production_s3_secret>
 AWS_REGION=ap-east-1
@@ -279,6 +289,8 @@ Generate Strapi secrets with:
 ```bash
 openssl rand -base64 32
 ```
+
+`CRON_ENABLED` and `PLUGIN_PUBLISHER_ENABLED` enable scheduled publishing. Keep both values enabled on exactly one Strapi instance. If Strapi is later scaled to multiple containers, disable cron on the extra containers to avoid duplicate scheduled actions.
 
 Start Strapi:
 
@@ -376,7 +388,7 @@ Verify media/S3 setup:
 2. Confirm it loads through the returned S3/CDN URL under `https://s3.ap-east-1.amazonaws.com/aelf.com/blog/`.
 3. Delete the test asset after verification if it should not stay in production.
 
-Create the website revalidation secret now and keep the same value for Website env and Strapi webhook:
+Create the website revalidation secret now and keep the same value for Website env and Strapi scheduled-publish hooks:
 
 ```bash
 openssl rand -base64 32
@@ -393,6 +405,7 @@ cat >> /opt/official-web/aelf-website-next/envfile <<'EOF'
 STRAPI_API_URL=<cms_api_origin>
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_revalidate_secret>
+STRAPI_PREVIEW_SECRET=<production_preview_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 # Optional. Missing or false keeps PAAL disabled.
@@ -401,6 +414,7 @@ EOF
 ```
 
 Use `STRAPI_API_URL=https://cms.aelf.com` when Strapi is behind the CMS reverse proxy. Use `STRAPI_API_URL=http://<CMS_PRIVATE_IP>:1337` only when Strapi binds to a private interface or `0.0.0.0` and firewall rules restrict access to website machines.
+Use `STRAPI_PREVIEW_SECRET` for real website previews at `/posts/preview/<slug-or-documentId>?secret=...`. The website API token must be allowed to read draft Blog Post records for this preview route. Strapi also needs `BLOG_PREVIEW_ORIGIN=https://aelf.com` and the same `STRAPI_PREVIEW_SECRET` so it can auto-fill the Blog Post `previewUrl` field.
 
 Deploy or restart with the existing website `start.sh` pattern:
 
@@ -462,12 +476,22 @@ STRAPI_HOST_BIND=127.0.0.1
 
 If the website machines call Strapi directly by private IP, bind Strapi to a private interface or `0.0.0.0` and restrict access with firewall rules. Do not expose PostgreSQL.
 
-## 8. Configure Strapi Revalidation Webhook
+## 8. Configure Scheduled Publishing And Revalidation
 
-In Strapi Admin, create a webhook for publish/update/delete events after `STRAPI_REVALIDATE_SECRET` has been added to the website runtime env:
+Scheduled publishing is enabled by `strapi-plugin-publisher` when Strapi starts with `CRON_ENABLED=true`.
 
-```text
-https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>
+Use it from Strapi Admin:
+
+1. Open a Blog Post draft.
+2. In the Publisher section on the edit page, add a publish date.
+3. Save the scheduled action.
+4. Keep the entry unpublished until the selected time.
+
+The Publisher `afterPublish` and `afterUnpublish` hooks call the website revalidation endpoint automatically when these Strapi env values are set:
+
+```bash
+BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate
+STRAPI_REVALIDATE_SECRET=<STRAPI_REVALIDATE_SECRET>
 ```
 
 Use the same `STRAPI_REVALIDATE_SECRET` value from the website runtime env.
@@ -475,7 +499,10 @@ Use the same `STRAPI_REVALIDATE_SECRET` value from the website runtime env.
 Smoke test the endpoint after the website is deployed:
 
 ```bash
-curl -I "https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>&path=/blog"
+curl -X POST \
+  "https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>" \
+  -H 'Content-Type: application/json' \
+  -d '{"slug":"etransfer-service-sunset-announcement","categories":[]}'
 ```
 
 If multiple website machines serve ISR independently, either call each instance through an internal endpoint or accept the current ISR fallback of up to 300 seconds.

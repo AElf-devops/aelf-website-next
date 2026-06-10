@@ -221,6 +221,45 @@ export async function fetchBlogPostBySlug(
     : undefined;
 }
 
+async function fetchBlogPreviewPost(
+  filters: Record<string, unknown>
+): Promise<IBlogPost | undefined> {
+  const response = await fetchStrapi("blog-posts", {
+    status: "draft",
+    populate: BLOG_POST_POPULATE,
+    filters,
+    pagination: {
+      page: 1,
+      pageSize: 1,
+    },
+  });
+
+  const post = response?.data?.[0];
+  return post
+    ? mapStrapiBlogPost(post, { mediaOrigin: getStrapiMediaOrigin() })
+    : undefined;
+}
+
+export async function fetchBlogPreviewPostByIdentifier(
+  identifier: string
+): Promise<IBlogPost | undefined> {
+  const slugPost = await fetchBlogPreviewPost({
+    slug: {
+      $eq: identifier,
+    },
+  });
+
+  if (slugPost) {
+    return slugPost;
+  }
+
+  return fetchBlogPreviewPost({
+    documentId: {
+      $eq: identifier,
+    },
+  });
+}
+
 export async function fetchBlogPostSlugs({
   indexedOnly = false,
 }: IFetchBlogPostSlugsOptions = {}): Promise<string[]> {

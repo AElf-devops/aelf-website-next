@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { getBlogContentFormat, renderBlogContent } from "../content";
+import { getBlogPreviewPath, isBlogPreviewAuthorized } from "../preview";
 import { getBlogRevalidatePaths, isBlogRevalidateAuthorized } from "../revalidate";
 import { createBlogSlug } from "../slug";
 import { mapStrapiBlogPost, mapStrapiBlogPostsResponse } from "../strapi";
@@ -157,6 +158,21 @@ describe("renderBlogContent", () => {
     );
   });
 
+  it("keeps markdown with embedded HTML on the markdown preview path", () => {
+    const content = `# Heading
+
+<div class="cms-callout"><strong>Raw HTML block</strong></div>`;
+
+    expect(getBlogContentFormat(content)).toBe("markdown");
+
+    const markup = renderToStaticMarkup(renderBlogContent(content));
+
+    expect(markup).toContain("<h1>Heading</h1>");
+    expect(markup).toContain(
+      '<div class="cms-callout"><strong>Raw HTML block</strong></div>'
+    );
+  });
+
   it("renders common Strapi markdown preview formats", () => {
     const markup = renderToStaticMarkup(
       renderBlogContent(`# Heading
@@ -175,21 +191,51 @@ const message = "hello";
 
 ![Alt text](https://aelf.com/image.png)
 
-[aelf](https://aelf.com/)`)
+[aelf](https://aelf.com/) and [internal post](/posts/etransfer-service-sunset-announcement)`)
     );
 
     expect(markup).toContain("<h1>Heading</h1>");
     expect(markup).toContain("<strong>bold</strong>");
     expect(markup).toContain("<em>italic</em>");
     expect(markup).toContain("<u>underline</u>");
-    expect(markup).toContain("<del>deleted</del>");
+    expect(markup).toContain("<s>deleted</s>");
     expect(markup).toContain("<code>code</code>");
     expect(markup).toContain("<ul>");
     expect(markup).toContain("<ol>");
-    expect(markup).toContain("<blockquote>Quote item</blockquote>");
+    expect(markup).toContain("<blockquote>");
+    expect(markup).toContain("<p>Quote item</p>");
     expect(markup).toContain('<code class="language-js">');
     expect(markup).toContain('<img src="https://aelf.com/image.png"');
     expect(markup).toContain('<a href="https://aelf.com/">aelf</a>');
+    expect(markup).toContain(
+      '<a href="/posts/etransfer-service-sunset-announcement">internal post</a>'
+    );
+  });
+
+  it("renders Strapi markdown-it preview extensions", () => {
+    const markup = renderToStaticMarkup(
+      renderBlogContent(`| Name | Value |
+| --- | --- |
+| ELF | 2,000,000 |
+
+Paragraph with ==highlight==, ++inserted++, H~2~O, and x^2^.
+
+- Parent
+  - Child
+
+Footnote reference.[^1]
+
+[^1]: Footnote detail.`)
+    );
+
+    expect(markup).toContain("<table>");
+    expect(markup).toContain("<mark>highlight</mark>");
+    expect(markup).toContain("<ins>inserted</ins>");
+    expect(markup).toContain("H<sub>2</sub>O");
+    expect(markup).toContain("x<sup>2</sup>");
+    expect(markup).toContain("<ul>");
+    expect(markup).toContain("<li>Child</li>");
+    expect(markup).toContain("Footnote detail");
   });
 });
 
@@ -213,5 +259,17 @@ describe("blog revalidation", () => {
     expect(isBlogRevalidateAuthorized("secret", "secret")).toBe(true);
     expect(isBlogRevalidateAuthorized("secret", "wrong")).toBe(false);
     expect(isBlogRevalidateAuthorized(undefined, "secret")).toBe(false);
+  });
+});
+
+describe("blog preview", () => {
+  it("requires an exact preview secret match", () => {
+    expect(isBlogPreviewAuthorized("secret", "secret")).toBe(true);
+    expect(isBlogPreviewAuthorized("secret", "wrong")).toBe(false);
+    expect(isBlogPreviewAuthorized(undefined, "secret")).toBe(false);
+  });
+
+  it("builds encoded preview paths", () => {
+    expect(getBlogPreviewPath("draft slug")).toBe("/posts/preview/draft%20slug");
   });
 });

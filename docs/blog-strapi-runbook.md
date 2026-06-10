@@ -101,11 +101,15 @@ BLOG_DATABASE_NAME=aelf_blog
 BLOG_DATABASE_USERNAME=aelf_blog
 BLOG_DATABASE_PASSWORD=<same_password_as_blog-postgres.env>
 DATABASE_SSL=false
+
+BLOG_PREVIEW_ORIGIN=https://aelf.com
+STRAPI_PREVIEW_SECRET=<same_preview_secret_as_website_env>
 EOF
 chmod 600 deploy/blog-strapi.env
 ```
 
 `BLOG_DATABASE_PASSWORD` must match the password in `deploy/blog-postgres.env` on the PostgreSQL machine.
+`BLOG_PREVIEW_ORIGIN` is the public website origin editors should open for article previews. `STRAPI_PREVIEW_SECRET` must match the website runtime env.
 
 Keep `STRAPI_HOST_BIND=127.0.0.1` when Nginx proxies `cms.aelf.com` on the same machine. If website containers on another machine must call Strapi directly by private IP, bind Strapi to a private interface or `0.0.0.0` and restrict access with firewall rules.
 
@@ -125,6 +129,13 @@ ENCRYPTION_KEY=<secret>
 
 DATABASE_CLIENT=postgres
 DATABASE_SSL=false
+
+CRON_ENABLED=true
+PLUGIN_PUBLISHER_ENABLED=true
+BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate
+STRAPI_REVALIDATE_SECRET=<same_secret_as_website_env>
+BLOG_PREVIEW_ORIGIN=https://aelf.com
+STRAPI_PREVIEW_SECRET=<same_preview_secret_as_website_env>
 
 AWS_ACCESS_KEY_ID=<production_s3_key>
 AWS_ACCESS_SECRET=<production_s3_secret>
@@ -147,6 +158,8 @@ Generate secrets with:
 ```bash
 openssl rand -base64 32
 ```
+
+`CRON_ENABLED` and `PLUGIN_PUBLISHER_ENABLED` enable scheduled publishing through `strapi-plugin-publisher`. Keep both values enabled on exactly one Strapi instance. If Strapi is ever scaled to multiple containers, disable cron on the extra containers to avoid duplicate scheduled actions.
 
 ## 5. Start Strapi
 
@@ -243,6 +256,7 @@ The website runtime env should use:
 STRAPI_API_URL=https://cms.aelf.com
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_secret>
+STRAPI_PREVIEW_SECRET=<production_preview_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
@@ -258,7 +272,7 @@ curl -s \
   | head -c 300
 ```
 
-## 8. Verify Media Upload And Webhook Setup
+## 8. Verify Media Upload, Scheduled Publishing, And Revalidation
 
 Media upload:
 
@@ -266,15 +280,21 @@ Media upload:
 2. Confirm the generated URL loads from `https://s3.ap-east-1.amazonaws.com/aelf.com/blog/`.
 3. Delete the test asset if it should not stay in production.
 
-Webhook:
+Scheduled publishing:
+
+1. Create a Blog Post draft.
+2. In the Publisher section on the edit page, add a publish date a few minutes in the future.
+3. Confirm the post remains unpublished before that time.
+4. Confirm the post becomes published after Strapi cron runs.
+
+Publisher revalidation:
 
 1. Generate a revalidation secret with `openssl rand -base64 32`.
 2. Add it to every website container as `STRAPI_REVALIDATE_SECRET`.
-3. In Strapi Admin, create a publish/update/delete webhook:
+3. Add the same secret to Strapi as `STRAPI_REVALIDATE_SECRET`.
+4. Set `BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate`.
 
-```text
-https://blog.aelf.com/api/blog/revalidate?secret=<STRAPI_REVALIDATE_SECRET>
-```
+The Publisher `afterPublish` and `afterUnpublish` hooks call the website revalidation endpoint automatically when both Strapi env values are set. If revalidation is unavailable, the website still refreshes through the 300-second ISR fallback.
 
 ## 9. Useful Commands
 

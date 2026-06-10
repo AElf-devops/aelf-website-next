@@ -530,8 +530,26 @@ $line: #e6e6e6;
     text-decoration: underline;
   }
 
-  del {
+  del,
+  s {
     text-decoration: line-through;
+  }
+
+  ins {
+    text-decoration: underline;
+  }
+
+  mark {
+    border-radius: 2px;
+    padding: 0 3px;
+    color: inherit;
+    background: #fff2a8;
+  }
+
+  sub,
+  sup {
+    font-size: 0.7em;
+    line-height: 0;
   }
 
   code {
@@ -580,6 +598,50 @@ $line: #e6e6e6;
     max-width: 100%;
     margin: 32px 0;
     border-radius: 0;
+  }
+
+  table {
+    width: 100%;
+    margin: 32px 0;
+    border-collapse: collapse;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  th,
+  td {
+    border: 1px solid #d9dbe8;
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: $navy;
+    background: #f6f7fb;
+    font-weight: 700;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #e4e6ef;
+    margin: 40px 0 24px;
+  }
+
+  :global(.footnotes) {
+    margin-top: 40px;
+    color: #5d607c;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  :global(.footnotes-list) {
+    padding-left: 24px;
+  }
+
+  :global(.footnote-backref) {
+    margin-left: 4px;
+    text-decoration: none;
   }
 }
 

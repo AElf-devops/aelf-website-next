@@ -103,11 +103,14 @@ Website runtime env must include:
 STRAPI_API_URL=<cms_api_origin>
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_secret>
+STRAPI_PREVIEW_SECRET=<production_preview_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
-Use `STRAPI_API_URL=https://cms.aelf.com` when Strapi is behind the CMS reverse proxy. Use `STRAPI_API_URL=http://<CMS_PRIVATE_IP>:1337` only when Strapi binds to a private interface or `0.0.0.0` and firewall rules restrict access to website machines. `NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded unless it is explicitly set to `true` and the website image is rebuilt.
+Strapi runtime env must also include `BLOG_PREVIEW_ORIGIN=https://aelf.com` and the same `STRAPI_PREVIEW_SECRET` value so Blog Post entries can auto-fill the `previewUrl` field for editors.
+
+Use `STRAPI_API_URL=https://cms.aelf.com` when Strapi is behind the CMS reverse proxy. Use `STRAPI_API_URL=http://<CMS_PRIVATE_IP>:1337` only when Strapi binds to a private interface or `0.0.0.0` and firewall rules restrict access to website machines. `STRAPI_PREVIEW_SECRET` protects real website previews at `/posts/preview/<slug-or-documentId>?secret=...`; the website API token must be able to read draft Blog Post records for this route. `NEXT_PUBLIC_PAAL_CHAT_ENABLED` defaults to `false`, so the legacy PAAL iframe is not rendered or downloaded unless it is explicitly set to `true` and the website image is rebuilt.
 
 Existing website deployment pattern:
 
@@ -195,6 +198,7 @@ docker compose \
 - Strapi `/admin` returns `200`.
 - Production Strapi admin access is created or the restored admin password is reset.
 - A production read-only Strapi API token exists.
+- Strapi scheduled publishing is enabled on exactly one CMS instance with `CRON_ENABLED=true` and `PLUGIN_PUBLISHER_ENABLED=true`.
 - Strapi Media Library upload writes to the configured S3/CDN path.
 - Every website machine has the CMS env values in its `envfile`.
 - Website containers can request `STRAPI_API_URL` from inside Docker.
@@ -202,5 +206,5 @@ docker compose \
 - `cms.aelf.com` or the private Strapi endpoint is reachable by the website runtime.
 - Canonical URLs point to `https://blog.aelf.com`.
 - Blog sitemap includes published indexed posts.
-- Strapi webhook calls `/api/blog/revalidate` with `STRAPI_REVALIDATE_SECRET`.
+- Strapi scheduled publish revalidation calls `/api/blog/revalidate` with `STRAPI_REVALIDATE_SECRET`, or ISR fallback within 300 seconds is accepted.
 - DNS cutover keeps the Webflow rollback window for 24-72 hours.

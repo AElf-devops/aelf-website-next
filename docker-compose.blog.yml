@@ -37,6 +37,12 @@ services:
       DATABASE_USERNAME: ${BLOG_DATABASE_USERNAME:-aelf_blog}
       DATABASE_PASSWORD: ${BLOG_DATABASE_PASSWORD:-aelf_blog}
       DATABASE_SSL: "false"
+      CRON_ENABLED: ${BLOG_STRAPI_CRON_ENABLED:-true}
+      PLUGIN_PUBLISHER_ENABLED: ${BLOG_STRAPI_PUBLISHER_ENABLED:-true}
+      BLOG_REVALIDATE_URL: http://website:3000/api/blog/revalidate
+      STRAPI_REVALIDATE_SECRET: ${BLOG_STRAPI_REVALIDATE_SECRET:-local-docker-revalidate-secret}
+      BLOG_PREVIEW_ORIGIN: ${BLOG_PREVIEW_ORIGIN:-http://localhost:3000}
+      STRAPI_PREVIEW_SECRET: ${BLOG_STRAPI_PREVIEW_SECRET:-local-docker-preview-secret}
     ports:
       - "1337:1337"
     healthcheck:
@@ -65,6 +71,7 @@ services:
       STRAPI_API_URL: http://strapi:1337
       STRAPI_API_TOKEN: ${BLOG_STRAPI_API_TOKEN:-}
       STRAPI_REVALIDATE_SECRET: ${BLOG_STRAPI_REVALIDATE_SECRET:-local-docker-revalidate-secret}
+      STRAPI_PREVIEW_SECRET: ${BLOG_STRAPI_PREVIEW_SECRET:-local-docker-preview-secret}
       STRAPI_MEDIA_ORIGIN: ${STRAPI_MEDIA_ORIGIN:-https://s3.ap-east-1.amazonaws.com/aelf.com}
       BLOG_CANONICAL_ORIGIN: ${BLOG_CANONICAL_ORIGIN:-https://blog.aelf.com}
     command: ["yarn", "start"]

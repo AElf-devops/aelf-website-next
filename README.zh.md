@@ -103,11 +103,14 @@ MVP 推荐拓扑：
 STRAPI_API_URL=<cms_api_origin>
 STRAPI_API_TOKEN=<production_read_only_token>
 STRAPI_REVALIDATE_SECRET=<production_secret>
+STRAPI_PREVIEW_SECRET=<production_preview_secret>
 BLOG_CANONICAL_ORIGIN=https://blog.aelf.com
 STRAPI_MEDIA_ORIGIN=https://s3.ap-east-1.amazonaws.com/aelf.com
 ```
 
-Strapi 走 CMS 反向代理时，`STRAPI_API_URL` 用 `https://cms.aelf.com`。只有在 Strapi 绑定内网网卡或 `0.0.0.0`，并且防火墙只允许官网机器访问时，才用 `http://<CMS_PRIVATE_IP>:1337`。`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧 PAAL iframe 不会渲染，也不会下载第三方脚本；只有明确恢复 PAAL 时才设置成 `true` 并重新构建官网镜像。
+Strapi 运行时 env 还需要包含 `BLOG_PREVIEW_ORIGIN=https://aelf.com`，并使用同一个 `STRAPI_PREVIEW_SECRET`，这样 Blog Post 保存时会自动生成给编辑复制的 `previewUrl` 字段。
+
+Strapi 走 CMS 反向代理时，`STRAPI_API_URL` 用 `https://cms.aelf.com`。只有在 Strapi 绑定内网网卡或 `0.0.0.0`，并且防火墙只允许官网机器访问时，才用 `http://<CMS_PRIVATE_IP>:1337`。`STRAPI_PREVIEW_SECRET` 用于保护真实官网预览页面 `/posts/preview/<slug-or-documentId>?secret=...`；官网 API token 需要有读取 Blog Post draft 记录的权限。`NEXT_PUBLIC_PAAL_CHAT_ENABLED` 默认是 `false`，因此旧 PAAL iframe 不会渲染，也不会下载第三方脚本；只有明确恢复 PAAL 时才设置成 `true` 并重新构建官网镜像。
 
 现有官网发布命令形态：
 
@@ -195,6 +198,7 @@ docker compose \
 - Strapi `/admin` 返回 `200`。
 - 生产 Strapi admin 已创建，或已重置从 dump 恢复出来的 admin 密码。
 - 已创建生产只读 Strapi API token。
+- Strapi 预约发布只在一个 CMS 实例开启，配置 `CRON_ENABLED=true` 和 `PLUGIN_PUBLISHER_ENABLED=true`。
 - Strapi Media Library 上传能写入配置的 S3/CDN 路径。
 - 每台官网机器的 `envfile` 都有 CMS 运行时 env。
 - 官网 container 内部可以访问 `STRAPI_API_URL`。
@@ -202,5 +206,5 @@ docker compose \
 - `cms.aelf.com` 或内网 Strapi endpoint 对官网运行时可达。
 - Canonical URL 指向 `https://blog.aelf.com`。
 - Blog sitemap 包含已发布且允许索引的文章。
-- Strapi webhook 使用 `STRAPI_REVALIDATE_SECRET` 调用 `/api/blog/revalidate`。
+- Strapi 预约发布 revalidation 使用 `STRAPI_REVALIDATE_SECRET` 调用 `/api/blog/revalidate`，或接受 ISR 最多 300 秒兜底刷新。
 - DNS 切流后保留 Webflow 24-72 小时回滚窗口。
