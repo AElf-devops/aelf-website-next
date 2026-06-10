@@ -1,7 +1,7 @@
 "use strict";
 
 const BLOG_POST_UID = "api::blog-post.blog-post";
-const DEFAULT_REVALIDATE_DELAY_MS = 1500;
+const DEFAULT_REVALIDATE_DELAY_MS = 10000;
 
 async function revalidateBlogPages({
   env,

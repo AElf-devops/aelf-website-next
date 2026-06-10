@@ -60,9 +60,9 @@ describe("blog post revalidation", () => {
   });
 
   it("uses a configurable revalidate delay to avoid publishing race conditions", () => {
-    expect(getRevalidateDelayMs((key, fallback) => fallback)).toBe(1500);
+    expect(getRevalidateDelayMs((key, fallback) => fallback)).toBe(10000);
     expect(getRevalidateDelayMs(() => "0")).toBe(0);
     expect(getRevalidateDelayMs(() => "2500")).toBe(2500);
-    expect(getRevalidateDelayMs(() => "invalid")).toBe(1500);
+    expect(getRevalidateDelayMs(() => "invalid")).toBe(10000);
   });
 });
