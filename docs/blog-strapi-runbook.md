@@ -134,6 +134,7 @@ CRON_ENABLED=true
 PLUGIN_PUBLISHER_ENABLED=true
 BLOG_REVALIDATE_URL=https://blog.aelf.com/api/blog/revalidate
 STRAPI_REVALIDATE_SECRET=<same_secret_as_website_env>
+BLOG_REVALIDATE_DELAY_MS=1500
 BLOG_PREVIEW_ORIGIN=https://aelf.com
 STRAPI_PREVIEW_SECRET=<same_preview_secret_as_website_env>
 

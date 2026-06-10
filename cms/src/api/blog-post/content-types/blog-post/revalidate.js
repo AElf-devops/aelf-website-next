@@ -1,6 +1,7 @@
 "use strict";
 
 const BLOG_POST_UID = "api::blog-post.blog-post";
+const DEFAULT_REVALIDATE_DELAY_MS = 1500;
 
 async function revalidateBlogPages({
   env,
@@ -21,6 +22,11 @@ async function revalidateBlogPages({
   }
 
   try {
+    const delayMs = getRevalidateDelayMs(env);
+    if (delayMs > 0) {
+      await wait(delayMs);
+    }
+
     const url = new URL(revalidateUrl);
     url.searchParams.set("secret", secret);
 
@@ -47,6 +53,21 @@ async function revalidateBlogPages({
   } catch (error) {
     strapi.log.warn(`Blog revalidation failed: ${error.message}`);
   }
+}
+
+function getRevalidateDelayMs(env) {
+  const value = env("BLOG_REVALIDATE_DELAY_MS", DEFAULT_REVALIDATE_DELAY_MS);
+  const delayMs = Number(value);
+
+  return Number.isFinite(delayMs) && delayMs >= 0
+    ? delayMs
+    : DEFAULT_REVALIDATE_DELAY_MS;
+}
+
+function wait(delayMs) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delayMs);
+  });
 }
 
 async function getRevalidatePayload({ strapi, uid, entity, previousEntity }) {
@@ -167,6 +188,7 @@ function removeUndefined(value) {
 module.exports = {
   BLOG_POST_UID,
   buildRevalidatePayload,
+  getRevalidateDelayMs,
   getCategorySlugs,
   getRevalidatePayload,
   revalidateBlogPages,
